@@ -40,6 +40,7 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
 - [x] Targa kasti logi olemas, kaks lülituspunkti teada.
   - 12.09.26: ACU2-B logitud 5.97 min, tulemused failis `docs/pump_control.md`. Üks lülituspunkt kindel (väljalülitus ≈ -91,5 kPa), teine (sisselülitus) ei vallandunud selle akna jooksul — napp klaasil pidas nii hästi, et leket/teist tsüklit ei tekkinud. Loetakse kehtivaks tulemuseks, mitte veaks.
 - [ ] Sinu kast jääb ise seisma imemisel ja puhumisel. USB välja, pump välja.
+  - 12.09.26: holding-kõverate mõõtmine käib (osa 4, `docs/pump_control.md`). Stsenaarium 1/3 (napp klaasil) valmis: max vaakum -83,06 kPa, seisuaeg atmosfäärini taastumiseks 310,7 s. Stsenaariumid 2 (napp õhus) ja 3 (voolik korgiga) ning oma prošivi tegelik iseseisev peatumine (praegu käsitsi juhitud CLI/veebilehe kaudu) on veel tegemata.
 - [ ] Täht: nupp valib tähe, Atom saadab selle jaama.
 - [ ] Repo ja arenduspäevik täidetud, tag `data-acquisition-lab1`.
   - 12.09.26: arenduspäevik käivitatud (vt allpool). Tag ja repo lõplik koristus jäävad kaitsmise eelseks sammuks.
@@ -196,6 +197,12 @@ Repos on kaustas `data-acquisition/lab1/`: `src/` püsivara ja logijaga, `data/`
 * Juhtus (numbrid): Log: 35800 rida, 358,0 s, ~100 Hz kinnitatud. Rõhk langes stardist (-4,23 kPa) väljalülituseni (-91,51 kPa) 4,15 sekundiga, seejärel jäi täiesti lauge kõveraks ülejäänud ~353 sekundiks — teist tsüklit ei tulnud. Täisanalüüs ja tabel: `docs/pump_control.md`.
 * Otsustasime, ja miks: loeme selle kehtivaks tulemuseks, mitte veaks — napp pidas klaasil nii hästi, et leket polnud piisavalt, et sisselülitusrõhk selle akna jooksul vallanduks. Väljalülitusrõhk (-91,5 kPa) ja tööaeg (4,2 s) on kindlad numbrid; sisselülitusrõhk ja käivituste sagedus jäävad "≥"-hinnanguks, kuni pikem logi või tahtlik väike leke (osa 4 "napp õhus" stsenaarium) annab teise tsükli.
 * Lahti järgmiseks korraks: osa 1 (anduri võrdlustabel, tellimus 22.09-ks), osa 4 kolm holding-stsenaariumi (napp klaasil / napp õhus / voolik korgiga) päris meeskonna enda MG400-kastiga, `docs/bom.md` alustamata.
+
+**12.09.26 (3. seanss) — Denys, Raimo**
+* Tegime: Seadistasime `mg400-base` veebilehe (`mg400 serve`, Brave brauseris) päris MG400 roboti juhtimiseks (robot juba varem ENABLED, IP 192.168.1.6 ping'itav). Leidsime ja lahendasime vea: "Sync sliders to robot" tundus katki, aga tegelik põhjus oli, et keegi polnud lehel `Enable` vajutanud — ilma selleta `servo_active` jääb `false` ja käsk `/api/move` ei liiguta kätt kuigi vastab 200 OK. Pump (vaakum/blow) töötas kogu aeg, kuna see on eraldi alamsüsteem. Pärast probleemi mõistmist alustasime osa 4 esimest holding-stsenaariumi: T-liitmik meeskonna enda (mitte ACU2-B) pumbakasti torusse, napp käsitsi klaasil, vaakum sisse kuni maksimumini, siis käsitsi välja täpselt tipus, ja logisime passiivset lekke-kõverat kuni atmosfäärini.
+* Juhtus (numbrid): Log 39829 rida, 398,3 s, ~100 Hz kinnitatud. Vaakum jõudis maksimumini -83,06 kPa (~12-16 s tööaeg), misjärel rõhk taastus iseenesest atmosfäärini (≥ -2 kPa) **310,7 sekundiga (~5,18 min)**. Erinevalt ACU2-B testist (kus leket ei tekkinud 6 minuti jooksul) taastus see täielikult — seega selle napi/klaasi kombo leke on selgelt suurem kui ACU2-B omal.
+* Otsustasime, ja miks: see on esimene täielik lekke-kõver (mitte ainult alumine piir nagu ACU2-B puhul) — sellest saab juba valida reaalse riba (on/off kPa) ja seisuaja alampiiri osa 4 jaoks, kui ka teised kaks stsenaariumi (napp õhus, voolik korgiga) on mõõdetud.
+* Lahti järgmiseks korraks: stsenaarium 2 (napp õhus) ja 3 (voolik korgiga) sama meetodiga; seejärel reaalsete numbritega `logger.py` käivitamine ilma `--dry-run`-ta, et Atomi enda otsus (mitte käsitsi CLI) juhiks pumpa; osa 1 ja `docs/bom.md` endiselt puutumata.
 
 ### Väljundid ja tulemused
 
