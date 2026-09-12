@@ -3,22 +3,43 @@
 //  ~0.85V. On Atom: read ADC -> print, so you can compare against the
 //  multimeter reading before trusting anything downstream."
 //
-// This file deliberately does nothing else: no timing loop, no display,
-// no kPa conversion. Get raw counts + volts matching the multimeter first;
-// the kPa math and the 10ms loop are Stage B/C (../firmware/).
+// This file deliberately does nothing else: no timing loop, no kPa
+// conversion. Get raw counts + volts matching the multimeter first; the
+// kPa math and the 10ms loop are Stage B/C (../firmware/).
+//
+// The on-screen status below is NOT part of that graded check -- it's
+// just so you can tell at a glance the board booted and is still sampling
+// (vs. frozen/crashed) without keeping the serial monitor open. The
+// actual multimeter comparison is still done from the Serial CSV.
 
 #include <Arduino.h>
+#include <M5Unified.h>
 
 constexpr int kAdcPin = 5;        // AtomS3(R) "G5" -- confirm against your
                                    // own wiring, not just this constant.
 
+namespace {
+uint32_t sampleCount = 0;
+}
+
 void setup() {
+  auto cfg = M5.config();
+  M5.begin(cfg); // display init; also brings Serial up, re-begin below to force our baud
+
   Serial.begin(115200);
   while (!Serial) { delay(10); }   // native USB CDC: wait for host to open port
   delay(1000);                     // give yourself time to open the monitor
 
   analogReadResolution(12);        // 0..4095
   analogSetPinAttenuation(kAdcPin, ADC_11db); // full ~0..3.3V range
+
+  M5.Display.fillScreen(TFT_BLACK);
+  M5.Display.setCursor(0, 0);
+  M5.Display.setTextSize(1);
+  M5.Display.println("STAGE A");
+  M5.Display.println("boot OK");
+  M5.Display.println("waiting for");
+  M5.Display.println("first sample...");
 
   Serial.println("t_ms,adc_raw,adc_volts");
 }
@@ -39,5 +60,17 @@ void loop() {
   float volts = raw * (3.3f / 4095.0f);
 
   Serial.printf("%lu,%d,%.4f\n", millis(), raw, volts);
+
+  // Status readout only -- not the graded signal, just proof of life.
+  // The toggling "*"/" " marker moves every sample so a frozen screen
+  // (vs. a frozen board) is obvious even without watching the numbers.
+  ++sampleCount;
+  M5.Display.fillScreen(TFT_BLACK);
+  M5.Display.setCursor(0, 0);
+  M5.Display.println("STAGE A -- OK");
+  M5.Display.printf("raw:  %d\n", raw);
+  M5.Display.printf("volts:%.4f\n", volts);
+  M5.Display.printf("n:%lu %s\n", sampleCount, (sampleCount % 2) ? "*" : " ");
+
   delay(200); // slow on purpose -- this stage is for reading by eye
 }
