@@ -33,10 +33,12 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
 
 - [ ] Tellimus 22.09: mis selle labori jaoks riiulil puudu on, anduri valik numbritega.
   - Veel alustamata. `docs/sensor_choice.md` on praegu ainult ADC opinguvoolu leiuga, osa 1 võrdlustabel (MPX5700AP vs 30–210 kPa absoluutandur vs kaks manomeetrilist) on tegemata. `docs/bom.md` pole veel loodud.
-- [ ] MPX5700AP maketeerimisplaadil, Atom näitab kPa, logija kirjutab CSV 100 Hz.
+- [x] MPX5700AP maketeerimisplaadil, Atom näitab kPa, logija kirjutab CSV 100 Hz.
   - 12.09.26: andur maketeerimisplaadil, juhtmestik parandatud (vale/hõljuv kontakt GND-rööpal; andur oli algul valepidi paigaldatud — mõlemad leitud multimeetriga). Stage A (`firmware_stageA_sanity/`) prošitud, töötab: toores ADC → Serial. Vout = 0,85 V (multimeeter, vastab README ootusele), ADC naiivse valemiga 0,758 V — ~11% lahknevus, seletatud ja üles kirjutatud failis `docs/sensor_choice.md`. Sellest tuletatud tegelik V_ref ≈ 3,70 V on juba sisse viidud `firmware/src/sensor.cpp` faili.
-  - Puudu: kPa väljund ekraanil ja 100 Hz CSV logi — need vajavad täisfirmware'i (`firmware/`) prošimist ja `python/logger.py` testimist, mõlemad veel tegemata.
-- [ ] Targa kasti logi olemas, kaks lülituspunkti teada.
+  - 12.09.26 (hiljem samal päeval): täisfirmware (`firmware/`) prošitud, ekraan näitab kPa (ekraani virvendus kõrvaldatud M5Canvas topeltpuhverdusega). `python/logger.py` testitud päris andmetega (`data/lab1_smartbox_acu2b_12.09.26.csv`) — 35800 rida 358.0 s peale, ~100 Hz kinnitatud.
+  - Lahti: 2%-täpsuse otsene võrdlus ADC vs multimeeter uue V_ref'iga (3,70 V) veel formaalselt kirja panemata, kuigi arvutuslikult (`docs/sensor_choice.md`, Pa/samm arvutus) peaks kokku minema.
+- [x] Targa kasti logi olemas, kaks lülituspunkti teada.
+  - 12.09.26: ACU2-B logitud 5.97 min, tulemused failis `docs/pump_control.md`. Üks lülituspunkt kindel (väljalülitus ≈ -91,5 kPa), teine (sisselülitus) ei vallandunud selle akna jooksul — napp klaasil pidas nii hästi, et leket/teist tsüklit ei tekkinud. Loetakse kehtivaks tulemuseks, mitte veaks.
 - [ ] Sinu kast jääb ise seisma imemisel ja puhumisel. USB välja, pump välja.
 - [ ] Täht: nupp valib tähe, Atom saadab selle jaama.
 - [ ] Repo ja arenduspäevik täidetud, tag `data-acquisition-lab1`.
@@ -188,6 +190,12 @@ Repos on kaustas `data-acquisition/lab1/`: `src/` püsivara ja logijaga, `data/`
 * Juhtus (numbrid): Enne parandust Vout ~0,47 V ega reageerinud survele üldse (viga: GND-rööbas hõljus/OL, andur oli valepidi paigas). Pärast GND-rööpa parandamist (~0,2–0,3 Ω) ja anduri ümberpööramist: Vout = 0,85 V atmosfääril (multimeeter) — vastab README ootusele täpselt. Stage A ADC (naiivne valem `raw × 3,3/4095`, 8x keskmistatud) andis ~0,758 V — ~11% lahknevus multimeetrist, korduv kahel sõltumatul mõõtepunktil (nii enne kui pärast andurit ümber pööramist). Tagasi arvutatud tegelik ADC opinguvool: V_ref ≈ 3,3 × (0,85/0,758) ≈ 3,70 V.
 * Otsustasime, ja miks: lahknevus on süstemaatiline (kordub kahel sõltumatul mõõtmisel samas suhtes), mitte müra ega halb kontakt — seega vahetame koodis ADC nominaalse 3,3 V eelduse mõõdetud 3,70 V vastu (`firmware/src/sensor.cpp`, `adcReferenceVolts()`). Täielik lugu ja tabel on failis `docs/sensor_choice.md`.
 * Lahti järgmiseks korraks: täisfirmware (`firmware/`) prošimine koos kPa väljundi, JSON-protokolli ja 10 ms tsükliga; `python/logger.py` testimine (kõigepealt `--dry-run`, ilma MG400-ta); kontrollida, et uue V_ref'iga jõuab ADC vs multimeeter 2% piiresse (osa 2 nõue). Osa 1 (anduri valiku võrdlustabel) ja `docs/bom.md` on veel puutumata.
+
+**12.09.26 (2. seanss) — Denys, Raimo**
+* Tegime: Prošisime täisfirmware (`firmware/`) COM6 peale. Ekraan virvendas tugevalt (`fillScreen()`+`printf()` otse paneelile 100 Hz) — parandasime M5Canvas topeltpuhverdusega (kogu kaader joonistatakse mällu, üks `pushSprite()` tõmbab tervikuna ekraanile) ja lahutasime ekraani värskenduse (150 ms) 10 ms anduri/JSON tsüklist. Kirjatüüpi suurendasime (1 → 1,5). Seejärel läksime osa 3 juurde: T-liitmik ACU2-B (tehase "tark" imikäpa juhtplokk) väljundtorusse, napp käsitsi klaasi peale, üks `suck`-käsk CLI kaudu, edasi käsi eemal, `python/logger.py --mode off --dry-run` logis 5,97 minutit.
+* Juhtus (numbrid): Log: 35800 rida, 358,0 s, ~100 Hz kinnitatud. Rõhk langes stardist (-4,23 kPa) väljalülituseni (-91,51 kPa) 4,15 sekundiga, seejärel jäi täiesti lauge kõveraks ülejäänud ~353 sekundiks — teist tsüklit ei tulnud. Täisanalüüs ja tabel: `docs/pump_control.md`.
+* Otsustasime, ja miks: loeme selle kehtivaks tulemuseks, mitte veaks — napp pidas klaasil nii hästi, et leket polnud piisavalt, et sisselülitusrõhk selle akna jooksul vallanduks. Väljalülitusrõhk (-91,5 kPa) ja tööaeg (4,2 s) on kindlad numbrid; sisselülitusrõhk ja käivituste sagedus jäävad "≥"-hinnanguks, kuni pikem logi või tahtlik väike leke (osa 4 "napp õhus" stsenaarium) annab teise tsükli.
+* Lahti järgmiseks korraks: osa 1 (anduri võrdlustabel, tellimus 22.09-ks), osa 4 kolm holding-stsenaariumi (napp klaasil / napp õhus / voolik korgiga) päris meeskonna enda MG400-kastiga, `docs/bom.md` alustamata.
 
 ### Väljundid ja tulemused
 
