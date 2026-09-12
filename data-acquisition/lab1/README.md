@@ -40,7 +40,8 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
 - [x] Targa kasti logi olemas, kaks lülituspunkti teada.
   - 12.09.26: ACU2-B logitud 5.97 min, tulemused failis `docs/pump_control.md`. Üks lülituspunkt kindel (väljalülitus ≈ -91,5 kPa), teine (sisselülitus) ei vallandunud selle akna jooksul — napp klaasil pidas nii hästi, et leket/teist tsüklit ei tekkinud. Loetakse kehtivaks tulemuseks, mitte veaks.
 - [ ] Sinu kast jääb ise seisma imemisel ja puhumisel. USB välja, pump välja.
-  - 12.09.26: holding-kõverate mõõtmine käib (osa 4, `docs/pump_control.md`). Stsenaarium 1/3 (napp klaasil) valmis: max vaakum -83,06 kPa, seisuaeg atmosfäärini taastumiseks 310,7 s. Stsenaariumid 2 (napp õhus) ja 3 (voolik korgiga) ning oma prošivi tegelik iseseisev peatumine (praegu käsitsi juhitud CLI/veebilehe kaudu) on veel tegemata.
+  - 12.09.26: kõik kolm holding-stsenaariumi mõõdetud (osa 4, täistabel `docs/pump_control.md`): napp klaasil (max -83,06 kPa, taastumine 310,7 s), napp õhus (max ainult -12…-15 kPa, taastumine 17,0 s), voolik korgiga (max -83,34 kPa, peaaegu kadudeta ~30s, siis üks järsk aste -58 kPa peale, stabiilne ≥240s).
+  - Puudu: reaalse riba (on/off kPa) valimine nende kõverate põhjal, ja Atomi enda prošivi (mitte käsitsi CLI/veebilehe) iseseisev peatamine — kõik kolm testi juhiti seni käsitsi.
 - [ ] Täht: nupp valib tähe, Atom saadab selle jaama.
 - [ ] Repo ja arenduspäevik täidetud, tag `data-acquisition-lab1`.
   - 12.09.26: arenduspäevik käivitatud (vt allpool). Tag ja repo lõplik koristus jäävad kaitsmise eelseks sammuks.
@@ -203,6 +204,12 @@ Repos on kaustas `data-acquisition/lab1/`: `src/` püsivara ja logijaga, `data/`
 * Juhtus (numbrid): Log 39829 rida, 398,3 s, ~100 Hz kinnitatud. Vaakum jõudis maksimumini -83,06 kPa (~12-16 s tööaeg), misjärel rõhk taastus iseenesest atmosfäärini (≥ -2 kPa) **310,7 sekundiga (~5,18 min)**. Erinevalt ACU2-B testist (kus leket ei tekkinud 6 minuti jooksul) taastus see täielikult — seega selle napi/klaasi kombo leke on selgelt suurem kui ACU2-B omal.
 * Otsustasime, ja miks: see on esimene täielik lekke-kõver (mitte ainult alumine piir nagu ACU2-B puhul) — sellest saab juba valida reaalse riba (on/off kPa) ja seisuaja alampiiri osa 4 jaoks, kui ka teised kaks stsenaariumi (napp õhus, voolik korgiga) on mõõdetud.
 * Lahti järgmiseks korraks: stsenaarium 2 (napp õhus) ja 3 (voolik korgiga) sama meetodiga; seejärel reaalsete numbritega `logger.py` käivitamine ilma `--dry-run`-ta, et Atomi enda otsus (mitte käsitsi CLI) juhiks pumpa; osa 1 ja `docs/bom.md` endiselt puutumata.
+
+**12.09.26 (4. seanss) — Denys, Raimo**
+* Tegime: Lõpetasime osa 4 holding-stsenaariumid 2 ja 3 sama meetodiga (käsitsi suck kuni maksimumini, käsitsi off tipus, passiivne logimine). Stsenaarium 2: napp vabas õhus, ei puuduta midagi. Stsenaarium 3: napp asendatud vooliku korgiga.
+* Juhtus (numbrid): Stsenaarium 2 (napp õhus, 9376 rida, 93,75 s): pump suutis tõmmata ainult -12…-15 kPa platoole (avatud otsa vastu ei jõua sügavamale), taastumine atmosfäärini 17,0 sekundiga. Stsenaarium 3 (voolik korgiga, 31193 rida, 311,9 s): maksimum -83,34 kPa (peaaegu sama, mis klaasiga!), esimesed ~30s peaaegu kadudeta, siis üks järsk aste (~5s jooksul -81,2 → -59,6 kPa — meeskond kinnitas, et midagi tahtlikult ei puudutatud, tõenäoliselt väike juhuslik nihe), edasi stabiilne uus platoo ≥240 sekundit ilma edasise triivita.
+* Otsustasime, ja miks: kõik kolm stsenaariumit koos annavad selge pildi — leke süsteemis tuleb peaaegu täielikult napi-pinna kontaktist, mitte pumbast/klappidest endist (puhas pneumaatika korgiga hoiab peaaegu sama hästi kui klaas, avatud õhk on ainuke, mis reaalselt "lekib" kiiresti). Täisvõrdlustabel ja järeldus: `docs/pump_control.md`.
+* Lahti järgmiseks korraks: nende kolme kõvera põhjal valida päris on/off kPa riba ja seisuaja alampiir; käivitada `logger.py` ilma `--dry-run`-ta, et Atomi enda prošivi (mitte käsitsi CLI/veebileht) otsustaks pumba üle ise; kontrollida USB-välja-tähendab-pump-välja nõuet; osa 1 (anduri valik) ja `docs/bom.md` (tähtaeg 22.09) endiselt puutumata.
 
 ### Väljundid ja tulemused
 
