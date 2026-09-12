@@ -14,7 +14,13 @@ int readRawAdc() {
 }
 
 float adcReferenceVolts() {
-  return 3.3f; // see the big comment in sensor.h -- verify, don't assume
+  // Measured 12.09.26 (docs/sensor_choice.md): multimeter Vout at atmosphere
+  // was 0.85V (matches README's expected value) while the naive 3.3V/4095
+  // formula computed ~0.758V from the same raw counts -- a consistent ~11%
+  // gap reproduced across two independent readings. Back-solving gives an
+  // effective reference of ~3.70V, used here instead of the nominal rail
+  // voltage. Re-verify if you re-flash on different hardware.
+  return 3.70f;
 }
 
 float countsToVolts(int counts) {

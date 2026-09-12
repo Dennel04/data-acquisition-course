@@ -14,7 +14,24 @@
 
 namespace {
 
-constexpr uint32_t kLoopPeriodMs = 10; // README: "iga 10 ms"
+constexpr uint32_t kLoopPeriodMs = 10; // README: "iga 10 ms" -- sensor read + JSON line, unchanged
+
+// Display redraw is deliberately slower than the 10ms sensor loop: a full
+// fillScreen()+redraw at 100Hz visibly flickers on this panel and buys
+// nothing for a human reading it. Sensor read / kPa math / JSON telemetry
+// still happen every 10ms as required; only the on-screen refresh is
+// throttled. 12.09.26: flicker reported, fixed by decoupling this.
+constexpr uint32_t kDisplayPeriodMs = 150;
+uint32_t nextDisplayAtMs = 0;
+
+// Residual flicker after throttling the refresh rate was root-caused to
+// drawing straight to the panel: fillScreen()+printf() write visible
+// pixels incrementally over SPI, so the blank-then-redraw is physically
+// visible mid-frame. Fix (12.09.26, M5Stack's own recommended pattern --
+// docs.m5stack.com/en/arduino/m5gfx/m5gfx_sprite): draw the whole frame
+// into this off-screen sprite first, then push it to the panel in one
+// transfer via pushSprite(). The viewer only ever sees a complete frame.
+M5Canvas canvas(&M5.Display);
 
 pump::Controller pumpController;
 pump::Mode currentMode = pump::Mode::Off;
@@ -50,17 +67,20 @@ void handleButton() {
 }
 
 void drawScreen(float pKpa, pump::Mode mode, bool pumpOn, const char* reason) {
-  M5.Display.fillScreen(TFT_BLACK);
-  M5.Display.setCursor(0, 0);
-  M5.Display.setTextSize(1);
-  M5.Display.printf("p: %.1f kPa\n", pKpa);
-  M5.Display.printf("mode: %s\n",
-                     mode == pump::Mode::Suction ? "suction"
-                     : mode == pump::Mode::Blow   ? "blow"
-                                                   : "off");
-  M5.Display.printf("pump: %s\n", pumpOn ? "ON" : "off");
-  M5.Display.printf("why: %s\n", reason);
-  M5.Display.printf("letter: %c\n", currentLetter);
+  // Draw into the off-screen sprite, not M5.Display, directly -- see the
+  // canvas comment near the top of the file for why.
+  canvas.fillScreen(TFT_BLACK);
+  canvas.setCursor(0, 0);
+  canvas.setTextSize(1.5f); // 1 was too small, 2 flickered/felt too big -- 12.09.26
+  canvas.printf("p: %.1f kPa\n", pKpa);
+  canvas.printf("mode: %s\n",
+                mode == pump::Mode::Suction ? "suction"
+                : mode == pump::Mode::Blow  ? "blow"
+                                             : "off");
+  canvas.printf("pump: %s\n", pumpOn ? "ON" : "off");
+  canvas.printf("why: %s\n", reason);
+  canvas.printf("letter: %c\n", currentLetter);
+  canvas.pushSprite(0, 0); // one complete transfer -- this is what kills the flicker
 }
 
 } // namespace
@@ -72,6 +92,11 @@ void setup() {
   comms::begin(115200);
   sensor::begin();
   M5.BtnA.setHoldThresh(kLongPressMs);
+
+  // Off-screen buffer, same size/color depth as the panel -- must be
+  // created after M5.begin() so M5.Display.width()/height() are valid.
+  canvas.setColorDepth(M5.Display.getColorDepth());
+  canvas.createSprite(M5.Display.width(), M5.Display.height());
 
   // Atmospheric baseline: tubing open, pump off, average a handful of
   // readings. If this runs before the tubing is actually open to air,
@@ -128,5 +153,11 @@ void loop() {
   bool pumpOn = pumpController.update(relKpa, now, reason);
 
   comms::sendTelemetry(now, raw, relKpa, currentMode, pumpOn);
-  drawScreen(relKpa, currentMode, pumpOn, reason);
+
+  // Screen refresh throttled separately from the 10ms sensor/JSON cadence
+  // above -- see kDisplayPeriodMs comment near the top of the file.
+  if ((int32_t)(now - nextDisplayAtMs) >= 0) {
+    nextDisplayAtMs = now + kDisplayPeriodMs;
+    drawScreen(relKpa, currentMode, pumpOn, reason);
+  }
 }
