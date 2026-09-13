@@ -128,6 +128,9 @@ void loop() {
       case comms::Command::Type::SetBand:
         pumpController.setBand(cmd.band);
         break;
+      case comms::Command::Type::SetLimits:
+        pumpController.setSafetyLimits(cmd.limits);
+        break;
       case comms::Command::Type::Stop:
         currentMode = pump::Mode::Off;
         pumpController.setMode(pump::Mode::Off);

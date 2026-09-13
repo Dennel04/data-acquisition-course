@@ -141,6 +141,14 @@ def main() -> None:
         # Configure the Atom once at startup. Re-send if you change these
         # live during a session -- this script doesn't watch for that.
         send_command(ser, {"cmd": "band", "on": args.on_kpa, "off": args.off_kpa})
+        send_command(
+            ser,
+            {
+                "cmd": "limits",
+                "minOffMs": args.min_off_ms,
+                "maxCyclesPerMin": args.max_cycles_per_min,
+            },
+        )
         send_command(ser, {"cmd": "mode", "mode": args.mode})
 
         last_line_at = time.monotonic()

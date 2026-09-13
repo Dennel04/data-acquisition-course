@@ -6,13 +6,15 @@
 //   Atom -> PC:  {"t":123456,"adc":2011,"p":-52.3,"mode":"suction","pump":1}
 //   PC -> Atom:  {"cmd":"mode","mode":"suction"}
 //                {"cmd":"band","on":-40,"off":-60}
+//                {"cmd":"limits","minOffMs":15000,"maxCyclesPerMin":4}
 //                {"cmd":"stop"}
 namespace comms {
 
 struct Command {
-  enum class Type { None, SetMode, SetBand, Stop } type = Type::None;
+  enum class Type { None, SetMode, SetBand, SetLimits, Stop } type = Type::None;
   pump::Mode mode = pump::Mode::Off;
   pump::Band band;
+  pump::SafetyLimits limits;
 };
 
 void begin(unsigned long baud);

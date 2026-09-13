@@ -40,6 +40,12 @@ bool pollCommand(Command& outCmd) {
     outCmd.band.offKpa = doc["off"] | 0.0f;
     return true;
   }
+  if (strcmp(cmd, "limits") == 0) {
+    outCmd.type = Command::Type::SetLimits;
+    outCmd.limits.minOffTimeMs = doc["minOffMs"] | 0;
+    outCmd.limits.maxCyclesPerMin = doc["maxCyclesPerMin"] | 0;
+    return true;
+  }
   if (strcmp(cmd, "stop") == 0) {
     outCmd.type = Command::Type::Stop;
     return true;
