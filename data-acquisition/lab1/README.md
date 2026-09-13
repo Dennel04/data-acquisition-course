@@ -155,7 +155,16 @@ Kirjuta üles: riba, seisuaja alampiir, käivitusi minutis kolmes olukorras, rõ
 
 #### 5. Täht
 
-Lühike vajutus käib tähestikku läbi, pikk vajutus saadab `{"letter":"A"}` Nutikate Lahendustega kokkulepitud kanalisse. Jaam loeb, robot joonistab.
+Lõplikus integreeritud püsivaras käib lühike vajutus tähestikku läbi ja pikk vajutus saadab valitud tähe jaamale. Praeguses Andmehõive püsivaras on saatmine veel Serial-asendus; HTTP-kanal ühendatakse Smart Solutions saatjaga riistvaraintegratsiooni käigus.
+
+**Praegune tarkvaraline tööjaotus.** Smart Solutions püsivaras on HTTP-saatja juba realiseeritud: `POST /api/letter`, mille JSON sisaldab välju `letter`, `session`, `seq` ja `atom_sent_ms`. Selle aine pumba- ja rõhupüsivara `sendLetterToChannel()` on praegu ainult lokaalne Serial-asendus.
+
+Lõplikus riistvaraintegratsioonis ühendatakse ühe AtomS3 peal:
+
+- Andmehõive rõhu- ja pumbaloogika;
+- Smart Solutions tähe HTTP-saatja.
+
+Ühendamist ega otsast lõpuni tähe edastamist ei ole veel kinnitatud. Kontrollnimekirja punkt **Täht** jääb seetõttu märkimata.
 
 **KAARDISTA ISE — vastused.** Iga osa kohta: numbrid, ühikud, kus fail on. Tegemata asja kohta üks rida, miks.
 

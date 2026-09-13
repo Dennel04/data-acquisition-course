@@ -46,9 +46,12 @@ lose track of what still needs a real measurement.
 - **Sensor choice** (part 1): this code assumes MPX5700AP throughout,
   since that's the day-1 starting point; the order decision itself isn't
   addressed here at all.
-- **The letter channel** (part 5): `sendLetterToChannel()` is a stub that
-  just prints JSON to Serial — the real transport is still "agreed in
-  week 1" per the assignment, unknown at the time this was written.
+- **Tähekanal** (osa 5): `sendLetterToChannel()` on ajutine kohalik asendus,
+  mis kirjutab JSON-i ainult Serial-liidesesse. Smart Solutions püsivaras on
+  tegelik saatja nüüd `POST /api/letter`, mille väljad on `letter`, `session`,
+  `seq` ja `atom_sent_ms`. Saatja ühendamine selle rõhu- ja pumbapüsivaraga
+  ühel AtomS3-l on riistvaraintegratsiooni TODO; otsast lõpuni tulemust ei ole
+  veel kinnitatud.
 
 ## Verified vs. uncertain (so you know what to double-check)
 

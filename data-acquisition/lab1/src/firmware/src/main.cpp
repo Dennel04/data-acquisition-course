@@ -39,16 +39,16 @@ pump::Mode currentMode = pump::Mode::Off;
 float atmosphericKpa = 0.0f; // measured once at startup, pump off, tubing open
 uint32_t nextLoopAtMs = 0;
 
-// --- Part 5 stub: short press cycles a letter, long press "sends" it. ---
-// The actual channel/protocol for "Nutikad Lahendused" wasn't agreed yet
-// when this was written (README: "lepitakse kokku esimesel nädalal") --
-// fill in sendLetterToChannel() once your team knows the real transport
-// (could be another UART line, MQTT via the PC bridge, etc).
+// --- Osa 5 ajutine kohalik asendus: lühike vajutus valib tähe ja pikk saadab. ---
+// Smart Solutions püsivaras on tegelik kanal POST /api/letter. Selle pumba- ja
+// rõhupüsivaraga ei ühendata Wi-Fi saatjat enne ühe AtomS3 riistvaraintegratsiooni.
+// Praegune funktsioon kirjutab ainult lokaalse Serial-teate ega tõenda
+// otsast lõpuni tähe edastamist.
 char currentLetter = 'A';
 constexpr uint32_t kLongPressMs = 600;
 
 void sendLetterToChannel(char letter) {
-  // TODO: replace with the real channel once agreed with "Nutikad Lahendused".
+  // TODO: ühenda Smart Solutions HTTP-saatja ühe AtomS3 riistvarakatses.
   Serial.printf("{\"letter\":\"%c\"}\n", letter);
 }
 
