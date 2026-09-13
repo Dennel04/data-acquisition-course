@@ -31,12 +31,14 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
 
 **Peab olema tehtud**
 
-- [ ] Tellimus 22.09: mis selle labori jaoks riiulil puudu on, anduri valik numbritega.
-  - Veel alustamata. `docs/sensor_choice.md` on praegu ainult ADC opinguvoolu leiuga, osa 1 võrdlustabel (MPX5700AP vs 30–210 kPa absoluutandur vs kaks manomeetrilist) on tegemata. `docs/bom.md` pole veel loodud.
+- [x] Tellimus 22.09: mis selle labori jaoks riiulil puudu on, anduri valik numbritega.
+  - 13.09.26: osa 1 võrdlustabel valmis (`docs/sensor_choice.md`) — MPX5700AP vs MPX4250AP (absoluutne, 20-250 kPa) vs MPX5100GP+MPXV6115V (kaks manomeetrilist) päris andmelehtede numbritega (mV/kPa, Pa/samm, skaala %, väljundpinge meie -70…+110 kPa akna peal). Otsus: jääme MPX5700AP juurde — kõik kolm alternatiivi annavad küll parema lahutuse, aga nende väljund meie vahemikus ületab 3,3V (vajaks jagurit/OP-ampi, mida osa 2 veel ei luba). `docs/bom.md` loodud: kontrollisime riiulit, kõik selle labori jaoks vajalik oli juba olemas — tellimust ei läinud vaja (null-tulemus, põhjendatud).
 - [x] MPX5700AP maketeerimisplaadil, Atom näitab kPa, logija kirjutab CSV 100 Hz.
   - 12.09.26: andur maketeerimisplaadil, juhtmestik parandatud (vale/hõljuv kontakt GND-rööpal; andur oli algul valepidi paigaldatud — mõlemad leitud multimeetriga). Stage A (`firmware_stageA_sanity/`) prošitud, töötab: toores ADC → Serial. Vout = 0,85 V (multimeeter, vastab README ootusele), ADC naiivse valemiga 0,758 V — ~11% lahknevus, seletatud ja üles kirjutatud failis `docs/sensor_choice.md`. Sellest tuletatud tegelik V_ref ≈ 3,70 V on juba sisse viidud `firmware/src/sensor.cpp` faili.
   - 12.09.26 (hiljem samal päeval): täisfirmware (`firmware/`) prošitud, ekraan näitab kPa (ekraani virvendus kõrvaldatud M5Canvas topeltpuhverdusega). `python/logger.py` testitud päris andmetega (`data/lab1_smartbox_acu2b_12.09.26.csv`) — 35800 rida 358.0 s peale, ~100 Hz kinnitatud.
-  - Lahti: 2%-täpsuse otsene võrdlus ADC vs multimeeter uue V_ref'iga (3,70 V) veel formaalselt kirja panemata, kuigi arvutuslikult (`docs/sensor_choice.md`, Pa/samm arvutus) peaks kokku minema.
+  - 13.09.26: 2%-kontroll tehtud (0,5% lahknevus, vt `docs/sensor_choice.md`), 10s logi kontroll tehtud (1002 rida), LSB-müra pump väljas/sees mõõdetud, Falstad-skeem müraallikaga tehtud ja lingitud.
+  - 13.09.26: ostsilloskoop (GW Instek GDS-1072A-U) saadud ja proovitud spektri jaoks — täielikult ei õnnestunud (skaala "libises" sessiooni jooksul, vt `docs/sensor_choice.md` täielik lugu). Kvalitatiivselt kinnitatud: pumba käivitamisel toores CH1 signaal muutub nähtavalt aktiivsemaks (amplituud kasvab), välja lülitades rahuneb — allikas-kinnitus olemas, aga konkreetset Hz-sagedust nimeliselt kinnitada ei õnnestunud. See osa jääb osaliselt lahtiseks, kui rohkem aega tekib enne kaitsmist.
+  - Lahti: spektri tipud nimeliselt (mootor/MG400/USB/50Hz) formaalselt kinnitamata, vt oskilloskoobi katse ülal.
 - [x] Targa kasti logi olemas, kaks lülituspunkti teada.
   - 12.09.26: ACU2-B logitud 5.97 min, tulemused failis `docs/pump_control.md`. Üks lülituspunkt kindel (väljalülitus ≈ -91,5 kPa), teine (sisselülitus) ei vallandunud selle akna jooksul — napp klaasil pidas nii hästi, et leket/teist tsüklit ei tekkinud. Loetakse kehtivaks tulemuseks, mitte veaks.
 - [ ] Sinu kast jääb ise seisma imemisel ja puhumisel. USB välja, pump välja.
