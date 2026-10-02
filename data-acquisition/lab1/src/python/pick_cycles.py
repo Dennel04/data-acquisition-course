@@ -50,6 +50,7 @@ class AtomLink(threading.Thread):
         self.lock = threading.Lock()
         self.last_p: float | None = None
         self.last_t: int | None = None
+        self.last_pump: int | None = None   # the Atom's own pump decision
         self.lost = threading.Event()  # USB gone -> main sequence must stop
         self.stop_flag = threading.Event()
 
@@ -88,6 +89,7 @@ class AtomLink(threading.Thread):
                     w.writerow([msg.get("t"), msg.get("adc"), msg.get("p"), msg.get("pump")])
                     f.flush()
                     self.last_p, self.last_t = msg.get("p"), msg.get("t")
+                    self.last_pump = msg.get("pump")
                     on = bool(msg.get("pump", 0))
                     mode = msg.get("mode", "off")
                     if not watchdog.tripped:

@@ -23,6 +23,7 @@ from pathlib import Path
 import requests
 
 from logger import Mg400Pump, check_zero, open_atom
+from grip import GripError, approach_and_grip
 from pick_cycles import AtomLink
 
 FORCED_ON = {"cmd": "band", "on": -149, "off": -150}   # suction: p is always weaker than -149
@@ -45,6 +46,12 @@ def main() -> None:
     p.add_argument("--max-cycles-per-min", type=int, default=4)
     p.add_argument("--blow-ms", type=int, default=500)
     p.add_argument("--speed", type=int, default=5)
+    p.add_argument("--approach", action="store_true",
+                   help="start ABOVE the piece: lower, vacuum on --pump-on-mm above the floor, "
+                        "stop on the seal, the Atom stops the pump when attached")
+    p.add_argument("--floor", type=float, default=None, help="lowest Z (default: the server's Z floor)")
+    p.add_argument("--pump-on-mm", type=float, default=5.0)
+    p.add_argument("--seal-kpa", type=float, default=-25.0)
     a = p.parse_args()
     if not 1 <= a.speed <= 5:
         raise SystemExit("--speed must be 1..5 %")
@@ -63,7 +70,12 @@ def main() -> None:
     if not s.get("enabled") or s.get("error"):
         raise SystemExit(f"robot not ready: {s.get('mode_name')} {s.get('alarm_ids')}")
     x0, y0, z_glass, r0 = s["pose"]
-    floor = max(z_glass, float(s.get("z_floor", z_glass)))
+    if a.approach:
+        floor = a.floor if a.floor is not None else float(s["z_floor"])
+        floor = max(floor, float(s["z_floor"]))   # never below the server's floor
+        z_glass = floor                            # replaced by the contact Z each cycle
+    else:
+        floor = max(z_glass, float(s.get("z_floor", z_glass)))
 
     def go_z(z, timeout=30.0):
         if z < floor - 0.05:
@@ -88,6 +100,7 @@ def main() -> None:
     pump = Mg400Pump(U, dry_run=False)
     t0 = time.monotonic()
     ok_cycles = 0
+    in_air = False   # glass lifted: an error must set it down first
     with open_atom(a.port, 115200) as ser, open(events_path, "w", newline="") as ef:
         check_zero(ser)
         link = AtomLink(ser, pump, a.csv_out)
@@ -107,17 +120,30 @@ def main() -> None:
         try:
             link.send({"cmd": "limits", "minOffMs": a.min_off_ms, "maxCyclesPerMin": a.max_cycles_per_min})
             for c in range(1, a.cycles + 1):
-                # grip on the support: pump forced on
-                link.send(FORCED_ON)
-                link.send({"cmd": "mode", "mode": "suction"})
-                event(c, "suction")
-                end = time.monotonic() + a.grip_timeout
-                while time.monotonic() < end and (link.last_p is None or link.last_p > a.grip_kpa):
-                    check()
-                    time.sleep(0.02)
-                if link.last_p is None or link.last_p > a.grip_kpa:
-                    raise RuntimeError(f"cycle {c}: no grip ({link.last_p} kPa after {a.grip_timeout:g} s)")
-                event(c, "gripped")
+                if a.approach:
+                    # lower, vacuum on just above the floor, stop on the seal,
+                    # the Atom's band stops the pump: attached (grip.py)
+                    event(c, "approach")
+                    g = approach_and_grip(U, link, floor, pump_on_mm=a.pump_on_mm, seal_kpa=a.seal_kpa,
+                                          on_kpa=a.on_kpa, off_kpa=a.off_kpa, approach_speed=a.speed,
+                                          log=lambda m: print(f"       {m}"))
+                    z_glass = g.z_contact
+                    post("/api/speed", {"ratio": a.speed})
+                    post("/api/smoothness", {"secs": 1.5})
+                    event(c, "attached")
+                else:
+                    # grip on the support: pump forced on
+                    link.send(FORCED_ON)
+                    link.send({"cmd": "mode", "mode": "suction"})
+                    event(c, "suction")
+                    end = time.monotonic() + a.grip_timeout
+                    while time.monotonic() < end and (link.last_p is None or link.last_p > a.grip_kpa):
+                        check()
+                        time.sleep(0.02)
+                    if link.last_p is None or link.last_p > a.grip_kpa:
+                        raise RuntimeError(f"cycle {c}: no grip ({link.last_p} kPa after {a.grip_timeout:g} s)")
+                    event(c, "gripped")
+                in_air = True
                 go_z(z_glass + a.lift); check()
                 # in the air: the Atom's band, like the smart box
                 link.send({"cmd": "band", "on": a.on_kpa, "off": a.off_kpa})
@@ -133,6 +159,7 @@ def main() -> None:
                 link.send({"cmd": "mode", "mode": "off"})
                 link.send({"cmd": "mode", "mode": "suction"})
                 go_z(z_glass); check()
+                in_air = False
                 event(c, "at-place")
                 link.send({"cmd": "band", "on": 5, "off": 20})
                 link.send({"cmd": "mode", "mode": "blow"})
@@ -141,7 +168,8 @@ def main() -> None:
                 event(c, "released")
                 go_z(z_glass + a.clear); check()
                 time.sleep(0.5)
-                go_z(z_glass); check()
+                if not a.approach:            # --approach comes down again by itself
+                    go_z(z_glass); check()
                 event(c, "clear")
                 ok_cycles += 1
             print(f"done: {ok_cycles}/{a.cycles} picks")
@@ -157,7 +185,7 @@ def main() -> None:
             # anything is switched off -- unless the robot itself is faulted
             try:
                 st = status()
-                if not st.get("error") and st["pose"][2] > z_glass + 1 and not link.lost.is_set():
+                if in_air and not st.get("error") and st["pose"][2] > z_glass + 1 and not link.lost.is_set():
                     print("setting the glass down before stopping")
                     link.send(FORCED_ON)
                     link.send({"cmd": "mode", "mode": "off"})
