@@ -114,6 +114,7 @@ class Robot:
 
     def speed(self, ratio: int) -> None:
         self._post("/api/speed", {"ratio": ratio})
+        self._post("/api/smoothness", {"secs": 1.5})  # gentlest start/stop
 
     def stop(self) -> None:
         try:
@@ -121,7 +122,7 @@ class Robot:
         except Exception as exc:  # best effort on the way out
             print(f"[mg400] stop failed: {exc}")
 
-    def go(self, slot: dict, timeout: float = 20.0, tol: float = 2.0) -> None:
+    def go(self, slot: dict, timeout: float = 120.0, tol: float = 2.0) -> None:
         self._post(f"/api/recall/{slot['slot']}")
         deadline = time.monotonic() + timeout
         while time.monotonic() < deadline:
@@ -142,7 +143,8 @@ def main() -> None:
     p.add_argument("--csv-out", type=Path, required=True)
     p.add_argument("--mg400-url", default="http://localhost:8000")
     p.add_argument("--cycles", type=int, default=10)
-    p.add_argument("--speed", type=int, default=10, help="robot speed %% (start low)")
+    p.add_argument("--speed", type=int, default=2,
+                   help="robot speed %% -- team rule: turtle speed, 2 %% default, 5 %% max")
     # suction band/limits: the numbers chosen in docs/pump_control.md
     p.add_argument("--on-kpa", type=float, default=-40)
     p.add_argument("--off-kpa", type=float, default=-75)
@@ -158,6 +160,8 @@ def main() -> None:
     p.add_argument("--blow-ms", type=int, default=800)
     p.add_argument("--dry-run", action="store_true", help="no pump DO calls (robot still moves)")
     a = p.parse_args()
+    if not 1 <= a.speed <= 5:
+        raise SystemExit("--speed must be 1..5 % (team rule: never jerk the arm)")
 
     robot = Robot(a.mg400_url)
     st = robot.status()
