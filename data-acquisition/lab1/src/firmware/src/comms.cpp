@@ -50,6 +50,10 @@ bool pollCommand(Command& outCmd) {
     outCmd.type = Command::Type::Stop;
     return true;
   }
+  if (strcmp(cmd, "zero") == 0) {
+    outCmd.type = Command::Type::Zero;
+    return true;
+  }
   return false;
 }
 

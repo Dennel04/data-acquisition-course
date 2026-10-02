@@ -34,7 +34,7 @@ from pathlib import Path
 import requests
 import serial
 
-from logger import WATCHDOG_TIMEOUT_S, Mg400Pump, check_zero, open_atom, send_command
+from logger import Mg400Pump, Watchdog, check_zero, open_atom, send_command
 
 SLOT_ABOVE_A, SLOT_A, SLOT_ABOVE_B, SLOT_B = 1, 2, 3, 4
 
@@ -58,8 +58,14 @@ class AtomLink(threading.Thread):
             send_command(self.ser, obj)
 
     def run(self) -> None:
-        last_line_at = time.monotonic()
-        tripped = False
+        watchdog = Watchdog(self.pump)   # own thread: fires even if readline hangs
+        watchdog.start()
+        try:
+            self._run(watchdog)
+        finally:
+            watchdog.stop()
+
+    def _run(self, watchdog: Watchdog) -> None:
         with open(self.csv_path, "w", newline="") as f:
             w = csv.writer(f)
             w.writerow(["t_ms", "adc", "p_kpa", "pump"])
@@ -68,10 +74,9 @@ class AtomLink(threading.Thread):
                     raw = self.ser.readline()
                 except serial.SerialException as exc:
                     print(f"[usb] serial port lost ({exc}), forcing pump off")
-                    self.pump.set_mode("off")
+                    self.pump.set_mode("off", force=True)
                     self.lost.set()
                     return
-                now = time.monotonic()
                 if raw:
                     try:
                         msg = json.loads(raw.decode("ascii", errors="replace"))
@@ -79,18 +84,14 @@ class AtomLink(threading.Thread):
                         continue
                     if "p" not in msg:
                         continue
-                    last_line_at = now
-                    tripped = False
+                    watchdog.feed()
                     w.writerow([msg.get("t"), msg.get("adc"), msg.get("p"), msg.get("pump")])
                     f.flush()
                     self.last_p, self.last_t = msg.get("p"), msg.get("t")
                     on = bool(msg.get("pump", 0))
                     mode = msg.get("mode", "off")
-                    self.pump.set_mode("off" if not on else ("suck" if mode == "suction" else "blow"))
-                if now - last_line_at > WATCHDOG_TIMEOUT_S and not tripped:
-                    print("[watchdog] no line in 500ms, forcing pump off")
-                    self.pump.set_mode("off")
-                    tripped = True
+                    if not watchdog.tripped:
+                        self.pump.set_mode("off" if not on else ("suck" if mode == "suction" else "blow"))
 
 
 class Robot:

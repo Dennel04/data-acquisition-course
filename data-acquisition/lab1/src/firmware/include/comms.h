@@ -8,10 +8,11 @@
 //                {"cmd":"band","on":-40,"off":-60}
 //                {"cmd":"limits","minOffMs":15000,"maxCyclesPerMin":4}
 //                {"cmd":"stop"}
+//                {"cmd":"zero"}   re-take the atmospheric zero (pump off, tube open)
 namespace comms {
 
 struct Command {
-  enum class Type { None, SetMode, SetBand, SetLimits, Stop } type = Type::None;
+  enum class Type { None, SetMode, SetBand, SetLimits, Stop, Zero } type = Type::None;
   pump::Mode mode = pump::Mode::Off;
   pump::Band band;
   pump::SafetyLimits limits;

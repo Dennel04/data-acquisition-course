@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -50,6 +51,8 @@ class Args:
     min_off_ms: int
     max_cycles_per_min: int
     dry_run: bool
+    duration: float
+    zero: bool
 
 
 def parse_args() -> Args:
@@ -73,6 +76,10 @@ def parse_args() -> Args:
         help="skip MG400 HTTP calls; useful for part-2-only sanity logging "
         "before the robot/pump box is even wired in.",
     )
+    p.add_argument("--duration", type=float, default=0,
+                   help="stop cleanly (Atom stop + pump off) after this many seconds; 0 = until Ctrl+C")
+    p.add_argument("--zero", action="store_true",
+                   help="re-take the Atom's atmospheric zero first (pump off, tube OPEN to air)")
     a = p.parse_args()
     return Args(
         port=a.port,
@@ -85,6 +92,8 @@ def parse_args() -> Args:
         min_off_ms=a.min_off_ms,
         max_cycles_per_min=a.max_cycles_per_min,
         dry_run=a.dry_run,
+        duration=a.duration,
+        zero=a.zero,
     )
 
 
@@ -95,12 +104,17 @@ class Mg400Pump:
         self.base_url = base_url.rstrip("/")
         self.dry_run = dry_run
         self._last_mode: str | None = None
+        self._lock = threading.Lock()  # read loop and watchdog thread both switch it
 
-    def set_mode(self, mode: str) -> None:
+    def set_mode(self, mode: str, force: bool = False) -> None:
         """mode: 'suck' | 'blow' | 'off' (mg400-base's own vocabulary --
         note this differs from the Atom's 'suction'/'blow'/'off', translate
         at the call site, don't blur the two)."""
-        if mode == self._last_mode:
+        with self._lock:
+            self._set_mode(mode, force)
+
+    def _set_mode(self, mode: str, force: bool) -> None:
+        if mode == self._last_mode and not force:
             return  # don't spam the HTTP API every 10ms for no change
         if self.dry_run:
             print(f"[dry-run] would POST /api/pump mode={mode}")
@@ -162,6 +176,63 @@ def check_zero(ser: serial.Serial, seconds: float = 1.0) -> None:
               "and press the Atom reset button to re-zero, or the band is shifted")
 
 
+def stamp() -> str:
+    return time.strftime("%H:%M:%S") + f".{int(time.time() * 1000) % 1000:03d}"
+
+
+class Watchdog(threading.Thread):
+    """README part 4: "Kui 500 ms jooksul rida ei tule, DO maha".
+
+    Runs in its own thread so it fires on time even when the read loop is
+    stuck: 02.10.26 an unplugged USB left readline() hanging inside Windows
+    for ~1.5 s before it raised, and the in-loop check waited with it
+    (pump went off 1.6 s after the last line). Call feed() on every line."""
+
+    def __init__(self, pump: "Mg400Pump", timeout_s: float = WATCHDOG_TIMEOUT_S):
+        super().__init__(daemon=True)
+        self.pump = pump
+        self.timeout_s = timeout_s
+        self._last = time.monotonic()
+        self._tripped = False
+        self._stop = threading.Event()
+
+    def feed(self) -> None:
+        self._last = time.monotonic()
+        self._tripped = False
+
+    def stop(self) -> None:
+        self._stop.set()
+
+    @property
+    def tripped(self) -> bool:
+        return self._tripped
+
+    def run(self) -> None:
+        while not self._stop.wait(0.05):
+            silent = time.monotonic() - self._last
+            if silent > self.timeout_s and not self._tripped:
+                self._tripped = True
+                print(f"[{stamp()}] [watchdog] no line for {silent * 1000:.0f} ms, forcing pump off")
+                self.pump.set_mode("off", force=True)
+
+
+def request_zero(ser: serial.Serial, timeout_s: float = 2.0) -> None:
+    """Ask the firmware to re-take its atmospheric zero ({"cmd":"zero"}).
+    It refuses while the pump runs or the reading is not near atmosphere."""
+    send_command(ser, {"cmd": "zero"})
+    end = time.monotonic() + timeout_s
+    while time.monotonic() < end:
+        try:
+            m = json.loads(ser.readline().decode("ascii", errors="replace"))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            continue
+        if "zero" in m:
+            state = "set" if m.get("ok") else f"refused ({m.get('why')})"
+            print(f"[zero] {state}: atmosphere = {m['zero']:.2f} kPa absolute")
+            return
+    print("[zero] no reply -- old firmware without the zero command?")
+
+
 def send_command(ser: serial.Serial, obj: dict) -> None:
     ser.write((json.dumps(obj) + "\n").encode("ascii"))
 
@@ -177,6 +248,8 @@ def main() -> None:
     ) as f:
         writer = csv.writer(f)
         writer.writerow(["t_ms", "adc", "p_kpa", "pump"])  # README part 2 format
+        if args.zero:
+            request_zero(ser)
         check_zero(ser)
 
         # Configure the Atom once at startup. Re-send if you change these
@@ -192,8 +265,9 @@ def main() -> None:
         )
         send_command(ser, {"cmd": "mode", "mode": args.mode})
 
-        last_line_at = time.monotonic()
-        watchdog_tripped = False
+        watchdog = Watchdog(pump)
+        watchdog.start()
+        deadline = time.monotonic() + args.duration if args.duration > 0 else None
 
         try:
             while True:
@@ -204,20 +278,22 @@ def main() -> None:
                     # instead of returning empty bytes, so the watchdog below
                     # never got its chance and the script died with the pump
                     # still on. USB out = pump out, then stop.
-                    print(f"[{time.strftime('%H:%M:%S')}] [usb] serial port lost ({exc}), forcing pump off")
-                    pump.set_mode("off")
+                    print(f"[{stamp()}] [usb] serial port lost ({exc}), forcing pump off")
+                    pump.set_mode("off", force=True)
+                    watchdog.stop()
                     return
                 now = time.monotonic()
+                if deadline is not None and now >= deadline:
+                    raise KeyboardInterrupt  # same clean stop as Ctrl+C
 
                 if raw:
-                    last_line_at = now
-                    watchdog_tripped = False
                     try:
                         msg = json.loads(raw.decode("ascii", errors="replace"))
                     except json.JSONDecodeError:
                         continue  # dropped/garbled line -- don't crash the logger
                     if "p" not in msg:
                         continue  # e.g. {"letter":"A"} -- not telemetry, must not switch the pump
+                    watchdog.feed()
 
                     writer.writerow(
                         [msg.get("t"), msg.get("adc"), msg.get("p"), msg.get("pump")]
@@ -231,18 +307,14 @@ def main() -> None:
                         if not pump_on
                         else ("suck" if atom_mode == "suction" else "blow")
                     )
-                    pump.set_mode(mg400_mode)
-
-                # 500ms watchdog: independent of what the Atom last said.
-                if (now - last_line_at) > WATCHDOG_TIMEOUT_S and not watchdog_tripped:
-                    print(f"[{time.strftime('%H:%M:%S')}] [watchdog] no line in 500ms, forcing pump off")
-                    pump.set_mode("off")
-                    watchdog_tripped = True
+                    if not watchdog.tripped:
+                        pump.set_mode(mg400_mode)
 
         except KeyboardInterrupt:
             print("stopping, forcing pump off")
+            watchdog.stop()
             send_command(ser, {"cmd": "stop"})
-            pump.set_mode("off")
+            pump.set_mode("off", force=True)
 
 
 if __name__ == "__main__":

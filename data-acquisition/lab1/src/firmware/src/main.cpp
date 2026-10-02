@@ -11,6 +11,7 @@
 #include "sensor.h"
 #include "pump_logic.h"
 #include "comms.h"
+#include "zero.h"
 
 namespace {
 
@@ -34,6 +35,17 @@ uint32_t nextDisplayAtMs = 0;
 M5Canvas canvas(&M5.Display);
 
 pump::Controller pumpController;
+bool lastPumpOn = false;
+
+float readAbsoluteKpaAveraged() {
+  long sum = 0;
+  constexpr int kSamples = 32;
+  for (int i = 0; i < kSamples; ++i) {
+    sum += sensor::readRawAdc();
+    delay(5);
+  }
+  return sensor::voltsToAbsoluteKpa(sensor::countsToVolts(sum / kSamples));
+}
 pump::Mode currentMode = pump::Mode::Off;
 
 float atmosphericKpa = 0.0f; // measured once at startup, pump off, tubing open
@@ -98,19 +110,12 @@ void setup() {
   canvas.setColorDepth(M5.Display.getColorDepth());
   canvas.createSprite(M5.Display.width(), M5.Display.height());
 
-  // Atmospheric baseline: tubing open, pump off, average a handful of
-  // readings. If this runs before the tubing is actually open to air,
-  // every relative-kPa value downstream will be offset -- worth a sanity
-  // glance at the printed value before trusting it.
-  long sum = 0;
-  constexpr int kSamples = 32;
-  for (int i = 0; i < kSamples; ++i) {
-    sum += sensor::readRawAdc();
-    delay(5);
-  }
-  float atmVolts = sensor::countsToVolts(sum / kSamples);
-  atmosphericKpa = sensor::voltsToAbsoluteKpa(atmVolts);
-  Serial.printf("# atmospheric baseline: %.2f kPa absolute\n", atmosphericKpa);
+  // Atmospheric zero: see zero.h. A fresh reading (pump is off at boot) is
+  // only taken as the zero if it agrees with the stored one, so a reboot with
+  // vacuum in the tube no longer shifts every reading.
+  const char* source = "";
+  atmosphericKpa = zero::atBoot(readAbsoluteKpaAveraged(), &source);
+  Serial.printf("# atmospheric zero: %.2f kPa absolute (%s)\n", atmosphericKpa, source);
 
   pumpController.setMode(pump::Mode::Off);
   nextLoopAtMs = millis();
@@ -135,6 +140,14 @@ void loop() {
         currentMode = pump::Mode::Off;
         pumpController.setMode(pump::Mode::Off);
         break;
+      case comms::Command::Type::Zero: {
+        float z = atmosphericKpa;
+        const char* why = "";
+        const bool ok = zero::onCommand(readAbsoluteKpaAveraged(), lastPumpOn, &z, &why);
+        if (ok) atmosphericKpa = z;
+        Serial.printf("{\"zero\":%.2f,\"ok\":%s,\"why\":\"%s\"}\n", atmosphericKpa, ok ? "true" : "false", why);
+        break;
+      }
       default:
         break;
     }
@@ -154,6 +167,7 @@ void loop() {
 
   char reason[12] = {0};
   bool pumpOn = pumpController.update(relKpa, now, reason);
+  lastPumpOn = pumpOn;
 
   comms::sendTelemetry(now, raw, relKpa, currentMode, pumpOn);
 
