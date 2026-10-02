@@ -130,13 +130,16 @@ def approach_and_grip(
     post("/api/sync")                     # hold exactly where it stopped
     log(f"seal at Z {z_contact:.1f} ({p_seal:.1f} kPa, {seal_s:.2f} s after vacuum on)")
 
-    # 4. the Atom stops the pump at off_kpa: attached
+    # 4. the Atom stops the pump at off_kpa: attached. The Atom's own stop is
+    # the signal; right after it the tube settles a few kPa weaker (02.10.26:
+    # stopped at -60, settled at -55 and held), so only require the vacuum
+    # to stay stronger than the restart threshold on_kpa.
     end = time.monotonic() + attach_timeout_s
     while time.monotonic() < end:
-        if link.last_pump == 0 and link.last_p is not None and link.last_p <= off_kpa + 2:
+        if link.last_pump == 0 and link.last_p is not None and link.last_p <= on_kpa:
             break
         time.sleep(0.01)
     else:
-        raise GripError(f"seal but the pump never reached {off_kpa:g} kPa ({link.last_p} kPa)")
+        raise GripError(f"seal but the Atom never stopped the pump at {off_kpa:g} kPa ({link.last_p} kPa, pump={link.last_pump})")
     log(f"attached: pump stopped by the Atom at {link.last_p:.1f} kPa")
     return GripResult(z_contact, p_seal, link.last_p, z_pump - z_contact, seal_s)
