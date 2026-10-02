@@ -49,6 +49,11 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
   - 13.09.26: kontrollitud otse — klaas tõsteti iminapaga õhku (mitte lauale surutud) ja vaakum hoidis stabiilselt -76…-79kPa terve 30s vaatlusakna — varasem "leke" oli katsemeetodi (klaas laual) artefakt, mitte päris süsteemi (torud/haarats) probleem. Riba jääb samaks.
   - Aus reservatsioon: 30s ei ole veel võrreldav ACU2-B 6-minutilise testiga (osa 3) — piisab, et ümber lükata "leke torudes" hüpotees, aga mitte, et väita "hoiab sama kaua kui tark kast". Järgmine samm: korrata sama testi (klaas õhus) mitme minuti vältel.
   - Puudu: kümme võtmistsüklit robotiga (pumba töötsükkel) veel mõõtmata.
+  - 02.10.26 *(kirja pannud Claude logide põhjal; täielik tabel `docs/pump_control.md`, jaotis 02.10.26)*: riba muudetud **off −60 / on −40 kPa** (−75 oli sellel stendil saavutamatu, max −67 kPa). Klaas õhus, Atom otsustab: 120 s hoidmine −77 → −44 kPa ilma ühegi taaskäivituseta (`data/lab1_ownbox_hold_air_02.10.26.csv`), 60 s −81 → −57 kPa (`..._fw2_...`).
+  - 02.10.26: **USB välja = pump välja** — viimane rida 18:25:30,204 → DO maas 18:25:30,233, **29 ms** (`data/lab1_usb_unplug_fw2_02.10.26.csv`); enne parandust 1,6 s.
+  - 02.10.26: **kümme võtmist 10/10** — pumba töötsükkel **45 %** (`data/lab1_pick10_fw3_02.10.26.csv`) ja lähenemisega haaramisel (vaakum 5 mm enne põrandat, peatus kontaktil, Atom lülitab pumba välja) **29 %**, kontakt Z −102,8…−103,0 (`data/lab1_approach_pick10_02.10.26.csv`).
+  - 02.10.26: puhumine — eraldi korgiga katset ei tehtud, **korki pole vaja** (meeskonna otsus): puhumine on siin ainult lühike vabastusimpulss (0,5 s, +10…+18 kPa), kontrollitud 20 korda, klaas vabanes iga kord. Puhumise peatumise loogika on püsivaras sama mis imemisel, vastupidise märgiga.
+  - 02.10.26: parandused, ilma milleta numbrid poleks ausad: Atom ei taaskäivitu enam pordi avamisel ja hoiab atmosfääri nulli NVS-is; valvur ja pumba HTTP eraldi lõimedes; käsuga antud režiimivahetus käivitab pumba kohe (seisuaeg ja käivituste piir ainult riba automaatsetele taaskäivitustele). Kõik koodis `src/`.
 - [ ] Täht: nupp valib tähe, Atom saadab selle jaama.
 - [ ] Repo ja arenduspäevik täidetud, tag `data-acquisition-lab1`.
   - 12.09.26: arenduspäevik käivitatud (vt allpool). Tag ja repo lõplik koristus jäävad kaitsmise eelseks sammuks.

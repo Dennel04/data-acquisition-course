@@ -104,3 +104,26 @@ Not independently verified — check before relying on them:
 5. Read `python/logger.py`, run it with `--dry-run` first (no MG400 calls)
    against just the Atom, confirm the CSV looks right, then wire in the
    real pump box.
+
+## 02.10.26 — what was added (see docs/pump_control.md, section 02.10.26)
+
+- **Firmware**: atmospheric zero kept in NVS (`zero.h/.cpp`), `{"cmd":"zero"}`;
+  a commanded mode change starts the pump at once, min-off-time and the
+  starts/min cap only apply to the band's automatic restarts (`pump_logic.h`).
+  Build/flash: `pio run -t upload --upload-port COM4` in `firmware/`.
+- **`python/logger.py`**: opens the Atom without resetting it (`open_atom`),
+  `--zero`, `--duration`; watchdog in its own thread; pump HTTP in a sender
+  thread (`Mg400Pump`); default URL `http://127.0.0.1:8000`.
+- **`python/hold_test.py`** — grip, lift, the Atom holds, set down, release.
+- **`python/pick_in_place.py`** — N picks in one spot (part 4 "Võtmine");
+  `--approach` uses **`python/grip.py`** (`approach_and_grip`: vacuum on a few
+  mm above the floor, stop on the seal, the Atom stops the pump when attached).
+- **`python/pick_cycles.py`** — A→B picks over four saved robot locations
+  (also provides `AtomLink`, used by the scripts above).
+- **`python/analyze_run.py`** — starts/min, run/idle times, duty cycle per run
+  and per pick cycle (`<run>.events.csv`).
+- **`python/sim/`** — bench without hardware: fake MG400 (from mg400-base's
+  tests) + fake Atom; `approach_sim_test.py` runs `pick_in_place --approach`
+  against it.
+- MG400 page with jog buttons and the joint/parallelogram limit guard:
+  https://github.com/Dennel04/mg400-base, branch `lab-jog`.
