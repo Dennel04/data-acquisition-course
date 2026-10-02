@@ -60,7 +60,7 @@ def parse_args() -> Args:
     p.add_argument("--port", required=True, help="e.g. COM5")
     p.add_argument("--baud", type=int, default=115200)
     p.add_argument("--csv-out", type=Path, default=Path("data/lab1_log.csv"))
-    p.add_argument("--mg400-url", default="http://localhost:8000")
+    p.add_argument("--mg400-url", default="http://127.0.0.1:8000")  # not localhost: Windows tries IPv6 first, +200 ms per call
     p.add_argument("--mode", choices=["suction", "blow", "off"], default="off")
     # These four numbers are the lab's own measured/tuned values (README
     # part 4's "five numbers", minus atmospheric which sensor.h handles on
@@ -98,42 +98,68 @@ def parse_args() -> Args:
 
 
 class Mg400Pump:
-    """Thin wrapper over mg400-base's HTTP API. See module docstring."""
+    """mg400-base's HTTP pump API, driven from its own sender thread.
+
+    set_mode() only records the wanted state and returns at once; a sender
+    thread posts the newest wanted state. 02.10.26: the read loop used to
+    make the HTTP call itself and wait 0.2-1 s for the reply -- meanwhile
+    nobody read the Atom, the watchdog saw silence and forced the pump off,
+    over and over. Reading the Atom must never wait on the network."""
 
     def __init__(self, base_url: str, dry_run: bool):
         self.base_url = base_url.rstrip("/")
         self.dry_run = dry_run
-        self._last_mode: str | None = None
-        self._lock = threading.Lock()  # read loop and watchdog thread both switch it
+        self._want: str | None = None
+        self._sent: str | None = None
+        self._force = False
+        self._cond = threading.Condition()
+        self._session = requests.Session()
+        threading.Thread(target=self._sender, daemon=True, name="pump-sender").start()
 
     def set_mode(self, mode: str, force: bool = False) -> None:
         """mode: 'suck' | 'blow' | 'off' (mg400-base's own vocabulary --
         note this differs from the Atom's 'suction'/'blow'/'off', translate
-        at the call site, don't blur the two)."""
-        with self._lock:
-            self._set_mode(mode, force)
+        at the call site, don't blur the two). Non-blocking."""
+        with self._cond:
+            if mode == self._want and not force:
+                return  # don't spam the HTTP API every 10ms for no change
+            self._want = mode
+            self._force = self._force or force
+            self._cond.notify()
 
-    def _set_mode(self, mode: str, force: bool) -> None:
-        if mode == self._last_mode and not force:
-            return  # don't spam the HTTP API every 10ms for no change
+    def flush(self, timeout: float = 3.0) -> bool:
+        """Wait until the newest wanted state has been sent (e.g. 'off' on exit)."""
+        end = time.monotonic() + timeout
+        with self._cond:
+            while (self._sent != self._want or self._force) and time.monotonic() < end:
+                self._cond.wait(0.05)
+            return self._sent == self._want
+
+    def _sender(self) -> None:
+        while True:
+            with self._cond:
+                while self._want == self._sent and not self._force:
+                    self._cond.wait()
+                mode, self._force = self._want, False
+            self._post(mode)
+            with self._cond:
+                self._sent = mode
+                self._cond.notify_all()
+
+    def _post(self, mode: str) -> None:
         if self.dry_run:
             print(f"[dry-run] would POST /api/pump mode={mode}")
-            self._last_mode = mode
             return
         try:
-            r = requests.post(
-                f"{self.base_url}/api/pump", json={"mode": mode}, timeout=1.0
-            )
+            r = self._session.post(f"{self.base_url}/api/pump", json={"mode": mode}, timeout=1.0)
             r.raise_for_status()
             body = r.json()
             if not body.get("ok", False):
                 print(f"[mg400] pump command rejected: {body}")
         except requests.RequestException as exc:
-            # Network hiccup with the robot's HTTP server is exactly the
-            # kind of fault the 500ms watchdog exists for upstream of this
-            # call -- log it, don't retry-loop inside a 10ms budget.
+            # the watchdog upstream exists for exactly this kind of fault --
+            # log it; the next change (or a forced off) is sent right after
             print(f"[mg400] request failed: {exc}")
-        self._last_mode = mode
 
 
 def open_atom(port: str, baud: int) -> serial.Serial:
@@ -281,6 +307,7 @@ def main() -> None:
                     print(f"[{stamp()}] [usb] serial port lost ({exc}), forcing pump off")
                     pump.set_mode("off", force=True)
                     watchdog.stop()
+                    pump.flush()
                     return
                 now = time.monotonic()
                 if deadline is not None and now >= deadline:
@@ -315,6 +342,7 @@ def main() -> None:
             watchdog.stop()
             send_command(ser, {"cmd": "stop"})
             pump.set_mode("off", force=True)
+            pump.flush()
 
 
 if __name__ == "__main__":

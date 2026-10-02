@@ -142,7 +142,7 @@ def main() -> None:
     p.add_argument("--port", required=True)
     p.add_argument("--baud", type=int, default=115200)
     p.add_argument("--csv-out", type=Path, required=True)
-    p.add_argument("--mg400-url", default="http://localhost:8000")
+    p.add_argument("--mg400-url", default="http://127.0.0.1:8000")
     p.add_argument("--cycles", type=int, default=10)
     p.add_argument("--speed", type=int, default=2,
                    help="robot speed %% -- team rule: turtle speed, 2 %% default, 5 %% max")
@@ -244,7 +244,8 @@ def main() -> None:
                 link.send({"cmd": "stop"})
             except Exception:
                 pass
-            pump.set_mode("off")
+            pump.set_mode("off", force=True)
+            pump.flush()
             time.sleep(0.3)
             link.stop_flag.set()
             link.join(timeout=1)

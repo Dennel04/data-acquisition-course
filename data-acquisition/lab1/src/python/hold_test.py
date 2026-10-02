@@ -25,7 +25,7 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--port", required=True)
     p.add_argument("--csv-out", type=Path, required=True)
-    p.add_argument("--mg400-url", default="http://localhost:8000")
+    p.add_argument("--mg400-url", default="http://127.0.0.1:8000")
     p.add_argument("--lift", type=float, default=10.0, help="mm")
     p.add_argument("--hold", type=float, default=120.0, help="s")
     p.add_argument("--on-kpa", type=float, default=-40)
@@ -130,7 +130,8 @@ def main() -> None:
                 link.send({"cmd": "stop"})
             except Exception:
                 pass
-            pump.set_mode("off")
+            pump.set_mode("off", force=True)
+            pump.flush()
             requests.post(U + "/api/speed", json={"ratio": 10}, timeout=3)
             requests.post(U + "/api/smoothness", json={"secs": 0.5}, timeout=3)
             time.sleep(0.3)
