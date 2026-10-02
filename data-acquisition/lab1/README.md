@@ -227,6 +227,17 @@ Repos on kaustas `data-acquisition/lab1/`: `src/` püsivara ja logijaga, `data/`
 * Otsustasime, ja miks: kõik kolm stsenaariumit koos annavad selge pildi — leke süsteemis tuleb peaaegu täielikult napi-pinna kontaktist, mitte pumbast/klappidest endist (puhas pneumaatika korgiga hoiab peaaegu sama hästi kui klaas, avatud õhk on ainuke, mis reaalselt "lekib" kiiresti). Täisvõrdlustabel ja järeldus: `docs/pump_control.md`.
 * Lahti järgmiseks korraks: nende kolme kõvera põhjal valida päris on/off kPa riba ja seisuaja alampiir; käivitada `logger.py` ilma `--dry-run`-ta, et Atomi enda prošivi (mitte käsitsi CLI/veebileht) otsustaks pumba üle ise; kontrollida USB-välja-tähendab-pump-välja nõuet; osa 1 (anduri valik) ja `docs/bom.md` (tähtaeg 22.09) endiselt puutumata.
 
+**13.09.26 — meeskond** *(kirja pandud tagantjärele 02.10.26 kontrollnimekirja märkmete ja commit'ide põhjal; selle päeva töö oli seni ainult kontrollnimekirjas)*
+* Tegime: osa 1 anduri võrdlustabel (`docs/sensor_choice.md`) ja `docs/bom.md`; osa 2 kontrollid (ADC vs multimeeter, 10 s logi, LSB-müra pump väljas/sees, Falstadi skeem müraallikaga); ostsilloskoobiga (GW Instek GDS-1072A-U) spektri katse; osa 4 riba valik kolme hoidmiskõvera pealt; `logger.py` + püsivara parandus (`{"cmd":"limits",...}`, `setSafetyLimits()`), esimene autonoomne jooks ilma `--dry-run`-ta; klaasi tõstmise katse.
+* Juhtus (numbrid): ADC vs multimeeter 0,5 % lahknevus (piir 2 %); 10 s logi 1002 rida (piir 1000 ± 5). Riba: off = −75 kPa, on = −40 kPa, seisuaja alampiir 15 s, käivitusi ≤ 4/min. Autonoomne jooks 143,6 s: 8 tsüklit, tööaeg 1,5–1,6 s, seisuaeg täpselt 15 000 ms, väljalülitus −75…−76 kPa, 3,34 käivitust/min (`data/lab1_autonomous_run_13.09.26.csv`). Klaasiga laual kadus vaakum −75 → ~0 alla 15 s; klaas õhus hoidis −76…−79 kPa terve 30 s akna. Ostsilloskoop: pumba käivitamisel signaal nähtavalt aktiivsem, konkreetset sagedust ei õnnestunud kinnitada.
+* Otsustasime, ja miks: jääme MPX5700AP juurde — alternatiivide väljund ületab meie vahemikus 3,3 V. Tellimust pole vaja, kõik oli riiulil. Kiire vaakumi kadu oli katsemeetodi viga (klaas laual), mitte leke torudes — riba jääb samaks.
+* Lahti järgmiseks korraks: puhumisrežiim, USB-välja-katse, kümme võtmist robotiga, spektri tipud nimedega, tag.
+
+**02.10.26 — Denys (+ Claude)**
+* Tegime: valmistasime ette kaitsmise-eelse riistvarasessiooni. Leidsime `logger.py`-s päris vea: Windowsis tõstab lahti tõmmatud USB `ser.readline()`-s `SerialException`-i (mitte tühja rida), nii et 500 ms valvur ei jõudnudki käivituda ja skript kukkus pumba sisselülitatuna. Parandus: erindi korral pump välja ja skript lõpetab. Lisaks jäetakse vahele read, mis ei ole telemeetria (nt `{"letter":"A"}`), et need pumpa ei lülitaks. Kirjutasime `python/pick_cycles.py` (kümme võtmist: napp klaasile → imemine → tõst → kanna → puhumine → lahti, Atom otsustab pumba) ja `python/analyze_run.py` (käivitusi/min, töö-/seisuaeg, töötsükkel jooksu ja võtmise kaupa).
+* Juhtus (numbrid): `analyze_run.py` 13.09 autonoomse jooksu peal: 100,0 Hz, tööaeg 1,5–1,6 s, seisuaeg 15,0 s — sama mis `docs/pump_control.md`-s, analüsaator on kontrollitud. `pick_cycles.py` testitud ilma riistvarata `mg400-base` võltsrobotiga ja simuleeritud Atomiga (3 tsüklit läbi, CSV + sündmuste fail kirjutatud).
+* Lahti järgmiseks korraks: sama päev, riistvaraga — puhumisrežiim, USB välja = pump välja, kümme võtmist.
+
 ### Väljundid ja tulemused
 
 **Väljundid**
