@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="860" height="660" viewBox="0 0 860 660" font-family="Arial, Helvetica, sans-serif" font-size="13">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333"/>
+    </marker>
+  </defs>
+  <rect width="860" height="660" fill="#ffffff"/>
+  <text x="430" y="24" text-anchor="middle" font-size="16" font-weight="bold">Andmehõive Lab 1 — meie süsteem (02.10.26)</text>
+
+  <!-- lines first (under the boxes) -->
+  <!-- PC <-> Atom -->
+  <line x1="170" y1="160" x2="170" y2="290" stroke="#333" stroke-width="1.5" marker-start="url(#a)" marker-end="url(#a)"/>
+  <rect x="180" y="190" width="300" height="56" fill="#fff" opacity="0.9"/>
+  <text x="186" y="206">USB-C · UART 115200</text>
+  <text x="186" y="222">↑ JSON 100 Hz {t, adc, p, mode, pump}</text>
+  <text x="186" y="238">↓ mode / band / limits / zero</text>
+  <!-- PC <-> MG400 -->
+  <line x1="340" y1="100" x2="560" y2="100" stroke="#333" stroke-width="1.5" marker-start="url(#a)" marker-end="url(#a)"/>
+  <text x="450" y="74" text-anchor="middle">Ethernet LAN1</text>
+  <text x="450" y="90" text-anchor="middle">TCP 29999 / 30003 / 30004</text>
+  <text x="450" y="118" text-anchor="middle">pump: DOExecute</text>
+  <text x="450" y="134" text-anchor="middle">(Atomi otsus)</text>
+  <!-- MG400 -> pump box -->
+  <line x1="680" y1="160" x2="680" y2="290" stroke="#333" stroke-width="1.5" marker-end="url(#a)"/>
+  <text x="690" y="230">DO2 = imemine</text>
+  <text x="690" y="246">DO1 = puhumine</text>
+  <!-- hoses -->
+  <line x1="680" y1="380" x2="465" y2="530" stroke="#777" stroke-width="5"/>
+  <text x="590" y="450" fill="#555">4 mm voolik</text>
+  <line x1="510" y1="560" x2="600" y2="560" stroke="#777" stroke-width="5"/>
+  <line x1="420" y1="560" x2="300" y2="560" stroke="#777" stroke-width="5"/>
+  <!-- sensor -> Atom -->
+  <line x1="170" y1="510" x2="170" y2="400" stroke="#333" stroke-width="1.5" marker-end="url(#a)"/>
+  <rect x="180" y="436" width="210" height="40" fill="#fff" opacity="0.9"/>
+  <text x="186" y="452">Vout → G5 (ADC)</text>
+  <text x="186" y="468">5 V, GND plaadi rööbastelt</text>
+
+  <!-- boxes -->
+  <rect x="40" y="40" width="300" height="120" rx="12" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5"/>
+  <text x="190" y="66" text-anchor="middle" font-weight="bold">Arvuti (Windows)</text>
+  <text x="190" y="88" text-anchor="middle">logger.py / hold_test.py / pick_in_place.py</text>
+  <text x="190" y="108" text-anchor="middle">valvur 500 ms → pump välja</text>
+  <text x="190" y="128" text-anchor="middle">mg400 serve → 127.0.0.1:8000</text>
+
+  <rect x="560" y="40" width="240" height="120" rx="12" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5"/>
+  <text x="680" y="72" text-anchor="middle" font-weight="bold">MG400</text>
+  <text x="680" y="96" text-anchor="middle">192.168.1.6 (LAN1)</text>
+  <text x="680" y="118" text-anchor="middle">DO2 = imemine, DO1 = puhumine</text>
+
+  <rect x="40" y="290" width="260" height="110" rx="12" fill="#d5e8d4" stroke="#82b366" stroke-width="1.5"/>
+  <text x="170" y="316" text-anchor="middle" font-weight="bold">AtomS3R</text>
+  <text x="170" y="338" text-anchor="middle">otsustab: riba off −60 / on −40 kPa</text>
+  <text x="170" y="358" text-anchor="middle">ekraan: p, režiim, pump</text>
+  <text x="170" y="378" text-anchor="middle">atmosfääri null NVS-is</text>
+
+  <rect x="560" y="290" width="240" height="90" rx="12" fill="#f8cecc" stroke="#b85450" stroke-width="1.5"/>
+  <text x="680" y="320" text-anchor="middle" font-weight="bold">Pumbakast (24 V)</text>
+  <text x="680" y="344" text-anchor="middle">„loll“ kast: töötab, kui DO üleval</text>
+
+  <rect x="40" y="510" width="260" height="100" rx="12" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5"/>
+  <text x="170" y="536" text-anchor="middle" font-weight="bold">MPX5700AP maketeerimisplaadil</text>
+  <text x="170" y="558" text-anchor="middle">absoluutne, 15–700 kPa</text>
+  <text x="170" y="578" text-anchor="middle">otse ADC-sse (ilma jagurita)</text>
+
+  <ellipse cx="465" cy="560" rx="45" ry="30" fill="#f5f5f5" stroke="#666" stroke-width="1.5"/>
+  <text x="465" y="565" text-anchor="middle">T-liitmik</text>
+
+  <rect x="600" y="510" width="200" height="100" rx="12" fill="#f5f5f5" stroke="#666" stroke-width="1.5"/>
+  <text x="700" y="540" text-anchor="middle" font-weight="bold">Iminapp MG400 flantsil</text>
+  <text x="700" y="562" text-anchor="middle">klaas karbil</text>
+  <text x="700" y="582" text-anchor="middle">põrand Z −105 mm</text>
+
+  <text x="430" y="645" text-anchor="middle" fill="#555" font-size="12">Muudetav fail: docs/lab1_system.drawio (ava app.diagrams.net-is)</text>
+</svg>

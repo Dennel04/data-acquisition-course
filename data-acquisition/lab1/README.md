@@ -136,6 +136,10 @@ Kuidas asjad omavahel töötavad: arvuti, robot, pumbakast, andur, Atom ja haara
 
 ![draw.io: arvuti, MG400, pumbakast, andur, AtomS3, haarats](lab1_drawio_tark_kast.png)
 
+**Meie skeem (02.10.26):** kuidas meie stend päriselt ühendatud on — arvuti, AtomS3R, MPX5700AP, MG400, pumbakast, T-liitmik ja iminapp. Muudetav fail: [`docs/lab1_system.drawio`](docs/lab1_system.drawio) (ava [app.diagrams.net](https://app.diagrams.net) → File → Open from → Device).
+
+![Meie süsteem: arvuti ↔ AtomS3R (USB-C UART), arvuti ↔ MG400 (Ethernet), MG400 DO2/DO1 → pumbakast → T-liitmik → iminapp ja MPX5700AP → G5](docs/lab1_system.svg)
+
 #### 4. Sinu kast
 
 Sama T sinu meeskonna tavalise kasti torusse. Atom saab arvutist režiimi ja riba, otsustab ise ja näitab ekraanil rõhu, režiimi ja otsuse. Arvuti kirjutab iga rea CSV-sse ja tõmbab DO liini otsuse järgi. Kui 500 ms jooksul rida ei tule, DO maha. Ohutu olek on lihtne: kui midagi on valesti, pump seisab.
