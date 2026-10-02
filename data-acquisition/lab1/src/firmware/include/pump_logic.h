@@ -35,6 +35,13 @@ class Controller {
     if (m != mode_) {
       mode_ = m;
       pumpOn_ = false;
+      // A mode change is a command from the robot side ("grip" / "release"):
+      // like the factory smart box, it starts at once. min-off-time and the
+      // starts-per-minute cap protect the motor from the *automatic*
+      // re-pumping of the band, not from commanded actions. 02.10.26: with
+      // them applied to everything, a release blow 6.7 s after a band stop
+      // and the 3rd grip within a minute were both refused.
+      commandedStart_ = (m != Mode::Off);
     }
   }
   void setBand(const Band& b) { band_ = b; }
@@ -60,16 +67,9 @@ class Controller {
       return false;
     }
 
-    if (limits_.maxCyclesPerMin > 0) {
-      if (nowMs - cycleWindowStartMs_ > 60000) {
-        cycleWindowStartMs_ = nowMs;
-        cyclesThisWindow_ = 0;
-      }
-      if (cyclesThisWindow_ > limits_.maxCyclesPerMin) {
-        pumpOn_ = false;
-        setReason("cycle-limit");
-        return false;
-      }
+    if (limits_.maxCyclesPerMin > 0 && nowMs - cycleWindowStartMs_ > 60000) {
+      cycleWindowStartMs_ = nowMs;
+      cyclesThisWindow_ = 0;
     }
 
     const bool suction = (mode_ == Mode::Suction);
@@ -80,18 +80,30 @@ class Controller {
 
     bool wantOn = pumpOn_;
     if (!pumpOn_) {
-      const bool idleLongEnough =
-          (nowMs - lastOffAtMs_) >= limits_.minOffTimeMs;
-      if (weakerThanOn && idleLongEnough) wantOn = true;
+      if (weakerThanOn) {
+        if (commandedStart_) {
+          wantOn = true;                       // commanded: start now
+        } else {
+          const bool idleLongEnough =
+              (nowMs - lastOffAtMs_) >= limits_.minOffTimeMs;
+          const bool underCap = limits_.maxCyclesPerMin == 0 ||
+                                cyclesThisWindow_ < limits_.maxCyclesPerMin;
+          if (idleLongEnough && underCap) {
+            wantOn = true;
+            ++cyclesThisWindow_;               // only automatic restarts count
+          } else if (!underCap) {
+            setReason("cycle-limit");
+            return false;
+          }
+        }
+      }
     } else {
       if (strongerThanOff) wantOn = false;
     }
+    commandedStart_ = false;   // one commanded start per mode change
 
     if (wantOn != pumpOn_) {
-      if (!wantOn) {
-        lastOffAtMs_ = nowMs;
-        ++cyclesThisWindow_;
-      }
+      if (!wantOn) lastOffAtMs_ = nowMs;
       pumpOn_ = wantOn;
     }
 
@@ -108,6 +120,7 @@ class Controller {
   uint32_t lastOffAtMs_ = 0;
   uint32_t cycleWindowStartMs_ = 0;
   uint16_t cyclesThisWindow_ = 0;
+  bool commandedStart_ = false;
 };
 
 } // namespace pump

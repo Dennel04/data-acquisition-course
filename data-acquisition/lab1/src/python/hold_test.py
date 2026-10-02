@@ -113,6 +113,8 @@ def main() -> None:
             event("hold-done")
             # keep the pump on for the way down, then release
             link.send({"cmd": "band", "on": -149, "off": -150})
+            link.send({"cmd": "mode", "mode": "off"})      # mode change = commanded start
+            link.send({"cmd": "mode", "mode": "suction"})
             go_z(z_table)
             event("at-table")
             link.send({"cmd": "band", "on": 5, "off": 20})
