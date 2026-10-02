@@ -132,7 +132,7 @@ def main() -> None:
 
     pump = Mg400Pump(args.mg400_url, args.dry_run)
 
-    with serial.Serial(args.port, args.baud, timeout=0.2) as ser, open(
+    with serial.serial_for_url(args.port, args.baud, timeout=0.2) as ser, open(
         args.csv_out, "w", newline=""
     ) as f:
         writer = csv.writer(f)
@@ -156,7 +156,16 @@ def main() -> None:
 
         try:
             while True:
-                raw = ser.readline()  # empty bytes on the 0.2s timeout
+                try:
+                    raw = ser.readline()  # empty bytes on the 0.2s timeout
+                except serial.SerialException as exc:
+                    # 02.10.26: on Windows an unplugged USB cable raises here
+                    # instead of returning empty bytes, so the watchdog below
+                    # never got its chance and the script died with the pump
+                    # still on. USB out = pump out, then stop.
+                    print(f"[{time.strftime('%H:%M:%S')}] [usb] serial port lost ({exc}), forcing pump off")
+                    pump.set_mode("off")
+                    return
                 now = time.monotonic()
 
                 if raw:
@@ -166,6 +175,8 @@ def main() -> None:
                         msg = json.loads(raw.decode("ascii", errors="replace"))
                     except json.JSONDecodeError:
                         continue  # dropped/garbled line -- don't crash the logger
+                    if "p" not in msg:
+                        continue  # e.g. {"letter":"A"} -- not telemetry, must not switch the pump
 
                     writer.writerow(
                         [msg.get("t"), msg.get("adc"), msg.get("p"), msg.get("pump")]
@@ -183,7 +194,7 @@ def main() -> None:
 
                 # 500ms watchdog: independent of what the Atom last said.
                 if (now - last_line_at) > WATCHDOG_TIMEOUT_S and not watchdog_tripped:
-                    print("[watchdog] no line in 500ms, forcing pump off")
+                    print(f"[{time.strftime('%H:%M:%S')}] [watchdog] no line in 500ms, forcing pump off")
                     pump.set_mode("off")
                     watchdog_tripped = True
 
