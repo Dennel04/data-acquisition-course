@@ -34,7 +34,7 @@ from pathlib import Path
 import requests
 import serial
 
-from logger import WATCHDOG_TIMEOUT_S, Mg400Pump, send_command
+from logger import WATCHDOG_TIMEOUT_S, Mg400Pump, check_zero, open_atom, send_command
 
 SLOT_ABOVE_A, SLOT_A, SLOT_ABOVE_B, SLOT_B = 1, 2, 3, 4
 
@@ -178,7 +178,8 @@ def main() -> None:
     pump = Mg400Pump(a.mg400_url, a.dry_run)
     t0 = time.monotonic()
 
-    with serial.serial_for_url(a.port, a.baud, timeout=0.2) as ser, open(events_path, "w", newline="") as ef:
+    with open_atom(a.port, a.baud) as ser, open(events_path, "w", newline="") as ef:
+        check_zero(ser)
         link = AtomLink(ser, pump, a.csv_out)
         link.start()
         ev = csv.writer(ef)

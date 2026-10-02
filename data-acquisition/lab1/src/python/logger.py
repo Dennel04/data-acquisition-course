@@ -122,6 +122,46 @@ class Mg400Pump:
         self._last_mode = mode
 
 
+def open_atom(port: str, baud: int) -> serial.Serial:
+    """Open the Atom's USB serial WITHOUT resetting it.
+
+    02.10.26: pyserial's default open/close toggles DTR/RTS, and on the
+    ESP32-S3's native USB that is the reset line -- every open rebooted the
+    Atom, and the firmware takes its atmospheric zero at boot from whatever
+    is in the tube. With the glass held at -62 kPa a reconnect made the
+    display read 0. Setting DTR/RTS low before open() leaves it running."""
+    ser = serial.serial_for_url(port, baud, timeout=0.2, do_not_open=True)
+    ser.dtr = False
+    ser.rts = False
+    ser.open()
+    return ser
+
+
+def check_zero(ser: serial.Serial, seconds: float = 1.0) -> None:
+    """Warn if the Atom just booted (zero taken now) or reads far from 0 kPa
+    at rest -- either means the relative pressure may be offset."""
+    end = time.monotonic() + seconds
+    ps, uptime = [], None
+    while time.monotonic() < end:
+        try:
+            m = json.loads(ser.readline().decode("ascii", errors="replace"))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            continue
+        if "p" in m:
+            ps.append(float(m["p"]))
+            uptime = m.get("t")
+    if not ps:
+        print("[zero] no telemetry from the Atom yet")
+        return
+    avg = sum(ps) / len(ps)
+    print(f"[zero] Atom up {uptime / 1000:.0f} s, reads {avg:+.1f} kPa now")
+    if uptime is not None and uptime < 5000:
+        print("[zero] Atom just booted: its zero is whatever was in the tube at boot")
+    if abs(avg) > 3:  # the pump is off before the first mode command
+        print("[zero] WARNING: not ~0 kPa with the pump off -- open the tube to air "
+              "and press the Atom reset button to re-zero, or the band is shifted")
+
+
 def send_command(ser: serial.Serial, obj: dict) -> None:
     ser.write((json.dumps(obj) + "\n").encode("ascii"))
 
@@ -132,11 +172,12 @@ def main() -> None:
 
     pump = Mg400Pump(args.mg400_url, args.dry_run)
 
-    with serial.serial_for_url(args.port, args.baud, timeout=0.2) as ser, open(
+    with open_atom(args.port, args.baud) as ser, open(
         args.csv_out, "w", newline=""
     ) as f:
         writer = csv.writer(f)
         writer.writerow(["t_ms", "adc", "p_kpa", "pump"])  # README part 2 format
+        check_zero(ser)
 
         # Configure the Atom once at startup. Re-send if you change these
         # live during a session -- this script doesn't watch for that.
