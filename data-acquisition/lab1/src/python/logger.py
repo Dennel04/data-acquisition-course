@@ -28,6 +28,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import queue
 import threading
 import time
 from dataclasses import dataclass
@@ -53,6 +54,7 @@ class Args:
     dry_run: bool
     duration: float
     zero: bool
+    station: str | None = None
 
 
 def parse_args() -> Args:
@@ -80,6 +82,9 @@ def parse_args() -> Args:
                    help="stop cleanly (Atom stop + pump off) after this many seconds; 0 = until Ctrl+C")
     p.add_argument("--zero", action="store_true",
                    help="re-take the Atom's atmospheric zero first (pump off, tube OPEN to air)")
+    p.add_argument("--station", default=None,
+                   help="Smart Solutions station URL, e.g. http://127.0.0.1:5000: forward the "
+                        "Atom's letter lines there (merged Atom firmware, USB letter channel)")
     a = p.parse_args()
     return Args(
         port=a.port,
@@ -94,7 +99,45 @@ def parse_args() -> Args:
         dry_run=a.dry_run,
         duration=a.duration,
         zero=a.zero,
+        station=a.station,
     )
+
+
+class StationLetters:
+    """Forward {"letter":...} lines to the station's POST /api/letter.
+
+    03.10.26, merged Atom firmware: the same USB line carries the 10 ms
+    telemetry and, on a long button press, one letter line. The lab PC has
+    no WiFi, so this port is the letter channel too. POSTs run on their own
+    thread: a slow station must never delay the reader, or the 500 ms
+    watchdog would switch the pump off."""
+
+    def __init__(self, station_url: str) -> None:
+        self.url = station_url.rstrip("/") + "/api/letter"
+        self._session = requests.Session()
+        self._queue: queue.Queue[dict | None] = queue.Queue()
+        self._thread = threading.Thread(target=self._run, daemon=True)
+        self._thread.start()
+
+    def submit(self, msg: dict) -> None:
+        letter = msg.get("letter")
+        if isinstance(letter, str) and len(letter) == 1 and "A" <= letter <= "Z":
+            self._queue.put(msg)
+
+    def close(self) -> None:
+        self._queue.put(None)
+        self._thread.join(3.0)
+
+    def _run(self) -> None:
+        while (msg := self._queue.get()) is not None:
+            for attempt in range(3):
+                try:
+                    r = self._session.post(self.url, json=msg, timeout=2.0)
+                    print(f"[{stamp()}] [letter] {msg['letter']} seq={msg.get('seq')} -> HTTP {r.status_code}")
+                    break
+                except requests.RequestException as exc:
+                    print(f"[{stamp()}] [letter] {msg['letter']} attempt {attempt + 1}: {exc}")
+                    time.sleep(0.25)
 
 
 class Mg400Pump:
@@ -268,6 +311,7 @@ def main() -> None:
     args.csv_out.parent.mkdir(parents=True, exist_ok=True)
 
     pump = Mg400Pump(args.mg400_url, args.dry_run)
+    letters = StationLetters(args.station) if args.station else None
 
     with open_atom(args.port, args.baud) as ser, open(
         args.csv_out, "w", newline=""
@@ -319,7 +363,10 @@ def main() -> None:
                     except json.JSONDecodeError:
                         continue  # dropped/garbled line -- don't crash the logger
                     if "p" not in msg:
-                        continue  # e.g. {"letter":"A"} -- not telemetry, must not switch the pump
+                        # e.g. {"letter":"A"} -- not telemetry, must not switch the pump
+                        if letters is not None and "letter" in msg:
+                            letters.submit(msg)
+                        continue
                     watchdog.feed()
 
                     writer.writerow(
