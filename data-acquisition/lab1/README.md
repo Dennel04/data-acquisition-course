@@ -185,16 +185,16 @@ Kirjuta üles: riba, seisuaja alampiir, käivitusi minutis kolmes olukorras, rõ
 
 #### 5. Täht
 
-Lõplikus integreeritud püsivaras käib lühike vajutus tähestikku läbi ja pikk vajutus saadab valitud tähe jaamale. Praeguses Andmehõive püsivaras on saatmine veel Serial-asendus; HTTP-kanal ühendatakse Smart Solutions saatjaga riistvaraintegratsiooni käigus.
+Lõplikus integreeritud püsivaras käib lühike vajutus tähestikku läbi ja pikk vajutus saadab valitud tähe jaamale.
 
-**Praegune tarkvaraline tööjaotus.** Smart Solutions püsivaras on HTTP-saatja juba realiseeritud: `POST /api/letter`, mille JSON sisaldab välju `letter`, `session`, `seq` ja `atom_sent_ms`. Selle aine pumba- ja rõhupüsivara `sendLetterToChannel()` on praegu ainult lokaalne Serial-asendus.
+**Esialgne seis enne 03.10.26 integratsiooni.** Andmehõive püsivaras oli saatmine veel kohalik Serial-asendus. Smart Solutions püsivaras oli eraldi HTTP-saatja `POST /api/letter`, mille JSON sisaldas välju `letter`, `session`, `seq` ja `atom_sent_ms`; see ei olnud Data Acquisitioni lõpliku füüsilise stendi kanal.
 
-Lõplikus riistvaraintegratsioonis ühendatakse ühe AtomS3 peal:
+Esialgse riistvaraintegratsiooni plaani järgi ühendatakse ühe AtomS3 peal:
 
 - Andmehõive rõhu- ja pumbaloogika;
-- Smart Solutions tähe HTTP-saatja.
+- Smart Solutions tähe valik ja saatmine.
 
-Ühendamist ega otsast lõpuni tähe edastamist ei ole veel kinnitatud. Kontrollnimekirja punkt **Täht** jääb seetõttu märkimata.
+Selles vaheetapis ei olnud ühendamist ega otsast lõpuni tähe edastamist veel kinnitatud. Allolev 03.10.26 täpsustus sulgeb selle vaheetapi.
 
 *Täpsustus (03.10.26):* ühendamine tehtud ja otsast lõpuni kontrollitud.
 

@@ -46,12 +46,18 @@ lose track of what still needs a real measurement.
 - **Sensor choice** (part 1): this code assumes MPX5700AP throughout,
   since that's the day-1 starting point; the order decision itself isn't
   addressed here at all.
-- **Tähekanal** (osa 5): `sendLetterToChannel()` on ajutine kohalik asendus,
-  mis kirjutab JSON-i ainult Serial-liidesesse. Smart Solutions püsivaras on
-  tegelik saatja nüüd `POST /api/letter`, mille väljad on `letter`, `session`,
-  `seq` ja `atom_sent_ms`. Saatja ühendamine selle rõhu- ja pumbapüsivaraga
-  ühel AtomS3-l on riistvaraintegratsiooni TODO; otsast lõpuni tulemust ei ole
-  veel kinnitatud.
+- **Tähekanal — esialgne seis:** `sendLetterToChannel()` oli ajutine kohalik
+  asendus, mis kirjutas JSON-i ainult Serial-liidesesse. Smart Solutions
+  püsivaras oli eraldi saatja `POST /api/letter`, mille väljad on `letter`,
+  `session`, `seq` ja `atom_sent_ms`. See kirjeldab integratsioonieelset seisu,
+  mitte lõplikku füüsilist kanalit.
+
+  **Täpsustus 03.10.26 — päris stendil kinnitatud:** ühel AtomS3R-il töötavad
+  koos pressure/pump logic ning letter selection/send. Lühike vajutus valib
+  tähe ja pikk vajutus saadab selle. Laboriarvutis kasutati sama USB-C ühenduse
+  serial-kanalit: AtomS3R → USB serial → station. Otsast lõpuni tulemus kinnitati
+  Smart Solutions Lab 1 jaamas; eraldi riistvara ega Atomi HTTP-kanalit selle
+  Data Acquisitioni füüsilise stendi jaoks ei kasutatud.
 
 ## Verified vs. uncertain (so you know what to double-check)
 
