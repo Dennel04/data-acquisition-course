@@ -32,19 +32,36 @@ data-acquisition/
     data/        <- CSV logs
     notebooks/   <- Jupyter notebooks: spectra, statistics
     docs/        <- sensor_choice.md, bom.md, pump_control.md, schematic photos, oscilloscope shots, Falstad exports
+  lab2/
+    README.md    <- concise Estonian working document, checklist, decisions, and devlog
+    src/         <- future raw/opamp firmware and logger changes
+    data/        <- future raw/opamp CSV logs
+    notebooks/   <- future comparison, spectra, resolution, and SNR analysis
+    docs/        <- op-amp worksheet, BOM, pump-control comparison, circuit and oscilloscope evidence
 study-ru/
   lab1-translation.md   <- personal Russian translation, NOT part of the graded submission
 ```
 
-Each later lab under `data-acquisition/labN/` follows the same pattern.
+Each lab under `data-acquisition/labN/` normally follows the same internal
+pattern where practical: `README.md`, `src/`, `data/`, `notebooks/`, and
+`docs/`. Task-specific files may differ between labs.
+
+## Lab 2 purpose
+
+Lab 2 plans, builds, measures, and corrects an op-amp signal-conditioning
+stage, then compares raw and conditioned pressure signals and pump control.
+Code or a successful simulation is not evidence that hardware is complete.
+Measurements must come from real hardware. Never invent or infer Lab 1
+carry-over values; mark them as requiring Lab 1 data until verified.
 
 ## Conventions
 
 - **Language:** assignments are issued in Estonian. `README.md` in each lab
   folder stays in Estonian (official template, `KAARDISTA ISE` = "map it
   yourself" fill-in-the-blank sections) — filled in as the student
-  measures things. Personal Russian translations live only under
-  `study-ru/`, never touching the graded files.
+  measures things. Personal Russian translations and notes live only under
+  `study-ru/`; they are not graded output and never replace or modify graded
+  files.
 - **Nothing gets deleted.** A wrong measurement stays in the doc with its
   date; the correction goes underneath it, not over it.
 - **Devlog entries** live inside each lab's `README.md` under
