@@ -27,6 +27,11 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
 
 **KAARDISTA ISE — eesmärk nii, nagu ta tegelikult välja tuli.**
 
+1. **Andur:** jäime MPX5700AP juurde (absoluutne, näeb mõlemat märki); alternatiivid andsid parema lahutuse, kuid nende väljund ületaks meie vahemikus 3,3 V (`docs/sensor_choice.md`).
+2. **Tark kast:** ACU2-B logitud, väljalülitus ≈ −91,5 kPa (`docs/pump_control.md`).
+3. **Sinu kast:** Atom otsustab, ekraan näitab, arvuti ainult vahendab MG400 DO liinidesse. Lõplik riba off −60 / on −40 kPa (−75 oli sellel stendil saavutamatu), USB välja → pump välja 29 ms, robot võttis klaasi 10/10.
+4. **Täht:** sama Atom saadab ka tähe — Andmehõive ja Nutikate lahenduste püsivara ühendati 03.10.26 üheks. Laboriarvutil ei ole Wi-Fi-d, seega täht läheb sama USB-kaabli kaudu kui rõhu telemeetria.
+
 ### Kontrollnimekiri
 
 **Peab olema tehtud**
@@ -55,9 +60,11 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
   - 02.10.26: **kümme võtmist 10/10** — pumba töötsükkel **45 %** (`data/lab1_pick10_fw3_02.10.26.csv`) ja lähenemisega haaramisel (vaakum 5 mm enne põrandat, peatus kontaktil, Atom lülitab pumba välja) **29 %**, kontakt Z −102,8…−103,0 (`data/lab1_approach_pick10_02.10.26.csv`).
   - 02.10.26: puhumine — eraldi korgiga katset ei tehtud, **korki pole vaja — õppejõud kinnitas, et seda katset ei ole vaja**: puhumine on siin ainult lühike vabastusimpulss (0,5 s, +10…+18 kPa), kontrollitud 20 korda, klaas vabanes iga kord. Puhumise peatumise loogika on püsivaras sama mis imemisel, vastupidise märgiga.
   - 02.10.26: parandused, ilma milleta numbrid poleks ausad: Atom ei taaskäivitu enam pordi avamisel ja hoiab atmosfääri nulli NVS-is; valvur ja pumba HTTP eraldi lõimedes; käsuga antud režiimivahetus käivitab pumba kohe (seisuaeg ja käivituste piir ainult riba automaatsetele taaskäivitustele). Kõik koodis `src/`.
-- [ ] Täht: nupp valib tähe, Atom saadab selle jaama.
-- [ ] Repo ja arenduspäevik täidetud, tag `data-acquisition-lab1`.
+- [x] Täht: nupp valib tähe, Atom saadab selle jaama.
+  - 03.10.26: ühendatud püsivara (pump + täht ühel AtomS3R-il). Ekraan on nupp: lühike vajutus valib järgmise tähe A→Z, pikk (> 0,7 s) saadab. Täht läheb USB kaudu JSON reana `{"letter":"D","session":"…","seq":…,"atom_sent_ms":…}`; jaam võttis vastu 12 tähte, robot joonistas neist 10 (A A C D D D D E G G), 2 esimest katkesid jaama 15 s ajapiirangu tõttu (parandatud). Logi: `smart-solutions-course/smart-solutions/lab1/data/letter_events.csv`.
+- [x] Repo ja arenduspäevik täidetud, tag `data-acquisition-lab1`.
   - 12.09.26: arenduspäevik käivitatud (vt allpool). Tag ja repo lõplik koristus jäävad kaitsmise eelseks sammuks.
+  - 03.10.26: KAARDISTA ISE osad täidetud, arenduspäevik 03.10.26 lisatud, tag `data-acquisition-lab1` pandud.
 
 ### Sisendid
 
@@ -81,6 +88,13 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
 
 **KAARDISTA ISE — mida sa päriselt kasutasid.**
 
+* AtomS3R (üks tükk), USB-C kaabel; MPX5700AP maketeerimisplaadil, Vout → G5.
+* Multimeeter (Vout 0,85 V vs ADC), ostsilloskoop GW Instek GDS-1072A-U (spektri katse, osaliselt).
+* 4 mm voolik, T-liitmik, iminapp, 24 × 24 mm klaas; tehase tark kast ACU2-B võrdluseks.
+* MG400 koos pumbakasti ja `mg400-base`-iga (meie haru `lab-jog`: jog-nupud, Z-piir, liigesepiiride kontroll).
+* PlatformIO + M5Unified + ArduinoJson; Python 3, pyserial, requests, pandas.
+* Falstad (müraallika skeem), draw.io (süsteemi skeem `docs/lab1_system.drawio`), Git/GitHub, AI abiline (Claude).
+
 ### Taustainfo
 
 * **AtomS3**: viigud, ADC viigud, ekraan, nupp
@@ -102,6 +116,12 @@ Esimene asi on tellimus. Esimesel päeval uusi osi ei ole: mõtle välja, mida s
 *Lisa siia oma allikaid ja kasulikku infot, mis aitaks sul projektist aru saada ka aastaid hiljem, kui selle uuesti lahti teed.*
 
 **KAARDISTA ISE — sinu allikad.**
+
+* MPX5700AP andmeleht (ülekandefunktsioon): https://www.nxp.com/docs/en/data-sheet/MPX5700.pdf
+* AtomS3R dokumentatsioon (G5 ADC, nupp = ekraan, RESET külgmine): https://docs.m5stack.com/en/core/AtomS3R
+* MG400 baaspakett: https://github.com/KKallas/mg400-base
+* M5GFX sprite topeltpuhverdus (ekraani virvenduse parandus): https://docs.m5stack.com/en/arduino/m5gfx/m5gfx_sprite
+* pyserial: https://pyserial.readthedocs.io/
 
 ### Osad
 
@@ -176,6 +196,13 @@ Lõplikus riistvaraintegratsioonis ühendatakse ühe AtomS3 peal:
 
 Ühendamist ega otsast lõpuni tähe edastamist ei ole veel kinnitatud. Kontrollnimekirja punkt **Täht** jääb seetõttu märkimata.
 
+*Täpsustus (03.10.26):* ühendamine tehtud ja otsast lõpuni kontrollitud.
+
+- **Püsivara:** üks püsivara (`smart-solutions-course/smart-solutions/lab1/firmware`). Selle aine moodulid (andur, null, pumba loogika, JSON protokoll) on sinna kopeeritud muutmata kujul. Pump, andur ja telemeetria jooksevad tuumal 1 range 10 ms tsükliga, Wi-Fi ja veebileht tuumal 0 — Wi-Fi ei saa pumba tsüklit ega PC 500 ms valvurit kinni hoida. Kontroll Atomil: telemeetria `t` vahe täpselt 10 ms (203 rida 2 s jooksul).
+- **Kanal:** laboriarvutil (kus jookseb `mg400 serve`) ei ole Wi-Fi adapterit, ainult kaks Ethernet porti. Seepärast saadab Atom tähe sama USB-rea kaudu, kus on rõhu telemeetria. Arvutis loeb seda kas `logger.py --station http://127.0.0.1:5000` (pump ja täht korraga, sest COM-porti saab avada ainult üks programm) või ainult tähtede jaoks `atom_bridge.py`. `logger.py` jätab tähe read pumba otsusest välja ja saadab need jaama eraldi lõimes, nii et aeglane jaam ei saa valvurit käivitada.
+- **Nupp:** AtomS3R kasutajanupp on ekraan ise; külgmine nupp on RESET (sellel vajutades Atom taaskäivitus ja püsivara näitas põhjust `power-on / EN`).
+- **Tulemus:** 12 tähte jõudsid jaama, 10 joonistati (A A C D D D D E G G). Jaama vastuvõtust esimese robotikäsuni mediaan 358 ms, max 703 ms (sisaldab iga punkti liigesekontrolli MG400 serverist).
+
 **KAARDISTA ISE — vastused.** Iga osa kohta: numbrid, ühikud, kus fail on. Tegemata asja kohta üks rida, miks.
 
 ### Ohutus
@@ -248,6 +275,12 @@ Repos on kaustas `data-acquisition/lab1/`: `src/` püsivara ja logijaga, `data/`
 * Juhtus (numbrid): `analyze_run.py` 13.09 autonoomse jooksu peal: 100,0 Hz, tööaeg 1,5–1,6 s, seisuaeg 15,0 s — sama mis `docs/pump_control.md`-s, analüsaator on kontrollitud. `pick_cycles.py` testitud ilma riistvarata `mg400-base` võltsrobotiga ja simuleeritud Atomiga (3 tsüklit läbi, CSV + sündmuste fail kirjutatud).
 * Lahti järgmiseks korraks: sama päev, riistvaraga — puhumisrežiim, USB välja = pump välja, kümme võtmist.
 
+**03.10.26 — Denys (+ Claude)**
+* Tegime: ühendasime Andmehõive ja Nutikate lahenduste Atomi püsivara üheks ja laadisime selle Atomile. Täht valitakse ekraaniga (lühike vajutus), saadetakse pika vajutusega USB kaudu jaama ja robot joonistab selle pastakaga paberile. Mõõtsime paberilehe: Denys juhtis roboti kätt jog-nuppudega lehe alumistesse nurkadesse ja Claude võttis roboti asendist nurkade koordinaadid kalibratsiooni (vasak alumine X 335, Y −118; parem alumine X 335, Y 146; nurkade vahe 264 mm). Kalibreerisime pastaka kõrguse ja tähtede asukoha: tähed tulevad lehele järjest, vasakult paremale, ja kõik töötab.
+* Juhtus (numbrid): jaama jõudis 12 tähte, joonistati 10 (A A C D D D D E G G); 2 esimest katkesid jaama 15 s liigutuse ajapiirangu tõttu (pikk sõit 4 % kiirusel) ja see parandati. Kiirus 4 % → 20 %, pastaka kontakt Z −109…−112 mm, üleval −100 mm, tähe lahter 20 mm. Telemeetria ühendatud püsivaraga täpselt iga 10 ms. Atomi salvestatud atmosfääri null on 94,8 kPa (peaks olema ~101 kPa), seepärast näitab rahus ~+7 kPa.
+* Otsustasime, ja miks: täht läheb USB kaudu, sest laboriarvutil ei ole Wi-Fi adapterit; HTTP üle Wi-Fi jääb tööle sülearvutiga jaama jaoks. Üks püsivara, sest Atom on üks ja Nutikate lahenduste L2 toob rõhuanduri samale lehele.
+* Lahti järgmiseks korraks: null uuesti (toru lahti, pump väljas, `logger.py --zero`); pumba lühikontroll ühendatud püsivaraga; tag `data-acquisition-lab1`.
+
 ### Väljundid ja tulemused
 
 **Väljundid**
@@ -256,9 +289,15 @@ Repos on kaustas `data-acquisition/lab1/`: `src/` püsivara ja logijaga, `data/`
 * Andmehõive L3: sama loogika, mis kolib tööriistaplaadile.
 
 **KAARDISTA ISE, lõpus.**
-* Git repo ja tag:
+* Git repo ja tag: https://github.com/Dennel04/data-acquisition-course, tag `data-acquisition-lab1`.
 * Numbrid, mille see labor andis, ühikutega:
-* Mida me teeksime teisiti:
-* Mida järgmine labor peaks enne alustamist teadma:
+  * ADC vs multimeeter 0,5 % (piir 2 %), tegelik V_ref ≈ 3,70 V; 10 s logi 1002 rida (100 Hz);
+  * tark kast ACU2-B: väljalülitus ≈ −91,5 kPa;
+  * meie kast: riba off −60 / on −40 kPa, seisuaja alampiir 15 s, ≤ 4 käivitust/min; klaas õhus 120 s ilma taaskäivituseta;
+  * USB välja → pump välja 29 ms (enne parandust 1,6 s);
+  * kümme võtmist 10/10, pumba töötsükkel 45 % (lähenemisega 29 %), kontakt Z −102,8…−103,0 mm; puhumine 0,5 s, +10…+18 kPa;
+  * täht: 12 jõudis jaama, 10 joonistati; jaam → robot mediaan 358 ms.
+* Mida me teeksime teisiti: kontrollida juhtmestik multimeetriga enne esimest mõõtmist (andur oli valepidi ja GND hõljus); hoida null NVS-is algusest peale; teha üks ühine püsivara kohe alguses, mitte kaks eraldi.
+* Mida järgmine labor peaks enne alustamist teadma: ADC tegelik V_ref ≈ 3,70 V, mitte 3,3 V; pordi avamine võib ESP32-S3 taaskäivitada (DTR/RTS madalaks enne `open()`); laboriarvutil pole Wi-Fi-d; AtomS3R nupp on ekraan, külgmine on RESET; null tuleb võtta toru lahtisena.
 
 ### Tagasiside
