@@ -1,21 +1,23 @@
 # Op-amp astme kavandamise ja arvutamise tööleht
 
-See on projekteerimise ja hilisema kontrolli tööleht, mitte valmis astme tulemus. Allpool olevad võrrandid eeldavad määratud sisendvahemikku ning selles vahemikus lineaarset andurit ja astet. Meeskonna lähteandmed: TODO: Lab 1 data required. Füüsilise astme tulemused: TODO: real measurement required.
+See on projekteerimise ja hilisema kontrolli tööleht, mitte valmis astme tulemus. Allpool olevad võrrandid eeldavad määratud sisendvahemikku ning selles vahemikus lineaarset andurit ja astet. Labor 1 kinnitab anduri, ADC seadistuse ja raw-signaali teisenduse; tegelikud Labor 2 sisendi otspunktid ning füüsilise astme tulemused: TODO: real measurement required.
 
-Õppejõu MPX5700AP arvud on ainult ülesande näide. **Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Enne komponentide valikut tuleb kinnitada meeskonna andur, ADC seadistus ja Labori 1 andmed.
+Õppejõu MPX5700AP arvud on ainult ülesande näide. **Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Labor 1 kinnitab, et meeskond kasutas sama MPX5700AP andurit otse AtomS3R ADC-sse, kuid ei asenda Labor 2 otspunktide mõõtmist.
+
+Esimese riistvarasessiooni mõõtmisjärjekord, mõõtepunktid ja tagastatav väärtuste mall on failis [`bench_session.md`](bench_session.md). Täida seal `V_sensor_supply`, `V_opamp_supply`, `Vin_atmosphere`, `Vin_full_suction`, `Vin_full_blowing`, op-ampi markeering ja olemas olevad takistid enne meeskonna astme lõplikku arvutust.
 
 ## Teadaolevad sisendsuurused
 
 | Suurus | Sümbol | Väärtus | Allikas |
 |---|---|---|---|
-| Kasutatud andur | — | TODO: Lab 1 data required | Labor 1 / anduri andmeleht |
-| Anduri toitepinge | `V_sensor` | TODO: real measurement required | Multimeeter |
-| Minimaalne anduripinge | `V_in,min` | TODO: Lab 1 data required | Labor 1 / kontrollitud andmeleht |
-| Maksimaalne anduripinge | `V_in,max` | TODO: Lab 1 data required | Labor 1 / kontrollitud andmeleht |
-| Vastavad rõhud | `P_min`, `P_max` | TODO: Lab 1 data required | Sama rõhuviide ja ühik mõlemas otspunktis |
-| Anduri tundlikkus | `S_P` | TODO: Lab 1 data required | V/Pa või V/kPa |
-| ADC bitisügavus | `N` | TODO: Lab 1 data required | Kasutatud konfiguratsioon |
-| ADC seadistus ja kasutatav sisendvahemik | `V_ADC,min`, `V_ADC,max` | TODO: Lab 1 data required | Kiip, sumbuvus ja kalibreerimine; mitte eeldada 0…3,3 V |
+| Kasutatud andur | — | `MPX5700AP` | `data-acquisition/lab1/docs/sensor_choice.md` |
+| Anduri toitepinge | `V_sensor` | Laboris 1 mõõdetud `5,00 V`; Labor 2: TODO: real measurement required | `data-acquisition/lab1/docs/sensor_choice.md`; mõõta uuesti multimeetriga |
+| Minimaalne anduripinge | `V_in,min` | TODO: real measurement required | Mõõta Labor 2 tegelikus alumises tööpunktis |
+| Maksimaalne anduripinge | `V_in,max` | TODO: real measurement required | Mõõta Labor 2 tegelikus ülemises tööpunktis |
+| Vastavad rõhud | `P_min`, `P_max` | Ülesande töövahemik `−70…+110 kPa` suhtelist rõhku; tegelikud mõõtepunktid: TODO: real measurement required | Labor 2 ametlik ülesanne |
+| Anduri tundlikkus | `S_P` | Labori 1 `5,00 V` toite korral andmelehe valemist arvutatud `6,429 mV/kPa`; Labor 2 toitega arvutada uuesti | `V_sensor · 0,0012858`; `data-acquisition/lab1/src/firmware/include/sensor.h` |
+| ADC bitisügavus | `N` | `12 bit` (`0…4095`) | `data-acquisition/lab1/src/firmware/src/sensor.cpp`, `include/sensor.h` |
+| ADC seadistus ja kasutatav sisendvahemik | `V_ADC,min`, `V_ADC,max` | AtomS3R G5, `ADC_11db`, kaheksa lugemi keskmine; Labori 1 koodist pingeks tegur `3,70 V / 4095`; tegelik kasulik sisendvahemik: TODO: real measurement required | `data-acquisition/lab1/src/firmware/src/sensor.cpp`, `include/sensor.h`, `docs/sensor_choice.md` |
 | Op-ampi tegelik toitepinge | `V_OP,meas` | TODO: real measurement required | Mõõta astme toiteviikudel tööolukorras |
 
 ## Nõutav anduripinge vahemik
@@ -24,7 +26,7 @@ See on projekteerimise ja hilisema kontrolli tööleht, mitte valmis astme tulem
 
 Sümbolid `min` ja `max` tähistavad **pinget**, mitte tingimata rõhu suunda. Kui anduri pinge rõhuga väheneb, tuleb rõhu ja pinge otspunktid eraldi siduda. Kui `ΔV_in = 0`, ei saa kahest otspunktist võimendust määrata.
 
-Tulemus: TODO: Lab 1 data required.
+Meeskonna tegelik `ΔV_in`: TODO: real measurement required. Õppejõu andmelehe-põhine näide `1,16 V` jääb allpool eraldi näitena.
 
 ## ADC vahemik
 
@@ -32,21 +34,21 @@ Tulemus: TODO: Lab 1 data required.
 - Toore signaali kasutatud ADC vahemiku osa: `η_raw = ΔV_in / (V_ADC,max − V_ADC,min) · 100%`.
 - Kui `S_P = |dV_in/dP|` ühikus V/Pa, siis `q_P,raw ≈ q_V / S_P` ühikus Pa/kood. Astme järel ideaaljuhul `q_P,opamp ≈ q_V / (|A| · S_P)`.
 
-Need on **ideaalse kvantimise** valemid. Tegelik koodisamm ja kasutatav pingevahemik sõltuvad ADC seadistusest, kalibreerimisest ning mittelineaarsusest; tegelikku Pa/koodi väärtust ei saa siin veel kinnitada.
+Need on **ideaalse kvantimise** valemid. Labori 1 empiirilise teisendusteguri korral oli tarkvara pingesamm `3,70 V / 4095 ≈ 0,9035 mV/kood`. MPX5700AP andmelehe tundlikkusega `6,429 mV/kPa` arvutati `q_P,raw ≈ 0,1405 kPa/kood = 141 Pa/kood`. See on Labori 1 kalibreeringu ja andmelehe valemi põhine arvutus, mitte ADC füüsilise sisendvahemiku mõõtmine.
 
-Tulemused: TODO: Lab 1 data required.
+Labor 2 peab sama raw-teisenduse uuesti kontrollima ja mõõtma op-amp konfiguratsiooni `q_P,opamp`: TODO: real measurement required.
 
 ## Väljundi sihtvahemik
 
 | Suurus | Sümbol | Meeskonna väärtus |
 |---|---|---|
-| Esimese versiooni alumine siht | `V_out,min,1` | TODO: Lab 1 data required |
-| Esimese versiooni ülemine siht | `V_out,max,1` | TODO: Lab 1 data required |
+| Esimese versiooni alumine siht | `V_out,min,1` | TODO: real measurement required |
+| Esimese versiooni ülemine siht | `V_out,max,1` | TODO: real measurement required |
 | Esimese versiooni väljundi ulatus | `ΔV_out,1` | `V_out,max,1 − V_out,min,1` |
 | Parandatud alumine siht | `V_out,min,2` | TODO: real measurement required |
 | Parandatud ülemine siht | `V_out,max,2` | TODO: real measurement required |
 
-**Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Näites on `V_in,min = 0,40 V` ja `V_in,max = 1,56 V`; esimese versiooni näidissiht on `0,2…3,3 V` ja parandatud näidissiht `0,3…3,0 V`. Need näidissihid muutuvad meeskonna projekteerimissihtideks alles siis, kui Labori 1 andmed kinnitavad sama MPX5700AP anduri ja sama asjakohase toite- ning ADC konfiguratsiooni. Muu anduri või konfiguratsiooni korral määrab meeskond sihid enda kontrollitud sisendvahemiku ja piirangute põhjal. Enne seda ei kanta näitearve meeskonna väljadele.
+**Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Näites on `V_in,min = 0,40 V` ja `V_in,max = 1,56 V`; esimese versiooni näidissiht on `0,2…3,3 V` ja parandatud näidissiht `0,3…3,0 V`. Labor 1 kinnitab sama andurit, 12-bitist ADC-d ja `ADC_11db` seadistust. Meeskond ei ole siiski mõõtnud oma `V_in,min`, `V_in,max`, Labor 2 op-ampi toidet ega ADC kasulikku lineaarset vahemikku. Seetõttu jäävad näitearvud näidiseks, kuni Labor 2 mõõtmised kinnitavad projekteerimise lähtepunktid.
 
 ## Võimenduse arvutus
 
@@ -64,7 +66,7 @@ Asendades alumise otspunkti võrrandisse saame
 
 `A` on ühikuta võimendus ja `B` on voltides nihe. Mõlema otspunkti asendamine tagasi avaldisse on kohustuslik kontroll. Allpool kirjeldatud diferentsiaalaste eeldab `A > 0`; teistsugune anduri suund või eesmärk nõuab topoloogia uut valikut.
 
-Meeskonna tulemus: TODO: Lab 1 data required.
+Meeskonna tulemus: TODO: real measurement required.
 
 ## Viite- ehk nihkepinge
 
@@ -79,7 +81,7 @@ Kontrollida tuleb mõlemat otspunkti:
 - `A · (V_in,min − V_ref) = V_out,min`;
 - `A · (V_in,max − V_ref) = V_out,max`.
 
-Meeskonna `V_ref`: TODO: Lab 1 data required.
+Meeskonna `V_ref`: TODO: real measurement required.
 
 ## Takistite valik
 
@@ -91,7 +93,7 @@ Kandidaat `A > 0` korral on ühe op-ampiga sobitatud diferentsiaalaste. Ühenda 
 
 Kui `R_2/R_1 = R_4/R_3 = A`, lihtsustub see kujule `V_out = A · (V_in − V_ref)`. Sobitatud **suhtarvud**, mitte üksnes nimiväärtused, määravad ühismüra mahasurumise. Viitepinget ei tohi käsitleda ideaalse allikana, kui pingejagur koormuse all muutub.
 
-Kui viitepinge tehakse op-ampi toitepingest pingejaguriga, on selle koormamata väärtus `V_ref,0 = V_OP · R_bottom/(R_top + R_bottom)`. Lihtsat pingejagurit ei saa automaatselt käsitleda ideaalse `V_ref` allikana, sest diferentsiaalastme takistivõrk koormab jagurit. Jagur tuleb arvutada koos selle koormusega või tuleb `V_ref` puhverdada. Tegelik `V_ref` tuleb hiljem valmis ahelas mõõta. Valitud lõplik topoloogia ja takistite väärtused: TODO: Lab 1 data required; TODO: real measurement required.
+Kui viitepinge tehakse op-ampi toitepingest pingejaguriga, on selle koormamata väärtus `V_ref,0 = V_OP · R_bottom/(R_top + R_bottom)`. Lihtsat pingejagurit ei saa automaatselt käsitleda ideaalse `V_ref` allikana, sest diferentsiaalastme takistivõrk koormab jagurit. Jagur tuleb arvutada koos selle koormusega või tuleb `V_ref` puhverdada. Tegelik `V_ref` tuleb hiljem valmis ahelas mõõta. Valitud lõplik topoloogia ja takistite väärtused: TODO: real measurement required.
 
 Valikukäik:
 
@@ -101,7 +103,7 @@ Valikukäik:
 4. arvuta tegelikud suhtarvud ja nende võimalik lahknevus tolerantside tõttu;
 5. arvuta tegelike väärtuste ja koormatud `V_ref` abil mõlemad otspunktid uuesti ning kontrolli sisendite ühispinget, väljundi koormust ja ADC lubatud sisendit.
 
-Lõplikud takistid, tolerantsid ja viiteallikas: TODO: Lab 1 data required; TODO: real measurement required. Need väärtused ei ole selles töölehes meeskonna tulemusena määratud.
+Lõplikud takistid, tolerantsid ja viiteallikas: TODO: real measurement required. Need väärtused ei ole selles töölehes meeskonna tulemusena määratud.
 
 ## Esimese versiooni arvutus
 
@@ -117,11 +119,11 @@ Meeskonna esimese versiooni sihid `V_out,min,1` ja `V_out,max,1` valitakse alles
 
 | Suurus | Meeskonna väärtus | Allikas / kontroll |
 |---|---|---|
-| `V_in,min`, `V_in,max` | TODO: Lab 1 data required | Andur ja pumba töövahemik |
-| `V_out,min,1`, `V_out,max,1` | TODO: Lab 1 data required | ADC ning op-ampi lineaarne töövahemik |
-| `ΔV_in`, `ΔV_out,1` | TODO: Lab 1 data required | Ülaltoodud lahutamised |
-| `A_1`, `B_1`, `V_ref,1` | TODO: Lab 1 data required | Ülaltoodud võrrandid |
-| `R_1`, `R_2`, `R_3`, `R_4` | TODO: Lab 1 data required; TODO: real measurement required | Tegelikud osad ja tolerantsid kontrollida enne katset |
+| `V_in,min`, `V_in,max` | TODO: real measurement required | Andur ja pumba tegelik töövahemik |
+| `V_out,min,1`, `V_out,max,1` | TODO: real measurement required | ADC ning op-ampi kontrollitud lineaarne töövahemik |
+| `ΔV_in`, `ΔV_out,1` | TODO: real measurement required | Ülaltoodud lahutamised |
+| `A_1`, `B_1`, `V_ref,1` | TODO: real measurement required | Ülaltoodud võrrandid |
+| `R_1`, `R_2`, `R_3`, `R_4` | TODO: real measurement required | Tegelikud osad ja tolerantsid kontrollida enne katset |
 
 **Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Näite sisendulatus on `1,56 − 0,40 = 1,16 V` ja esimese versiooni näite sihtulatus `3,3 − 0,2 = 3,1 V`; seega `A_1 = 3,1/1,16 ≈ 2,7`. See aritmeetika ei määra meeskonna takisteid ega kinnita, et näite ülemine siht tegelikul toitel saavutatav on.
 
@@ -149,7 +151,7 @@ Falstadi näites on `R_1 = R_3 = 10 kΩ` ja `R_2 = R_4 = 27 kΩ`. Need on standa
 
 Falstadi väljundinäidud on ekraanilt loetud ja ümardatud; viimaste kahe punkti väiksemat erinevust ei saa selle kuvaga täpselt määrata. Simulatsioonis saavutab op-amp `3,30 V` sihi ja valitud suhte tõttu isegi umbes `3,334 V`. See näitab ainult kasutatud Falstadi mudeli käitumist. See ei tõenda, et päris LM358 sama toite ja koormusega selle pingeni jõuab.
 
-Skeem kasutab Falstadi op-ampi väljundipiiridega `0…5 V` ja sisemise avatud ahela võimendusega `100000`. `+5 V` on õppejõu ülesande **simulatsioonieeldus**, mitte mõõdetud toitepinge. Selle mudeli toiterööpad on op-ampi omadustes ning skeemil tekstina nähtavad; mudelil ei ole eraldi toiteviike. `V_in` on muudetav alalispingeallikas, `V_ref` on ideaalne `0,325161290 V` allikas ning väljundil on mõõtesõlm. Ideaalse viite kasutamine eraldab ülekandefunktsiooni kontrolli pingejaguri koormusest. Päris viitevõrk tuleb hiljem koos koormusega arvutada või puhverdada ning valmis ahelas mõõta. TODO: Lab 1 data required; TODO: real measurement required.
+Skeem kasutab Falstadi op-ampi väljundipiiridega `0…5 V` ja sisemise avatud ahela võimendusega `100000`. `+5 V` on õppejõu ülesande **simulatsioonieeldus**, mitte mõõdetud toitepinge. Selle mudeli toiterööpad on op-ampi omadustes ning skeemil tekstina nähtavad; mudelil ei ole eraldi toiteviike. `V_in` on muudetav alalispingeallikas, `V_ref` on ideaalne `0,325161290 V` allikas ning väljundil on mõõtesõlm. Ideaalse viite kasutamine eraldab ülekandefunktsiooni kontrolli pingejaguri koormusest. Päris viitevõrk tuleb hiljem koos koormusega arvutada või puhverdada ning valmis ahelas mõõta. TODO: real measurement required.
 
 - Esimese versiooni [Falstadi eksport](falstad_first_version.txt) ja [muudetav veebiskeem](https://www.falstad.com/s.php?s=b1gefl). Faili importimiseks vali Falstadis **File → Import From Text**; `V_in` allika pinget saab muuta allikal paremklõpsuga.
 - Ühismüra [eksport](falstad_noise_common.txt) ja [veebiskeem](https://www.falstad.com/s.php?s=2Gxo5B).
@@ -169,9 +171,9 @@ Väljundmürade vahe on kuvatud täpsusel ligikaudu `53,998 mV` tippude vahel. N
 
 | Tööpunkt | Rõhk (kPa) | Sisend (V) | Arvutatud väljund (V) | Mõõdetud väljund (V) | Vahe (mV) |
 |---|---:|---:|---:|---:|---:|
-| Atmosfäär | TODO: real measurement required | TODO: real measurement required | TODO: Lab 1 data required | TODO: real measurement required | TODO: real measurement required |
-| Täis imemine | TODO: real measurement required | TODO: real measurement required | TODO: Lab 1 data required | TODO: real measurement required | TODO: real measurement required |
-| Täis puhumine | TODO: real measurement required | TODO: real measurement required | TODO: Lab 1 data required | TODO: real measurement required | TODO: real measurement required |
+| Atmosfäär | TODO: real measurement required | TODO: real measurement required | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required |
+| Täis imemine | TODO: real measurement required | TODO: real measurement required | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required |
+| Täis puhumine | TODO: real measurement required | TODO: real measurement required | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required |
 
 ## Otspunktide vead
 
@@ -183,8 +185,8 @@ Tabelis väljenda `e` millivoltides: `e_mV = 1000 · e_V`. Hoia märki alles. V�
 
 | Otspunkt | Arvutatud (V) | Mõõdetud (V) | Viga (mV) | Täheldatud piirang / põhjus |
 |---|---:|---:|---:|---|
-| Alumine | TODO: Lab 1 data required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
-| Ülemine | TODO: Lab 1 data required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
+| Alumine | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
+| Ülemine | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
 
 ## Parandatud versiooni arvutus
 
@@ -203,9 +205,9 @@ Vali `V_out,min,2 > V_out,min,1` ja `V_out,max,2 < V_out,max,1` ainult siis, kui
 |---|---|---|
 | `V_out,min,2` | TODO: real measurement required | Mõõdetud alumise piiri ja ADC varu järgi |
 | `V_out,max,2` | TODO: real measurement required | Mõõdetud toite, ülemise piiri ja ADC varu järgi |
-| `A_2`, `B_2` | TODO: Lab 1 data required; TODO: real measurement required | Parandatud sihid ja `ΔV_in` |
-| `V_ref,2` | TODO: Lab 1 data required; TODO: real measurement required | `−B_2/A_2` |
-| Parandatud takistid | TODO: Lab 1 data required; TODO: real measurement required | Suhtarvud ja tegelikud komponendid |
+| `A_2`, `B_2` | TODO: real measurement required | Parandatud sihid ja `ΔV_in` |
+| `V_ref,2` | TODO: real measurement required | `−B_2/A_2` |
+| Parandatud takistid | TODO: real measurement required | Suhtarvud ja tegelikud komponendid |
 
 **Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Parandatud näidissiht on `0,3…3,0 V`; selle ulatus on `2,7 V` ja näite võimendus `A_2 = 2,7/1,16 ≈ 2,3`. Meeskonna paranduse sihid tuleb valida enda esimese versiooni mõõtmiste alusel.
 
@@ -223,15 +225,15 @@ Allikad: [Labor 2 ametlik ülesanne](https://github.com/KKallas/Narva-subjects/b
 
 ESP32 ADC ülekandefunktsioon ei ole ideaalne sirge kogu vahemikus. Äärmiste pingete juures võib koodi muutus pinge muutuse suhtes erineda keskmisest või küllastuda; sumbuvus ja kalibreerimine mõjutavad kasutatavat vahemikku. Seetõttu jätab parandatud siht nii alumisse kui ka ülemisse otsa varu. Näite `0,3…3,0 V` ei tõesta, et see on meeskonna valitud AtomS3 ADC seadistusega ohutu või lineaarne. Kontrolli konkreetset kiipi, viiku, sumbuvust, lubatud sisendpinget ja kalibreerimist enne ühendamist.
 
-Allikas: [Espressifi ESP32-S3 ADC dokumentatsioon](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/adc/index.html). Meeskonna seadistus ja tegelik kasulik vahemik: TODO: Lab 1 data required; TODO: real measurement required.
+Allikas: [Espressifi ESP32-S3 ADC dokumentatsioon](https://docs.espressif.com/projects/esp-idf/en/stable/esp32s3/api-reference/peripherals/adc/index.html). Meeskonna Labor 1 seadistus oli AtomS3R G5, 12 bit ja `ADC_11db`; tarkvara keskmistas kaheksa lugemit ning kasutas empiirilist teisendust `3,70 V / 4095`. Tegelik kasulik ja lineaarne sisendvahemik Labor 2 konfiguratsioonis: TODO: real measurement required.
 
 ## Parandatud versiooni kolme punkti mõõtmine
 
 | Tööpunkt | Rõhk (kPa) | Sisend (V) | Arvutatud väljund (V) | Mõõdetud väljund (V) | Vahe (mV) |
 |---|---:|---:|---:|---:|---:|
-| Atmosfäär | TODO: real measurement required | TODO: real measurement required | TODO: Lab 1 data required; TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
-| Täis imemine | TODO: real measurement required | TODO: real measurement required | TODO: Lab 1 data required; TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
-| Täis puhumine | TODO: real measurement required | TODO: real measurement required | TODO: Lab 1 data required; TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
+| Atmosfäär | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
+| Täis imemine | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
+| Täis puhumine | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
 
 ## Falstad
 
@@ -249,8 +251,8 @@ Falstadi katseplaan pärast lähteandmete kinnitamist:
 | Tõend / suurus | Väärtus või fail |
 |---|---|
 | Elava skeemi link, ekspordifail ja skeemipilt | TODO: circuit design required |
-| `V_OP,sim`, `V_ref`, takistite väärtused ja allikas | TODO: Lab 1 data required; TODO: circuit design required |
-| Kolme sisendpunkti arvutatud ja simuleeritud väljund (V) | TODO: Lab 1 data required; TODO: circuit design required |
+| `V_OP,sim`, `V_ref`, takistite väärtused ja allikas | TODO: circuit design required |
+| Kolme sisendpunkti arvutatud ja simuleeritud väljund (V) | TODO: circuit design required |
 | Ühismüra katse seaded ja väljundi amplituud (V) | TODO: circuit design required |
 | Ühe sisendi müra katse seaded ja väljundi amplituud (V) | TODO: circuit design required |
 | Kahe mürajuhtumi amplituudide suhe | TODO: circuit design required |
@@ -264,13 +266,13 @@ Falstadi mudel ei tõenda konkreetse LM358 madala otsa lineaarsust, väljundi ü
 - Kanali 1 ja kanali 2 tähendus ning ühikud: TODO: real measurement required.
 - Tipu kuju ja võimaliku piirangu vaatlus: TODO: real measurement required.
 
-## Mida ei saa lõpetada ilma Labori 1 andmete või riistvarata
+## Mida ei saa lõpetada ilma Labor 2 riistvaramõõtmiseta
 
 | Lahendamata küsimus | Vajalik tõend |
 |---|---|
-| Tegelikud `V_in,min` ja `V_in,max` | TODO: Lab 1 data required |
-| Tegelik algne Pa ühe ADC sammu kohta | TODO: Lab 1 data required |
-| Lõpliku vahemiku põhjal valitud takistid ja nende tegelikud väärtused | TODO: Lab 1 data required; TODO: real measurement required |
+| Tegelikud `V_in,min` ja `V_in,max` kogu nõutud töövahemikus | TODO: real measurement required |
+| Raw-signaali lähtejoon | Labori 1 arvutus `0,1405 kPa/kood = 141 Pa/kood`; kontrollida Labor 2 riistvaral |
+| Lõpliku vahemiku põhjal valitud takistid ja nende tegelikud väärtused | TODO: real measurement required |
 | Tegelik op-ampi toitepinge | TODO: real measurement required |
 | Esimese ja parandatud astme kolme punkti mõõtmised | TODO: real measurement required |
 | Mõlema otspunkti vead | TODO: real measurement required |
