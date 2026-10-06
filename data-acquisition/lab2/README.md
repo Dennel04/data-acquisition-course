@@ -122,7 +122,7 @@ Lisa iga tegeliku töösessiooni kohta uus sissekanne. Ära kirjuta varasemaid s
 - Failid:
 - Lahti järgmiseks korraks:
 
-**04.10.26 — osalejad: TODO: täida kohal olnud meeskonnaliikmed**
+**04.10.26 — Nikita**
 
 - Tegime: valmistasime ette Labor 2 maketeerimisplaadi ja toitejuhtmed. Paigutasime füüsiliselt tuvastatud `LM358N` DIP-8 korpuse suure MB-102 tüüpi maketeerimisplaadi keskvahesse ridadele 26–29 ning kontrollisime korpuse täppi ja suunda. Ühendasime pin 4 rea sinise miinussiiniga ja pin 8 rea punase plussiiniga. Ühendasime AtomS3R `5V` plussiinile ning `G`/GND miinussiinile. Seadsime multimeetri alalispinge mõõtmiseks valmis. Ostsilloskoop oli klassis olemas, kuid me ei teinud sellega salvestatud Labor 2 mõõtmist.
 - Juhtus (numbrid ja ühikud): vaadeldud suunas oli pin 1 poolel `e26`, pin 2 `e27`, pin 3 `e28`, pin 4 poolel `e29` ja pin 8 poolel `f26`. Nägime takistiribasid nimiväärtustega `10 kΩ`, `20 kΩ`, `6,8 kΩ`, `47 kΩ` ja `3,3 kΩ`; koguseid ei loendanud ning tegelikke takistusi ei mõõtnud. Algne ebaselge või vale AtomS3R päise ühenduskoht parandati enne toite ühendamist. Pärast parandust ei tehtud kinnitatud pingestatud mõõtmist ning sessiooni andmed ei kinnita, et op-ampi ahelat pingestati. Multimeetri näit `0,000 V` pingestamata ahela juures ei ole Labor 2 pingetulemus.
