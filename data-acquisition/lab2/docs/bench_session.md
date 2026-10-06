@@ -6,12 +6,18 @@ Täida see leht mõõtepingi juures enne Atomi ADC ühendamist. Ära kasuta õpp
 
 | Väli | Kontroll / märge |
 |---|---|
-| Op-ampi täpne markeering | TODO: loe korpuselt kogu tähis |
+| Op-ampi täpne markeering | `LM358N`, DIP-8; füüsiliselt korpuselt kinnitatud 04.10.26 |
 | Anduri markeering | TODO: loe korpuselt; Labori 1 andur oli MPX5700AP |
-| Maketeerimisplaat / toiteallikas | TODO: kirjelda plaat ja toiteallikas |
-| Esimese versiooni jaoks füüsiliselt olemas olevad takistid | TODO: kirjuta nimiväärtus, mõõdetud väärtus ja kogus |
+| Maketeerimisplaat / toiteallikas | Üks suur MB-102 tüüpi jootmisvaba maketeerimisplaat; AtomS3R `5V` ja `G`/GND ühendati vastavalt punasele pluss- ja sinisele miinussiinile. Toitepinget ei mõõdetud. |
+| Esimese versiooni jaoks füüsiliselt olemas olevad takistid | Nähtud nimiväärtused: `10 kΩ`, `20 kΩ`, `6,8 kΩ`, `47 kΩ`, `3,3 kΩ`. Kogused: TODO: count physically. Tegelikud takistused: TODO: real measurement required. |
 
 Kontrolli op-ampi viigustik täpse korpusemarkeeringu andmelehelt enne toite ühendamist. Ära eelda, et riiulis olev detail on LM358 või et selle viigustik vastab teisele variandile.
+
+### 04.10.26 ettevalmistuse seis
+
+`LM358N` paiknes üle maketeerimisplaadi keskvahe ridadel 26–29. Korpuse täpi järgi vaadeldud suunas olid pin 1 poolel `e26`, pin 2 `e27`, pin 3 `e28`, pin 4 poolel `e29` ja pin 8 poolel `f26`. Maketeerimisplaadi sama rea ühendusi kasutades ühendati pin 4 rida sinise miinussiiniga ning pin 8 rida punase plussiiniga. AtomS3R päise algne ebaselge või vale ühenduskoht parandati enne toite ühendamist. Sessiooni andmed ei kinnita, et op-ampi ahelat pingestati. **Toide ja väljund ei olnud veel mõõtmisega kinnitatud.**
+
+Labor 1 anduriahel jäeti terveks. Multimeeter seati alalispinge mõõtmiseks valmis; pingestamata ahela juures nähtud `0,000 V` ei ole mõõtetulemus. Ostsilloskoop oli klassis olemas, kuid seda ei kasutatud salvestatud Labor 2 mõõtmiseks.
 
 ## 2. Toite mõõtmised
 
@@ -67,13 +73,13 @@ H. Ühenda ADC alles pärast seda, kui mõõdetud väljund jääb kogu töövahe
 ## Send these numbers back for calculation
 
 ```text
-OPAMP marking =
+OPAMP marking = LM358N, DIP-8 (physically confirmed 04.10.26)
 V_sensor_supply =
 V_opamp_supply =
 Vin_atmosphere =
 Vin_full_suction =
 Vin_full_blowing =
-Available resistors =
+Available resistors = 10 kΩ, 20 kΩ, 6.8 kΩ, 47 kΩ, 3.3 kΩ nominal; quantities not counted; resistance not measured
 ```
 
 Lisa ühik voltides iga pinge juurde. Takistite puhul lisa ühik, kogus ja võimaluse korral multimeetriga mõõdetud väärtus.
