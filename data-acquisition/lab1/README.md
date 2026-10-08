@@ -147,6 +147,12 @@ Falstadi algus: andur on vahelduvpingeallikas 0,2–5 V, ADC sisend on modelleer
 
 ![Falstad: andur 0,2–5 V → ADC mudel 0–3,3 V, 4.4mV 50Hz müraallikaga](lab1_falstad_adc.png)
 
+**Ostsilloskoop (13.09.26):** GW Instek GDS-1072A-U, CH1 sond anduri Vout-il, AC-sidestus, FFT Math-menüüst (Flattop). Kogu lugu ja piirangud: [`docs/sensor_choice.md`](docs/sensor_choice.md).
+
+![Mõõtestend: ostsilloskoop, CH1 sond maketeerimisplaadil anduri juures, AtomS3R ja multimeeter](docs/lab1_scope_setup.png)
+
+![FFT CH1: 25 µs/div, 5 V/div, Flattop, ekraanil 0–2,48 MHz; selget nimelist tippu ei ole](docs/lab1_scope_fft_13.09.26.jpg)
+
 #### 3. Tark kast
 
 T-liitmik tehase targa kasti väljundtorusse, napp otsas, napp klaasi peal. Pump imemisele baaspaketi CLI-st. Logi viis minutit.
