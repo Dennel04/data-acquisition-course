@@ -145,13 +145,17 @@ Kirjuta üles: Pa ühe ADC sammu kohta, müra LSB-des pump väljas ja pump sees,
 
 Falstadi algus: andur on vahelduvpingeallikas 0,2–5 V, ADC sisend on modelleeritud järgurina, mis lõikab 0 ja 3,3 V vahele. See on ADC mudel, mitte signaaliaste. Skoop ADC viigul näitab, kus signaal ära lõigatakse. Lisa sellele oma müraallikas. [Ava simulatsioon (müraallikaga, 4.4mV 50Hz — vt `docs/sensor_choice.md`, sagedus on oletus, ostsilloskoopi polnud)](https://www.falstad.com/circuit/circuitjs.html?ctz=DwYwlgTgBAZgvAIgAwKgFwM6KQOiUgRlTBEQNwCZ8KB2GgZiQA4KA2ATnZtRACNEArCigAHfgiGoAbhEGoAtpkEBTALQEiAPgBQUKMClQAHmVZIojACxQCZmzVap4yVAHdnRWLISf5AQyMpRAocS1ReMD8sBBDHAHodPWAAc2NTcysbO3p6R1hsBATdfT80hEzbc0t8LOFnJgU-RHocegUwAqhkpp98PsLE-VcyistrCoIKJwKipOGTcqRrDQooavMV6ZdZobL1m0m1msqtlB3gecR9yrX2VlrTgeLgAHk9u9qoATGH-J9UDCkbaDYBGPbmCg-DT3SHcP7CDAdHxTdDKRAAQQAdgATACu0CQABoKIBkAgEUAAak8kmCFhQPhQqGtbFBGW14QCkZNUGg0Qh0QARADCUHkuNxOPxUCQJPohPolOp+lpVw+BA+31W6vYjygiLIKN5GOFUCkYDAAGslQYyuqtQ5WdV7HkPHl3GQnN5JKKAkFkHglmFzpcfOx7fcbgQHI9g2VIRsHRVoxzzgB7KDKTGIOEYESmLZGFF5lyDJIiU2dQFyHZljOdP0IoECa1xVMg9OZ7MA4u2AtFj2l-TlhsApsttvaYBxcAQHRAA)
 
-![Falstad: andur 0,2–5 V → ADC mudel 0–3,3 V, 4.4mV 50Hz müraallikaga](lab1_falstad_adc.png)
+![Falstad: andur 0,2–5 V → ADC mudel 0–3,3 V, 4.4mV 50Hz müraallikaga](docs/lab1_falstad_adc.png)
+
+Falstadi eksport (sama skeem tekstina, avaneb Falstadis File → Import From Text): [`docs/falstad_sensor_adc_noise.txt`](docs/falstad_sensor_adc_noise.txt).
 
 **Ostsilloskoop (13.09.26):** GW Instek GDS-1072A-U, CH1 sond anduri Vout-il, AC-sidestus, FFT Math-menüüst (Flattop). Kogu lugu ja piirangud: [`docs/sensor_choice.md`](docs/sensor_choice.md).
 
 ![Mõõtestend: ostsilloskoop, CH1 sond maketeerimisplaadil anduri juures, AtomS3R ja multimeeter](docs/lab1_scope_setup.png)
 
 ![FFT CH1: 25 µs/div, 5 V/div, Flattop, ekraanil 0–2,48 MHz; selget nimelist tippu ei ole](docs/lab1_scope_fft_13.09.26.jpg)
+
+**Spektrid logist (08.10.26):** [`notebooks/lab1_spectra.ipynb`](notebooks/lab1_spectra.ipynb) — Welch 100 Hz logist (`data/lab1_lsb_noise_vacuum_button_13.09.26.csv`, `data/lab1_autonomous_run_13.09.26.csv`). 141 Pa ühe ADC sammu kohta; müra atmosfääril 4,85 LSB, hoitud vaakumis 3,69 LSB; autonoomses jooksus (aeglane osa eemaldatud) pump väljas 4,53 LSB, pump sees 4,17 LSB. Nähtav ala ainult 0–50 Hz; tippe nimeliselt ei kinnitatud (õppejõud 02.10.26: pole vaja).
 
 #### 3. Tark kast
 
