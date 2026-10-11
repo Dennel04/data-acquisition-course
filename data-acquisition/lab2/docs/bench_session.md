@@ -19,6 +19,32 @@ Kontrolli op-ampi viigustik täpse korpusemarkeeringu andmelehelt enne toite üh
 
 Labor 1 anduriahel jäeti terveks. Multimeeter seati alalispinge mõõtmiseks valmis; pingestamata ahela juures nähtud `0,000 V` ei ole mõõtetulemus. Ostsilloskoop oli klassis olemas, kuid seda ei kasutatud salvestatud Labor 2 mõõtmiseks.
 
+### 11.10.26 diagnostika
+
+Nikita ja Maksim kasutasid UNI-T UT139C multimeetrit ning toitsid AtomS3R-i USB kaudu. B5K potentsiomeeter mõõdeti ligikaudu `4,9 kΩ` ja B100K ligikaudu `94,8 kΩ`. Katses kasutati ajutise reguleeritava sisendina ainult B5K potentsiomeetrit; kumbki potentsiomeeter ei ole valitud lõpliku astme komponendiks.
+
+Maketeerimisplaadil ühenduvad ühe rea pesad A–E omavahel ja F–J omavahel; keskvahe eraldab pooled. Katse eeldatud LM358N paigutus oli pin 1 = E26, pin 2 = E27, pin 3 = E28, pin 4 = E29 ning pin 8 rea 26 vastaspoole F–J rühmas. Enne järgmist pingestatud ülesehitust tuleb korpuse suund ja viigud uuesti kontrollida.
+
+Ajutise katse ühendused:
+
+- AtomS3R `5V` → G26;
+- AtomS3R `G` → E29;
+- B5K viigud → A21, A23 ja A25;
+- B21 → C29;
+- B25 → H26;
+- C23 → D28;
+- D26 → D27.
+
+USB eemaldamise järel ei andnud `+5V` ja GND vaheline pidevuskontroll helisignaali, seega ei leitud ilmset tugevat lühist. Lühistatud multimeetri mõõteotsad andsid helisignaali ning kinnitasid pidevusrežiimi töö. Pidevus C26 ja C27 vahel andis lõpuks helisignaali. LM358 toiteviikude pidevus kinnitati.
+
+Mõõdetud LM358 pin 8 ja pin 4 vaheline pinge oli ligikaudu `5 V`. Kontroll D29 ja H26 vahel andis ühe korra vastuolulise `0,027 V`, kordusmõõtmine andis `5,2 V`. Neid näite ei ühendata üheks keskmiseks ega peideta; järgmine ülesehitus peab leidma erinevuse põhjuse.
+
+B5K liugur muutus ligikaudu vahemikus `0…5,2 V` ja seati väärtusele `0,401 V`. Pingejärgija esimene väljund C26 ja D29 vahel oli `0 V`, kuigi ligikaudu `0,4 V` sisendi korral oodati sama suurusjärku. Sisend C28 ja D29 vahel näitas eri hetkedel ligikaudu `3,9 V`, `5,222 V` ja `0,4 V`. Väljund C26 ja D29 vahel oli hiljem ligikaudu `3,9 V` ka pärast sisendi tagasiseadmist ligikaudu `0,4 V` juurde. **Pingejärgija ei töötanud õigesti ja vea põhjus jäi leidmata.**
+
+ADC-d ei ühendatud. `3,9 V` ega `5,2 V` ei ole ADC ohutuse tõend. LM358 sisend ligikaudu `3,9…5,2 V` võib 5 V toite korral jääda lubatud ühispingevahemikust välja, seega tuleb järgmine katse teha pärast paigutuse kontrolli ligikaudu `0,4 V` sisendiga. MPX5700AP mõõtmised atmosfääril, täis imemisel ja täis puhumisel jäävad TODO.
+
+Ühenduste täielik taastamisloend ja veaolek: [`diagnostic_2026-10-11.md`](diagnostic_2026-10-11.md).
+
 ## 2. Toite mõõtmised
 
 Mõõda alalispinget. Ühenda multimeetri must juhe enne punast juhet.
