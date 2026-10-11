@@ -38,6 +38,12 @@ data-acquisition/
     data/        <- future raw/opamp CSV logs
     notebooks/   <- future comparison, spectra, resolution, and SNR analysis
     docs/        <- op-amp worksheet, BOM, pump-control comparison, circuit and oscilloscope evidence
+  lab3/
+    README.md    <- concise Estonian working document, checklist, decisions, and devlog
+    src/         <- valve/UV timer, comparator-interrupt, alarm, and logger work
+    data/        <- drop table and pressure curves
+    notebooks/   <- drop, derivative, spectrum, filter, and latency analysis
+    docs/        <- recipe, BOM, pump-control update, Falstad, bench, and oscilloscope evidence
 study-ru/
   lab1-translation.md   <- personal Russian translation, NOT part of the graded submission
 ```
@@ -53,6 +59,14 @@ stage, then compares raw and conditioned pressure signals and pump control.
 Code or a successful simulation is not evidence that hardware is complete.
 Measurements must come from real hardware. Never invent or infer Lab 1
 carry-over values; mark them as requiring Lab 1 data until verified.
+
+## Lab 3 purpose
+
+Lab 3 covers valve-controlled resin dispensing, pulse timing, filtering and
+pressure derivatives, a comparator, and interrupt-driven fault handling.
+Code or a successful simulation is not evidence that hardware works. Never
+fabricate drop measurements, latency, alarm-detection rates, or hardware
+availability; keep them as TODO until verified from real hardware.
 
 ## Conventions
 
