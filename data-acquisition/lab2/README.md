@@ -110,17 +110,18 @@ Määrata meeskonna Labori 1 andmete põhjal:
 
 Kõik füüsilised väljundid: TODO: real measurement required.
 
-## Arenduspäevik
+### Arenduspäevik
 
-Lisa iga tegeliku töösessiooni kohta uus sissekanne. Ära kirjuta varasemaid sissekandeid ümber.
+**KAARDISTA ISE — päevik.** Üks sissekanne iga töösessiooni kohta, kirjutatud
+iseendale, nii et inimene, kes seal ei olnud, saab aru. Sissekandeid lisatakse,
+mitte ei muudeta.
 
-**PP.KK.AA — osalejad**
-
-- Tegime:
-- Juhtus (numbrid ja ühikud):
-- Otsustasime, ja miks:
-- Failid:
-- Lahti järgmiseks korraks:
+**PP.KK.AA — kes olid kohal**
+* Tegime:
+* Juhtus (numbrid):
+* Otsustasime, ja miks:
+* Lahti järgmiseks korraks:
+* Failid: (valikuline lisainfo)
 
 **04.10.26 — Nikita**
 
@@ -137,3 +138,24 @@ Lisa iga tegeliku töösessiooni kohta uus sissekanne. Ära kirjuta varasemaid s
 - Otsustasime, ja miks: pingejärgija ei käitunud õigesti ning vea põhjus jäi leidmata. `3,9 V` ja `5,2 V` ei tõenda ADC jaoks ohutut väljundit. Järgmine katse algab LM358 suuna, viigustiku ja kontaktide kontrollist ning ligikaudu `0,4 V` sisendi taastamisest. LM358 sisendit vahemikus `3,9…5,2 V` ei kasutata 5 V toitega kehtiva pingejärgija katsena, sest see võib jääda lubatud ühispingevahemikust välja.
 - Failid: `data-acquisition/lab2/README.md`, `data-acquisition/lab2/docs/bench_session.md`, `data-acquisition/lab2/docs/bom.md`, `data-acquisition/lab2/docs/diagnostic_2026-10-11.md`.
 - Lahti järgmiseks korraks: ehitada pingejärgija nullist uuesti, kinnitada korpuse suund ja kõik viigud, korrata `~0,4 V` sisendi ning väljundi mõõtmist ja leida vastuoluliste toitenäitude põhjus. MPX5700AP kolme rõhupunkti mõõtmised, ADC ühendamine ja Labor 2 astme kontroll jäävad TODO.
+
+### Väljundid ja tulemused
+
+**Väljundid**
+* Lõplik op-amp aste koos arvutuse, skeemi ja kontrollitud komponentidega: TODO —
+  real measurement required.
+* Sama katse kontrollitud `raw` ja `opamp` andmestikud: TODO — real measurement
+  required.
+* Kalibratsioonikonstandid ja rõhuks teisendamine koos ühikutega: TODO — real
+  measurement required.
+* Toore ja op-amp signaaliga pumbajuhtimise võrdlus: TODO — real measurement
+  required.
+* Smart Solutions Lab 2 Atomi lehele vajalikud kalibratsiooni- ja rõhuväljad:
+  TODO — real measurement required.
+
+**KAARDISTA ISE, lõpus.**
+* Git repo ja tag: TODO — lisada alles esitamisel.
+* Numbrid, mille see labor andis, ühikutega: TODO — real measurement required.
+* Mida me teeksime teisiti: TODO — complete after physical tests.
+* Mida järgmine labor peaks enne alustamist teadma: TODO — complete after the
+  op-amp, calibration and pump-control comparison are physically verified.
