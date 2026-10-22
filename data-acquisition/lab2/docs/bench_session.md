@@ -109,3 +109,43 @@ Available resistors = 10 kΩ, 20 kΩ, 6.8 kΩ, 47 kΩ, 3.3 kΩ nominal; quantiti
 ```
 
 Lisa ühik voltides iga pinge juurde. Takistite puhul lisa ühik, kogus ja võimaluse korral multimeetriga mõõdetud väärtus.
+
+## 22.10.2026 — LM358N katseskeemi mõõtmised (Maksim)
+
+Koostasime LM358N-põhise katseskeemi maketeerimisplaadil. Esimese kanali sisendpinge määrati B5K potentsiomeetriga. Teise kanali abil puhverdati B100K potentsiomeetriga seatud viitepinge.
+
+Kõik pinged mõõdeti ühise maa suhtes.
+
+| Mõõtepunkt | Kirjeldus | Tulemus |
+|---|---|---|
+| H26 | LM358N toitepinge | 5,00 V |
+| C28 | Mitteinverteeriv sisend (+) | 0,402 V |
+| C27 | Inverteeriv sisend (−) | 0,403 V |
+| J27 | Puhverdatud viitepinge | 0,520 V |
+| C26 | Võimendi väljund | 0,205 V |
+
+### Takistuste mõõtmised
+
+| Komponent | Mõõdetud väärtus |
+|---|---|
+| Tagasisidetakisti | 10,04 kΩ |
+| Kolm järjestikku ühendatud takistit | 6,51 kΩ |
+
+### Väljundi reguleerimine
+
+B5K potentsiomeetri reguleerimisel mõõtsime võimendi väljundis 3,009 V.
+
+See väärtus näitab ühte saavutatud tööpunkti, mitte kogu väljundpinge vahemikku.
+
+Pärast mõõtmist ühendasime LM358N väljundi AtomS3R ADC sisendiga G5. Ühendamine toimus väljalülitatud USB-toitega.
+
+### Veel tegemata
+
+- MPX5700AP anduri tegelike väljundpingete mõõtmine.
+- Kolme rõhupunkti mõõtmine.
+- Ostsilloskoobiga signaali kontrollimine.
+- ADC programmi käivitamine.
+- Mõõteandmete salvestamine CSV-faili.
+- Müra ja signaali-müra suhte analüüs.
+
+**Märkus:** selles katses kasutati anduri asemel reguleeritavat testpinget. Rõhuanduri mõõtmistulemusi veel ei ole.
