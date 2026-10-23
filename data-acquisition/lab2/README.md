@@ -2,6 +2,16 @@
 
 See fail on Labori 2 tööleht ja arenduspäevik. Labori 1 kinnitatud lähteandmed on allpool koos allikatega. Labori 2 füüsiliste katsete ja komponentide saadavuse väljad täidetakse alles kontrollitud tõendite põhjal.
 
+**Esimene kaitsmine: 29.10.2026, veebis.** Kuupäeva allikas: [õppejõu ametlik Labor 2 ülesanne](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%202%5D%20EST.md).
+
+## Jagatud AtomS3R ja logija
+
+Andmehõive ja Smart Solutions laborid kasutavad ühte füüsilist AtomS3R-i. Seadmes töötab korraga üks põhipüsivara: Andmehõive mõõtmis-püsivara teenib ADC lugemist ja CSV kogumist arvuti logijaga; Smart Solutions `NORMAL` teenib post-office/station tööd. Nende vahel liikumine nõuab kontrollitud üleslaadimist, varukoopia ja taastamisvõimaluse säilitamist ning ühendatud elektroonika kontrolli enne käivitamist.
+
+XIAO ESP32S3 Sense on eraldi plaat oma kaamera-püsivaraga; see ei konkureeri Atomi püsivara kohaga.
+
+Python logija toetab kohalikke Windowsi `COM1`, `COM3`, `COM10` jne porte ning macOS-i `/dev/cu.*` porte. Tarkvaratestid on olemas, kuid päris Windowsi riistvarakatse ei ole veel kinnitatud. See ei kinnita ADC ega rõhu mõõtetulemusi. Käivitamisjuhend: [Windows ja macOS](src/README.md#logija-windowsis-ja-macos-is).
+
 ## Eesmärk
 
 Kavandada anduri ja ADC vahele analoogaste, mis nihutab ja skaleerib meeskonna tegeliku andurisignaali ADC jaoks sobivasse vahemikku. Seejärel võrrelda sama pumbaimpulssi toore (`raw`) ja astmega (`opamp`) signaaliga ning hinnata lahutusvõimet, müra, SNR-i ja pumbajuhtimist.
