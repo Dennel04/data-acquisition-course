@@ -26,9 +26,27 @@ Püsivara kinnitab `event=started`, `firmware=DA2_MEASURE_V1`, sama `run` ja `co
 
 Näide on sünteetiline, mitte mõõtmine. `t` on Atomi `millis()`, `seq` algab nullist, `missed` loendab vahele jäänud 10 ms intervalle. `{"cmd":"measure_stop"}` peatab ainult mõõtmise. Neid käske ei tohi asendada Labor 1 pumbakäskudega. Vigane käsk või serial-raam peatab jooksu. USB taasühendus ei taasta jooksu automaatselt.
 
-## Logija MacBookis
+## Logija Windowsis ja macOS-is
 
 Sulge Serial Monitor ja kõik teised sama porti kasutavad programmid. Kasuta tegelikult tuvastatud porti, mitte vana pordinumbrit. Järgmised käsud on tulevase füüsilise katse jaoks, mitte selle ettevalmistuse käigus tehtud katsed:
+
+Logija lubab ainult kohalikke porte `COM1`, `COM3`, `COM10` jne (ka väiketähtedega) või macOS-i `/dev/cu.*` nimesid. URL-id ja kaugühendused on keelatud. Windowsis ei anta pyserialile POSIX-i `exclusive` parameetrit; macOS-is säilib `exclusive=True`. DTR ja RTS seatakse enne avamist väärtusele `False`. Vigane või avamatu port ei tekita CSV-d ega `.runs.jsonl` faili; olemasolev CSV säilib.
+
+**Windows PowerShell**, repo juurkataloogist:
+
+```powershell
+cd data-acquisition/lab2
+py -3 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r src/python/requirements.txt
+```
+
+Leia Atomile määratud COM-number Device Managerist (`Ports (COM & LPT)`). Järgmises käsus asenda `COM3` tegeliku pordiga. Käivita see ainult pärast ühendatud raw-ahela elektrilist kontrolli multimeetriga; `--electrical-check-confirmed` kinnitab seda kontrolli, mitte USB-only testi:
+
+```powershell
+.\.venv\Scripts\python.exe src/python/logger.py --port COM3 --config raw --csv data/measurements.csv --condition atmosphere --trial 1 --duration 10 --electrical-check-confirmed
+```
+
+**macOS**, repo juurkataloogist; asenda `/dev/cu.usbmodemXXXX` tegeliku pordiga ja kinnita enne mõõtmist sama elektriline kontroll:
 
 ```sh
 cd data-acquisition/lab2

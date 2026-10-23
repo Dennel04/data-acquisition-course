@@ -6,6 +6,7 @@ import json
 import math
 from pathlib import Path
 import re
+import sys
 import time
 import uuid
 
@@ -155,6 +156,29 @@ def capture(port, writer, handle, args, run, clock=time.monotonic):
     return summary
 
 
+def local_port(name):
+    return bool(re.fullmatch(r"COM[1-9][0-9]*", name, re.IGNORECASE) or
+                re.fullmatch(r"/dev/cu\.[A-Za-z0-9][A-Za-z0-9._-]*", name))
+
+
+def open_atom(name):
+    if not local_port(name):
+        raise ValueError("local COM1..COMn or /dev/cu.* serial port required; URLs forbidden")
+    import serial
+    options=dict(port=None,baudrate=115200,timeout=0.1,write_timeout=0.2)
+    if sys.platform != "win32":
+        options["exclusive"]=True
+    port=serial.Serial(**options)
+    try:
+        # Configure before open to preserve the existing non-resetting sequence.
+        port.dtr=False; port.rts=False; port.port=name
+        port.open()
+    except BaseException:
+        port.close()
+        raise
+    return port
+
+
 def parse_args(argv=None):
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--port",required=True)
@@ -167,6 +191,8 @@ def parse_args(argv=None):
     p.add_argument("--append",action="store_true")
     p.add_argument("--electrical-check-confirmed",action="store_true",required=True)
     a=p.parse_args(argv)
+    if not local_port(a.port):
+        p.error("local COM1..COMn or /dev/cu.* serial port required; URLs forbidden")
     if not re.fullmatch(r"[a-z0-9_-]{1,40}",a.condition) or not 1<=a.trial<=100000:
         p.error("invalid condition/trial")
     if not math.isfinite(a.duration) or not 1<=a.duration<=3600:
@@ -178,25 +204,25 @@ def parse_args(argv=None):
 
 def main(argv=None):
     args=parse_args(argv)
-    handle,writer=open_csv(args.csv,args.append)
+    handle=None
     run=uuid.uuid4().hex[:16]
     summary=dict(status="partial",run_id=run,config=args.config,rows=0)
     try:
-        import serial
-        # Reuse Lab 1 open_atom's non-resetting DTR/RTS sequence, local ports only.
-        if not args.port.startswith("/dev/cu.") or "://" in args.port:
-            raise ValueError("local macOS /dev/cu.* serial port required")
-        port=serial.Serial(port=None,baudrate=115200,timeout=0.1,write_timeout=0.2,exclusive=True)
-        port.dtr=False; port.rts=False; port.port=args.port
+        port=open_atom(args.port)
         try:
-            port.open()
+            # No CSV or sidecar is created when port selection/opening fails.
+            handle,writer=open_csv(args.csv,args.append)
             summary=capture(port,writer,handle,args,run)
         finally:
             port.close()
     except (Exception,KeyboardInterrupt) as error:
         summary["error"]=type(error).__name__+": "+str(error)
     finally:
-        handle.close()
+        if handle is not None:
+            handle.close()
+    if handle is None:
+        print(json.dumps(summary,indent=2,allow_nan=False))
+        return 1
     with Path(str(args.csv)+".runs.jsonl").open("a",encoding="utf-8") as metadata:
         metadata.write(json.dumps(summary,allow_nan=False)+"\n")
     print(json.dumps(summary,indent=2,allow_nan=False))
