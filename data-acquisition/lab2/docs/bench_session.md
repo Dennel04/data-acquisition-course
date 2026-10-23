@@ -109,3 +109,27 @@ Available resistors = 10 kΩ, 20 kΩ, 6.8 kΩ, 47 kΩ, 3.3 kΩ nominal; quantiti
 ```
 
 Lisa ühik voltides iga pinge juurde. Takistite puhul lisa ühik, kogus ja võimaluse korral multimeetriga mõõdetud väärtus.
+
+## 6. Mõõtmisprogrammi kasutuselevõtt
+
+See on katseplaan, mitte läbiviidud mõõtmine. Tarkvara juhend ja CSV skeem: [src/README.md](../src/README.md).
+
+### Elektriline kontroll enne G5 ühendamist
+
+1. Jäta G5 lahti. Lülita kõik toited välja. Kontrolli tegeliku LM358 korpuse suunda, tootja viigustikku, tagasisideahelat, ühise maa pidevust, katkestatud toitesiine ja lühiste puudumist. Ära järelda õiget viiku ainult vanast breadboard'i koordinaadist.
+2. Pingesta ainult kontrollitav anduri/op-ampi ahel. Mõõda ja kirjuta üles anduri toide, LM358 toide, `V_ref`, anduri väljund ning astme väljund ühise maa suhtes. Korda atmosfääril, imemisel ja puhumisel; lisa meetod, aeg, mõõteriist ja ühikud. Kontrolli LM358 sisendi ühispinge- ja väljundulatust kasutatud toitel.
+3. Kontrolli väljundit ka toite sisse-/väljalülitamisel ning üleminekutel, võimalusel ostsilloskoobiga. Üks `3,009 V` näit 22.10 ei kinnita kogu ahela ohutust, lineaarsust ega transientide puudumist. Varasemad vastuolulised LM358 näidud vajavad endiselt selgitamist.
+4. MPX5700AP 5 V toitega andmelehe väljund võib ulatuda ligikaudu 4,7 V-ni. Ka 5 V LM358 väljund ei ole iseenesest ADC-kindel. `ADC_11db` ei muuda G5 viiku 5 V taluvaks; ESP32-S3 selle sumbuvuse mõõtevahemik on kuni ligikaudu 3,1 V, mitte piiramatu ohutusvahemik. Vajadusel arvuta ja kontrolli sobiv piiramine/jagur õpetajaga, ära vali kaitsetakisteid oletuse järgi.
+5. Kui väljund on negatiivne, üle kontrollitud lubatud piiri, ebastabiilne, küllastuses või komponent kuumeneb, katkesta katse. Ära ühenda G5. Ainult multimeeter ei välista lühikesi ülepingepiike.
+6. Ühenda G5 ainult pärast kogu töövahemiku ja üleminekute kontrolli ning õpetajaga kinnitatud sobivust; ühenda juhtmed väljalülitatud toitega. Tee sama kontroll eraldi `raw` ja `opamp` ühendusele. Logija `--electrical-check-confirmed` on kasutaja kinnitus, mitte elektriline kaitse.
+
+Allikad: [MPX5700 andmeleht](https://www.nxp.com/docs/en/data-sheet/MPX5700.pdf), [LM358 tootja dokumentatsioon](https://www.ti.com/product/LM358), [ESP32-S3 ADC dokumentatsioon](https://docs.espressif.com/projects/esp-idf/en/v4.4.7/esp32s3/api-reference/peripherals/adc.html).
+
+### Andmete kogumise järjekord
+
+1. Pärast eraldi lubatud üleslaadimist kontrolli kõigepealt ainult USB-ga LCD ja logija käivituskinnitust. Lahtise G5 näit on ujuva sisendi vaatlus, mitte rõhumõõtmine; hoia see eraldi smoke-test failis. Püsivara peab ootama `measure_start` käsku.
+2. Pärast elektrilist kontrolli kogu ühendatud `raw` signaalist 10 s püsipunkti jooks. Võrdle ajatemplite sagedust 100 Hz sihiga; 10 s jooks annab ligikaudu 1000 proovi, täpne arv tuleb logi järgi. Kirjuta sama stabiilse sõlme multimeetrinäit `--dmm-v` abil ning töölehele.
+3. Kogu mitu kontrollitud pingepunkti kummagi konfiguratsiooni jaoks. Ära rakenda vana Atomi `3,70 V / 4095` tegurit uuele seadmele kinnitatud kalibratsioonina. Alles päris kalibratsiooni ja rõhureferentsi järel saab tuletada pinge/kPa ning teha kPa-põhist SNR analüüsi; esialgses CSV-s jäävad need väljad tühjaks.
+4. Kogu sama määratletud pumbaimpulss vähemalt 30 korda `raw` ja vähemalt 30 korda `opamp` konfiguratsioonis, nagu nõuab [ametlik ülesanne](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%202%5D%20EST.md). Ühine CSV, erinevad `config/run_id/trial`, samad tingimused ja kestus. Säilita ebaõnnestunud jooksud ning põhjendus, ära kirjuta neid üle.
+5. Pumpa selles etapis tarkvara ei juhi. Impulsi tekitamine, vooliku ühendus ja ohutu käsitsi juhtimine tuleb laboris eraldi kokku leppida. DO-liinid ühenda ainult keelatud roboti ja vooluta pumbakastiga; automaatne pump ja MG400 liikumine ei kuulu siia etappi.
+6. Märgi katsetingimus (`atmosphere`, `pulse`, `calibration` jne), tegelik ühendus, toide ja multimeetri mõõteaeg töölehele. Hilisemad spektrid, SNR, pooliku haarde test ja pumbajuhtimise võrdlus jäävad TODO, kuni andmed ning kalibratsioon on olemas.

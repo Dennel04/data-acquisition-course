@@ -25,7 +25,7 @@ Kavandada anduri ja ADC vahele analoogaste, mis nihutab ja skaleerib meeskonna t
 - Toore ja astmega pumbajuhtimise võrdlus: [`docs/pump_control.md`](docs/pump_control.md).
 - `raw` ja `opamp` konfiguratsiooniga CSV-andmed: TODO: real measurement required.
 - Võrdlev analüüs, spektrid, Pa/ADC samm ja SNR: toore signaali arvutuslik lähtejoon `141 Pa/kood`; op-amp võrdlus ja SNR: TODO: real measurement required.
-- Atomi püsivara ja logija muudatused: kavandatud failis [`src/README.md`](src/README.md).
+- Mõõtmis-püsivara ja USB logija on ette valmistatud: [`src/README.md`](src/README.md). USB-only üleslaadimine, LCD ja `measure_stop` → `stopped` vastus on kinnitatud. G5, 12-bitine ADC, `raw/opamp` silt ning 100 Hz siht; tegelik ajastus ja kalibratsioon vajavad veel mõõtmist. CSV analüüsi juhend: [`notebooks/README.md`](notebooks/README.md). Pumba automaatjuhtimist ei ole.
 
 ## Kontrollnimekiri
 
@@ -138,6 +138,13 @@ mitte ei muudeta.
 - Otsustasime, ja miks: pingejärgija ei käitunud õigesti ning vea põhjus jäi leidmata. `3,9 V` ja `5,2 V` ei tõenda ADC jaoks ohutut väljundit. Järgmine katse algab LM358 suuna, viigustiku ja kontaktide kontrollist ning ligikaudu `0,4 V` sisendi taastamisest. LM358 sisendit vahemikus `3,9…5,2 V` ei kasutata 5 V toitega kehtiva pingejärgija katsena, sest see võib jääda lubatud ühispingevahemikust välja.
 - Failid: `data-acquisition/lab2/README.md`, `data-acquisition/lab2/docs/bench_session.md`, `data-acquisition/lab2/docs/bom.md`, `data-acquisition/lab2/docs/diagnostic_2026-10-11.md`.
 - Lahti järgmiseks korraks: ehitada pingejärgija nullist uuesti, kinnitada korpuse suund ja kõik viigud, korrata `~0,4 V` sisendi ning väljundi mõõtmist ja leida vastuoluliste toitenäitude põhjus. MPX5700AP kolme rõhupunkti mõõtmised, ADC ühendamine ja Labor 2 astme kontroll jäävad TODO.
+
+**23.10.26 — tarkvara ettevalmistuse mustand; osalejad kinnitab tudeng**
+
+* Tegime: valmistasime ette eraldi Labor 2 mõõtmis-püsivara ja USB CSV-logija, kasutades Labor 1 ADC seadistust, kaheksa lugemi keskmist ja serial-pordi avamise võtet. Codex oli tarkvaraline abivahend, mitte füüsiliselt kohal olnud osaleja. Labor 1 lähtekoodi ega varasemaid päevikukirjeid ei muudetud.
+* Juhtus (numbrid): kohalik build `SUCCESS`; RAM `22 804 / 327 680` baiti, flash `471 177 / 3 342 336` baiti. Sünteetilised tarkvaratestid `19/19`; tegelik 100 Hz, ADC, pinge ja rõhk ei ole selle tööga mõõdetud.
+* Otsustasime, ja miks: iga jooks nõuab selget `raw/opamp` valikut; kalibreerimata pinge ja kPa jäävad CSV-s tühjaks. Multimeetri võrdlusnäit salvestatakse eraldi käsitsi sisestatud metaandmena. Võrku, pumpa ega robotit mõõtmisprogramm ei juhi.
+* Lahti järgmiseks korraks: tudeng kinnitab osalejad ja kirje; eraldi luba üleslaadimiseks; LM358 ja MPX5700AP kogu väljundulatuse ning transientide elektriline kontroll enne G5 ühendamist; tegelik ajastus, kalibratsioon ja vähemalt 30 impulssi kummagi konfiguratsiooniga. Füüsilised tulemused, SNR ja pumbavõrdlus jäävad TODO.
 
 ### Väljundid ja tulemused
 
