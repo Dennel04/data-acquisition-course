@@ -27,6 +27,10 @@ See on eraldi Labor 2 tellimisleht. Labor 1 `docs/bom.md` jääb ajalooliseks La
 
 ## 22.10.2026 — Katses kasutatud komponendid (Maksim)
 
+Paigutus ja ühendused: [LM358N koostamisjuhend](lm358n_wiring_2026-10-22.md).
+Algallikas: [Maksimi muutmata Word](sources/lab2-sborka-2026-10-22.docx).
+Allikas ei lisa uut inventuuri ega kinnita varuosade või tellimisvajaduse seisu.
+
 Järgmised komponendid olid kasutusel LM358N katseskeemi koostamisel ja mõõtmisel.
 
 | Komponent | Kogus | Kasutus |

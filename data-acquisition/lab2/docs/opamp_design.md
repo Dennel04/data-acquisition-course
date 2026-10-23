@@ -282,6 +282,10 @@ Falstadi mudel ei tõenda konkreetse LM358 madala otsa lineaarsust, väljundi ü
 
 ## 22.10.2026 — Katses kasutatud LM358N võimendusaste (Maksim)
 
+Maksimi [Word-allikas](sources/lab2-sborka-2026-10-22.docx) kinnitab allolevad
+väärtused. [Koostamisjuhend](lm358n_wiring_2026-10-22.md) seob valemi päris
+viikude ja takistivõrguga; varasem diferentsiaalastme näide jääb eraldi mudeliks.
+
 Katses kasutasime LM358N kahte kanalit.
 
 - **Esimene kanal:** mitteinverteeriv võimendusaste, mille inverteerivale sisendile ühendati tagasisidetakisti ja viitepingega seotud takistivõrk.

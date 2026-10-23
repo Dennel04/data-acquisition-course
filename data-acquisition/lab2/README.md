@@ -19,6 +19,7 @@ Kavandada anduri ja ADC vahele analoogaste, mis nihutab ja skaleerib meeskonna t
 ## Nõutavad väljundid
 
 - Arvutuskäik ja esimese ning parandatud astme mõõtetabelid: [`docs/opamp_design.md`](docs/opamp_design.md).
+- Maksimi 22.10.26 potentsiomeetritega LM358N katseskeemi [paigutus ja ühendused](docs/lm358n_wiring_2026-10-22.md), koos muutmata Word-allikaga. See ei ole MPX5700AP rõhukalibratsioon ega G5 kogu sisendvahemiku ohutuskinnitus.
 - Falstadi elav link, eksport ja skeemipilt: TODO: circuit design required.
 - Kahe kanaliga ostsilloskoobipilt sisendist ja väljundist: TODO: real measurement required.
 - Tellimuse tööleht: [`docs/bom.md`](docs/bom.md).
@@ -153,6 +154,13 @@ mitte ei muudeta.
 * Juhtus (numbrid): kohalik build `SUCCESS`; RAM `22 804 / 327 680` baiti, flash `471 177 / 3 342 336` baiti. Sünteetilised tarkvaratestid `19/19`; tegelik 100 Hz, ADC, pinge ja rõhk ei ole selle tööga mõõdetud.
 * Otsustasime, ja miks: iga jooks nõuab selget `raw/opamp` valikut; kalibreerimata pinge ja kPa jäävad CSV-s tühjaks. Multimeetri võrdlusnäit salvestatakse eraldi käsitsi sisestatud metaandmena. Võrku, pumpa ega robotit mõõtmisprogramm ei juhi.
 * Lahti järgmiseks korraks: tudeng kinnitab osalejad ja kirje; eraldi luba üleslaadimiseks; LM358 ja MPX5700AP kogu väljundulatuse ning transientide elektriline kontroll enne G5 ühendamist; tegelik ajastus, kalibratsioon ja vähemalt 30 impulssi kummagi konfiguratsiooniga. Füüsilised tulemused, SNR ja pumbavõrdlus jäävad TODO.
+
+**22.10.26 katse allikaviide — lisatud 23.10.26 (Maksim)**
+
+* Tegime: sidusime olemasoleva 22.10 katsekande Maksimi Word-allika ja [eestikeelse koostamisjuhendiga](docs/lm358n_wiring_2026-10-22.md). Juhend sisaldab viigustikku, ühendusi ja arvutuse kontrolli; varasemad mõõteväärtused ja päevikukanded jäävad muutmata.
+* Juhtus (numbrid): allikas kinnitab varem kirjapandud ühe tööpunkti tulemused ning B5K reguleerimisel saadud väljundnäidu. Uusi füüsilisi mõõtmisi selle dokumenteerimise käigus ei tehtud.
+* Otsustasime, ja miks: säilitame Wordi muutmata algallikana. Põhijuhendisse ei kopeeri faili lõpus olevat vestlust. Potentsiomeetritega katse ei kinnita rõhku ega kogu väljundulatuse sobivust G5-le.
+* Lahti järgmiseks korraks: MPX5700AP, elektriline vahemikukontroll, kalibratsioon, ostsillogrammid ja `raw/opamp` CSV-d. Kohalik AUTO-püsivara jääb eraldi, üles laadimata tööks.
 
 ### Väljundid ja tulemused
 

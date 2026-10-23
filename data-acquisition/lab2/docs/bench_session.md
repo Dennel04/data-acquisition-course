@@ -136,6 +136,11 @@ Allikad: [MPX5700 andmeleht](https://www.nxp.com/docs/en/data-sheet/MPX5700.pdf)
 
 ## 22.10.2026 — LM358N katseskeemi mõõtmised (Maksim)
 
+Allikas: Maksimi [muutmata Word](sources/lab2-sborka-2026-10-22.docx).
+Viigustik, komponentide koordinaadid ja juhtmete täielik loend on
+[eraldi koostamisjuhendis](lm358n_wiring_2026-10-22.md). Järgnev mõõtetabel
+säilitab juba avaldatud väärtused; see ei ole uus mõõtesessioon.
+
 Koostasime LM358N-põhise katseskeemi maketeerimisplaadil. Esimese kanali sisendpinge määrati B5K potentsiomeetriga. Teise kanali abil puhverdati B100K potentsiomeetriga seatud viitepinge.
 
 Kõik pinged mõõdeti ühise maa suhtes.
