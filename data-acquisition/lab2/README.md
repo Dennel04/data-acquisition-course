@@ -139,6 +139,14 @@ mitte ei muudeta.
 - Failid: `data-acquisition/lab2/README.md`, `data-acquisition/lab2/docs/bench_session.md`, `data-acquisition/lab2/docs/bom.md`, `data-acquisition/lab2/docs/diagnostic_2026-10-11.md`.
 - Lahti järgmiseks korraks: ehitada pingejärgija nullist uuesti, kinnitada korpuse suund ja kõik viigud, korrata `~0,4 V` sisendi ning väljundi mõõtmist ja leida vastuoluliste toitenäitude põhjus. MPX5700AP kolme rõhupunkti mõõtmised, ADC ühendamine ja Labor 2 astme kontroll jäävad TODO.
 
+**22.10.26 — LM358N võimendusastme koostamine ja kontroll**
+
+* **Tegime:** Koostasime maketeerimisplaadil LM358N operatsioonvõimendil põhineva katseskeemi. B5K potentsiomeetrit kasutasime reguleeritava sisendpinge tekitamiseks ning B100K potentsiomeetrit viitepinge seadmiseks. LM358N teine kanal töötas viitepinge puhvrina. Pärast väljundpinge kontrollimist ühendasime võimendi väljundi AtomS3R viiguga G5.
+* **Juhtus (numbrid):** Toitepinge oli 5,00 V. Mõõdetud tagasisidetakistus oli 10,04 kΩ ning kolme järjestikuse takisti kogutakistus 6,51 kΩ. Ühes tööpunktis mõõtsime sisendpingeks 0,402 V, inverteerival sisendil 0,403 V, viitepingeks 0,520 V ja väljundpingeks 0,205 V. B5K reguleerimisel saime väljundpingeks 3,009 V.
+* **Otsustasime, ja miks:** Jätkame katseskeemi kontrollimist enne tegeliku rõhuanduri ühendamist. Mõõdetud väljundpinge oli arvutatud väärtusele lähedane.
+* **Lahti järgmiseks korraks:** MPX5700AP anduri mõõtmised, kolme rõhupunkti kontroll, ostsilloskoobimõõtmised, AtomS3R ADC programmi käivitamine ning CSV-andmete salvestamine.
+* **Failid:** `README.md`, `docs/bench_session.md`, `docs/opamp_design.md`, `docs/bom.md`.
+
 **23.10.26 — tarkvara ettevalmistuse mustand; osalejad kinnitab tudeng**
 
 * Tegime: valmistasime ette eraldi Labor 2 mõõtmis-püsivara ja USB CSV-logija, kasutades Labor 1 ADC seadistust, kaheksa lugemi keskmist ja serial-pordi avamise võtet. Codex oli tarkvaraline abivahend, mitte füüsiliselt kohal olnud osaleja. Labor 1 lähtekoodi ega varasemaid päevikukirjeid ei muudetud.

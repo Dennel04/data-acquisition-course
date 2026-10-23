@@ -278,3 +278,57 @@ Falstadi mudel ei tõenda konkreetse LM358 madala otsa lineaarsust, väljundi ü
 | Mõlema otspunkti vead | TODO: real measurement required |
 | Ostsilloskoobi sisendi ja väljundi tõend | TODO: real measurement required |
 | Parandatud astme füüsiline kinnitus | TODO: real measurement required |
+
+
+## 22.10.2026 — Katses kasutatud LM358N võimendusaste (Maksim)
+
+Katses kasutasime LM358N kahte kanalit.
+
+- **Esimene kanal:** mitteinverteeriv võimendusaste, mille inverteerivale sisendile ühendati tagasisidetakisti ja viitepingega seotud takistivõrk.
+- **Teine kanal:** pingejärgija, mis puhverdab B100K potentsiomeetriga seatud viitepinget.
+
+Sisendpinge määrati B5K potentsiomeetriga.
+
+### Takistused
+
+| Tähis | Mõõdetud väärtus |
+|---|---|
+| Rf — tagasisidetakisti | 10,04 kΩ |
+| Rref — viitepinge takistivõrk | 6,51 kΩ |
+
+### Väljundpinge arvutamine
+
+Ideaalse operatsioonvõimendi korral:
+
+`Vout = (1 + Rf / Rref) × Vin − (Rf / Rref) × Vref`
+
+Takistuste suhte arvutus:
+
+`Rf / Rref = 10,04 / 6,51 ≈ 1,542`
+
+Seega:
+
+`Vout ≈ 2,542 × Vin − 1,542 × Vref`
+
+Kontrollmõõtmise väärtused:
+
+- `Vin = 0,402 V`
+- `Vref = 0,520 V`
+
+Arvutatud väljundpinge:
+
+`Vout ≈ 2,542 × 0,402 − 1,542 × 0,520 ≈ 0,220 V`
+
+Mõõdetud väljundpinge:
+
+`Vout = 0,205 V`
+
+Erinevus arvutatud ja mõõdetud väärtuse vahel oli ligikaudu 0,015 V.
+
+### Järeldus
+
+Mõõdetud väljundpinge oli arvutatud väärtusele lähedane. Katses kontrolliti ühte tööpunkti ja saavutati potentsiomeetri reguleerimisel ka 3,009 V väljundpinge.
+
+See ei kinnita veel kogu töövahemiku lineaarsust ega lõplikku sobivust MPX5700AP anduriga.
+
+Katses kasutatud skeem erineb dokumendi varasemast diferentsiaalvõimendi näiteskeemist. Tegeliku rõhuanduri mõõtmised ja lõplik kalibreerimine on veel tegemata.

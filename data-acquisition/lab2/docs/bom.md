@@ -23,3 +23,24 @@ See on eraldi Labor 2 tellimisleht. Labor 1 `docs/bom.md` jääb ajalooliseks La
 | Maketeerimisplaat | 1 tk kasutati Labor 2 jaoks | `raw` ja `opamp` ahelate samaaegne säilitamine | Suur MB-102 tüüpi jootmisvaba maketeerimisplaat | Jah, kasutati 04.10.26 | TODO: confirm final setup needs | Labor 1 anduriahel jäeti terveks; Labor 2 jaoks kasutati eraldi plaati |
 | Ühendusjuhtmed | Kogus: TODO: count physically | Maketeerimisplaadi ühendused | Jumper-juhtmed; sobivus ja vajalik kogus kontrollida lõpliku skeemi järgi | Jah, kasutati 04.10.26 | TODO: confirm final setup needs | AtomS3R `5V` ja GND ühendati maketeerimisplaadi toitesiinidele; pinget ei mõõdetud |
 | Muu | TODO: physical inventory required | TODO: circuit design required | TODO: circuit design required | TODO: physical inventory required | TODO: physical inventory required | TODO: physical inventory required |
+
+
+## 22.10.2026 — Katses kasutatud komponendid (Maksim)
+
+Järgmised komponendid olid kasutusel LM358N katseskeemi koostamisel ja mõõtmisel.
+
+| Komponent | Kogus | Kasutus |
+|---|---:|---|
+| LM358N DIP-8 | 1 | Võimendusaste ja viitepinge puhver |
+| 10 kΩ takisti | 1 | Tagasiside, mõõdetud 10,04 kΩ |
+| 2 kΩ takisti | 3 | Jadaühendus, mõõdetud kogutakistus 6,51 kΩ |
+| 1 kΩ takisti | 1 | Potentsiomeetrite toiteahelas |
+| B5K potentsiomeeter | 1 | Reguleeritav testsisend |
+| B100K potentsiomeeter | 1 | Reguleeritav viitepinge |
+| Maketeerimisplaat | 1 | Skeemi koostamine |
+| AtomS3R | 1 | Toide, GND ja ADC sisend G5 |
+| Ühendusjuhtmed | Mitu | Skeemi ühendused |
+
+**Märkus:** B100K potentsiomeeter oli selles katses kasutusel viitepinge seadmiseks. MPX5700AP andurit selle mõõtesessiooni ajal katseskeemi sisendina ei kasutatud.
+
+Komponentide loend kirjeldab katses kasutatud lahendust, mitte veel lõplikult kinnitatud andmehõivesüsteemi.

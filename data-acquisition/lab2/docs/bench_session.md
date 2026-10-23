@@ -133,3 +133,43 @@ Allikad: [MPX5700 andmeleht](https://www.nxp.com/docs/en/data-sheet/MPX5700.pdf)
 4. Kogu sama määratletud pumbaimpulss vähemalt 30 korda `raw` ja vähemalt 30 korda `opamp` konfiguratsioonis, nagu nõuab [ametlik ülesanne](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%202%5D%20EST.md). Ühine CSV, erinevad `config/run_id/trial`, samad tingimused ja kestus. Säilita ebaõnnestunud jooksud ning põhjendus, ära kirjuta neid üle.
 5. Pumpa selles etapis tarkvara ei juhi. Impulsi tekitamine, vooliku ühendus ja ohutu käsitsi juhtimine tuleb laboris eraldi kokku leppida. DO-liinid ühenda ainult keelatud roboti ja vooluta pumbakastiga; automaatne pump ja MG400 liikumine ei kuulu siia etappi.
 6. Märgi katsetingimus (`atmosphere`, `pulse`, `calibration` jne), tegelik ühendus, toide ja multimeetri mõõteaeg töölehele. Hilisemad spektrid, SNR, pooliku haarde test ja pumbajuhtimise võrdlus jäävad TODO, kuni andmed ning kalibratsioon on olemas.
+
+## 22.10.2026 — LM358N katseskeemi mõõtmised (Maksim)
+
+Koostasime LM358N-põhise katseskeemi maketeerimisplaadil. Esimese kanali sisendpinge määrati B5K potentsiomeetriga. Teise kanali abil puhverdati B100K potentsiomeetriga seatud viitepinge.
+
+Kõik pinged mõõdeti ühise maa suhtes.
+
+| Mõõtepunkt | Kirjeldus | Tulemus |
+|---|---|---|
+| H26 | LM358N toitepinge | 5,00 V |
+| C28 | Mitteinverteeriv sisend (+) | 0,402 V |
+| C27 | Inverteeriv sisend (−) | 0,403 V |
+| J27 | Puhverdatud viitepinge | 0,520 V |
+| C26 | Võimendi väljund | 0,205 V |
+
+### Takistuste mõõtmised
+
+| Komponent | Mõõdetud väärtus |
+|---|---|
+| Tagasisidetakisti | 10,04 kΩ |
+| Kolm järjestikku ühendatud takistit | 6,51 kΩ |
+
+### Väljundi reguleerimine
+
+B5K potentsiomeetri reguleerimisel mõõtsime võimendi väljundis 3,009 V.
+
+See väärtus näitab ühte saavutatud tööpunkti, mitte kogu väljundpinge vahemikku.
+
+Pärast mõõtmist ühendasime LM358N väljundi AtomS3R ADC sisendiga G5. Ühendamine toimus väljalülitatud USB-toitega.
+
+### Veel tegemata
+
+- MPX5700AP anduri tegelike väljundpingete mõõtmine.
+- Kolme rõhupunkti mõõtmine.
+- Ostsilloskoobiga signaali kontrollimine.
+- ADC programmi käivitamine.
+- Mõõteandmete salvestamine CSV-faili.
+- Müra ja signaali-müra suhte analüüs.
+
+**Märkus:** selles katses kasutati anduri asemel reguleeritavat testpinget. Rõhuanduri mõõtmistulemusi veel ei ole.
