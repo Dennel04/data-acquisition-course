@@ -178,3 +178,34 @@ Pärast mõõtmist ühendasime LM358N väljundi AtomS3R ADC sisendiga G5. Ühend
 - Müra ja signaali-müra suhte analüüs.
 
 **Märkus:** selles katses kasutati anduri asemel reguleeritavat testpinget. Rõhuanduri mõõtmistulemusi veel ei ole.
+
+## 24.10.2026 — LM358N katseskeemi ja AtomS3R ADC kontroll (Maksim)
+
+Jätkasime LM358N katseskeemi mõõtmist. B5K potentsiomeeter tekitas sisendpinge ning B100K potentsiomeeter viitepinge. LM358N väljund oli ühendatud AtomS3R GPIO5 ADC sisendiga.
+
+### Multimeetri mõõtmised
+
+| Mõõtepunkt | Tulemus |
+|---|---:|
+| Sisendpinge `Vin` | 0,402 V |
+| Viitepinge `Vref` | 0,526 V |
+| Võimendi väljund `Vout` | 0,190 V |
+
+### ADC mõõtmine
+
+Kasutasime AtomS3R-i USB-ühenduse kaudu ADC väärtuste lugemiseks.
+
+| Näitaja | Tulemus |
+|---|---:|
+| Mõõtmiste arv | 1001 |
+| Kestus | ligikaudu 10 s |
+| Diskreetimissagedus | ligikaudu 100 Hz |
+| ADC keskmine | 188,43 koodi |
+| ADC miinimum | 182 koodi |
+| ADC maksimum | 196 koodi |
+
+### Järeldus
+
+Katseskeemi väljundpinget oli võimalik mõõta multimeetriga ja ADC väärtusi lugeda AtomS3R abil. Kasutati potentsiomeetritega tekitatud testpinget, mitte MPX5700AP rõhuandurit.
+
+Rõhu kalibratsioon, kolme rõhupunkti mõõtmised, ostsilloskoobipildid ning `raw` ja `opamp` signaalide võrdlus on veel tegemata.
