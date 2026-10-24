@@ -336,3 +336,40 @@ Mõõdetud väljundpinge oli arvutatud väärtusele lähedane. Katses kontrollit
 See ei kinnita veel kogu töövahemiku lineaarsust ega lõplikku sobivust MPX5700AP anduriga.
 
 Katses kasutatud skeem erineb dokumendi varasemast diferentsiaalvõimendi näiteskeemist. Tegeliku rõhuanduri mõõtmised ja lõplik kalibreerimine on veel tegemata.
+
+## 24.10.2026 — LM358N katseskeemi kontrollmõõtmine (Maksim)
+
+Jätkasime LM358N võimendusastme kontrollimist B5K ja B100K potentsiomeetritega. MPX5700AP rõhuandurit selles katses ei kasutatud.
+
+### Mõõdetud väärtused
+
+| Suurus | Väärtus |
+|---|---:|
+| Sisendpinge `Vin` | 0,402 V |
+| Viitepinge `Vref` | 0,526 V |
+| Väljundpinge `Vout` | 0,190 V |
+
+Kasutasime 22.10.2026 dokumenteeritud takistusi:
+
+- `Rf = 10,04 kΩ`
+- `Rref = 6,51 kΩ`
+
+Ideaalse võimendi arvutus:
+
+`Vout = (1 + Rf/Rref) × Vin − (Rf/Rref) × Vref`
+
+`Vout ≈ 2,542 × 0,402 − 1,542 × 0,526 ≈ 0,211 V`
+
+Mõõdetud väljund oli `0,190 V`.
+
+Erinevus:
+
+`ΔV = 0,190 − 0,211 ≈ −0,021 V = −21 mV`
+
+### Järeldus
+
+Mõõdetud väljundpinge erines ideaalse skeemi arvutusest ligikaudu 21 mV. Erinevuse täpne põhjus vajab edasist kontrollimist.
+
+AtomS3R GPIO5 ADC testis saime 1001 lugemit ligikaudu 10 sekundi jooksul, diskreetimissagedusega umbes 100 Hz.
+
+See oli üks potentsiomeetritega kontrollitud tööpunkt. Katse ei kinnita veel kogu väljundvahemiku lineaarsust, rõhu kalibratsiooni ega võimendusastme lõplikku sobivust MPX5700AP anduriga.
