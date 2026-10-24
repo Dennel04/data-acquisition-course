@@ -172,6 +172,14 @@ mitte ei muudeta.
 * Otsustasime, ja miks: säilitame Wordi muutmata algallikana. Põhijuhendisse ei kopeeri faili lõpus olevat vestlust. Potentsiomeetritega katse ei kinnita rõhku ega kogu väljundulatuse sobivust G5-le.
 * Lahti järgmiseks korraks: MPX5700AP, elektriline vahemikukontroll, kalibratsioon, ostsillogrammid ja `raw/opamp` CSV-d. Kohalik AUTO-püsivara jääb eraldi, üles laadimata tööks.
 
+**24.10.26 — LM358N katseskeemi ja ADC kontroll (Maksim)**
+
+* Tegime: jätkasime LM358N katseskeemi kontrollimist. B5K potentsiomeeter tekitas reguleeritava sisendpinge ja B100K potentsiomeeter viitepinge. Mõõtsime multimeetriga sisend-, viite- ja väljundpinget. Kontrollisime AtomS3R GPIO5 ADC lugemist USB-ühenduse kaudu.
+* Juhtus (numbrid): mõõtsime `Vin = 0,402 V`, `Vref = 0,526 V` ja `Vout = 0,190 V`. ADC testis saime 1001 lugemit ligikaudu 10 sekundi jooksul ehk umbes 100 Hz. ADC keskmine näit oli `188,43` koodi, minimaalne `182` ja maksimaalne `196`.
+* Otsustasime, ja miks: katseskeem võimaldas mõõta väljundpinget ja lugeda ADC väärtusi. Tegemist oli potentsiomeetritega tehtud elektrilise testiga, mitte MPX5700AP rõhuanduri mõõtmisega. Rõhu kalibratsiooni, signaali-müra suhet ega võimendusastme lõplikku sobivust selle katse põhjal ei kinnita.
+* Lahti järgmiseks korraks: ühendada MPX5700AP, mõõta kolm rõhupunkti, kontrollida väljundpinge ohutut vahemikku ning salvestada võrreldavad `raw` ja `opamp` CSV-andmed.
+
+
 ### Väljundid ja tulemused
 
 **Väljundid**
