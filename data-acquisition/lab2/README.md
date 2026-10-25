@@ -208,6 +208,7 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 
 **Piirangud:** rõhku ei ole veel kalibreeritud `kPa` ühikutesse. Samuti ei ole lõpetatud sama katse `raw` ja `opamp` signaalide võrdlust ega SNR-i arvutamist.
 
+
 ### Väljundid ja tulemused
 
 **Väljundid**
@@ -228,4 +229,8 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 * Mida me teeksime teisiti: TODO — complete after physical tests.
 * Mida järgmine labor peaks enne alustamist teadma: TODO — complete after the
   op-amp, calibration and pump-control comparison are physically verified.
+
+
+
+
 
