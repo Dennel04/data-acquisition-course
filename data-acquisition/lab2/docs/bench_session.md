@@ -209,3 +209,80 @@ Kasutasime AtomS3R-i USB-ühenduse kaudu ADC väärtuste lugemiseks.
 Katseskeemi väljundpinget oli võimalik mõõta multimeetriga ja ADC väärtusi lugeda AtomS3R abil. Kasutati potentsiomeetritega tekitatud testpinget, mitte MPX5700AP rõhuandurit.
 
 Rõhu kalibratsioon, kolme rõhupunkti mõõtmised, ostsilloskoobipildid ning `raw` ja `opamp` signaalide võrdlus on veel tegemata.
+
+## 25.10.2026 — MPX5700AP rõhuanduri, LM358N võimendusastme ja AtomS3R ADC mõõtmised (Maksim)
+
+### Katse eesmärk
+
+Kontrollida MPX5700AP rõhuanduri signaali lugemist LM358N võimendusastme ja AtomS3R G5 ADC kaudu ning salvestada kolm mõõteseeriat: väljalülitatud pump, vaakum ja ülerõhk.
+
+### Katseskeemi ühendused
+
+Kasutati MPX5700AP rõhuandurit, LM358N operatsioonvõimendit, B100K potentsiomeetrit viitepinge seadmiseks, kahte `10 kΩ` takistit pingejagurina ning AtomS3R mikrokontrollerit.
+
+Toite- ja signaaliühendused:
+
+| Komponent | Ühendus |
+|---|---|
+| AtomS3R `5V` | Maketeerimisplaadi H26, +5 V toitesõlm |
+| AtomS3R GND | Maketeerimisplaadi D29, ühine maa |
+| MPX5700AP viik 1 (`Vout`) | C28, LM358N viigu 3 sisendsõlm |
+| MPX5700AP viik 2 (`GND`) | B29, ühine maa |
+| MPX5700AP viik 3 (+5 V) | I26, +5 V toitesõlm |
+| LM358N viik 1 (väljund) | E26, väljundsõlm |
+| LM358N viik 2 (inverteeriv sisend) | E27 |
+| LM358N viik 3 (mitteinverteeriv sisend) | E28 |
+| LM358N viik 4 (GND) | E29 |
+| LM358N viik 8 (+5 V) | F26 |
+| Esimene `10 kΩ` pingejaguri takisti | B26 → A35 |
+| Teine `10 kΩ` pingejaguri takisti | D35 → C29 (GND) |
+| AtomS3R G5 ADC | E35, pingejaguri keskpunkt |
+
+Maketeerimisplaadi A35–E35 pesad kuuluvad samasse elektrilisse sõlme. Seetõttu on G5 ühendatud kahe `10 kΩ` takisti keskpunkti, mitte otse LM358N väljundisse.
+
+Tagasisideahelas kasutati mõõdetud takistusi `10,04 kΩ` ja `6,51 kΩ`. B100K potentsiomeetriga seatud viitepinge oli ligikaudu `0,633 V`. Takistite ja potentsiomeetri kõiki täpseid maketeerimisplaadi pesakohti ei ole selles protokollis kinnitatud.
+
+### Pingemõõtmised
+
+AtomS3R G5 sisendsõlmes täheldati järgmisi multimeetri näite:
+
+| Tingimus | G5 pinge |
+|---|---:|
+| Pump välja lülitatud | 0,592 V |
+| Pumba töötamise ajal täheldatud maksimaalne väärtus | 0,952 V |
+
+Need on eraldi multimeetri vaatlused, mitte iga ADC proovi juurde salvestatud pingeväärtused.
+
+### ADC mõõteseeriad
+
+Salvestati kolm ligikaudu 10 sekundi pikkust mõõteseeriat, igaühes ligikaudu 1000 ADC lugemit. Kasutati `opamp` konfiguratsiooni.
+
+| Katse | CSV-fail | Min ADC | Max ADC | Keskmine ADC | Standardhälve |
+|---|---|---:|---:|---:|---:|
+| Pump välja lülitatud | [opamp_pump_off_test.csv](../data/opamp_pump_off_test.csv) | 642 | 667 | 657,62 | 2,90 |
+| Vaakum | [opamp_vacum_test.csv](../data/opamp_vacum_test.csv) | 14 | 837 | 511,54 | 306,76 |
+| Ülerõhk | [opamp_pressure_test.csv](../data/opamp_pressure_test.csv) | 641 | 1175 | 804,60 | 185,60 |
+
+Väljalülitatud pumba mõõteseerias oli ADC näidu kõikumine väike. Vaakumi ja ülerõhu mõõteseeriate standardhälbed sisaldavad ka signaali tegelikke muutusi ning neid ei saa käsitleda üksnes mürana.
+
+### Katsete käigus täheldatud muutused
+
+**Vaakumkatse.** Pärast vaakumi vähendamist või pumba väljalülitamist tõusis ADC näit lühiajaliselt ligikaudu `805` koodini ja püsis kõrgenenud umbes kaks sekundit. Võimalik selgitus on ajutine rõhumuutus pumba või ventiili ümberlülitamisel. Seda põhjust ei ole eraldi mõõtmisega kinnitatud.
+
+**Ülerõhukatse.** ADC näit vähenes ligikaudu `1126 → 940 → 860` koodini, millele järgnes järsk langus. Üks võimalik selgitus on aeglane rõhukadu ja sellele järgnev rõhu vabastamine. Täpne põhjus vajab kontrollimist.
+
+### Järeldus ja piirangud
+
+MPX5700AP, LM358N ja AtomS3R G5 kaudu oli võimalik salvestada pumba tööga seotud ADC signaalimuutusi.
+
+Samas ei ole rõhk veel kalibreeritud `kPa` ühikutesse. CSV-failide `p_kpa`, `voltage_v` ja `pump` väljad ei sisalda proovipõhiseid mõõteväärtusi. Pumba töörežiimid on määratud katsemärkmete ja failide nimetuste, mitte CSV `pump` veeru põhjal.
+
+Kolm mõõteseeriat ei võimalda veel teha nõutavat sama protokolli `raw` ja `opamp` võrdlust, määrata Pa/ADC sammu ega arvutada kinnitatud SNR-i.
+
+### Järgmised tegevused
+
+- Mõõta anduri sisendpinge ja võimendi väljundpinge kontrollitud rõhupunktides.
+- Kontrollida G5 pinget kogu töövahemikus, sealhulgas üleminekute ajal.
+- Korrata katseid võrreldavas `raw` konfiguratsioonis.
+- Kalibreerida ADC näit rõhuks.
+- Teha võrreldavate mõõteseeriate müra-, spektri- ja SNR-analüüs.
