@@ -31,28 +31,39 @@ Kavandada anduri ja ADC vahele analoogaste, mis nihutab ja skaleerib meeskonna t
 - Arvutuskäik ja esimese ning parandatud astme mõõtetabelid: [`docs/opamp_design.md`](docs/opamp_design.md).
 - Maksimi 22.10.26 potentsiomeetritega LM358N katseskeemi [paigutus ja ühendused](docs/lm358n_wiring_2026-10-22.md), koos muutmata Word-allikaga. See ei ole MPX5700AP rõhukalibratsioon ega G5 kogu sisendvahemiku ohutuskinnitus.
 - Falstadi elav link, eksport ja skeemipilt: TODO: circuit design required.
+  - 25.10.26 parandus: õppejõu näite skeem ja mõlemad mürakatsed (eksport + veebilink, PNG puudub) on olemas failis [`docs/opamp_design.md`](docs/opamp_design.md#õppejõu-mpx5700ap-näite-falstadi-esimene-versioon). Meeskonna ehitatud astme (mitteinverteeriv aste, `Vref` puhver) Falstadi skeem on endiselt TODO.
 - Kahe kanaliga ostsilloskoobipilt sisendist ja väljundist: TODO: real measurement required.
 - 25.10 astme 2. versiooni muudatused, jaguriga CSV-de analüüs ja üleandmise seis: [`docs/opamp_v2_handoff_2026-10-25.md`](docs/opamp_v2_handoff_2026-10-25.md).
 - Tellimuse tööleht: [`docs/bom.md`](docs/bom.md).
 - Toore ja astmega pumbajuhtimise võrdlus: [`docs/pump_control.md`](docs/pump_control.md).
 - `raw` ja `opamp` konfiguratsiooniga CSV-andmed: TODO: real measurement required.
+  - 25.10.26 parandus: `opamp` CSV-d on olemas — kolm jaguriga jooksu ([pump väljas](data/opamp_pump_off_test.csv), [vaakum](data/opamp_vacum_test.csv), [ülerõhk](data/opamp_pressure_test.csv)). Metaandmed on 24.10 katsest üle jäänud ([üleandmine](docs/opamp_v2_handoff_2026-10-25.md)). `raw` CSV on endiselt TODO.
 - Võrdlev analüüs, spektrid, Pa/ADC samm ja SNR: toore signaali arvutuslik lähtejoon `141 Pa/kood`; op-amp võrdlus ja SNR: TODO: real measurement required.
 - Mõõtmis-püsivara ja USB logija on ette valmistatud: [`src/README.md`](src/README.md). USB-only üleslaadimine, LCD ja `measure_stop` → `stopped` vastus on kinnitatud. G5, 12-bitine ADC, `raw/opamp` silt ning 100 Hz siht; tegelik ajastus ja kalibratsioon vajavad veel mõõtmist. CSV analüüsi juhend: [`notebooks/README.md`](notebooks/README.md). Pumba automaatjuhtimist ei ole.
 
 ## Kontrollnimekiri
 
 - [ ] Labori 1 signaalist on arvutatud Pa ühe ADC sammu kohta (`141 Pa/kood`); tegelik sisendvahemik, kasutatud ADC vahemiku osa ja lõplikud astme nõuded: TODO: real measurement required.
+  - 25.10.26 parandus: jaguriga `opamp` jooksudes oli kasutusel ADC koodivahemik `14…1175` / `4095` ([üleandmine](docs/opamp_v2_handoff_2026-10-25.md)). Anduri `V_in` otspunktid ja lõplikud astme nõuded on endiselt TODO.
 - [ ] Falstadis on astme skeem, põhjendatud takistid ja müraallika katsed. Õppejõu näidisskeem on olemas; meeskonna skeem: TODO: real measurement required.
+  - 25.10.26 parandus: õppejõu näidisskeem ja mürakatsed on failis [`docs/opamp_design.md`](docs/opamp_design.md#õppejõu-mpx5700ap-näite-falstadi-esimene-versioon). Puudub meeskonna ehitatud astme skeem; see vajab skeemitööd, mitte mõõtmist.
 - [ ] Esimene aste on maketeerimisplaadil mõõdetud kolmes rõhupunktis. TODO: real measurement required.
+  - 25.10.26 parandus: MPX5700AP + LM358N jaguriga, kolm ADC-jooksu (pump väljas, vaakum, ülerõhk) ja G5 multimeetri näidud `0,592 V` / `0,952 V` ([`docs/bench_session.md`](docs/bench_session.md)). `Vin` ja `Vout` multimeetriga kolmes rõhupunktis ning tabel failis `docs/opamp_design.md` on endiselt TODO.
 - [ ] Sisend ja väljund on salvestatud korraga ostsilloskoobiga. TODO: real measurement required.
 - [ ] Esimese versiooni mõlema otspunkti hälve on mõõdetud ja seletatud. TODO: real measurement required.
+  - 25.10.26 parandus: alumine ots — vaakumi platoo on küllastunud `14…21` koodi juures ([üleandmine](docs/opamp_v2_handoff_2026-10-25.md), hinnang). Ülemine ots ja mõlema otspunkti viga mV-des on endiselt TODO.
 - [ ] Parandatud aste on uuesti arvutatud ja samades punktides mõõdetud. TODO: real measurement required.
+  - 25.10.26 parandus: 2. versioon on plaadil ehitatud ([üleandmine](docs/opamp_v2_handoff_2026-10-25.md)). Arvutus lahti ühendatult mõõdetud `Rref`-iga ja kolme punkti mõõtmine on endiselt TODO.
 - [ ] Sama pumbaimpulss on logitud konfiguratsioonides `raw` ja `opamp`. TODO: real measurement required.
+  - 25.10.26 parandus: olemas on ainult `opamp` jooksud; `raw` on endiselt TODO.
 - [ ] Spektrid on võrreldud samade telgede ja ühikutega. Labori 1 toores lähtefail on olemas; Labor 2 võrdlus: TODO: real measurement required.
+  - 25.10.26 parandus: 25.10 `opamp` CSV-d on nüüd olemas; Labor 2 spektrivõrdlus on endiselt TODO.
 - [ ] Pa ühe ADC sammu kohta ja SNR on arvutatud enne ning pärast astet. Raw-lähtejoon `141 Pa/kood`; op-amp ja SNR: TODO: real measurement required.
+  - 25.10.26 parandus: `opamp` CSV-d on olemas, kuid op-amp kalibratsioon, Pa/kood ja SNR on endiselt TODO.
 - [ ] Pumbajuhtimine on uue signaaliga mõõdetud ja võrreldud Labori 1 ajaloolise lähtejoonega. TODO: real measurement required.
 - [ ] Pooliku haarde eristamise aeg on mõõdetud mõlema signaaliga. TODO: real measurement required.
 - [ ] Füüsiline komponentide saadavus ja tellimisvajadus on kontrollitud failis `docs/bom.md`. TODO: real measurement required.
+  - 25.10.26 parandus: 22.10 katses kasutatud komponendid on `docs/bom.md` failis loetletud. 2. versiooni lisatakistid (`2 × 1 kΩ`, `4,7 kΩ`), inventuuri kontrollnimekiri ja tellimisvajadus on endiselt TODO; see on inventuur, mitte mõõtmine.
 - [ ] Repo ja arenduspäevik on lõpetatud; esitamisel on lisatud tag `data-acquisition-lab2`.
 
 ## 1. Mis on puudu
