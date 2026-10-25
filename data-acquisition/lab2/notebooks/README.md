@@ -1,6 +1,6 @@
 # Labor 2 analüüsi töövoog
 
-Minimaalne korratav analüüs asub failis `../src/python/analyze.py`. Päris CSV-sid pole veel saadud; ettevalmistus ei anna Labor 2 mõõtetulemusi. Eraldi notebook'i pole käivitamiseks vaja.
+Minimaalne korratav analüüs asub failis `../src/python/analyze.py`. 25.10.2026 seisuga on olemas kolm tegelikku `opamp` konfiguratsiooni CSV-mõõteseeriat. Võrreldavad `raw` mõõtmised, rõhukalibratsioon ja lõplik SNR-analüüs on veel tegemata. Eraldi notebook'i pole käivitamiseks vaja.
 
 Kavandatud töövoog:
 
@@ -25,9 +25,9 @@ t_ms,adc,p_kpa,pump,config,run_id,seq,missed,voltage_v,dmm_reference_v,dmm_recor
 
 `p_kpa`, `voltage_v` ja `pump` on praegusel logijal tühjad. `dmm_reference_v` on käsitsi sisestatud püsipinge võrdlusnäit, mitte iga proovi pinge ega rõhukalibratsioon. `dmm_recorded_utc` on näidu logijasse sisestamise aeg. Analüüs ei asenda puuduvaid väärtusi nullidega ega Labor 1 teisendusteguriga.
 
-Labor 2 andmefailid: TODO: real measurement required.
+Labor 2 andmefailid: ../data/opamp_pump_off_test.csv, ../data/opamp_vacum_test.csv, ../data/opamp_pressure_test.csv.
 
-Analüüsitulemused: TODO: real measurement required.
+Esialgsed analüüsitulemused: vt jaotist „25.10.2026 — tegelike mõõteandmete esmane analüüs”. Täielik raw/opamp võrdlus ja rõhukalibratsioon on veel tegemata.
 
 ## 25.10.2026 — tegelike mõõteandmete esmane analüüs
 
