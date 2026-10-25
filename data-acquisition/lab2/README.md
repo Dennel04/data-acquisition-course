@@ -32,6 +32,7 @@ Kavandada anduri ja ADC vahele analoogaste, mis nihutab ja skaleerib meeskonna t
 - Maksimi 22.10.26 potentsiomeetritega LM358N katseskeemi [paigutus ja ühendused](docs/lm358n_wiring_2026-10-22.md), koos muutmata Word-allikaga. See ei ole MPX5700AP rõhukalibratsioon ega G5 kogu sisendvahemiku ohutuskinnitus.
 - Falstadi elav link, eksport ja skeemipilt: TODO: circuit design required.
 - Kahe kanaliga ostsilloskoobipilt sisendist ja väljundist: TODO: real measurement required.
+- 25.10 astme 2. versiooni muudatused, jaguriga CSV-de analüüs ja üleandmise seis: [`docs/opamp_v2_handoff_2026-10-25.md`](docs/opamp_v2_handoff_2026-10-25.md).
 - Tellimuse tööleht: [`docs/bom.md`](docs/bom.md).
 - Toore ja astmega pumbajuhtimise võrdlus: [`docs/pump_control.md`](docs/pump_control.md).
 - `raw` ja `opamp` konfiguratsiooniga CSV-andmed: TODO: real measurement required.
