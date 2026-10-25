@@ -29,6 +29,48 @@ Labor 2 andmefailid: TODO: real measurement required.
 
 Analüüsitulemused: TODO: real measurement required.
 
+## 25.10.2026 — tegelike mõõteandmete esmane analüüs
+
+25.10.2026 salvestati MPX5700AP rõhuanduri, LM358N võimendusastme ja AtomS3R G5 ADC abil kolm mõõteseeriat. Võimendi väljundi ja ADC sisendi vahel kasutati kahest `10 kΩ` takistist koosnevat pingejagurit.
+
+Kõik kolm katset tehti `opamp` konfiguratsioonis. Iga mõõteseeria kestis ligikaudu 10 sekundit ja sisaldas umbes 1000 ADC lugemit.
+
+### Mõõtefailid
+
+| Katse | CSV-fail | Kirjeldus |
+|---|---|---|
+| Pump välja lülitatud | [opamp_pump_off_test.csv](../data/opamp_pump_off_test.csv) | Baastaseme ja ADC näidu kõikumise kontroll |
+| Vaakum | [opamp_vacum_test.csv](../data/opamp_vacum_test.csv) | Vaakumi tekitamine ja pumba väljalülitamine |
+| Ülerõhk | [opamp_pressure_test.csv](../data/opamp_pressure_test.csv) | Rõhu tõus ja sellele järgnev vähenemine |
+
+### ADC statistika
+
+| Katse | Minimaalne ADC | Maksimaalne ADC | Keskmine ADC | Standardhälve |
+|---|---:|---:|---:|---:|
+| Pump välja lülitatud | 642 | 667 | 657,62 | 2,90 |
+| Vaakum | 14 | 837 | 511,54 | 306,76 |
+| Ülerõhk | 641 | 1175 | 804,60 | 185,60 |
+
+Väljalülitatud pumba katses oli ADC näit suhteliselt stabiilne. Standardhälve oli ligikaudu `2,90` ADC koodi.
+
+Vaakumi ja ülerõhu katsetes sisaldab standardhälve ka rõhu muutumisest põhjustatud signaali kõikumist. Seetõttu ei saa nende katsete kogu mõõteseeria standardhälvet käsitleda ainult mürana.
+
+### Täheldatud üleminekud
+
+Vaakumkatses täheldati pumba väljalülitamise järel lühiajalist ADC näidu tõusu ligikaudu `805` koodini. Üheks võimalikuks selgituseks on rõhu ajutine muutus pumba või ventiili ümberlülitamisel, kuid põhjus ei ole veel kinnitatud.
+
+Ülerõhukatses vähenes ADC näit ligikaudu `1126 → 940 → 860` koodini, millele järgnes järsk langus. Võimalikeks põhjusteks on aeglane rõhukadu ja sellele järgnenud rõhu vabastamine. Selle kinnitamiseks on vaja täiendavaid katseid.
+
+### Analüüsi piirangud
+
+- Kõik kolm mõõtefaili kuuluvad `opamp` konfiguratsiooni. Võrreldavat Labor 2 `raw` mõõteseeriat veel ei ole.
+- Rõhu kalibratsioon `kPa` ühikutesse ei ole lõpetatud.
+- CSV-failides puuduvad proovipõhised rõhu- ja pingeväärtused.
+- Pumba olekut ei saa CSV `pump` veeru põhjal automaatselt tuvastada; katsete nimetused lähtuvad laborimärkmetest.
+- SNR-i, Pa/ADC sammu ja `raw`/`opamp` spektrivõrdlust ei saa nende kolme faili põhjal veel usaldusväärselt arvutada.
+
+Need andmed kinnitavad, et ADC salvestas rõhu muutustega seotud signaalimuutusi, kuid ei tõenda veel võimendusastme lõplikku täpsust ega eeliseid võrreldes toorsignaaliga.
+
 ## Käivitamine
 
 Repo juurkataloogist, pärast päris failide saamist:
