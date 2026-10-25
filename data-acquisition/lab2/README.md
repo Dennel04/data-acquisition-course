@@ -10,7 +10,7 @@ Andmehõive ja Smart Solutions laborid kasutavad ühte füüsilist AtomS3R-i. Se
 
 XIAO ESP32S3 Sense on eraldi plaat oma kaamera-püsivaraga; see ei konkureeri Atomi püsivara kohaga.
 
-Python logija toetab kohalikke Windowsi `COM1`, `COM3`, `COM10` jne porte ning macOS-i `/dev/cu.*` porte. Tarkvaratestid on olemas, kuid päris Windowsi riistvarakatse ei ole veel kinnitatud. See ei kinnita ADC ega rõhu mõõdetulemusi. Käivitamisjuhend: [Windows ja macOS](src/README.md#logija-windowsis-ja-macos-is).
+Python logija toetab kohalikke Windowsi `COM1`, `COM3`, `COM10` jne porte ning macOS-i `/dev/cu.*` porte. Tarkvaratestid on olemas, kuid päris Windowsi riistvarakatse ei ole veel kinnitatud. See ei kinnita ADC ega rõhu mõõtetulemusi. Käivitamisjuhend: [Windows ja macOS](src/README.md#logija-windowsis-ja-macos-is).
 
 ## Eesmärk
 
@@ -145,7 +145,7 @@ mitte ei muudeta.
 
 **11.10.26 — Nikita, Maksim**
 
-- Tegime: toitsime AtomS3R-i USB kaudu ja kasutasime UNI-T UT139C multimeetrit. Mõõtsime B5K ja B100K potentsiomeetrite takistuse. Ühendasime B5K ajutiseks reguleeritavaks sisendiks ning proovisime LM358N esimest kanalit pingejärgija. Kontrollisime maketeerimisplaadi ridade ühendusi, toiteviikude pidevust ja ilmset lühist enne pingestamist. AtomS3R ADC-d ei ühendatud.
+- Tegime: toitsime AtomS3R-i USB kaudu ja kasutasime UNI-T UT139C multimeetrit. Mõõtsime B5K ja B100K potentsiomeetrite takistuse. Ühendasime B5K ajutiseks reguleeritavaks sisendiks ning proovisime LM358N esimest kanalit pingejärgijana. Kontrollisime maketeerimisplaadi ridade ühendusi, toiteviikude pidevust ja ilmset lühist enne pingestamist. AtomS3R ADC-d ei ühendatud.
 - Juhtus (numbrid ja ühikud): B5K takistus oli ligikaudu `4,9 kΩ` ja B100K takistus `94,8 kΩ`; B100K aktiivses katses ei kasutatud. LM358 pin 8 ja pin 4 vahel mõõtsime ligikaudu `5 V`. B5K liuguri pinge muutus ligikaudu `0…5,2 V` ning seadsime selle väärtusele `0,401 V`. Esimene väljundmõõtmine C26 ja D29 vahel andis `0 V`, kuigi ootasime ligikaudu `0,4 V`. Sisend C28 ja D29 vahel näitas eri hetkedel ligikaudu `3,9 V`, `5,222 V` ja `0,4 V`. Väljund C26 ja D29 vahel näitas hiljem ligikaudu `3,9 V` ka siis, kui sisend oli seatud tagasi ligikaudu `0,4 V`. Toite kontroll D29 ja H26 vahel andis ühe korra `0,027 V`, kordusmõõtmine `5,2 V`; mõlemad näidud jäävad dokumenti vastuoluna.
 - Otsustasime, ja miks: pingejärgija ei käitunud õigesti ning vea põhjus jäi leidmata. `3,9 V` ja `5,2 V` ei tõenda ADC jaoks ohutut väljundit. Järgmine katse algab LM358 suuna, viigustiku ja kontaktide kontrollist ning ligikaudu `0,4 V` sisendi taastamisest. LM358 sisendit vahemikus `3,9…5,2 V` ei kasutata 5 V toitega kehtiva pingejärgija katsena, sest see võib jääda lubatud ühispingevahemikust välja.
 - Failid: `data-acquisition/lab2/README.md`, `data-acquisition/lab2/docs/bench_session.md`, `data-acquisition/lab2/docs/bom.md`, `data-acquisition/lab2/docs/diagnostic_2026-10-11.md`.
@@ -164,12 +164,12 @@ mitte ei muudeta.
 * Tegime: valmistasime ette eraldi Labor 2 mõõtmis-püsivara ja USB CSV-logija, kasutades Labor 1 ADC seadistust, kaheksa lugemi keskmist ja serial-pordi avamise võtet. Codex oli tarkvaraline abivahend, mitte füüsiliselt kohal olnud osaleja. Labor 1 lähtekoodi ega varasemaid päevikukirjeid ei muudetud.
 * Juhtus (numbrid): kohalik build `SUCCESS`; RAM `22 804 / 327 680` baiti, flash `471 177 / 3 342 336` baiti. Sünteetilised tarkvaratestid `19/19`; tegelik 100 Hz, ADC, pinge ja rõhk ei ole selle tööga mõõdetud.
 * Otsustasime, ja miks: iga jooks nõuab selget `raw/opamp` valikut; kalibreerimata pinge ja kPa jäävad CSV-s tühjaks. Multimeetri võrdlusnäit salvestatakse eraldi käsitsi sisestatud metaandmena. Võrku, pumpa ega robotit mõõtmisprogramm ei juhi.
-* Lahti järgmiseks korraks: tudeng kinnitab osalejad ja kirje; eraldi luba üleslaadimiseks; LM358 ja MPX5700AP kogu väljundulatuse ning transientide elektriline kontroll enne G5 ühendamist; tegelik ajastus, kalibratsioon ja vähemalt 30 impulssi kummagi konfiguratsiooniga. Füüsiline tulemused, SNR ja pumbavõrdlus jäävad TODO.
+* Lahti järgmiseks korraks: tudeng kinnitab osalejad ja kirje; eraldi luba üleslaadimiseks; LM358 ja MPX5700AP kogu väljundulatuse ning transientide elektriline kontroll enne G5 ühendamist; tegelik ajastus, kalibratsioon ja vähemalt 30 impulssi kummagi konfiguratsiooniga. Füüsilised tulemused, SNR ja pumbavõrdlus jäävad TODO.
 
 **22.10.26 katse allikaviide — lisatud 23.10.26 (Maksim)**
 
 * Tegime: sidusime olemasoleva 22.10 katsekande Maksimi Word-allika ja [eestikeelse koostamisjuhendiga](docs/lm358n_wiring_2026-10-22.md). Juhend sisaldab viigustikku, ühendusi ja arvutuse kontrolli; varasemad mõõteväärtused ja päevikukanded jäävad muutmata.
-* Juhtus (numbrid): allikas kinnitab varem kirjapandud ühe tööpunkti tulemused ning B5K reguleerimisel saadud väljundnäidu. Uusi füüsiline mõõtmisi selle dokumenteerimise käigus ei tehtud.
+* Juhtus (numbrid): allikas kinnitab varem kirjapandud ühe tööpunkti tulemused ning B5K reguleerimisel saadud väljundnäidu. Uusi füüsilisi mõõtmisi selle dokumenteerimise käigus ei tehtud.
 * Otsustasime, ja miks: säilitame Wordi muutmata algallikana. Põhijuhendisse ei kopeeri faili lõpus olevat vestlust. Potentsiomeetritega katse ei kinnita rõhku ega kogu väljundulatuse sobivust G5-le.
 * Lahti järgmiseks korraks: MPX5700AP, elektriline vahemikukontroll, kalibratsioon, ostsillogrammid ja `raw/opamp` CSV-d. Kohalik AUTO-püsivara jääb eraldi, üles laadimata tööks.
 
@@ -208,7 +208,6 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 
 **Piirangud:** rõhku ei ole veel kalibreeritud `kPa` ühikutesse. Samuti ei ole lõpetatud sama katse `raw` ja `opamp` signaalide võrdlust ega SNR-i arvutamist.
 
-
 ### Väljundid ja tulemused
 
 **Väljundid**
@@ -229,8 +228,4 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 * Mida me teeksime teisiti: TODO — complete after physical tests.
 * Mida järgmine labor peaks enne alustamist teadma: TODO — complete after the
   op-amp, calibration and pump-control comparison are physically verified.
-
-
-
-
 
