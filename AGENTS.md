@@ -39,6 +39,7 @@ data-acquisition/
     notebooks/   <- future comparison, spectra, resolution, and SNR analysis
     docs/        <- op-amp worksheet, BOM, pump-control comparison, circuit and oscilloscope evidence
   lab3/
+    assignment-EST.md <- ametliku ülesande täpne muutmata etalon
     README.md    <- concise Estonian working document, checklist, decisions, and devlog
     src/         <- valve/UV timer, comparator-interrupt, alarm, and logger work
     data/        <- drop table and pressure curves
@@ -67,6 +68,27 @@ pressure derivatives, a comparator, and interrupt-driven fault handling.
 Code or a successful simulation is not evidence that hardware works. Never
 fabricate drop measurements, latency, alarm-detection rates, or hardware
 availability; keep them as TODO until verified from real hardware.
+
+Labori 3 kehtivate nõuete muutmata etalon on
+`data-acquisition/lab3/assignment-EST.md`, ametliku ülesande täpne koopia.
+Meeskonna mõõtmised, otsused ja päevik jäävad README-sse ning docs-kausta.
+
+Pneumaatika: pump → Y → iminapp / 3/2 klapp → süstal. Iminapp on otse
+pumba Y-harus; klapp juhib ainult süstalt. Voolu all ühendab klapp pumba
+süstlaga, vooluta lahutab pumba ja ühendab süstla atmosfääriga.
+Laboris 3 lülitab klappi M5Stack Mini 3A Relay Unit; MOSFET on ainult
+hilisema labori võrdlusobjekt.
+
+Tilku mõõdetakse tööriista kaamera piltidelt: `data/drops.csv` seob tilga,
+foto ja rõhukõvera; `data/placement.csv` salvestab laigu pindala ja nihke
+ekraani keskpunktist. Hele prinditud PLA-tilgaplaat, mõõdetud kõrgusega
+vahetükid ja päris AtomS3 mõõtudest kavandatav ekraanipoole mudel vajavad
+CAD-lähtefaile, STL-e ning füüsilist kontrolli. Vaiku katsetatakse prinditud
+mudelil, mitte päris AtomS3-l.
+
+Labori 2 dokumenteeritud katseskeemis kasutati LM358N teist poolt
+viitepinge puhvrina. Selle kasutamine Labori 3 komparaatorina nõuab eraldi
+otsust viitepuhvri ülesande ja lõpliku skeemi kohta; kanalit ei eeldata vabaks.
 
 ## Conventions
 

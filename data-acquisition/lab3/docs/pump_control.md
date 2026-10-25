@@ -13,10 +13,15 @@ Kõik siinsed Labor 3 väärtused lisatakse ainult dateeritud päris mõõtmise 
 - Doseerimisrõhu riba või muu juhtimisviis: **TODO: kPa**
 - Tegelik stabiilsus ja tingimused: **TODO: päris mõõtmine**
 - Mõju tilga suurusele: **TODO**
+- Tegelik rõhk lahtise napaga ja väljalülitusrõhuni jõudmine: **TODO**
+- Nõelventiil ainult mõõdetud vajadusel; mõju doseerimisrõhule ja imemisele: **TODO**
+- Lab 2 potentsiomeetritega elektrilised katsed ei kinnita seda pneumaatikat, rõhureferentsi ega Lab 3 riba.
 
-## Vaakumi ohutu olek
+## Süstlaharu ohutu olek ja Y-pneumaatika
 
-- Vooluta klapi tegelik haru: **TODO: füüsiliselt kontrollida**
+Napp on Y1 kaudu otse pumbaga ühendatud. 3/2 klapp juhib ainult süstalt: voolu all pump → süstal; vooluta süstal → atmosfäär ja pump lahutatud. Teine Y on andurile; asukoht enne klappi või süstlaharus on TODO. Tsükkel: doseerimine → klaasi tõstmine → kõvendamine → väljund.
+
+- Vooluta rõhu vabanemine süstlaharus: **TODO: füüsiliselt mõõta**
 - USB/toite kadumise käitumine: **TODO**
 - Pumba ja klapi ohutu väljalülituse tõend: **TODO**
 
