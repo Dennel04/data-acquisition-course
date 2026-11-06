@@ -39,6 +39,8 @@ Kavandada anduri ja ADC vahele analoogaste, mis nihutab ja skaleerib meeskonna t
 - Võrdlev analüüs, spektrid, Pa/ADC samm ja SNR: toore signaali arvutuslik lähtejoon `141 Pa/kood`; op-amp võrdlus ja SNR: TODO: real measurement required.
 - Mõõtmis-püsivara ja USB logija on ette valmistatud: [`src/README.md`](src/README.md). USB-only üleslaadimine, LCD ja `measure_stop` → `stopped` vastus on kinnitatud. G5, 12-bitine ADC, `raw/opamp` silt ning 100 Hz siht; tegelik ajastus ja kalibratsioon vajavad veel mõõtmist. CSV analüüsi juhend: [`notebooks/README.md`](notebooks/README.md). Pumba automaatjuhtimist ei ole.
 
+Kohalik AUTO-režiimi uuendus alustab toite sisselülitamisel ADC lugemist ja kuvab LCD-l ning Serial Monitoris kalibreerimata eelvaadet. See versioon ei ole veel üles laaditud ega riistvaral kontrollitud. Varasem USB-only kinnitus ei kinnita uut AUTO-režiimi. Kasutus ja CSV salvestamine: [`src/README.md`](src/README.md#adc-vaatamine-ilma-logijata).
+
 ## Kontrollnimekiri
 
 - [ ] Labori 1 signaalist on arvutatud Pa ühe ADC sammu kohta (`141 Pa/kood`); tegelik sisendvahemik, kasutatud ADC vahemiku osa ja lõplikud astme nõuded: TODO: real measurement required.

@@ -3,6 +3,10 @@
 #include <cstring>
 
 namespace acquisition {
+enum class Mode { Auto, Managed, Stopped };
+inline Mode afterDisconnect(Mode mode) {
+  return mode == Mode::Managed ? Mode::Stopped : mode;
+}
 constexpr uint32_t kPeriodMs = 10;
 inline bool validConfig(const char* s) {
   return s && (!std::strcmp(s, "raw") || !std::strcmp(s, "opamp"));

@@ -1,10 +1,14 @@
 # Labor 2 mõõtmistarkvara
 
-Esimene etapp kogub ainult ADC toorandmeid. Püsivara ja logija on tarkvaraliselt kontrollitud. Kasutaja kinnitas USB-only üleslaadimise, LCD töö ja `measure_stop` käsu `stopped` vastuse (Serial Monitor `--eol LF`). Elektriline sobivus, tegelik sagedus ja rõhukalibratsioon vajavad mõõtmist. Labor 1 lähtekood jääb muutmata. Võrguühenduseta CSV analüüs: [notebooks/README.md](../notebooks/README.md).
+Esimene etapp kogub ainult ADC toorandmeid. Varasema versiooni USB-only üleslaadimine, LCD töö ja `measure_stop` käsu `stopped` vastus on kasutaja kinnitatud (Serial Monitor `--eol LF`). Allpool kirjeldatud AUTO-versioon on kohalik muudatus ja vajab eraldi üleslaadimisluba ning riistvarakatset. Elektriline sobivus, tegelik sagedus ja rõhukalibratsioon vajavad mõõtmist. Labor 1 lähtekood jääb muutmata. Võrguühenduseta CSV analüüs: [notebooks/README.md](../notebooks/README.md).
 
 ## Mõõtmisrežiim
 
-`firmware/` on AtomS3R PlatformIO projekt (`atoms3r`, ühilduv board `m5stack-atoms3`). GPIO G5 on sisend: 12 bitti, `ADC_11db`, kaheksa lugemi täisarvuline keskmine. Siht on üks proov iga 10 ms järel. Hilinenud ajavahemikud loendatakse, mitte ei täideta väljamõeldud proovidega. LCD näitab režiimi ja ADC koodi; käivitamisel oodatakse USB käsku.
+`firmware/` on AtomS3R PlatformIO projekt (`atoms3r`, ühilduv board `m5stack-atoms3`). GPIO G5 on sisend: 12 bitti, `ADC_11db`, kaheksa lugemi täisarvuline keskmine. Siht on üks proov iga 10 ms järel. Hilinenud ajavahemikud loendatakse, mitte ei täideta väljamõeldud proovidega.
+
+Pärast toite sisselülitamist alustab seade AUTO-režiimis ADC lugemist ka ilma USB monitori või logijata. LCD näitab `AUTO / config unknown`, viimast ADC koodi ja `not calibrated`. LCD ja Serial Monitori eelvaade uuenevad kuni neli korda sekundis; see on kuvamise sagedus, mitte ADC 100 Hz siht. Täis USB-puhvri korral jäetakse eelvaaterida saatmata, ADC lugemine ja LCD jätkavad.
+
+AUTO ei määra `raw/opamp` ühendust ega arvuta pinget või rõhku. Lahtise G5 kood võib ujuda. Automaatkäivitus ei kinnita ühendatud ahela elektrilist ohutust: uus versioon hakkab G5 lugema kohe pärast käivitumist, seega tuleb sisendi ohutus kontrollida enne toite sisselülitamist.
 
 Wi-Fi, võrk, pumbajuhtimine, robot ja salvestatud seadete laadimine puuduvad. NVS-i algatamine ja namespace'ide avamine on linker-guardidega blokeeritud, et Arduino automaatne taastamine ega M5 teegid ei muudaks olemasolevaid seadeid. See ei taga kogu flash'i muutumatust: SDK panic/coredump ja OTA metadata jäävad eraldi riskiks. Ärge kasutage `erase_flash`, `uploadfs` ega tehase lähtestamist. Enne eraldi lubatud üleslaadimist kontrollige olemasoleva püsivara taastamise võimalust ja privaatset backup'i.
 
@@ -12,19 +16,41 @@ Wi-Fi, võrk, pumbajuhtimine, robot ja salvestatud seadete laadimine puuduvad. N
 
 ## USB protokoll
 
-115200 baud, üks ASCII JSON-objekt real. Logija saadab ühe käivituskäsu koos juhusliku jooksu ID-ga:
+115200 baud. AUTO-eelvaade on loetav tekstirida prefiksiga `# AUTO `: aeg `t_ms`, ADC kood, `config=unknown`, `calibrated=false` ja vahele jäänud ADC intervallide arv `missed`. See ei ole CSV ega logija mõõtepakett.
+
+Juhtkäsud ja hallatud mõõtepaketid on üks ASCII JSON-objekt real, lõpus LF (`\n`). Logija saadab ühe käivituskäsu koos juhusliku jooksu ID-ga:
 
 ```json
 {"cmd":"measure_start","config":"raw","run":"0123456789abcdef"}
 ```
 
-Püsivara kinnitab `event=started`, `firmware=DA2_MEASURE_V1`, sama `run` ja `config`, `period_ms=10`, `adc_pin=5`, `adc_bits=12`, `adc_samples=8`, `calibrated=false`. Seejärel väljastab:
+`measure_start` lülitab AUTO välja, alustab uut loendust (`seq=0`, `missed=0`) ning kinnitab `event=started`, `firmware=DA2_MEASURE_V1`, sama `run` ja `config`, `period_ms=10`, `adc_pin=5`, `adc_bits=12`, `adc_samples=8`, `calibrated=false`. Seejärel väljastab ainult hallatud mõõtepakette:
 
 ```json
 {"t":1234,"adc":123,"p":null,"pump":null,"config":"raw","run":"0123456789abcdef","seq":0,"missed":0}
 ```
 
-Näide on sünteetiline, mitte mõõtmine. `t` on Atomi `millis()`, `seq` algab nullist, `missed` loendab vahele jäänud 10 ms intervalle. `{"cmd":"measure_stop"}` peatab ainult mõõtmise. Neid käske ei tohi asendada Labor 1 pumbakäskudega. Vigane käsk või serial-raam peatab jooksu. USB taasühendus ei taasta jooksu automaatselt.
+Näide on sünteetiline, mitte mõõtmine. `t` on Atomi `millis()`, `seq` algab nullist, `missed` loendab vahele jäänud 10 ms intervalle. `{"cmd":"measure_stop"}` peatab nii AUTO kui ka hallatud mõõtmise, vastab `{"event":"stopped"}` ning kuvab `STOPPED`. Uus `measure_start` saab alustada uut jooksu. Toite taaskäivitus alustab jälle AUTO-režiimist. Neid käske ei tohi asendada Labor 1 pumbakäskudega. Vigane käsk või serial-raam peatab mõõtmise. USB kadumine peatab hallatud jooksu; taasühendus seda ei taasta. AUTO jätkab ilma USB-ta LCD-l.
+
+Kasuta AUTO-versiooniga selle repo ajakohastatud logijat: enne käivituskinnitust ignoreerib see veel puhvris olevaid AUTO-ridu. Pärast kinnitust kehtib sama range JSON-protokoll ja CSV-skeem; ükski AUTO-rida ei lähe CSV-sse. Ootamatu AUTO-rida käimasoleva jooksu sees on viga, mitte vaikselt eemaldatav proov.
+
+## ADC vaatamine ilma logijata
+
+Pärast eraldi lubatud AUTO-versiooni üleslaadimist piisab LCD jaoks toitest. Serial Monitoris vali 115200 baud ja LF. PlatformIO monitor Windows PowerShellis:
+
+```powershell
+pio device monitor --port COM3 --baud 115200 --eol LF --filter send_on_enter --echo
+```
+
+macOS-is:
+
+```sh
+pio device monitor --port /dev/cu.usbmodem1301 --baud 115200 --eol LF --filter send_on_enter --echo
+```
+
+Asenda port tegeliku seadme omaga. `pio` peab olema arvutisse paigaldatud; ka muu 115200 baud / LF Serial Monitor sobib. AUTO-eelvaate nägemiseks pole vaja ühtegi käsku. Peatamiseks saada `{"cmd":"measure_stop"}` ja Enter. Pärast peatamist saab uue hallatud jooksu alustada alloleva logijaga, AUTO taastub toite taaskäivitamisel.
+
+Atom ei loo arvutis CSV-faili. AUTO tekst on vaatamiseks kuni 4 Hz, mitte 100 Hz andmestik analüüsiks. CSV ja jooksu metaandmete salvestamiseks kasuta allolevat Python logijat, sulgedes enne Serial Monitori. Logija valib ühendusele vastava `raw/opamp` sildi ja käivitab hallatud 100 Hz sihiga jooksu. Ka muu arvutiprogramm võiks andmeid salvestada, kuid monitori kopeeritud teksti ei tohi esitada selle logija CSV-na.
 
 ## Logija Windowsis ja macOS-is
 
@@ -70,6 +96,9 @@ t_ms,adc,p_kpa,pump,config,run_id,seq,missed,voltage_v,dmm_reference_v,dmm_recor
 `p_kpa`, `voltage_v` ja `pump` jäävad tühjaks: puuduvad selle seadme ja kummagi konfiguratsiooni kinnitatud teisendus ning pumba tagasiside. Tühi pump ei tähenda `off`. `adc_clipped` märgib ainult koodi 0 või 4095, mitte diagnoosi ega elektrilist ohutust. Kõik jooksud saavad kõrvalfaili `.runs.jsonl`, kus on kestus, ridade arv, sagedus, min/max intervall ja vead. Poolik jooks säilib tõendina; ära kasuta seda vaikimisi kehtiva võrdlusena. Logija lõpetab vigase raami, vale konfiguratsiooni, puuduva proovi või 500 ms vaikuse korral; pumba olekut ta ei muuda. Väljumiskood 0 nõuab lõppenud jooksu, null vahelejäänud intervalli ning 9–11 ms proovivahesid. Tegelik USB läbilase ja 100 Hz tuleb riistvaral kontrollida.
 
 ## Tarkvarakontroll
+
+**AUTO kontrolliseis (07.11.2026): software-tested, mitte hardware-verified.** Sünteetilised tarkvaratestid: 43 läbitud, kaks muutmata analüsaatori graafikutesti jäid Matplotlibi puudumisel vahele. Hostil kontrolliti tegelikku C++ mõõtmisloogikat ja firmware loop'i imiteeritud ADC/LCD/USB-ga; `atoms3r` build õnnestus. AUTO-versiooni ei laaditud selle kontrolli käigus seadmesse ega kontrollitud füüsilisel riistvaral. Varasemad mõõtmisprotokollid ei kinnita selle AUTO-versiooni riistvarakatset.
+
 
 ```sh
 python3 -m unittest discover -s data-acquisition/lab2/tests -v

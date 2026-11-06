@@ -106,7 +106,7 @@ def wait_started(port, config, run, clock=time.monotonic):
     end=clock()+5
     while clock()<end:
         line=port.readline(513)
-        if not line or line.startswith(b"# DA2_MEASURE_V1"):
+        if not line or line.startswith((b"# DA2_MEASURE_V1", b"# AUTO ")):
             continue
         obj=decode(line)
         if obj != dict(event="started",firmware="DA2_MEASURE_V1",run=run,config=config,

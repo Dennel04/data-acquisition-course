@@ -127,7 +127,7 @@ Allikad: [MPX5700 andmeleht](https://www.nxp.com/docs/en/data-sheet/MPX5700.pdf)
 
 ### Andmete kogumise järjekord
 
-1. Pärast eraldi lubatud üleslaadimist kontrolli kõigepealt ainult USB-ga LCD ja logija käivituskinnitust. Lahtise G5 näit on ujuva sisendi vaatlus, mitte rõhumõõtmine; hoia see eraldi smoke-test failis. Püsivara peab ootama `measure_start` käsku.
+1. Pärast eraldi lubatud üleslaadimist kontrolli kõigepealt ainult USB-ga LCD ja AUTO-eelvaadet. AUTO-versioon loeb G5 kohe pärast käivitumist; hallatud CSV-jooks algab alles `measure_start` käsuga. Lahtise G5 näit on ujuva sisendi vaatlus, mitte rõhumõõtmine; hoia see eraldi smoke-test failis. Enne välise ahela toitega käivitamist kontrolli G5 elektrilist sobivust.
 2. Pärast elektrilist kontrolli kogu ühendatud `raw` signaalist 10 s püsipunkti jooks. Võrdle ajatemplite sagedust 100 Hz sihiga; 10 s jooks annab ligikaudu 1000 proovi, täpne arv tuleb logi järgi. Kirjuta sama stabiilse sõlme multimeetrinäit `--dmm-v` abil ning töölehele.
 3. Kogu mitu kontrollitud pingepunkti kummagi konfiguratsiooni jaoks. Ära rakenda vana Atomi `3,70 V / 4095` tegurit uuele seadmele kinnitatud kalibratsioonina. Alles päris kalibratsiooni ja rõhureferentsi järel saab tuletada pinge/kPa ning teha kPa-põhist SNR analüüsi; esialgses CSV-s jäävad need väljad tühjaks.
 4. Kogu sama määratletud pumbaimpulss vähemalt 30 korda `raw` ja vähemalt 30 korda `opamp` konfiguratsioonis, nagu nõuab [ametlik ülesanne](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%202%5D%20EST.md). Ühine CSV, erinevad `config/run_id/trial`, samad tingimused ja kestus. Säilita ebaõnnestunud jooksud ning põhjendus, ära kirjuta neid üle.

@@ -128,6 +128,33 @@ class MeasurementTests(unittest.TestCase):
         self.assertEqual(json.loads(port.writes[0])["cmd"],"measure_start")
         self.assertEqual(json.loads(port.writes[-1])["cmd"],"measure_stop")
 
+    def test_auto_preview_before_ack_is_not_csv_data(self):
+        ack=dict(event="started",firmware="DA2_MEASURE_V1",run=RUN,config="raw",
+                 period_ms=10,adc_pin=5,adc_bits=12,adc_samples=8,calibrated=False)
+        preview=b"# AUTO t_ms=10 adc=1234 config=unknown calibrated=false missed=0\n"
+        port=Port([preview,preview,encoded(ack)]+[encoded(sample(i*10,i)) for i in range(101)])
+        args=SimpleNamespace(config="raw",condition="atmosphere",trial=1,duration=1,dmm_v=None)
+        handle=io.StringIO();writer=csv.DictWriter(handle,fieldnames=logger.FIELDS);writer.writeheader()
+        summary=logger.capture(port,writer,handle,args,RUN,clock())
+        self.assertEqual(summary["status"],"complete")
+        self.assertEqual(summary["rows"],101)
+        self.assertNotIn("AUTO",handle.getvalue())
+
+    def test_auto_preview_after_ack_is_a_protocol_error(self):
+        ack=dict(event="started",firmware="DA2_MEASURE_V1",run=RUN,config="raw",
+                 period_ms=10,adc_pin=5,adc_bits=12,adc_samples=8,calibrated=False)
+        port=Port([encoded(ack),b"# AUTO unexpected\n"])
+        args=SimpleNamespace(config="raw",condition="atmosphere",trial=1,duration=1,dmm_v=None)
+        handle=io.StringIO();writer=csv.DictWriter(handle,fieldnames=logger.FIELDS)
+        summary=logger.capture(port,writer,handle,args,RUN,clock())
+        self.assertEqual(summary["status"],"partial")
+        self.assertEqual(summary["rows"],0)
+        self.assertIn("diagnostic",summary["error"])
+
+    def test_auto_preview_without_ack_still_times_out(self):
+        port=Port([b"# AUTO preview\n"]*100)
+        with self.assertRaises(TimeoutError): logger.wait_started(port,"raw",RUN,clock(1))
+
     def test_append_refuses_missing_final_newline(self):
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/"synthetic.csv"
