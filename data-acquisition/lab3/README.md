@@ -177,6 +177,12 @@ Lisa ainult tegeliku töösessiooni järel uus sissekanne; olemasolevaid sisseka
 - Failid: `assignment-EST.md`, `README.md`, `data/README.md`, `data/drops.csv`, `data/placement.csv`, `docs/bom.md`, `docs/bench_session.md`, `docs/pump_control.md`, `docs/recipe.md`, `docs/scope/README.md`, `docs/falstad/README.md`, `notebooks/README.md`, `src/README.md`.
 - Lahti järgmiseks korraks: inventuur, Lab 2 lõpliku skeemi ja kalibratsiooni kontroll, mõõdetud relee-/klapiühendus, kaamera skaala ning plaadi, vahetükkide ja ekraanipoole mudeli füüsilised mõõdud. Kõik füüsilised Lab 3 tulemused jäävad TODO.
 
+**07.11.2026 — dokumentatsiooni sünkroonimine (Codex)**
+
+- Codex võrdles [3D printimise Lab 3 BOM-i](https://github.com/Dennel04/3d-printing-course/blob/9cf6bf179b39b055f85b1e05a061bb8c26b49af6/3d-print/lab3/docs/bom.md), [Nutikate Lahenduste Lab 3 päevikut](https://github.com/Dennel04/smart-solutions-course/blob/7bc372c7d90253701caf3b026c0a7f17c4528cf6/smart-solutions/lab3/README.md#arendusp%C3%A4evik) ning [ühise Atomi projekti C++ mudelit, sündmuste puhvrit ja native-teste](https://github.com/Dennel04/smart-solutions-course/commit/5fc4fbf76653ef1a0e92037cb38ebd10012faf00). Seotud GitHubi commit'ide autor on `Nikikikl`; muid osalejaid selles dokumentatsioonitöös ei ole kinnitatud.
+- Uuendasin `README.md`, [`docs/bom.md`](docs/bom.md) ja [`src/README.md`](src/README.md). Kinnitatud on LED-i ja draiveri valik ning nende ja radiaatori kanded ühises tabelis. Ost ja kättesaamine on kinnitamata. Ühises Atomi projektis on olemas tarkvaramudel ja native-testid; siinse töö käigus teste ei korratud ega riistvara kasutatud.
+- TODO: elektriline sobivus, jahutus, relee parameetrid, UV ohutu väljalülitumine, füüsiline ühendus ning GPIO/ISR-i kontroll, eraldi tilgalogija ja päris mõõteandmed.
+
 ## Väljundid ja tulemused
 
 - Nutikad Lahendused L3: klapi ja LED-i käsud, seaded/testnupud Atomi lehele ning alarmisündmus, mille peale jaam peatab roboti — **TODO**.

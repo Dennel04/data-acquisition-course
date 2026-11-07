@@ -1,6 +1,12 @@
 # Labor 3 püsivara ja logija plaan
 
-Selles ettevalmistuses püsivara ega logijat ei rakendata. Liidesed, viigud, riistvara ja Labori 2 korduskasutus tuleb enne koodi kontrollida.
+Siia reposse püsivara ei kopeerita. Eraldi arvuti tilgalogija ja Andmehõive Lab 3 päris mõõteandmed on **TODO**.
+
+## Olemasolev tarkvaramudel
+
+Nutikate Lahenduste ühises Atomi PlatformIO projektis on [C++ klapi ja UV olekumudel ning sündmuste simulatsioon](https://github.com/Dennel04/smart-solutions-course/commit/5fc4fbf76653ef1a0e92037cb38ebd10012faf00), koos mudeli ja sündmuste native-testidega. Mudel kontrollib ühekordset taimerit, alarmilukku ning UV käivitamise ja alarmi vabastamise kohalikku kinnitust. Sündmuste puhver säilitab lühikese komparaatorihäire; see ei ole ISR-ohutu riistvaraliides.
+
+See tarkvaramudel ei ole Andmehõive Lab 3 valmis püsivara. Füüsiline ühendus, GPIO, ISR, relee, UV-draiver ja ohutu väljalülitumine vajavad veel riistvaral kontrolli. Allpool toodud käsud on liidese plaan, mitte kinnitatud kaugkäsk UV käivitamiseks või alarmi vabastamiseks.
 
 ## Tulevane Atomi püsivara
 
