@@ -18,7 +18,7 @@ Esimese riistvarasessiooni mõõtmisjärjekord, mõõtepunktid ja tagastatav vä
 | Anduri tundlikkus | `S_P` | Labori 1 `5,00 V` toite korral andmelehe valemist arvutatud `6,429 mV/kPa`; Labor 2 toitega arvutada uuesti | `V_sensor · 0,0012858`; `data-acquisition/lab1/src/firmware/include/sensor.h` |
 | ADC bitisügavus | `N` | `12 bit` (`0…4095`) | `data-acquisition/lab1/src/firmware/src/sensor.cpp`, `include/sensor.h` |
 | ADC seadistus ja kasutatav sisendvahemik | `V_ADC,min`, `V_ADC,max` | AtomS3R G5, `ADC_11db`, kaheksa lugemi keskmine; Labori 1 koodist pingeks tegur `3,70 V / 4095`; tegelik kasulik sisendvahemik: TODO: real measurement required | `data-acquisition/lab1/src/firmware/src/sensor.cpp`, `include/sensor.h`, `docs/sensor_choice.md` |
-| Op-ampi tegelik toitepinge | `V_OP,meas` | TODO: real measurement required | Mõõta astme toiteviikudel tööolukorras |
+| Op-ampi tegelik toitepinge | `V_OP,meas` | 22.10 potentsiomeetrikatses `5,00 V`; lõpliku astme tööolukorras TODO: real measurement required | [22.10 mõõtetabel](bench_session.md#22102026--lm358n-katseskeemi-mõõtmised-maksim); korrata lõplikul astmel |
 
 ## Nõutav anduripinge vahemik
 
@@ -48,7 +48,7 @@ Labor 2 peab sama raw-teisenduse uuesti kontrollima ja mõõtma op-amp konfigura
 | Parandatud alumine siht | `V_out,min,2` | TODO: real measurement required |
 | Parandatud ülemine siht | `V_out,max,2` | TODO: real measurement required |
 
-**Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Näites on `V_in,min = 0,40 V` ja `V_in,max = 1,56 V`; esimese versiooni näidissiht on `0,2…3,3 V` ja parandatud näidissiht `0,3…3,0 V`. Labor 1 kinnitab sama andurit, 12-bitist ADC-d ja `ADC_11db` seadistust. Meeskond ei ole siiski mõõtnud oma `V_in,min`, `V_in,max`, Labor 2 op-ampi toidet ega ADC kasulikku lineaarset vahemikku. Seetõttu jäävad näitearvud näidiseks, kuni Labor 2 mõõtmised kinnitavad projekteerimise lähtepunktid.
+**Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Näites on `V_in,min = 0,40 V` ja `V_in,max = 1,56 V`; esimese versiooni näidissiht on `0,2…3,3 V` ja parandatud näidissiht `0,3…3,0 V`. Labor 1 kinnitab sama andurit, 12-bitist ADC-d ja `ADC_11db` seadistust. Meeskonna tegelikud `V_in,min` ja `V_in,max`, lõpliku astme toitepinge ning ADC kasulik lineaarne vahemik vajavad veel kontrolli.
 
 ## Võimenduse arvutus
 
@@ -190,7 +190,7 @@ Tabelis väljenda `e` millivoltides: `e_mV = 1000 · e_V`. Hoia märki alles. V�
 
 ## Parandatud versiooni arvutus
 
-Paranduse sihid määratakse esimese versiooni **mõõdetud** toitepinge, väljundi piiride, otspunktivigade ja ADC kontrollitud kasuliku vahemiku põhjal. Praegu on teine versioon ainult sümboolne arvutuskäik.
+Paranduse sihid määratakse esimese versiooni **mõõdetud** toitepinge, väljundi piiride, otspunktivigade ja ADC kontrollitud kasuliku vahemiku põhjal. Allolev arvutuskäik on sümboolne. 25.10 tehtud [plaadimuudatused ja üleandmine](opamp_v2_handoff_2026-10-25.md) on dokumenteeritud eraldi; parandatud astme kolme punkti mõõtmised on veel TODO.
 
 Vali `V_out,min,2 > V_out,min,1` ja `V_out,max,2 < V_out,max,1` ainult siis, kui mõõtmised kinnitavad, et just selline varu on vajalik. Mõlemad sihid peavad jääma korraga ADC kasulikku sisendvahemikku ja op-ampi lineaarse väljundulatuse sisse.
 
@@ -273,7 +273,7 @@ Falstadi mudel ei tõenda konkreetse LM358 madala otsa lineaarsust, väljundi ü
 | Tegelikud `V_in,min` ja `V_in,max` kogu nõutud töövahemikus | TODO: real measurement required |
 | Raw-signaali lähtejoon | Labori 1 arvutus `0,1405 kPa/kood = 141 Pa/kood`; kontrollida Labor 2 riistvaral |
 | Lõpliku vahemiku põhjal valitud takistid ja nende tegelikud väärtused | TODO: real measurement required |
-| Tegelik op-ampi toitepinge | TODO: real measurement required |
+| Tegelik op-ampi toitepinge lõpliku astme tööolukorras | TODO: real measurement required |
 | Esimese ja parandatud astme kolme punkti mõõtmised | TODO: real measurement required |
 | Mõlema otspunkti vead | TODO: real measurement required |
 | Ostsilloskoobi sisendi ja väljundi tõend | TODO: real measurement required |

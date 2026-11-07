@@ -35,7 +35,7 @@ Kavandada anduri ja ADC vahele analoogaste, mis nihutab ja skaleerib meeskonna t
 - 25.10 astme 2. versiooni muudatused, jaguriga CSV-de analüüs ja üleandmise seis: [`docs/opamp_v2_handoff_2026-10-25.md`](docs/opamp_v2_handoff_2026-10-25.md).
 - Tellimuse tööleht: [`docs/bom.md`](docs/bom.md).
 - Toore ja astmega pumbajuhtimise võrdlus: [`docs/pump_control.md`](docs/pump_control.md).
-- `raw` ja `opamp` konfiguratsiooniga CSV-andmed: TODO: real measurement required.
+- Kolm 25.10 `opamp` mõõteseeriat on olemas. Samadel tingimustel kogutud `raw/opamp` võrdlusandmed: TODO: real measurement required.
 - Võrdlev analüüs, spektrid, Pa/ADC samm ja SNR: toore signaali arvutuslik lähtejoon `141 Pa/kood`; op-amp võrdlus ja SNR: TODO: real measurement required.
 - Mõõtmis-püsivara ja USB logija on ette valmistatud: [`src/README.md`](src/README.md). USB-only üleslaadimine, LCD ja `measure_stop` → `stopped` vastus on kinnitatud. G5, 12-bitine ADC, `raw/opamp` silt ning 100 Hz siht; tegelik ajastus ja kalibratsioon vajavad veel mõõtmist. CSV analüüsi juhend: [`notebooks/README.md`](notebooks/README.md). Pumba automaatjuhtimist ei ole.
 
@@ -122,7 +122,7 @@ Määrata meeskonna Labori 1 andmete põhjal:
 - `docs/`: arvutused, Falstadi eksport ja pilt, skeemifoto, ostsilloskoobipilt, `pump_control.md` ja `bom.md`.
 - `README.md`: kontrollnimekiri, otsused, tulemused ja arenduspäevik.
 
-Kõik füüsilised väljundid: TODO: real measurement required.
+Kinnitatud katsed ja lahtised mõõtmised on kokku võetud jaotises [Väljundid ja tulemused](#väljundid-ja-tulemused).
 
 ### Arenduspäevik
 
@@ -210,16 +210,37 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 
 **Piirangud:** rõhku ei ole veel kalibreeritud `kPa` ühikutesse. Samuti ei ole lõpetatud sama katse `raw` ja `opamp` signaalide võrdlust ega SNR-i arvutamist.
 
+**07.11.2026. Täpsustus tööjaotuse kohta**
+
+[Mõõteprotokollid](docs/bench_session.md#22102026--lm358n-katseskeemi-mõõtmised-maksim) kinnitavad Maksimi mõõtmised 22., 24. ja 25.10. [Raimo üleandmine](docs/opamp_v2_handoff_2026-10-25.md) toimus pärast Maksimi 25.10 jaguriga katseid. [23.10 tarkvaratöö](#arenduspäevik) ei olnud füüsiline katse. Tarkvaratöö tegijad vajavad meeskonna kinnitust.
 
 ### Väljundid ja tulemused
+
+**Kinnitatud katsed**
+
+- **22.10.2026.** Maksim kontrollis potentsiomeetritega LM358N katseskeemi ühes tööpunktis: toide `5,00 V`, `Vin = 0,402 V`, `Vref = 0,520 V` ja `Vout = 0,205 V`. B5K reguleerimisel mõõtis ta väljundis ka `3,009 V`. See kinnitab katseskeemi elektrilist tööd mõõdetud tingimustel; MPX5700AP, ADC lugemine ja G5 kogu sisendvahemiku ohutus jäid selles katses kontrollimata. Allikad: [ühendused ja kontroll](docs/lm358n_wiring_2026-10-22.md#6-mõõtmine-ja-arvutuse-kontroll), [mõõtetabel](docs/bench_session.md#22102026--lm358n-katseskeemi-mõõtmised-maksim).
+- **24.10.2026.** Maksim kordas potentsiomeetritega katset: `Vin = 0,402 V`, `Vref = 0,526 V`, `Vout = 0,190 V`. G5 kaudu sai ta ligikaudu 10 sekundiga 1001 ADC lugemit (umbes 100 Hz): keskmine `188,43`, min `182`, max `196` koodi. See oli USB kaudu tehtud ADC kontroll reguleeritava testpingega. Allikad: [mõõteprotokoll](docs/bench_session.md#24102026--lm358n-katseskeemi-ja-atoms3r-adc-kontroll-maksim), [arvutus](docs/opamp_design.md#24102026--lm358n-katseskeemi-kontrollmõõtmine-maksim).
+- **25.10.2026.** Maksim salvestas kolm MPX5700AP mõõteseeriat LM358N ja `10 kΩ / 10 kΩ` pingejaguri kaudu G5-le. Igas failis on 1001 lugemit, esimese ja viimase proovi vahe 10,000 s ning proovide vahe 10 ms. Kõik kolm seeriat on `opamp` konfiguratsioonis. Katsetingimused pärinevad [mõõteprotokollist](docs/bench_session.md#adc-mõõteseeriad) ja failinimedest.
+
+| Katse ja algne CSV | Keskmine (ADC koodi) | Min (ADC koodi) | Max (ADC koodi) | Valimi standardhälve (ADC koodi) |
+|---|---:|---:|---:|---:|
+| [Pump väljas](data/opamp_pump_off_test.csv) | 657,62 | 642 | 667 | 2,90 |
+| [Vaakum](data/opamp_vacum_test.csv) | 511,54 | 14 | 837 | 306,76 |
+| [Ülerõhk](data/opamp_pressure_test.csv) | 804,60 | 641 | 1175 | 185,60 |
+
+Pumba seisuajal oli ADC näidu hajuvus 2,90 koodi. Vaakumi alumine platoo püsis vahemikus 14–21 koodi, kuigi `adc_clipped` jäi nulliks. Platoo viitab signaali alumisele piirangule; selle väike hajuvus ei tõenda korras mõõteahela väikest müra. Vaakumi ja ülerõhu terve seeria standardhälve sisaldab ka signaali muutusi. `p_kpa`, `voltage_v` ja `pump` on CSV-des tühjad. `dmm_reference_v = 0.19`, `condition = test_signal` ja `trial = 1` jäid 24.10 testist ning ei kirjelda 25.10 katsetingimusi. ADC koodid ei väljenda kalibreeritud rõhku ja eri tingimustega `opamp` seeriad ei anna võrreldavat `raw/opamp` katset.
+
+**Tööjaotus.** Maksimi füüsilised katsed on kirjas 22., 24. ja 25.10 mõõteprotokollides. 23.10 tarkvara ettevalmistus ja 22.10 Word-allika dokumenteerimine on eraldi tööd. Dokumenteerimise kuupäev ega Git-commiti autor ei kinnita füüsilises katses osalemist. Pärast Maksimi 25.10 jaguriga mõõtmisi andis Raimo muudetud katseskeemi Maksimile üle. [Üleandmise protokoll](docs/opamp_v2_handoff_2026-10-25.md) eristab plaadimuudatusi, Raimo teatatud multimeetrinäite, hinnanguid ja lahtisi kontrolle. Kolm CSV-d kirjeldavad ümberehitusele eelnenud skeemi.
 
 **Väljundid**
 * Lõplik op-amp aste koos arvutuse, skeemi ja kontrollitud komponentidega: TODO —
   real measurement required.
+* Parandatud astme lõplik elektriline kontroll: TODO — mõõta kolm kontrollitud rõhupunkti ning kontrollida G5 sisendi kogu töövahemikku ja siirdeid.
 * Sama katse kontrollitud `raw` ja `opamp` andmestikud: TODO — real measurement
   required.
 * Kalibratsioonikonstandid ja rõhuks teisendamine koos ühikutega: TODO — real
   measurement required.
+* SNR ja spektrivõrdlus samadel katsetingimustel: TODO — võrreldavad `raw/opamp` mõõtmised ja kalibratsioon.
 * Toore ja op-amp signaaliga pumbajuhtimise võrdlus: TODO — real measurement
   required.
 * Smart Solutions Lab 2 Atomi lehele vajalikud kalibratsiooni- ja rõhuväljad:
@@ -227,7 +248,7 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 
 **KAARDISTA ISE, lõpus.**
 * Git repo ja tag: TODO — lisada alles esitamisel.
-* Numbrid, mille see labor andis, ühikutega: TODO — real measurement required.
+* Numbrid, mille see labor andis, ühikutega: ülaltoodud katsed ja ADC statistika; kalibreeritud rõhutulemused jäävad TODO.
 * Mida me teeksime teisiti: TODO — complete after physical tests.
 * Mida järgmine labor peaks enne alustamist teadma: TODO — complete after the
   op-amp, calibration and pump-control comparison are physically verified.
