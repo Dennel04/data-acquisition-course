@@ -1,29 +1,71 @@
 # Andmehõive: Labor 3 — Tilk ja IRQ
 
-See on meeskonna Labori 3 tööleht. Füüsilisi Lab 3 tulemusi pole siia veel dokumenteeritud; kõik mõõtmised, riistvara saadavus, valikud ja katsed jäävad TODO kuni kontrollitud tõendini.
-
 **Töömaht:** 30 tundi | **Hindamine:** 20 punkti | **Meeskond:** 3 tudengit | **Välja antud:** 28.10.26 | **Tellimise kuupäev:** 06.11.2026 | **Esimene kaitsmine:** 19.11.2026, veebis
+
+[Ülesanne](assignment-EST.md) · [Tõendid](#tõendid-ja-tulemused) · [Arhitektuur](#süsteemi-arhitektuur) · [Kontrollnimekiri](#kontrollnimekiri) · [Nõutavad väljundid](#nõutavad-väljundid) · [Tööplaan](#tööplaan) · [Kiirstart](#kiirstart-ilma-riistvarata) · [Kaitsmine](#kaitsmise-juhend)
+
+## Ülevaade
+
+Laboris 3 uurime, kuidas teha korduva suurusega vaigutilk ja peatada doseerimine, kui otsik ummistub või süstal tühjeneb. Pump surub vaigu süstlast välja. Klapi lahtioleku aeg määrab doseerimisimpulsi, rõhuandur näitab, mis selle ajal voolikus toimub, ja kaamerapildilt mõõdame tilga suurust.
+
+Rõhuandur annab rõhule vastava pinge. AtomS3R loeb pinget arvuna ja logija seob proovid ajatemplitega. Filter vähendab müra, enne kui arvutame, kui kiiresti rõhk muutub. Kui mõõtmised annavad vea eristamiseks sobiva tunnuse, saab komparaator märgata selle läve ületamist ja tekitada protsessoris katkestuse (IRQ). Katkestus võimaldab reageerida põhitsükli järgmist lugemist ootamata. Tegelikku peatamisaega mõõdame klapi mähisel.
+
+## Praegune seis (13.11.2026)
+
+| Valdkond | Seis |
+|---|---|
+| Varasemad päriskatsed | Lab 1-s kontrollis meeskond rõhuandurit, pumbajuhtimist ja klaasi tõstmist. Lab 2-s mõõtis meeskond LM358N katseskeemi potentsiomeetritega ning 25.10 rõhuanduriga. Need on varasemate seadistuste tulemused. |
+| Tarkvara | Nutikate Lahenduste ühises Atomi projektis on klapi ja UV olekumudel, sündmuste puhver ning native-testid. Lab 3 tilgalogija ja riistvaraliides on TODO. |
+| Ettevalmistus | Olemas on [mõõteleht](docs/bench_session.md), [BOM](docs/bom.md), [analüüsiplaan](notebooks/README.md) ja [andmemallid](data/README.md). LED-i, draiveri ja radiaatori read on ühises tellimistabelis; ost ja kättesaamine vajavad kinnitust. |
+| CAD ja printimise seis 13.11 | Tilgaplaadi ja AtomS3 ekraanipoole mudeli Fusioni lähtefail, STL-id, 3MF-id ja kaks BGCODE-faili on olemas. Denysi 13.11 teate järgi oli laud 1 (plaat ja kuus mudelit) printimisel ning laud 2 (teine plaat) printimata. Printimise lõpp pole kinnitatud. [Printimisjuhend](tilgaplaat/PRINT.md). |
+| Lab 3 füüsiline integratsioon | Klapi ja UV juhtimine, ohutu väljalülitus, annustamine, fotomõõtmised ja katkestuse viivitus ootavad päriskatseid. Padjandite tegelik kõrgus, prinditud detailide mõõdud ja sobivus ning kaamera mõõteskaala ja kontrollfotod on TODO. Kolmes Lab 3 CSV-s on ainult päised. |
+
+## Tõendid ja tulemused
+
+| Tõendi liik | Mida see näitab | Failid |
+|---|---|---|
+| Lab 1. Füüsiline mõõtmine | MPX5700AP väljund atmosfääril oli 0,85 V. Oma pumbakasti katses kasutas meeskond piire −60 ja −40 kPa; tavavõtmisel õnnestus 10/10 tõstmist. Need piirid ei ole Lab 3 doseerimisseaded. | [Andur ja arvutused](../lab1/docs/sensor_choice.md) · [Pumbakatse](../lab1/docs/pump_control.md) · [Tavavõtmise CSV](../lab1/data/lab1_pick10_fw3_02.10.26.csv) |
+| Lab 2. Füüsiline mõõtmine | 22. ja 24.10 katsed kasutasid potentsiomeetreid. 25.10 mõõtis meeskond rõhuanduri signaali **varasema LM358N astme ja 10 kΩ / 10 kΩ jaguriga**. Igas seerias on 1001 lugemit 10 ms sammuga. Vaakumis jäi alumine platoo 14–21 ADC koodi vahele: analoogaste küllastus, kuigi `adc_clipped` oli null. | [Mõõteprotokoll](../lab2/docs/bench_session.md#adc-mõõteseeriad) · [Pump väljas](../lab2/data/opamp_pump_off_test.csv) · [Vaakum](../lab2/data/opamp_vacum_test.csv) · [Ülerõhk](../lab2/data/opamp_pressure_test.csv) |
+| Arvutus ja simulatsioon | Võimenduse ja viitepinge arvutus ning Falstadi näide aitavad seletada ADC töövahemikku. Lab 3 komparaatori kohta on tööleht; Lab 2 näide ei tõenda Lab 3 skeemi. | [Lab 2 arvutused](../lab2/docs/opamp_design.md#võimenduse-arvutus) · [Falstadi näite eksport](../lab2/docs/falstad_first_version.txt) · [Lab 3 komparaatori plaan](docs/falstad/README.md) |
+| Tarkvaratestid | Ühekordse taimeri käivitamine eelneb väljundi lubamisele. UV käivitamine ja alarmi vabastamine vajavad uut kohalikku kinnitust. Sündmuste puhver säilitab lühikese komparaatorihäire ning töötleb seda enne ootel taimeriteadet. Testid kasutavad loogilisi väljundeid ja simuleeritud sündmusi. | [C++ mudel](https://github.com/Dennel04/smart-solutions-course/blob/5fc4fbf76653ef1a0e92037cb38ebd10012faf00/smart-solutions/lab2/firmware/src/core/actuator_model.cpp) · [Puhver](https://github.com/Dennel04/smart-solutions-course/blob/5fc4fbf76653ef1a0e92037cb38ebd10012faf00/smart-solutions/lab2/firmware/include/actuator_events.h) · [Mudeli testid](https://github.com/Dennel04/smart-solutions-course/blob/5fc4fbf76653ef1a0e92037cb38ebd10012faf00/smart-solutions/lab2/firmware/test/test_actuator_model/test_main.cpp) · [Sündmuste testid](https://github.com/Dennel04/smart-solutions-course/blob/5fc4fbf76653ef1a0e92037cb38ebd10012faf00/smart-solutions/lab2/firmware/test/test_actuator_events/test_main.cpp) |
+| Lab 3 CAD ja slaiss, 13.11 | Denys avaldas tilgaplaadi ja ekraanipoole mudeli CAD-i ning kahe laua prindifailid. Plaadi 0,6 mm padjandid on kavandatud mõõt; prinditud padjandite kõrgust tuleb mõõta. Mudeli mõõtude lähteandmed ei kinnita prinditud mudeli mõõte ega sobivust. | [CAD, STL ja 3MF](#nõutavad-väljundid) · [Laudade seis ja BGCODE](tilgaplaat/PRINT.md) |
+| Katseplaan | `drops.csv` seob tilga, pildi ja rõhukõvera. `placement.csv` kirjeldab laigu asukohta ning `latency.csv` reaktsiooniaega. Praegu pole mallides mõõteridu. | [Tilgad](data/drops.csv) · [Paigutus](data/placement.csv) · [Viivitus](docs/latency.csv) · [Ühikud ja väljad](data/README.md) |
+
+25.10 ADC seeriad pärinevad ümberehitusele eelnenud skeemist. CSV-des puudub kalibreeritud rõhk. [Üleandmisleht](../lab2/docs/opamp_v2_handoff_2026-10-25.md) kirjeldab hilisemat ümberehitust ja eristab multimeetri näite arvutuslikest hinnangutest. Muudetud astme kolm rõhupunkti, G5 pingeulatus koos siiretega ning rõhukalibratsioon vajavad eraldi kontrolli. [Lab 2 mõõteandmete selgitus](../lab2/README.md#tõendid-ja-tulemused).
 
 ## Allikad ja tõendite piirid
 
-[Ametliku ülesande täpne koopia](assignment-EST.md) on muutmata etalon, mitte meeskonna tulemuste register. Kontrollitud 25.10.2026: Git blob SHA `3b8089eb54e7587946d42ffa25a071f35e174396`, sama kui kontrollversioon. [Õppejõu algallikas](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%203%5D%20EST.md) on varasemate plaanide suhtes ülimuslik; [ametlik kokkuvõte](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLabor%203%20kokkuv%C3%B5te%5D%20EST.md) on abiallikas.
-
-- **Dokumenteeritud varasem tulemus:** [Lab 1 andur](../lab1/docs/sensor_choice.md) ja [pumbajuhtimine](../lab1/docs/pump_control.md) kirjeldavad oma toonast stendi; nende väärtusi ei võeta automaatselt Lab 3 seadeteks.
-- **Lab 2 elektriline katse:** [22.–24.10 mõõteleht](https://github.com/Dennel04/data-acquisition-course/blob/bcb899ccd64a2471693dd93075a9fe5c2450e4fc/data-acquisition/lab2/docs/bench_session.md) ning [arvutused ja kontrollmõõtmised](https://github.com/Dennel04/data-acquisition-course/blob/bcb899ccd64a2471693dd93075a9fe5c2450e4fc/data-acquisition/lab2/docs/opamp_design.md) on kinnitatud repoallikad. Katsed kasutasid B5K/B100K potentsiomeetreid; 24.10 ADC kontrollis dokumenteeriti 1001 lugemit ligikaudu 10 s jooksul. See ei kinnita MPX5700AP rõhukalibratsiooni, kogu ADC sisendulatuse ohutust, lõplikku anduriastet ega Lab 3 filtrit, releed või doseerimist.
-- **Oluline ühenduste piirang:** Lab 2 katses puhverdab LM358N teine pool viitepinget. Selle ümberkasutamine komparaatoriks nõuab Lab 2 lõpliku skeemi kontrolli; olemasolevat puhvrit ei loeta vabaks kanaliks.
-- **CAD ja tööplaan:** [3D printimise L3 README](https://github.com/Dennel04/3d-printing-course/blob/6068053f90d09fa301889ee4476e139a78dd82ad/3d-print/lab3/README.md) kirjeldab Y-pneumaatikat, nelja nihet ja tühja kuivtsükli plaani. See, Lab 2 tulemused ja simulatsioonid ei kinnita Andmehõive L3 füüsilist valmimist.
-- **TODO:** lõplik Labori 2 anduriahel, CSV-vorming, kalibratsioon, tegelik kasutatav ajasamm, filtreeritud/op-amp tulemused, pooliku haarde logid ning pumbajuhtimise väärtused tuleb kontrollida [Lab 2 dokumentidest](../lab2/README.md) ja [pumbavõrdlusest](../lab2/docs/pump_control.md).
-- **Arvutused ja valikud:** filtrit, lävesid, takisteid, releekontakti, GPIO-d, mähise pinget ega taimeri seadistust ei määrata oletuse järgi.
+[Ametliku ülesande koopia](assignment-EST.md) on muutmata. 25.10.2026 kontrollitud Git blob SHA on `3b8089eb54e7587946d42ffa25a071f35e174396`. [Õppejõu algallikas](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%203%5D%20EST.md) määrab nõuded; [ametlik kokkuvõte](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLabor%203%20kokkuv%C3%B5te%5D%20EST.md) on abiallikas.
 
 ## Eesmärk ja pneumaatika
 
-Tööjärjekord: **doseerimine → klaasi tõstmine → kõvendamine → väljund**. Üks pump ei ime ja puhu korraga.
+Tööjärjekord on **doseerimine → klaasi tõstmine → kõvendamine → väljund**. Kõigepealt paneme tilga mudelile, siis tõstame iminapaga klaasi tilgale. UV-lamp kõvendab vaigu katte all ja tööriist viib detaili väljundisse. Üks pump ei ime ja puhu korraga.
 
-Õppejõu nõutav skeem: **pump → Y1 → iminapp / 3/2 klapp → süstal**. Napp on otse pumba harus, mitte klapi järel. Klapp juhib ainult süstalt: voolu all ühendab pumba süstlaga; vooluta lahutab pumba ja ühendab süstla atmosfääriga. Teine 4 mm Y-liitmik ühendab rõhuanduri. Anduri koht enne klappi või klapi ja süstla vahel on **TODO: põhjendatud insenerivalik**. Võimalik nõelventiil napi harus lisatakse ainult siis, kui päris mõõtmine näitab, et lahtise napa õhukadu takistab rõhu hoidmist; mõju imemisele mõõdetakse eraldi.
+[Ühenduste plaan](#süsteemi-arhitektuur) näitab pumba harude ja süstlaklapi asetust.
 
 **KAARDISTA ISE — eesmärk nii, nagu ta tegelikult välja tuli.**
 
 TODO: täita tegelike otsuste ja mõõtmiste järel.
+
+## Süsteemi arhitektuur
+
+**Lab 3 ühenduste plaan:**
+
+```text
+Pump → Y1 ┬→ iminapp
+          └→ 3/2 klapp → süstal → otsik → tilk
+                └→ atmosfäär (süstla väljalase vooluta olekus)
+
+Rõhuandur (Y2, asukoht valida) → mõõteaste → AtomS3R ADC → USB → tilgalogija
+AtomS3R → relee → klapi mähis
+AtomS3R → LED-draiver → 405 nm UV LED katte all
+Komparaator → AtomS3R katkestussisend (IRQ)
+```
+
+- **Õhutee.** Iminapp on otse pumba harus. 3/2 klapp juhib ainult süstlaharu: voolu all ühendab klapp süstla pumbaga, vooluta lahutab süstla pumbast ja ühendab selle atmosfääriga. Rõhuanduri jaoks võrdleme teise Y-liitmiku asukohta enne klappi ja süstlaharus. Nõelventiili kaalume siis, kui lahtise iminapa õhukadu takistab rõhu hoidmist; mõõdame ka mõju imemisele. [Pumbajuhtimise plaan](docs/pump_control.md).
+- **Mõõteahel.** Lab 1 andur läks otse G5-le; Lab 2 katseskeemis oli vahel LM358N aste ja jagur. Dokumenteeritud Lab 2 skeemis puhverdas **LM358N teine kanal viitepinget**. Enne selle kanali kasutamist komparaatorina tuleb lahendada puhvri ülesanne ja kontrollida lõplikku skeemi. [Lab 2 ühendused](../lab2/docs/bench_session.md#katseskeemi-ühendused) · [Viitepuhvri üleandmine](../lab2/docs/opamp_v2_handoff_2026-10-25.md).
+- **Juhtimine.** AtomS3R loeb rõhusignaali ning peab juhtima klappi relee ja UV-lampi draiveri kaudu. Nutikate Lahenduste ühine Atomi projekt annab olekumudeli ja testid. Asjaosalised peavad kokku leppima käsud, lubatud kestused, GPIO tasemed ja alarmisündmuse vormingu. Mudel ja puhver vajavad eraldi riistvaraadapterit; puhver ei sobi otse ISR-i. UV ohutus vajab sõltumatut blokeeringut ja päris väljalülituse kontrolli. [Atomi liidese plaan](https://github.com/Dennel04/smart-solutions-course/blob/856fe7e86df09ce37abe7b29613425f90cbc6b96/smart-solutions/lab3/docs/atom_page.md) · [Püsivara ja logija plaan](src/README.md).
+- **Tööriist.** 3D printimise meeskonnaga tuleb kokku leppida klapi asukoht, voolikupikkus ja juhtmete teekond. Uue tööriista jaoks mõõdame samast flantsi referentsist neli nihet: iminapp, süstla otsik, UV-laik ja kaamera keskpunkt. Enne roboti katset tuleb kinnitada sobivus, koormus ja uued tööpunktid. [Tööriista paigutus](https://github.com/Dennel04/3d-printing-course/blob/2cec9c8058282a3d7fa94cb977e4abd9002db7b0/3d-print/lab3/docs/tool_layout.md) · [Neli nihet](https://github.com/Dennel04/3d-printing-course/blob/2cec9c8058282a3d7fa94cb977e4abd9002db7b0/3d-print/lab3/docs/tool_offsets.md).
 
 ## Kontrollnimekiri
 
@@ -61,6 +103,47 @@ TODO: täita päris töö käigus.
   - AtomS3 ekraanipoole mudel (6 tk): välismõõt 24 × 24 mm, nurga R 3, ekraani ava 17,8 mm → 45° faas → 16,2 mm, ekraan 1,2 mm raamist madalamal (M5Stacki ametlik STL `C123_AtomS3`; välismõõt ja kõrgus nihikuga 13.11.26). Sees õõnes, alt lahti: istub akumooduli tihvtide peal nagu päris AtomS3, pealispind samal kõrgusel (prindis 12,8 mm, kiht 0,2). Ekraaniala soon 15 mm ja raamil mõõtkava kriipsud iga 2 mm järel.
   - Print: Prusa CORE One HF0.4, `0.20mm SPEED`, hele PLA (valge/kollane), täide 15 %, tugedeta. Laud 1 = plaat + 6 mudelit, 3 h 9 min, 115 g; laud 2 = teine plaat, 2 h 38 min, 97 g.
   - Taust ja allikad (patendid US 5837892 jt: pindala × kalibreeritud vahe; prinditud vahe viga ±0,05 mm ≈ ±8 % mahust 0,6 mm juures): kokkuvõte meeskonna märkmetes.
+  - [Printimisjuhend ja laudade seis](tilgaplaat/PRINT.md) · [Prusa BGCODE-failid](tilgaplaat/bgcode/). Ajad ja materjalikogused ülal on slaisseri hinnangud.
+
+## Tööplaan
+
+Numbrid viitavad [kontrollnimekirja](#kontrollnimekiri) punktidele nende algses järjekorras. A–F näitavad töö sõltuvusi; enne füüsilisi katseid vaata [ohutusjuhiseid](#ohutus).
+
+### A. Inventuur ja elektriohutus
+
+- **Eeldus ja alus (3, 15).** [BOM-is](docs/bom.md#uv-komponentide-valik-ja-tellimisolek) on 405 nm LED-i, draiveri ja radiaatori valik ning tabelisse kandmise olek. Varasem Lab 2 pingenäit käib oma katseskeemi kohta.
+- **Puuduv töö.** Kinnita saadavus ja osade markeeringud. Kontrolli klapi nimipinget ja voolu, relee sobivust induktiivkoormusega, kaitsedioodi ning jõu- ja loogikaahela eraldust. Enne Atomi ühendamist mõõda tegelik pingeulatus. Kontrolli UV-ühilduvust ja jahutust, katte valgusleket, taimerit, sõltumatut väljalülitust ning vooluta olekut.
+- **Tõend ja failid.** Lisa inventuur ja tellimise tõendid [BOM-i](docs/bom.md), mõõdetud pinged ja ühendused [mõõtelehele](docs/bench_session.md) ning UV automaatse kustumise katse [ostsilloskoobi tõenditesse](docs/scope/README.md).
+
+### B. Pneumaatika, relee, klapp ja taimer
+
+- **Eeldus ja alus (1, 2, 4).** Läbi A etapi kontrollid. Kasuta [Y-pneumaatika plaani](#süsteemi-arhitektuur) ja ülesandes nõutud M5Stack Mini 3A Relay Unit moodulit. Tarkvaramudeli taimer ei ole veel riistvarataimer.
+- **Puuduv töö.** Tuvasta relee NO/NC kontaktid multimeetriga. Kinnita rõhumõõtmisega süstla tühjenemine atmosfääri toite kadumisel. Vali anduri koht ja mõõda rõhku lahtise iminapaga. Võrdle viie impulsi pikkuse juures, igaüht kümme korda, käsku, GPIO signaali ja mähise pinget. Hinda relee viivitust, kontaktipõrget ja elektrilist eluiga; mõõda rõhukõveralt eraldi klapi mehaaniline avanemisviivitus. Dioodita väljalülitustipu mõõtmine vajab õppejõuga kooskõlastatud ohutut protseduuri.
+- **Tõend ja failid.** Lisa ühendusskeem, foto ja ohutu oleku rõhukõver [mõõtelehele](docs/bench_session.md). Salvesta kahe kanaliga [ostsillogrammid](docs/scope/README.md), ajastustabel ning anduri asukoha põhjendus [pumbajuhtimise töölehele](docs/pump_control.md).
+
+### C. Doseerimine, fotod ja tilga suurus
+
+- **Eeldus ja alus (5–7).** Kinnita klapi ja UV ohutu toimimine ning rõhu mõõtmise sobivus. [Kaamera- ja tilgamõõtmise plaan](notebooks/README.md#tilgad-ja-paigutus) kirjeldab pilti, kontuuri ja rõhukõverat. Õppejõu soovitus alustada peenest otsikust, madalast rõhust ja üle 100 ms impulsist on lähtekoht, mitte katsetatud retsept.
+- **Puuduv töö.** Kasuta avaldatud [tilgaplaadi ja mudeli faile](#nõutavad-väljundid). Pärast printimist mõõda padjandite tegelik kõrgus ning kontrolli plaadi mõõte ja sobivust. Kalibreeri XIAO kaamera pilt samalt kõrguselt iga seansi alguses; kontrolli fookust ja valgustust. Tee viis impulsi pikkust × kümme tilka ning proovi teist otsikut või rõhku kolme pikkusega. Mõõda pildilt pindala ja kasuta kihi kõrgust ruumala hindamiseks. Võrdle lineaarsust, korduste hajuvust (CV) ja esimest impulssi pärast pausi. Päris AtomS3 peale vaiku ei katsetata; kontrolli prinditud ekraanipoole mudeli mõõte ja sobivust ning mõõda sellel laigu pindala ja nihe.
+- **Tõend ja failid.** Seo iga `drop_id` foto, mõõtkava, kontrollkontuuri ja algse rõhukõveraga failis [drops.csv](data/drops.csv). Lisa mudeli katse pildid ja tulemused faili [placement.csv](data/placement.csv). Viita olemasolevale Fusioni lähtefailile ja STL-idele ning lisa prinditud detailide mõõtmised. [Andmevorming](data/README.md).
+
+### D. Filter, rõhutuletis ja poolik haare
+
+- **Eeldus ja alus (9, 10).** Kasuta kalibreeritud rõhku ning kontrollitud ajatempleid. [Varasema Lab 2 ADC logid](#tõendid-ja-tulemused) näitavad ajastust ja küllastust; need ei sisalda tõendatud pooliku haarde rõhukõverat.
+- **Puuduv töö.** Arvuta kahe proovi rõhuvahe jagatuna tegeliku ajavahega sekundites (kPa/s). Tuletis võimendab kõrgsageduslikku müra; ideaalse tuletise sagedustegur on `2πf`. Võrdle libisevat keskmist ja mediaanfiltrit **enne tuletist**, hinnates mõlema müra ja viivitust. Hinda kontrollitud Lab 2 pooliku haarde logil eristamise läve ja aega pärast pumba peatamist. Võrdle tavalise tilga, ummistuse ja tühja süstla tõusu, platood ning langust. Vali tunnus ja lävi pärisandmetest.
+- **Tõend ja failid.** Lisa kõrvuti toore ja filtreeritud muutumiskiiruse graafikud, spektrid ning müra ja viivituse võrdlustabel. Lisa põhjendatud filtrivalik [analüüsi](notebooks/README.md#filter-tuletis-ja-otsus) ja pooliku haarde otsuse alus [pumbajuhtimise töölehele](docs/pump_control.md#pooliku-haarde-tuletise-otsus).
+
+### E. Komparaator, IRQ, alarm ja reaktsiooniaeg
+
+- **Eeldus ja alus (11–14).** Kasuta D etapi tunnust ja läve ning lahenda LM358N viitepuhvri ülesanne. [Falstadi tööleht](docs/falstad/README.md) ning [olekumudel ja sündmuste testid](#tõendid-ja-tulemused) annavad erinevad kontrollid: üks analoogahela käitumisele, teine tarkvarareeglitele.
+- **Puuduv töö.** Katseta Falstadis läve ja hüstereesi tavalise, müraga tavalise ja ummistunud otsiku signaaliga. Ehita ahel ning mõõda madal ja kõrge väljund ning siirded enne Atomi ühendamist. Kõrge tase peab jääma nii 3,3 V kui ka valitud viigu lubatud piiri sisse. Kinnita klapi vooluta viimine, alarmi lukustumine ja jaamale saadetav sündmus. Katkestusrutiin hoiab ajakriitilise töö lühikesena; põhitsükkel tegeleb ekraani ja USB-teatega. Tühja süstla alarmi rõhuplatoo ja ajapiir tuleb valida tegelikest kõveratest. Ära luba uut doseerimist enne vea kõrvaldamist ja alarmi kinnitatud vabastamist.
+- **Tõend ja failid.** Lisa Falstadi link, eksport ning skeemipilt. Mõõda läve ületamisest klapi mähise väljalülitumiseni kümme korda IRQ ja kümme korda põhitsüklis küsitlemisega (polling), ka koormuse all. Salvesta [ostsillogrammid](docs/scope/README.md) ja [latency.csv](docs/latency.csv). Esita keskmine ja halvim viivitus, arendusajad ja meetodi valiku põhjendus. Loenda tabamised kümnel ummistuse ja kümnel tühja süstla katsel ning valehäired 30 tavalisel tilgal.
+
+### F. Retsept, integratsioon ja kaitsmine
+
+- **Eeldus ja alus (8, 16).** Kasuta C etapi tilgaandmeid, E etapi ohutustõendeid ning kontrollitud tööriista ja nihete andmeid. [Retsept](docs/recipe.md) on täitmata mall. [Püsivaraplaan](src/README.md) kirjeldab tulevast liidest ja eraldi tilgalogijat.
+- **Puuduv töö.** Proovi klaasi prinditud ekraanipoole mudelil. Kinnita, et kõvendatud tilk hoiab klaasi ega ulatu servani. Kooskõlasta klapi ja UV käsud ning alarmi käitumine jaamaga; [õppejõu JSON-näited](assignment-EST.md#1-klapp-ja-impulss) ei ole teostatud käsuleping. Kinnita tööriista sobivus ja katseta kogu tsüklit alles pärast eelnevaid ohutuskontrolle.
+- **Tõend ja failid.** Lisa retsepti otsik, rõhk, impulss, kõvendusaeg ning viited piltidele ja kõveratele. Kogu mõõte- ja tarkvaratõendid, uuenda päevikut päris töö järel ja valmista ette [ametlik kaitsmine](assignment-EST.md#kaitsmine). Tag kuulub lõplikule esitamisele.
 
 ## 1. Klapp, relee ja impulss
 
@@ -138,6 +221,31 @@ Viivituse tulemused ja otsus:
 - katkestuslahenduse arendusaeg: **TODO**;
 - polling'u lahenduse arendusaeg: **TODO**;
 - lõplik valitud meetod ja ühe lause põhjendus: **TODO: valida mõõtetulemuste põhjal**.
+
+## Kiirstart ilma riistvarata
+
+Ava macOS-is või Linuxis terminal repo juurkaustas. Olemasolev Python 3 analüsaator loeb Lab 1 tavavõtmise CSV-d ja selle kõrval olevat sündmuslogi. See kasutab standardteeki; väljund läheb ajutisse kausta.
+
+```sh
+lab3_demo=$(mktemp -d) &&
+python3 -B data-acquisition/lab1/src/python/analyze_run.py \
+  data-acquisition/lab1/data/lab1_pick10_fw3_02.10.26.csv > "$lab3_demo/lab1-pump.txt" &&
+cat "$lab3_demo/lab1-pump.txt"
+```
+
+Kokkuvõttes näed ligikaudu 100 Hz proovivõttu, pumba 45,2% tööaja osakaalu ja kümne võtmise sündmusi. Need on Lab 1 logi tulemused. Lab 2 jaoks ava [mõõtmiste tabel ja olemasolev analüüsijuhend](../lab2/README.md#kiirstart-ilma-riistvarata). Lab 3 kohta näita [mudeli ja sündmuste teste](#tõendid-ja-tulemused) ning tühje andmemalle; päris tilgaandmeid ega valminud Lab 3 tilgaanalüsaatorit siin veel ei ole.
+
+## Kaitsmise juhend
+
+Seitsme minutiga saad anda ülevaate ilma Atomi, pumba, roboti ja UV-lambita. Ava enne esitlust kiirstardi väljund, Lab 2 mõõteprotokoll ja mudeli testid. [Ametlik 15-minutiline kaitsmine](assignment-EST.md#kaitsmine) nõuab lisaks retsepti järgi doseerimist ja rõhukõverat, ummistuse reaktsiooni ostsilloskoobil ning alarmiluku näitamist: uut tilka ei tule enne alarmi vabastamist.
+
+| Aeg | Mida näidata ja selgitada |
+|---|---|
+| 0:00–1:15 | [Arhitektuur](#süsteemi-arhitektuur). Jälgi õhu teed Y1-st iminapa ja süstlani. Selgita vooluta klapi olekut ja töötsükli järjekorda. |
+| 1:15–2:45 | [Kiirstardi väljund](#kiirstart-ilma-riistvarata) ja [Lab 2 mõõtmised](#tõendid-ja-tulemused). Näita Lab 1 pumbalogi kokkuvõtet. Selgita, miks Lab 2 vaakumiplatoo kirjeldab vana astme küllastust ning miks sellest ei saa Lab 3 rõhku ega läve. |
+| 2:45–4:15 | [Mudel ja testid](#tõendid-ja-tulemused). Näita, kuidas taimeri käivitamise nõue ja kohalik kinnitus piiravad väljundeid ning kuidas lühike häire jääb puhvris meelde. Nimeta päris ISR-i ja UV blokeeringu kontrollid. |
+| 4:15–5:45 | [Andmemallid](data/README.md) ja [ostsilloskoobi plaan](docs/scope/README.md). Näita, kuidas tilga ID seob kõvera ja foto, mida võrrelda filtritel ning milliste sündmuste vahel mõõta reaktsiooniaega. |
+| 5:45–7:00 | [Kontrollnimekiri](#kontrollnimekiri) ja [päevik](#arenduspäevik). Nimeta puuduv elektriline kontroll, tilga- ja kõvenduskatsed ning IRQ/polling võrdlus. Selgita, mida tuleb enne ametlikku kaitsmist laboris näidata. |
 
 ## Ohutus
 
