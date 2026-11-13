@@ -56,7 +56,11 @@ TODO: täita päris töö käigus.
 - [Andmeskeem ja ühikud](data/README.md), [analüüsiplaan](notebooks/README.md) ja [püsivara/logija plaan](src/README.md).
 - [Retsept](docs/recipe.md), [viivitused](docs/latency.csv), [BOM](docs/bom.md), [pumbajuhtimine](docs/pump_control.md) ja [füüsilise töö kontrollleht](docs/bench_session.md).
 - [Falstadi elav link, eksport ja skeemipilt](docs/falstad/README.md), [ostsilloskoobitõendid](docs/scope/README.md), elektriline skeem pildina ning füüsilise ahela foto: **TODO**.
-- Tilgaplaadi, vahetükkide ja ekraanipoole mudeli CAD-lähtefailid ning STL-id: **TODO pärast füüsilisi mõõtmisi ja eraldi modelleerimist**. Faile ei looda selles dokumentatsioonitöös.
+- **Tilgaplaat ja AtomS3 ekraanipoole mudel (13.11.26, CAD + slaiss, prindis):** ühine Fusioni fail [`tilgaplaat/src/da-lab3-tilgaplaat-atoms3-mudel.f3d`](tilgaplaat/src/da-lab3-tilgaplaat-atoms3-mudel.f3d) (parameetrid `dp_*`, `at_*`), STL [`tilgaplaat/stl/tilgaplaat.stl`](tilgaplaat/stl/tilgaplaat.stl), [`atoms3-mudel/stl/atoms3-mudel.stl`](atoms3-mudel/stl/atoms3-mudel.stl), 3MF [`tilgaplaat/3mf/`](tilgaplaat/3mf/).
+  - Tilgaplaat: 4 × 4 Gridfinity (167,5 mm, standardne jalg), 5 × 5 tilka sammuga 32,5 mm; iga tilga peale oma klaas 30 × 30 × 1,2 mm, mida hoiavad nurgatihvtid (0,3 mm lõtk külje kohta); vahetükid = neli 0,6 mm padjandit klaasi servade keskel (õhk pääseb nurkadest välja). Mõõtkava: graveeritud ristid ±11 mm tilga keskpunktist (22 mm vahe), 0,6 mm laiad, 0,4 mm sügavad (täita musta markeriga). Rea 1 / veeru 1 nurga tihvt on 3 mm kõrgem. Padjandite tegelik kõrgus tuleb iga plaadi juures mõõta.
+  - AtomS3 ekraanipoole mudel (6 tk): välismõõt 24 × 24 mm, nurga R 3, ekraani ava 17,8 mm → 45° faas → 16,2 mm, ekraan 1,2 mm raamist madalamal (M5Stacki ametlik STL `C123_AtomS3`; välismõõt ja kõrgus nihikuga 13.11.26). Sees õõnes, alt lahti: istub akumooduli tihvtide peal nagu päris AtomS3, pealispind samal kõrgusel (prindis 12,8 mm, kiht 0,2). Ekraaniala soon 15 mm ja raamil mõõtkava kriipsud iga 2 mm järel.
+  - Print: Prusa CORE One HF0.4, `0.20mm SPEED`, hele PLA (valge/kollane), täide 15 %, tugedeta. Laud 1 = plaat + 6 mudelit, 3 h 9 min, 115 g; laud 2 = teine plaat, 2 h 38 min, 97 g.
+  - Taust ja allikad (patendid US 5837892 jt: pindala × kalibreeritud vahe; prinditud vahe viga ±0,05 mm ≈ ±8 % mahust 0,6 mm juures): kokkuvõte meeskonna märkmetes.
 
 ## 1. Klapp, relee ja impulss
 
