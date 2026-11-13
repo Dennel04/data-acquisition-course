@@ -1,45 +1,113 @@
 # Andmehõive: Labor 2 — Op-amp, lihtne aga keeruline
 
-See fail on Labori 2 tööleht ja arenduspäevik. Labori 1 kinnitatud lähteandmed on allpool koos allikatega. Labori 2 füüsiliste katsete ja komponentide saadavuse väljad täidetakse alles kontrollitud tõendite põhjal.
+## Ülevaade
 
-**Esimene kaitsmine: 29.10.2026, veebis.** Kuupäeva allikas: [õppejõu ametlik Labor 2 ülesanne](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%202%5D%20EST.md).
+MPX5700AP rõhuandur muudab rõhu pingeks. AtomS3R-i analoog-digitaalmuundur (ADC) loeb pinget G5 viigult ja annab selle kohta ADC koodi. Arvutis salvestab Python-logija koodi koos ajatempli ja valitud ühendusega CSV-faili.
 
-## Jagatud AtomS3R ja logija
+`raw` tähistab otse andurilt loetud signaali, `opamp` LM358N astme kaudu loetud signaali. Võimendus aitab rõhumuutusel kasutada rohkem ADC koode. Viitepinge abil nihutatakse väljundivahemikku, et signaal mahuks ADC kasulikku ossa. Kui aste jõuab oma väljundipiirini, kaob osa rõhumuutuse infost. Võimendus tõstab ka sisendmüra, mistõttu tuleb mõlemat ühendust katsetada sama pumbaimpulsiga.
 
-Andmehõive ja Smart Solutions laborid kasutavad ühte füüsilist AtomS3R-i. Seadmes töötab korraga üks põhipüsivara: Andmehõive mõõtmis-püsivara teenib ADC lugemist ja CSV kogumist arvuti logijaga; Smart Solutions `NORMAL` teenib post-office/station tööd. Nende vahel liikumine nõuab kontrollitud üleslaadimist, varukoopia ja taastamisvõimaluse säilitamist ning ühendatud elektroonika kontrolli enne käivitamist.
+**Esimene kaitsmine oli ülesandes määratud 29.10.2026 veebis.** [Õppejõu ametlik Labor 2 ülesanne](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%202%5D%20EST.md).
 
-XIAO ESP32S3 Sense on eraldi plaat oma kaamera-püsivaraga; see ei konkureeri Atomi püsivara kohaga.
+## Praegune seis (13.11.2026)
 
-Python logija toetab kohalikke Windowsi `COM1`, `COM3`, `COM10` jne porte ning macOS-i `/dev/cu.*` porte. Tarkvaratestid on olemas, kuid päris Windowsi riistvarakatse ei ole veel kinnitatud. See ei kinnita ADC ega rõhu mõõdetulemusi. Käivitamisjuhend: [Windows ja macOS](src/README.md#logija-windowsis-ja-macos-is).
+| Valdkond | Seis |
+|---|---|
+| Füüsilised katsed | Maksimi 22. ja 24.10 potentsiomeetrikatsed ning 25.10 kolm MPX5700AP mõõteseeriat on dokumenteeritud. [Tõendid ja tulemused](#tõendid-ja-tulemused). |
+| Tarkvara | 45 kohalikku testi läbisid kontrolli, sh AUTO loogika imiteeritud ADC/LCD/USB-ga, logija ja CSV analüüs. `atoms3r` ehitus õnnestus 07.11 dokumenteeritud kontrollis. [Tarkvarakontroll](src/README.md#tarkvarakontroll). |
+| Kontrollimata riistvara | Raimo andis pärast 25.10 katseid Maksimile muudetud katseskeemi. Selle ühendused, kolm rõhupunkti ja G5 pingeulatus koos siiretega vajavad kontrolli. [Üleandmine](docs/opamp_v2_handoff_2026-10-25.md). |
+| Kontrollimata püsivara | Varasemal versioonil töötasid ainult USB-ga ühendatud Atomi LCD ja `measure_stop` → `stopped`. Uuema AUTO-versiooni üleslaadimine, töö päris seadmel ja 100 Hz ajastus vajavad eraldi kinnitust. [AUTO kasutus](src/README.md#adc-vaatamine-ilma-logijata). |
+| Lahtised tulemused | Rõhukalibratsioon, võrreldavad `raw`/`opamp` jooksud, ostsillogrammid, Pa/ADC samm, spektrid, signaali-müra suhe (SNR) ja pumbajuhtimise võrdlus. [Järgmised sammud](#puuduvad-katsed-ja-järgmised-sammud). |
 
-## Eesmärk
+## Tõendid ja tulemused
 
-Kavandada anduri ja ADC vahele analoogaste, mis nihutab ja skaleerib meeskonna tegeliku andurisignaali ADC jaoks sobivasse vahemikku. Seejärel võrrelda sama pumbaimpulssi toore (`raw`) ja astmega (`opamp`) signaaliga ning hinnata lahutusvõimet, müra, SNR-i ja pumbajuhtimist.
+| Kuupäev | Maksimi katse | Mõõdetud tulemus | Tõend |
+|---|---|---|---|
+| 22.10.2026 | LM358N elektriline kontroll potentsiomeetritega | Katseskeemi toide **5,00 V**, `Vin = 0,402 V`, `Vref = 0,520 V`, `Vout = 0,205 V`. Sisendit muutes mõõdeti ka `Vout = 3,009 V`. | [Mõõtetabel](docs/bench_session.md#22102026--lm358n-katseskeemi-mõõtmised-maksim) · [Ühendused ja arvutus](docs/lm358n_wiring_2026-10-22.md#6-mõõtmine-ja-arvutuse-kontroll) |
+| 24.10.2026 | LM358N ja G5 kontroll potentsiomeetritega | `Vin = 0,402 V`, `Vref = 0,526 V`, `Vout = 0,190 V`. Umbes 10 sekundiga 1001 lugemit, keskmine 188,43 ja vahemik 182–196 ADC koodi. | [Mõõteprotokoll](docs/bench_session.md#24102026--lm358n-katseskeemi-ja-atoms3r-adc-kontroll-maksim) |
+| 25.10.2026 | MPX5700AP, LM358N ja 10 kΩ / 10 kΩ jagur | Kolm `opamp` seeriat enne skeemi ümberehitust. G5 multimeetrinäit seiskunud pumbaga 0,592 V ja suurim täheldatud näit töötava pumbaga 0,952 V. | [Mõõteprotokoll](docs/bench_session.md#25102026--mpx5700ap-rõhuanduri-lm358n-võimendusastme-ja-atoms3r-adc-mõõtmised-maksim) · [Hilisem üleandmine](docs/opamp_v2_handoff_2026-10-25.md) |
 
-## Labor 1-st üle võetud kinnitatud lähteandmed
+22.10 toite- ja väljundnäidud kehtivad tolle katseskeemi mõõdetud tööpunktidele. 25.10 G5 multimeetrinäidud on eraldi vaatlused. Lõpliku astme toite ja G5 kogu pingeulatuse, kaasa arvatud siirded, peab mõõtma valmis skeemil.
 
-- Andur on `MPX5700AP`. Laboris 1 läks selle `Vout` otse AtomS3R viigule G5; vahel ei olnud jagurit, op-ampi ega filtrit. Allikad: `data-acquisition/lab1/docs/sensor_choice.md`, `data-acquisition/lab1/src/firmware/include/sensor.h`.
-- ADC seadistus oli 12-bitine, `ADC_11db`, kaheksa lugemi keskmistamisega. Allikad: `data-acquisition/lab1/src/firmware/src/sensor.cpp`, `data-acquisition/lab1/src/firmware/include/sensor.h`.
-- Labori 1 atmosfääripunktis mõõdeti anduri toiteks `5,00 V` ja väljundiks `0,85 V`. ADC keskmine oli `945,2` koodi; tarkvara teisendusteguriga `3,70 V / 4095` saadi `0,854 V`, mis erines multimeetrist ligikaudu `0,5%`. `3,70 V` on Labori 1 empiiriline koodist pingeks teisendamise tegur, mitte Labori 2 op-ampi mõõdetud toide ega ADC füüsilise sisendvahemiku piir. Allikas: `data-acquisition/lab1/docs/sensor_choice.md`.
-- MPX5700AP andmelehe ülekandefunktsiooni ja Labori 1 teisendusteguri põhjal arvutati toore signaali lahutuseks ligikaudu `0,1405 kPa/kood` ehk `141 Pa/kood`. See on arvutatud väärtus, mitte eraldi rõhumõõtmine. Allikas: `data-acquisition/lab1/docs/sensor_choice.md`.
-- Labori 1 logis mõõdeti `1002` telemeetriarida `10010 ms` jooksul ehk ligikaudu `100,1 Hz`. CSV veerud olid `t_ms,adc,p_kpa,pump`. Allikad: `data-acquisition/lab1/docs/sensor_choice.md`, `data-acquisition/lab1/src/python/logger.py`.
-- Labori 1 lõplik pumbajuhtimise lähtejoon oli väljalülitus `−60 kPa`, sisselülitus `−40 kPa`, automaatsete taaskäivituste minimaalne väljalülitusaeg `15 s` ja ülempiir `4 käivitust/min`. Allikas: `data-acquisition/lab1/docs/pump_control.md`.
-- Labori 1 ei mõõtnud Labor 2 jaoks vajalikku tegelikku `V_in,min` ja `V_in,max` paari kogu `−70…+110 kPa` vahemikus ega pooliku haarde eristamise aega. Need tuleb Laboris 2 mõõta.
+| 25.10 katse ja algne CSV | Lugemeid | Keskmine (ADC koodi) | Min–max (ADC koodi) | Valimi standardhälve (ADC koodi) |
+|---|---:|---:|---:|---:|
+| [Pump väljas](data/opamp_pump_off_test.csv) | 1001 | 657,6234 | 642–667 | 2,90 |
+| [Vaakum](data/opamp_vacum_test.csv) | 1001 | 511,5405 | 14–837 | 306,76 |
+| [Ülerõhk](data/opamp_pressure_test.csv) | 1001 | 804,5984 | 641–1175 | 185,60 |
 
-## Nõutavad väljundid
+Kõigis kolmes failis on salvestatud ajatemplite vahe 10 ms (100 Hz) ja esimese ning viimase lugemi vahe 10,000 s. See kirjeldab 25.10 salvestatud seeriaid. Uuema AUTO-püsivara füüsilist ajastust tuleb mõõta eraldi.
 
-- Arvutuskäik ja esimese ning parandatud astme mõõtetabelid: [`docs/opamp_design.md`](docs/opamp_design.md).
-- Maksimi 22.10.26 potentsiomeetritega LM358N katseskeemi [paigutus ja ühendused](docs/lm358n_wiring_2026-10-22.md), koos muutmata Word-allikaga. See ei ole MPX5700AP rõhukalibratsioon ega G5 kogu sisendvahemiku ohutuskinnitus.
-- Falstadi elav link, eksport ja skeemipilt: TODO: circuit design required.
-- Kahe kanaliga ostsilloskoobipilt sisendist ja väljundist: TODO: real measurement required.
-- 25.10 astme 2. versiooni muudatused, jaguriga CSV-de analüüs ja üleandmise seis: [`docs/opamp_v2_handoff_2026-10-25.md`](docs/opamp_v2_handoff_2026-10-25.md).
-- Tellimuse tööleht: [`docs/bom.md`](docs/bom.md).
-- Toore ja astmega pumbajuhtimise võrdlus: [`docs/pump_control.md`](docs/pump_control.md).
-- Kolm 25.10 `opamp` mõõteseeriat on olemas. Samadel tingimustel kogutud `raw/opamp` võrdlusandmed: TODO: real measurement required.
-- Võrdlev analüüs, spektrid, Pa/ADC samm ja SNR: toore signaali arvutuslik lähtejoon `141 Pa/kood`; op-amp võrdlus ja SNR: TODO: real measurement required.
-- Mõõtmis-püsivara ja USB logija on ette valmistatud: [`src/README.md`](src/README.md). USB-only üleslaadimine, LCD ja `measure_stop` → `stopped` vastus on kinnitatud. G5, 12-bitine ADC, `raw/opamp` silt ning 100 Hz siht; tegelik ajastus ja kalibratsioon vajavad veel mõõtmist. CSV analüüsi juhend: [`notebooks/README.md`](notebooks/README.md). Pumba automaatjuhtimist ei ole.
+Vaakumikatse graafikul püsib signaal alumisel platool **14–21 ADC koodi**. See näitab varasema analoogastme alumise otsa küllastust. `adc_clipped=0` ütleb ainult, et ADC kood ei olnud 0 ega 4095. Platool on väike hajuvus, sest aste ei järgi seal sisendi muutust. Vaakumi ja ülerõhu terve seeria standardhälve sisaldab ka signaali muutusi. Seisva pumba 2,90 koodi kirjeldab selle seeria kõikumist. [Küllastuse käsitlus](docs/opamp_v2_handoff_2026-10-25.md#1-mida-jaguriga-csv-d-näitasid).
 
-Kohalik AUTO-režiimi uuendus alustab toite sisselülitamisel ADC lugemist ja kuvab LCD-l ning Serial Monitoris kalibreerimata eelvaadet. See versioon ei ole veel üles laaditud ega riistvaral kontrollitud. Varasem USB-only kinnitus ei kinnita uut AUTO-režiimi. Kasutus ja CSV salvestamine: [`src/README.md`](src/README.md#adc-vaatamine-ilma-logijata).
+`p_kpa`, `voltage_v` ja `pump` on CSV-des tühjad. `dmm_reference_v = 0.19`, `condition = test_signal` ja `trial = 1` jäid 24.10 katsest. Tingimused tuleb lugeda [25.10 protokollist](docs/bench_session.md#adc-mõõteseeriad) ja failinimedest. Failidel puuduvad logija `.runs.jsonl` kõrvalfailid. Olemasolevad seeriad sobivad ADC koodide kirjeldamiseks ja ajagraafikuks. Kalibreeritud rõhu, SNR-i ja võrdluse jaoks on vaja täiendavaid mõõtmisi.
+
+## Süsteemi arhitektuur
+
+25.10 kasutatud mõõteahel ja andmete tee arvutis:
+
+```text
+MPX5700AP → LM358N võimendusaste → 10 kΩ / 10 kΩ jagur → AtomS3R G5 (ADC)
+                                                       → USB → logger.py → CSV → analyze.py
+```
+
+- **Labor 1 (`raw`).** Andur läks otse G5-le. Atmosfääril mõõdeti anduri toiteks 5,00 V ja väljundiks 0,85 V. Empiirilise `3,70 V / 4095` teisendusteguri ning andmelehe valemi põhjal saadi ligikaudu **141 Pa/ADC kood**. See on Labori 1 arvutuslik lähtejoon. Labori 1 logis oli 1002 rida 10,010 s jooksul ehk ligikaudu 100,1 Hz. Labori 2 lahutus ja ohutu G5 pingeulatus vajavad oma mõõtmisi. [Labori 1 andurimõõtmised ja arvutus](../lab1/docs/sensor_choice.md).
+- **25.10 (`opamp`).** LM358N üks kanal võimendas ja nihutas signaali, teine puhverdas viitepinget. G5 luges kahe 10 kΩ takisti keskpunkti. [Ühendused ja mõõtepunktid](docs/bench_session.md#katseskeemi-ühendused).
+- **Muudetud teine versioon.** Varasema testsisendi B5K eemaldati, `Rref` ahelat pikendati ja puhvri väljundile lisati 4,7 kΩ allatõmbetakisti. Jaguri alumise haru seis ja G5 jadatakisti väärtus vajavad kontrolli. [Üleandmise märkmed](docs/opamp_v2_handoff_2026-10-25.md#2-plaadil-tehtud-muudatused-2-versioon).
+
+Püsivara seadistab G5 sisendiks, kasutab 12-bitist ADC-d, `ADC_11db` sumbuvust ja kaheksa lugemi keskmist. Siht on 100 Hz. AUTO kuvab kalibreerimata ADC koodi LCD-l ja USB eelvaates kuni neli korda sekundis. Logija valib hallatud jooksule `raw` või `opamp` sildi füüsilise ühenduse järgi. Mõõtmisprogramm ei juhi pumpa ega MG400 robotit. Logija toetab Windowsi kohalikke `COM` porte ja macOS-i `/dev/cu.*` porte. Windowsi pordikäsitlus on tarkvaras testitud, füüsiline Windowsi USB-katse vajab kinnitust. [Püsivara ja logija](src/README.md) · [Windowsi ja macOS-i käsud](src/README.md#logija-windowsis-ja-macos-is).
+
+Andmehõive ja Smart Solutions kasutavad sama AtomS3R-i. Korraga töötab üks põhipüsivara. Andmehõive versioon on ADC ja CSV kogumiseks, Smart Solutions `NORMAL` postkontori ja jaama tööks. Püsivara vaheta kontrollitud üleslaadimisega, säilitades varukoopia ja taastamisvõimaluse ning kontrollides ühendatud elektroonikat. XIAO ESP32S3 Sense on eraldi kaameraplaat oma püsivaraga.
+
+## Kiirstart ilma riistvarata
+
+Käivita repo juurkaustast macOS-i või Linuxi terminalis. Vajad Python 3 ja analüüsi sõltuvusi. Paigaldus vajab pakiallikat või kohalikku paketivahemälu. Kui sobiv Python-keskkond on juba olemas, kasuta selle Pythonit. Analüüs ja testid töötavad võrguühenduseta.
+
+```sh
+lab2_tmp=$(mktemp -d)
+python3 -m venv "$lab2_tmp/venv"
+"$lab2_tmp/venv/bin/python" -m pip install -r data-acquisition/lab2/notebooks/requirements.txt
+export MPLCONFIGDIR="$lab2_tmp/mpl"
+
+"$lab2_tmp/venv/bin/python" -B data-acquisition/lab2/src/python/analyze.py \
+  data-acquisition/lab2/data/opamp_pump_off_test.csv \
+  data-acquisition/lab2/data/opamp_vacum_test.csv \
+  data-acquisition/lab2/data/opamp_pressure_test.csv \
+  --out "$lab2_tmp/results"
+ls "$lab2_tmp/results"
+```
+
+Ava ajutisest väljundkaustast `adc_time.png` ja `summary.json`. Graafiku y-telg on ADC kood, x-telg sekundites jooksu algusest. `raw` paneel on tühi, sest kõik sisendid on `opamp` seeriad. Kalibratsiooni ja võrdlusplaanita jäävad rõhk, SNR ja spektrid arvutamata. [Analüüsijuhend](notebooks/README.md).
+
+Käivita samas terminalis kõik tarkvaratestid. Täiskomplekt vajab ka `c++` kompilaatorit ja PlatformIO ehitusega laaditud ArduinoJsoni päiseid. [Eeltingimused ja ehituskäsk](src/README.md#tarkvarakontroll).
+
+```sh
+"$lab2_tmp/venv/bin/python" -B -m unittest discover -s data-acquisition/lab2/tests -v
+```
+
+## Kaitsmise juhend
+
+Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõte. Ava ka arvutus, mõõteprotokoll ja päevik. Allolev 7-minutiline demonstratsioon töötab ilma riistvarata. Ametlik 15-minutiline kaitsmine nõuab lisaks sisendi ja väljundi samaaegset ostsilloskoobivaadet, esimese astme vea selgitust ning pumba seiskamise näitamist uue signaaliga. [Õppejõu kaitsmisjuhend](https://github.com/KKallas/Narva-subjects/blob/main/EST/2026-27/Data%20Acquisition/Data%20Acquisition%20%5BLab%202%5D%20EST.md#kaitsmine).
+
+| Aeg | Mida näidata | Mida selgitada |
+|---|---|---|
+| 0:00–1:00 | [Mõõteahel](#süsteemi-arhitektuur) | Mida andur, võimendi, pingejagur, ADC ja logija teevad. Kuidas erinevad `raw` ja `opamp`. |
+| 1:00–2:30 | [Võimenduse arvutus](docs/opamp_design.md#võimenduse-arvutus), [22.10 katseskeemi arvutus](docs/opamp_design.md#väljundpinge-arvutamine) ja [Falstadi näide](docs/opamp_design.md#õppejõu-mpx5700ap-näite-falstadi-esimene-versioon) | Kuidas võimendus määrab ulatuse ja viitepinge nihke. Millised arvud on mõõdetud ja millised pärinevad õppejõu näite simulatsioonist. |
+| 2:30–3:45 | [Mõõtmiste tabel](#tõendid-ja-tulemused) ja üks algne CSV | Millal kasutati potentsiomeetrit, millal andurit. Kuidas 1001 lugemist annab 1000 ajavahet. Miks CSV metaandmeid tuleb lugeda koos protokolliga. |
+| 3:45–5:30 | `adc_time.png` ja `summary.json` | Osuta seisva pumba kõikumisele ja vaakumi lamedale osale 14–21 koodi juures. Selgita, miks `adc_clipped=0` ei tuvasta analoogastme küllastust ja miks kPa või SNR veel puuduvad. |
+| 5:30–7:00 | [Üleandmise märkmed](docs/opamp_v2_handoff_2026-10-25.md), [kontrollnimekiri](#kontrollnimekiri) ja [arenduspäevik](#arenduspäevik) | Mis muutus pärast CSV katseid, milline kontroll lubab G5 ühendada ja millised tõendid on veel vaja koguda. |
+
+## Puuduvad katsed ja järgmised sammud
+
+### Kodus, olemasolevate failidega
+
+1. Tee kolme CSV ajagraafik ja märgi kaitsmiseks vaakumi alumine platoo. Valmista ette sama päeva `raw`/`opamp` katseplaan koos `condition`, `trial`, baasjoone ja platoo akende märkimisega. [Analüüs ja vajalikud failid](notebooks/README.md#maksimilt-vajalikud-failid-ja-mõõtmised).
+2. Valmista ette tööleht toite-, sisend-, viite- ja väljundpingete ning otspunktivigade kirjapanekuks. Õppejõu Falstadi näidise eksport ja veebilingid on olemas. Meeskonna skeem, ühismüra ja ühe sisendi müra kontroll ning skeemipilt jäävad teha lõplike lähteandmetega. [Arvutused ja Falstad](docs/opamp_design.md) · [BOM ja tellimus](docs/bom.md).
+
+### Laboris, päris mõõtmistega
+
+1. **Kontrolli skeemi ja G5 ohutust.** Tuvasta muudetud skeemi juhtmed, jagur ja takistid. Mõõda tegelik anduri ning LM358N toide, `Vin`, `Vref` ja `Vout` atmosfääril, täis imemisel ja täis puhumisel. Kontrolli ADC-sse minevat pinget kogu ulatuses, sh siiretel, enne G5 ühendamist. Kontrolli füüsiliselt komponendid ja tellimisvajadus. [Pingitöö ja ohutu järjekord](docs/bench_session.md#4-ohutu-tööjärjekord).
+2. **Mõõda ja paranda aste.** Pane kirja esimese astme kolm punkti ja mõlema otspunkti vead. Põhjenda mõõtmiste alusel parandatud vahemik ja takistid ning korda kolme punkti kontrolli. Salvesta skeemifoto ja kahe kanaliga ostsillogramm samast impulsist anduri ja astme väljundis. Lisa meeskonna Falstadi skeem koos ekspordi, pildi ja muudetava lingiga. [Otspunktivead](docs/opamp_design.md#otspunktide-vead) · [Parandatud astme mõõtetabel](docs/opamp_design.md#parandatud-versiooni-kolme-punkti-mõõtmine).
+3. **Kalibreeri ja kogu võrdlus.** Pärast elektrilist kontrolli kinnita ADC ajastus ja kalibratsioon mõlemas ühenduses. Salvesta samal päeval sama protokolliga ühte CSV-sse vähemalt 30 impulssi kummaski konfiguratsioonis, koos logija kõrvalfailiga. Arvuta kontrollitud kalibratsioonist Pa/ADC samm ja võrreldavatest akendest SNR dB-des enne ja pärast astet. Kõrvuta spektreid Labori 1 omadega samadel telgedel, rõhk kPa-des. [Kalibratsioon, SNR ja spektrid](notebooks/README.md#kalibratsioon-snr-ja-spektrid).
+4. **Võrdle pumbajuhtimist.** Mõõda klaasil, õhus ja korgiga voolikuga juhtimisriba, minimaalne väljalülitusaeg ning käivitused minutis. Mõõda pooliku haarde eristamise aeg sekundites mõlema signaaliga. Võrdle Labori 1 lähtejoonega (välja −60 kPa, sisse −40 kPa, vähemalt 15 s seisu ja kuni 4 käivitust/min), põhjenda järeldust ja näita pumba seiskumist. [Labori 1 pumbajuhtimine](../lab1/docs/pump_control.md) · [Labori 2 võrdlustabel](docs/pump_control.md).
 
 ## Kontrollnimekiri
 
@@ -57,42 +125,6 @@ Kohalik AUTO-režiimi uuendus alustab toite sisselülitamisel ADC lugemist ja ku
 - [ ] Füüsiline komponentide saadavus ja tellimisvajadus on kontrollitud failis `docs/bom.md`. TODO: real measurement required.
 - [ ] Repo ja arenduspäevik on lõpetatud; esitamisel on lisatud tag `data-acquisition-lab2`.
 
-## 1. Mis on puudu
-
-Määrata meeskonna Labori 1 andmete põhjal:
-
-- anduri tegelik sisendpinge vahemik: TODO: real measurement required;
-- kasutatud ADC vahemiku osa: TODO: real measurement required;
-- praegune arvutuslik lahutus: `141 Pa/kood` (`sensor_choice.md`; Labori 1 teisendustegur ja MPX5700AP andmelehe ülekandefunktsioon);
-- lähtehüpotees: MPX5700AP otseühendatud signaal vajab nihutamist ja võimendamist; lõplik otsus kontrollitakse mõõdetud `V_in,min`, `V_in,max` ning ADC kasuliku vahemiku järgi;
-- astme sihtvahemik ja vajalik võimendus: TODO: real measurement required.
-
-Õppejõu MPX5700AP arvud `0,40…1,56 V` on andmelehe ja ülesande näide, mitte meeskonna mõõdetud otspunktid. Meeskond kasutas Laboris 1 sama andurit, kuid mõõdab Laboris 2 oma tegelikud otspunktid enne lõpliku astme valikut.
-
-## 2. Aste, esimene versioon
-
-1. Koostada sümboolne arvutus failis `docs/opamp_design.md`.
-2. Valida topoloogia ja komponendid alles pärast tegeliku sisend- ning sihtvahemiku kinnitamist. TODO: real measurement required.
-3. Koostada Falstadi simulatsioon koos eraldi ühismüra ja ühe sisendi müra katsega.
-4. Kontrollida arvutatud väljundvahemikku simulatsioonis.
-5. Ehitada aste maketeerimisplaadile ja mõõta tegelik toide ning kolm tööpunkti. TODO: real measurement required.
-6. Salvestada kahe kanaliga ostsilloskoobipilt. TODO: real measurement required.
-
-## 3. Parandus
-
-- Arvutada mõlema otspunkti viga mõõdetud ja arvutatud pinge vahena. TODO: real measurement required.
-- Kontrollida tegeliku toitepinge, op-ampi väljundulatuse ja ADC mittelineaarsuse mõju. TODO: real measurement required.
-- Valida uus sihtvahemik ja arvutada võimendus, viitepinge ning takistid uuesti. TODO: real measurement required.
-- Mõõta samad kolm punkti parandatud astmega ning hoida esimese versiooni tulemused kõrval. TODO: real measurement required.
-
-## 4. Vahe
-
-- Logida sama pumbaimpulss konfiguratsioonides `raw` ja `opamp` sama CSV-skeemiga. TODO: real measurement required.
-- Võrrelda spektrit, signaalitaset, platoo müra standardhälvet, SNR-i ja Pa ühe ADC sammu kohta Labori 1 raw-lähtejoone ning Labor 2 sama protokolli andmetega. TODO: real measurement required.
-- Võrrelda pumbajuhtimist olukordades `napp klaasil`, `napp õhus`, `voolik korgiga` ja `poolik haare`; ajalooline Labori 1 lähtejoon on failis `docs/pump_control.md`. Labor 2 kordus: TODO: real measurement required.
-- Dokumenteerida kontrollriba, minimaalne väljalülitusaeg, käivitused minutis ja pooliku haarde eristamise aeg. TODO: real measurement required.
-- Järeldus astme kasulikkuse kohta: TODO: real measurement required.
-
 ## Ohutus
 
 - Lülita USB ja 5 V välja enne juhtmete muutmist.
@@ -104,6 +136,8 @@ Määrata meeskonna Labori 1 andmete põhjal:
 - Hoia käed laualt eemal, kui MG400 on sisse lülitatud; esimene jooks aeglaselt ja hädastopp käeulatuses.
 - Selles laboris ei joodeta.
 
+**Enne G5 ühendamist** kontrolli ühine maa ning mõõda tegeliku anduri toide, LM358N toide viikudel ja ADC-sse minev signaal kogu kasutusalas. Kontrolli ostsilloskoobiga ka pumba lülitamise ja rõhu muutuse siirdeid. Ära ühenda kontrollimata 5 V analoogsignaali otse G5-le. `3,3 V` projekteerimissiht ega tarkvaratestid ei kinnita viigu elektrilist sobivust. [G5 elektriline kontroll](docs/bench_session.md#elektriline-kontroll-enne-g5-ühendamist).
+
 ## Hindamiskriteeriumid
 
 | Kategooria | Punktid | Ettevalmistuse olek |
@@ -114,15 +148,7 @@ Määrata meeskonna Labori 1 andmete põhjal:
 | Dokumentatsioon — README, päevik, Falstad, `pump_control.md`, `bom.md`, AGENTS.md | 5 | ettevalmistamisel |
 | **Kokku** | **20** | |
 
-## Lõplikud repo väljundid
-
-- `src/`: Atomi püsivara ja logija mõlema konfiguratsiooni jaoks.
-- `data/`: kontrollitud `raw` ja `opamp` CSV-failid.
-- `notebooks/`: spektrite, lahutusvõime ja SNR-i korratav analüüs.
-- `docs/`: arvutused, Falstadi eksport ja pilt, skeemifoto, ostsilloskoobipilt, `pump_control.md` ja `bom.md`.
-- `README.md`: kontrollnimekiri, otsused, tulemused ja arenduspäevik.
-
-Kinnitatud katsed ja lahtised mõõtmised on kokku võetud jaotises [Väljundid ja tulemused](#väljundid-ja-tulemused).
+## Labori ajalugu
 
 ### Arenduspäevik
 
@@ -214,46 +240,12 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 
 [Mõõteprotokollid](docs/bench_session.md#22102026--lm358n-katseskeemi-mõõtmised-maksim) kinnitavad Maksimi mõõtmised 22., 24. ja 25.10. [Raimo üleandmine](docs/opamp_v2_handoff_2026-10-25.md) toimus pärast Maksimi 25.10 jaguriga katseid. [23.10 tarkvaratöö](#arenduspäevik) ei olnud füüsiline katse. Tarkvaratöö tegijad vajavad meeskonna kinnitust.
 
-### Väljundid ja tulemused
+## Väljundid ja tulemused
 
-**Kinnitatud katsed**
-
-- **22.10.2026.** Maksim kontrollis potentsiomeetritega LM358N katseskeemi ühes tööpunktis: toide `5,00 V`, `Vin = 0,402 V`, `Vref = 0,520 V` ja `Vout = 0,205 V`. B5K reguleerimisel mõõtis ta väljundis ka `3,009 V`. See kinnitab katseskeemi elektrilist tööd mõõdetud tingimustel; MPX5700AP, ADC lugemine ja G5 kogu sisendvahemiku ohutus jäid selles katses kontrollimata. Allikad: [ühendused ja kontroll](docs/lm358n_wiring_2026-10-22.md#6-mõõtmine-ja-arvutuse-kontroll), [mõõtetabel](docs/bench_session.md#22102026--lm358n-katseskeemi-mõõtmised-maksim).
-- **24.10.2026.** Maksim kordas potentsiomeetritega katset: `Vin = 0,402 V`, `Vref = 0,526 V`, `Vout = 0,190 V`. G5 kaudu sai ta ligikaudu 10 sekundiga 1001 ADC lugemit (umbes 100 Hz): keskmine `188,43`, min `182`, max `196` koodi. See oli USB kaudu tehtud ADC kontroll reguleeritava testpingega. Allikad: [mõõteprotokoll](docs/bench_session.md#24102026--lm358n-katseskeemi-ja-atoms3r-adc-kontroll-maksim), [arvutus](docs/opamp_design.md#24102026--lm358n-katseskeemi-kontrollmõõtmine-maksim).
-- **25.10.2026.** Maksim salvestas kolm MPX5700AP mõõteseeriat LM358N ja `10 kΩ / 10 kΩ` pingejaguri kaudu G5-le. Igas failis on 1001 lugemit, esimese ja viimase proovi vahe 10,000 s ning proovide vahe 10 ms. Kõik kolm seeriat on `opamp` konfiguratsioonis. Katsetingimused pärinevad [mõõteprotokollist](docs/bench_session.md#adc-mõõteseeriad) ja failinimedest.
-
-| Katse ja algne CSV | Keskmine (ADC koodi) | Min (ADC koodi) | Max (ADC koodi) | Valimi standardhälve (ADC koodi) |
-|---|---:|---:|---:|---:|
-| [Pump väljas](data/opamp_pump_off_test.csv) | 657,62 | 642 | 667 | 2,90 |
-| [Vaakum](data/opamp_vacum_test.csv) | 511,54 | 14 | 837 | 306,76 |
-| [Ülerõhk](data/opamp_pressure_test.csv) | 804,60 | 641 | 1175 | 185,60 |
-
-Pumba seisuajal oli ADC näidu hajuvus 2,90 koodi. Vaakumi alumine platoo püsis vahemikus 14–21 koodi, kuigi `adc_clipped` jäi nulliks. Platoo viitab signaali alumisele piirangule; selle väike hajuvus ei tõenda korras mõõteahela väikest müra. Vaakumi ja ülerõhu terve seeria standardhälve sisaldab ka signaali muutusi. `p_kpa`, `voltage_v` ja `pump` on CSV-des tühjad. `dmm_reference_v = 0.19`, `condition = test_signal` ja `trial = 1` jäid 24.10 testist ning ei kirjelda 25.10 katsetingimusi. ADC koodid ei väljenda kalibreeritud rõhku ja eri tingimustega `opamp` seeriad ei anna võrreldavat `raw/opamp` katset.
-
-**Tööjaotus.** Maksimi füüsilised katsed on kirjas 22., 24. ja 25.10 mõõteprotokollides. 23.10 tarkvara ettevalmistus ja 22.10 Word-allika dokumenteerimine on eraldi tööd. Dokumenteerimise kuupäev ega Git-commiti autor ei kinnita füüsilises katses osalemist. Pärast Maksimi 25.10 jaguriga mõõtmisi andis Raimo muudetud katseskeemi Maksimile üle. [Üleandmise protokoll](docs/opamp_v2_handoff_2026-10-25.md) eristab plaadimuudatusi, Raimo teatatud multimeetrinäite, hinnanguid ja lahtisi kontrolle. Kolm CSV-d kirjeldavad ümberehitusele eelnenud skeemi.
-
-**Väljundid**
-* Lõplik op-amp aste koos arvutuse, skeemi ja kontrollitud komponentidega: TODO —
-  real measurement required.
-* Parandatud astme lõplik elektriline kontroll: TODO — mõõta kolm kontrollitud rõhupunkti ning kontrollida G5 sisendi kogu töövahemikku ja siirdeid.
-* Sama katse kontrollitud `raw` ja `opamp` andmestikud: TODO — real measurement
-  required.
-* Kalibratsioonikonstandid ja rõhuks teisendamine koos ühikutega: TODO — real
-  measurement required.
-* SNR ja spektrivõrdlus samadel katsetingimustel: TODO — võrreldavad `raw/opamp` mõõtmised ja kalibratsioon.
-* Toore ja op-amp signaaliga pumbajuhtimise võrdlus: TODO — real measurement
-  required.
-* Smart Solutions Lab 2 Atomi lehele vajalikud kalibratsiooni- ja rõhuväljad:
-  TODO — real measurement required.
+Esitamisel koonda kinnitatud tulemused koos ühikute ja failiviidetega. [Mõõtetulemused](#tõendid-ja-tulemused) · [Lõpetamata katsed](#puuduvad-katsed-ja-järgmised-sammud).
 
 **KAARDISTA ISE, lõpus.**
-* Git repo ja tag: TODO — lisada alles esitamisel.
-* Numbrid, mille see labor andis, ühikutega: ülaltoodud katsed ja ADC statistika; kalibreeritud rõhutulemused jäävad TODO.
-* Mida me teeksime teisiti: TODO — complete after physical tests.
-* Mida järgmine labor peaks enne alustamist teadma: TODO — complete after the
-  op-amp, calibration and pump-control comparison are physically verified.
 
-
-
-
-
+- Repo ja tag `data-acquisition-lab2`: lisada tag alles esitamisel.
+- Mida teeksime teisiti: sõnasta pärast parandatud astme mõõtmist ja võrdluskatseid.
+- Järgmisele laborile: anna üle kontrollitud skeem, kalibratsioon, proovivõtu ajastus ja pooliku haarde logid. Labori 3 komparaatori jaoks tuleb eraldi lahendada LM358N viitepuhvri ülesanne. Smart Solutions Atomi rõhuväljad vajavad kinnitatud kalibratsiooni. [Labor 3 lähteandmed](../lab3/README.md).
