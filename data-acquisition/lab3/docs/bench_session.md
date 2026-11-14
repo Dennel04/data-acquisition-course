@@ -42,11 +42,11 @@ Täita päris komponentide juures. See leht ei kinnita saadavust ega ühtegi lä
 
 - XIAO ESP32S3 Sense kaamera, töökõrgus, fookus, ristsuund ja valgus: **TODO**
 - Seansi skaala mm/pixel, väikseima tilga läbimõõt px, skaala foto: **TODO**
-- Hele PLA plaat, 5 × 5 võrgu samm suurem kui suurim laik: **TODO**
-- Plaadi/vahetükkide CAD-lähtefail ja STL: **TODO: pärast loomist**
-- Vahetüki tegelik kõrgus ja mõõtemeetod: **TODO: mm**
+- Valge PLA V2 on prinditud. Kas 5 × 5 võrgu samm on suurem kui suurim laik: **TODO**.
+- Plaadi ja maketi CAD-lähtefail ning STL: [labori README](../README.md#nõutavad-väljundid).
+- Esimese V2 kolm klaasituge mõõdeti 0,6 mm kõrguseks. Mõõtemeetod ja teise V2 kontroll: **TODO**. [Mõõteleht](../tilgaplaat/measurements.md).
 - Päris AtomS3 korpuse välismõõdud, ekraani ava suurus/asukoht, raam ning ekraani sügavus: **TODO: nihikuga**
-- Prinditud ekraanipoole mudeli lähtefail/STL ja hoidikusse sobivus: **TODO**
+- Üks prinditud AtomS3R makett (24 × 24 × 12,9 mm) istus stabiilselt. [Mõõdud ja foto](../tilgaplaat/measurements.md#valge-atoms3r-ekraanipoole-makett--üks-mõõdetud-eksemplar).
 - Foto, kontuurikontroll, laigu pindala ja x/y nihe mudelil: **TODO**
 - Seotud drops.csv / placement.csv read ja toorrõhukõver: **TODO**
 
