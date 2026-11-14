@@ -21,6 +21,8 @@ Must mõõteots GND-l. Andur ühendatud nagu
 | G5 ühendatud anduri väljundiga, andur endiselt plaadil | ligikaudu `0,5 V`, süstlaga ei muutunud |
 | Andur plaadist lahti ühendatud | Andur töötab (Raimo kinnitus). Arvulised näidud jäid kirja panemata: TODO |
 
+- 14.11.26 parandus: hiljem samal päeval mõõtis Raimo anduri üksi uuel plaadil (ehitussamm 2): täis imemisel `0,32 V`, atmosfääril `0,831 V`, täis puhumisel `2,40 V`. Mõõtmisviis (multimeeter või G5-mõõtja) ja anduri toite täpne pinge jäid kirja panemata: TODO. Vt [punkt 6](#6-1411-hilisem-täpsustus-mõõdetud-vahemik-ja-muudetud-plaan).
+
 **Hinnang:** MPX5700AP on absoluutrõhuandur. 5 V toitel peaks atmosfääril
 väljund olema ligikaudu `0,85 V` (Labor 1 mõõtis sama). `0,468 V` vastaks
 valemi järgi ligikaudu 42 kPa absoluutrõhule. Anduri väljund annab
@@ -68,6 +70,9 @@ samuti õige püsivara tagasi panna.
 Vooluring jääb samaks: `Vout = A × Vin − (A − 1) × Vref`, `A = 1 + Rf/Rref`.
 Muutused 2. versiooniga võrreldes:
 
+- 14.11.26 parandus: allolev plaan (20 kΩ + B5K, `Rref` 6,8 kΩ + 2 kΩ, siht õppejõu näite järgi) asendati samal päeval mõõdetud vahemiku põhjal. Kehtiv plaan ja tegelikud pesad on [punktis 6](#6-1411-hilisem-täpsustus-mõõdetud-vahemik-ja-muudetud-plaan). Allolev tabel jääb esialgse plaanina alles.
+
+
 | Osa | 2. versioon | Uus plaan | Põhjus |
 |---|---|---|---|
 | `Vref` jagur | 1 kΩ + B100K | 20 kΩ + B5K, reguleerimine 0…~1,0 V | ~3 korda täpsem seadmine ~0,5 V juures |
@@ -111,6 +116,49 @@ Ehitusjärjekord, iga samm kontrollitakse enne järgmist:
 ## 5. Veel tegemata
 
 - Plaadilt lahti ühendatud anduri arvulised näidud (atmosfäär, imemine, puhumine).
+  - 14.11.26 parandus: mõõdetud, `0,32 / 0,831 / 2,40 V` (punkt 6).
 - Uue plaadi ehitus ja sammude 0–8 mõõtmised.
 - Takistite lahtiselt mõõdetud väärtused.
 - `DA2_MEASURE_V1` tagasi panemine enne CSV logimist.
+
+## 6. 14.11 hilisem täpsustus: mõõdetud vahemik ja muudetud plaan
+
+Raimo mõõtis anduri üksi ja vaatas üle tegeliku plaadi. Siin on sellest
+tulenev plaan. Arvutused on **hinnang** kuni ehituse ja mõõtmiseni (sammud 4–7).
+
+| Anduri väljund | Pinge |
+|---|---|
+| Täis imemine | `0,32 V` |
+| Atmosfäär | `0,831 V` |
+| Täis puhumine | `2,40 V` |
+
+Vahemik `2,08 V` on õppejõu näitest (`1,16 V`) peaaegu kaks korda laiem, seega
+on vaja väiksemat võimendust.
+
+| Osa | Esialgne plaan (punkt 4) | Muudetud plaan |
+|---|---|---|
+| Potentsiomeeter | B5K + 20 kΩ | **B100K** (plaadil olemas), liugur → 47 kΩ → sõlm X (rida 32) → 10 kΩ → GND; X → pin 5. Reguleerimine 0…~0,88 V |
+| `Rref` | 6,8 kΩ + 2 kΩ | 6,8 kΩ + **47 kΩ** = 53,8 kΩ |
+| Võimendus `A` | ~2,15 | `1 + 10/53,8 ≈ 1,19` |
+| `Vref` | ~0,49 V | `(1,186 × 0,32 − 0,30)/0,186 ≈ 0,43 V` |
+| `Vout` imemine / atmosfäär / puhumine | – | ~`0,30` / ~`0,91` / ~`2,77 V` |
+| G5 filter | puudus | 0,1 µF G5 sõlmest GND-sse; koos 3,3 kΩ-ga piirsagedus ~480 Hz, 100 Hz signaal ~98 % |
+| Puhvri allatõmbetakisti | 2 kΩ | jääb 2 kΩ. Suurema `Rref`-iga on tagasivool täis puhumisel vaid ~`(2,40 − 0,43)/53,8 kΩ ≈ 37 µA` |
+
+Tegelikud pesad uuel plaadil. Siinipaarid on prinditud järjekorras + ja −, nii
+et A-poolel on + välimine ja J-poolel sisemine joon:
+
+| Ühendus | Pesad |
+|---|---|
+| MPX5700AP | plaadil J1–J6 (pin 1 sälgu juures J1-s). I1 → C22 (`Vin`), I2 → J-poole −, I3 → J-poole + |
+| AtomS3R | plaadil: 5V D62, GND D63, G5 H60, G8 H63. A62 → A-poole +, A63 → A-poole − |
+| Siinide sillad | J+ → A+ reas 46, J− → A− reas 48 |
+| LM358N | read 20–23 (enne umbes ridadel 25–29, tuleb ümber tõsta). J20 → J-poole +, A23 → A-poole − |
+| B100K | J34 (üla), J36 (liugur), J38 (ala). I34 → J-poole +, I38 → J-poole − |
+| Nõrgendi | 47 kΩ I36 → I32; 10 kΩ G32 → G38; hüppaja H32 → H23 (pin 5) |
+| Puhver | H22 → H21; 2 kΩ I21 → J-poole − |
+| `Rref` | 6,8 kΩ B21 → B27; 47 kΩ D27 → G27; hüppaja J27 → J21 |
+| `Rf` | 10 kΩ A21 → A15; hüppaja B15 → B20 |
+| Väljund | 3,3 kΩ C20 → C12; 0,1 µF E12 → A-poole −; hüppaja A12 → J60 (G5 rida) |
+
+Seis: anduri vahemik mõõdetud (samm 2). Sammud 3–8 on veel tegemata.
