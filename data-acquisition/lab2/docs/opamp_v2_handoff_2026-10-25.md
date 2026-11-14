@@ -95,3 +95,5 @@ G5 hoida lahti kuni sammuni 5. Must mõõteots D29-l.
 6. Kanna parandatud astme tulemused faili [`opamp_design.md`](opamp_design.md)
    ("Parandatud versiooni kolme punkti mõõtmine") ja lisa päevikukanne.
    Jaguriga mõõtmised jäävad esimese versiooni tulemustena alles.
+
+- 14.11.26 märkus: Raimo leidis, et andur töötab, kuid selle plaadi ühendused on vigased. Komponendid tõstetakse uuele plaadile uue paigutusega; sammud 1–5 tehakse seal. [Tõrkeotsing ja ümberehituse plaan](opamp_rebuild_2026-11-14.md).
