@@ -162,3 +162,5 @@ et A-poolel on + välimine ja J-poolel sisemine joon:
 | Väljund | 3,3 kΩ C20 → C12; 0,1 µF E12 → A-poole −; hüppaja A12 → J60 (G5 rida) |
 
 Seis: anduri vahemik mõõdetud (samm 2). Sammud 3–8 on veel tegemata.
+
+- 14.11.26 märkus: kordustest [`opamp_retest.py`](../src/python/opamp_retest.py) G5-mõõtja püsivaraga (Atom COM4), 17:45 ja 17:47 jooksul andur otse kompressori küljes. Tulemus **PASS** (17:47): atmosfäär `0,858 V`, täis imemine `0,236 V`, täis puhumine `2,664 V`, ulatus `2,43 V`, tuletatud võimendus `1,168` (disain `1,186`). Pinged kalibreerimata (`3,70 V / 4095`). Kaust [`data/opamp_retest_2026-11-14_1747`](../data/opamp_retest_2026-11-14_1747/REPORT.md). Samal päeval varem: 17:37 FAIL (väljund `0,847 V` kõigil kolmel rõhul, põhjus kinnitamata), 17:40 FAIL (puhumisel ainult `1,13 V`, täis puhumist ei saavutatud), 17:45 PASS (imemine algas ~3 s pärast Enterit, keskmine `0,407 V` on seetõttu moonutatud). Sammude 3–7 multimeetri näidud jäid kirja panemata: TODO.

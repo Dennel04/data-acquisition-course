@@ -1,0 +1,100 @@
+{
+  "info": {
+    "started": "2026-11-14T17:40:37",
+    "port": "COM4",
+    "design": {
+      "rf_k": 10.0,
+      "rref_k": 53.8,
+      "sensor_v": {
+        "full_suction": 0.32,
+        "atmosphere": 0.831,
+        "full_blowing": 2.4
+      },
+      "target_low_v": 0.3
+    },
+    "duration_s": 8,
+    "errors": [],
+    "dmm_v": null,
+    "firmware": "meter"
+  },
+  "results": {
+    "atmosphere": {
+      "n": 41,
+      "mean_code": 938.0,
+      "mean_v": 0.8475213675213675,
+      "std_code": 0.0,
+      "min_code": 937,
+      "max_code": 938,
+      "min_v": 0.8466178266178266,
+      "max_v": 0.8475213675213675
+    },
+    "full_suction": {
+      "n": 42,
+      "mean_code": 258.0769230769231,
+      "mean_v": 0.23318305625997934,
+      "std_code": 2.6153846153846154,
+      "min_code": 253,
+      "max_code": 262,
+      "min_v": 0.22859584859584858,
+      "max_v": 0.23672771672771672
+    },
+    "full_blowing": {
+      "n": 41,
+      "mean_code": 1248.44,
+      "mean_v": 1.1280166056166057,
+      "std_code": 26.16269099309167,
+      "min_code": 1204,
+      "max_code": 1335,
+      "min_v": 1.087863247863248,
+      "max_v": 1.2062271062271062
+    }
+  },
+  "checks": [
+    [
+      "PASS",
+      "Output follows pressure",
+      "suction 0.233 V < atmosphere 0.848 V < blowing 1.128 V"
+    ],
+    [
+      "FAIL",
+      "Output range",
+      "0.89 V from full suction to full blowing (need >= 1.5 V, design 2.47 V)"
+    ],
+    [
+      "PASS",
+      "Not stuck at the low end",
+      "full suction min 0.229 V, mean 0.233 V (need min >= 0.054 V and mean >= 0.10 V)"
+    ],
+    [
+      "PASS",
+      "Safe for G5 at the high end",
+      "full blowing max 1.206 V (need <= 3.0 V)"
+    ],
+    [
+      "PASS",
+      "Noise at atmosphere",
+      "0.0 ADC codes = 0.0 mV standard deviation (aim <= 10 codes)"
+    ],
+    [
+      "PASS",
+      "Close to design: atmosphere",
+      "0.848 V vs 0.906 V expected (-0.058 V, allowed +-0.25 V)"
+    ],
+    [
+      "PASS",
+      "Close to design: full_suction",
+      "0.233 V vs 0.300 V expected (-0.067 V, allowed +-0.25 V)"
+    ],
+    [
+      "WARN",
+      "Close to design: full_blowing",
+      "1.128 V vs 2.767 V expected (-1.639 V, allowed +-0.25 V)"
+    ],
+    [
+      "WARN",
+      "Implied gain",
+      "0.430 vs design 1.186; assumes the pump reached the 14.11 sensor range 0.32-2.4 V"
+    ]
+  ],
+  "verdict": "FAIL"
+}
