@@ -63,7 +63,7 @@ Z erinevus CAD-ist on **+0,1 mm**. Kasutaja parandas esialgse 12,8 mm väärtuse
 | Pikkus Y | 167,5 mm | 167,5 mm |
 | Klaasitoe kõrgus tööpinna kohal | 0,6 mm | 0,6 mm |
 | Gridfinity sobivus | 4 × 4 moodulit | Paigutus stabiilne |
-| Klaasi asend nurgatihvtide vahel | 30,6 mm (30 mm klaas + 0,3 mm lõtk külje kohta) | Klaas liigub tihvtide vahel vabalt (kasutaja vaatlus); tihvtide vahe ja klaasi mõõt TODO |
+| Klaasi asend nurgatihvtide vahel | 30,6 mm (30 mm klaas + 0,3 mm lõtk külje kohta) | Klaasi mõõt keskmiselt 29,65–29,7 mm (CAD eeldas 30 mm). Klaas liigub vabalt ja libiseb ridade vahel ühest kohast teise (kasutaja vaatlus). Tihvtide vahe TODO |
 | Foto | — | TODO |
 
 ## Katsed, mida ei ole kinnitatud
