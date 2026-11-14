@@ -41,4 +41,7 @@ Lähtefail ja parameetrid / исходник и параметры: [`src/da-lab
 ## V3 kavand (14.11.2026, printimata)
 
 V2 probleem: nurgatihvtid on ühisel ruudustikul, nende vahele jääb 30,6 mm laiune koridor ja 29,65 mm klaas libiseb mööda rida ühest kohast teise. V3: nurgatihvtide asemel **+-kujulised piirikud**, mille 6 mm harud on rakkude piiril ja ulatuvad klaasi teele; tasku = 29,65 + 2 × 0,3 = 30,25 mm (klaasi keskmine mõõt 14.11). Padjandid 0,6 mm, ristid ja samm 32,5 mm samad.
-Fusioni skript: [`src/s_da_lab3_v3.py`](src/s_da_lab3_v3.py) (käivitada koos `fusion-tutor/shared/tools/fusion-geometry/gf_std_foot.py` päisega). Esimene ehitus 14.11 (klaas 29,7): kontrollpunktid klaasi kõrgusel — serva keskel vaba, harude kohal ja nurgas tahke (klaas ei pääse välja). STL, BGCODE ja foto: TODO.
+Fusioni skript: [`src/s_da_lab3_v3.py`](src/s_da_lab3_v3.py) (käivitada koos `fusion-tutor/shared/tools/fusion-geometry/gf_std_foot.py` päisega). Ehitatud 14.11 klaasile 29,65 mm: kontrollpunktid klaasi kõrgusel — serva keskel vaba, harude kohal ja nurgas tahke (klaas ei pääse välja). 167,5 × 167,5 × 12,65 mm, 184 cm³.
+- Fusion: [`src/da-lab3-tilgaplaat-v3.f3d`](src/da-lab3-tilgaplaat-v3.f3d) · STL: [`stl/tilgaplaat-v3.stl`](stl/tilgaplaat-v3.stl)
+- BGCODE: [`bgcode/tilgaplaat-v3_0.4n_0.2mm_PLA_COREONE_2h52m.bgcode`](bgcode/tilgaplaat-v3_0.4n_0.2mm_PLA_COREONE_2h52m.bgcode) — Prusa CORE One HF0.4, 0.20mm SPEED, Prusament PLA, täide 15 %, tugedeta (V2 seaded); slaiseri prognoos 2 h 52 min, 101 g. Printimine samamoodi nagu laud 2 (hele PLA).
+- Printimata: mõõdud, klaasi sobivus ja foto on TODO.
