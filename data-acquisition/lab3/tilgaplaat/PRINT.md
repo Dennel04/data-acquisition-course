@@ -37,3 +37,8 @@
 6. После печати: сними остывшую пластину, штангенциркулем измерь высоту 2–3 выступов (должно быть ~0,6 мм) и запиши в `README.md`. Крестики-желобки затри чёрным маркером.
 
 Lähtefail ja parameetrid / исходник и параметры: [`src/da-lab3-tilgaplaat-atoms3-mudel.f3d`](src/da-lab3-tilgaplaat-atoms3-mudel.f3d); kirjeldus lab 3 [`README.md`](../README.md).
+
+## V3 kavand (14.11.2026, printimata)
+
+V2 probleem: nurgatihvtid on ühisel ruudustikul, nende vahele jääb 30,6 mm laiune koridor ja 29,65 mm klaas libiseb mööda rida ühest kohast teise. V3: nurgatihvtide asemel **+-kujulised piirikud**, mille 6 mm harud on rakkude piiril ja ulatuvad klaasi teele; tasku = 29,65 + 2 × 0,3 = 30,25 mm (klaasi keskmine mõõt 14.11). Padjandid 0,6 mm, ristid ja samm 32,5 mm samad.
+Fusioni skript: [`src/s_da_lab3_v3.py`](src/s_da_lab3_v3.py) (käivitada koos `fusion-tutor/shared/tools/fusion-geometry/gf_std_foot.py` päisega). Esimene ehitus 14.11 (klaas 29,7): kontrollpunktid klaasi kõrgusel — serva keskel vaba, harude kohal ja nurgas tahke (klaas ei pääse välja). STL, BGCODE ja foto: TODO.
