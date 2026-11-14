@@ -3,6 +3,7 @@
 Esimene etapp kogub ainult ADC toorandmeid. Varasema versiooni USB-only üleslaadimine, LCD töö ja `measure_stop` käsu `stopped` vastus on kasutaja kinnitatud (Serial Monitor `--eol LF`). Allpool kirjeldatud AUTO-versioon on kohalik muudatus ja vajab eraldi üleslaadimisluba ning riistvarakatset. Elektriline sobivus, tegelik sagedus ja rõhukalibratsioon vajavad mõõtmist. Labor 1 lähtekood jääb muutmata. Võrguühenduseta CSV analüüs: [notebooks/README.md](../notebooks/README.md).
 
 - 14.11.26 märkus: ühises AtomS3R-is on praegu ajutine G5-mõõtja ([`firmware_g5meter`](firmware_g5meter/src/main.cpp)), mitte `DA2_MEASURE_V1`. Varem seadmes olnud `DA2_MEASURE_V1` salvestati enne üleslaadimist täieliku flash'i koopiana. Enne `logger.py` kasutamist pane `DA2_MEASURE_V1` tagasi. [Üksikasjad](../docs/opamp_rebuild_2026-11-14.md#3-atomi-püsivara-muutus).
+- 14.11.26 märkus: ümberehitatud astme kordustest: [`opamp_retest.py`](python/opamp_retest.py), käivitus topeltklõpsuga `run_opamp_retest.bat` / `run_opamp_retest.command`. Töötab nii `DA2_MEASURE_V1` kui G5-mõõtjaga. [Juhend](../docs/opamp_retest.md).
 
 ## Mõõtmisrežiim
 
