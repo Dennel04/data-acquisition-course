@@ -17,7 +17,7 @@ Rõhuandur annab rõhule vastava pinge. AtomS3R loeb pinget arvuna ja logija seo
 | Varasemad päriskatsed | Lab 1-s kontrollis meeskond rõhuandurit, pumbajuhtimist ja klaasi tõstmist. Lab 2-s mõõtis meeskond LM358N katseskeemi potentsiomeetritega ning 25.10 rõhuanduriga. Need on varasemate seadistuste tulemused. |
 | Tarkvara | Nutikate Lahenduste ühises Atomi projektis on klapi ja UV olekumudel, sündmuste puhver ning native-testid. Lab 3 tilgalogija ja riistvaraliides on TODO. |
 | Ettevalmistus | Olemas on [mõõteleht](docs/bench_session.md), [BOM](docs/bom.md), [analüüsiplaan](notebooks/README.md) ja [andmemallid](data/README.md). LED-i, draiveri ja radiaatori read on ühises tellimistabelis; ost ja kättesaamine vajavad kinnitust. |
-| CAD ja printimise seis | Laud 1 on valmis: valge V2 ja kuus valget AtomS3R maketti. Kasutaja mõõtis üht V2 plaati ja üht maketti. Laud 2 (teine valge V2) on viimase teate järgi veel printimisel. [Printimisjuhend](tilgaplaat/PRINT.md) · [Mõõtmised](tilgaplaat/measurements.md). |
+| CAD ja printimise seis | Laud 1 on valmis: valge V2 ja kuus valget AtomS3R maketti. Kasutaja mõõtis üht V2 plaati ja üht maketti. Laud 2 (teine valge V2) on valmis; selle klaasitoe kõrgus on 0,6 mm. [Printimisjuhend](tilgaplaat/PRINT.md) · [Mõõtmised](tilgaplaat/measurements.md). |
 | Lab 3 füüsiline integratsioon | Tilga-, kaamera-, UV- ja robotikatsed on TODO. Klapi ja UV juhtimine, ohutu väljalülitus, doseerimine, kaamera mõõteskaala ja katkestuse viivitus ootavad päriskatseid. Teise V2 mõõdud ja sobivus on TODO. Kolmes Lab 3 CSV-s on ainult päised. |
 
 ## Tõendid ja tulemused
@@ -125,7 +125,7 @@ Numbrid viitavad [kontrollnimekirja](#kontrollnimekiri) punktidele nende algses 
 ### C. Doseerimine, fotod ja tilga suurus
 
 - **Eeldus ja alus (5–7).** Kinnita klapi ja UV ohutu toimimine ning rõhu mõõtmise sobivus. [Kaamera- ja tilgamõõtmise plaan](notebooks/README.md#tilgad-ja-paigutus) kirjeldab pilti, kontuuri ja rõhukõverat. Õppejõu soovitus alustada peenest otsikust, madalast rõhust ja üle 100 ms impulsist on lähtekoht, mitte katsetatud retsept.
-- **Puuduv töö.** Pärast teise V2 printimist mõõda selle klaasitoe kõrgus ning kontrolli plaadi mõõte ja sobivust. Kalibreeri XIAO kaamera pilt samalt kõrguselt iga seansi alguses; kontrolli fookust ja valgustust. Tee viis impulsi pikkust × kümme tilka ning proovi teist otsikut või rõhku kolme pikkusega. Mõõda pildilt pindala ja kasuta kihi kõrgust ruumala hindamiseks. Võrdle lineaarsust, korduste hajuvust (CV) ja esimest impulssi pärast pausi. Päris AtomS3 peale vaiku ei katsetata; mõõda [prinditud maketil](tilgaplaat/measurements.md) laigu pindala ja nihe.
+- **Puuduv töö.** Teise V2 klaasitoe kõrgus on mõõdetud (0,6 mm); kontrolli veel selle X/Y-mõõte ja sobivust. Kalibreeri XIAO kaamera pilt samalt kõrguselt iga seansi alguses; kontrolli fookust ja valgustust. Tee viis impulsi pikkust × kümme tilka ning proovi teist otsikut või rõhku kolme pikkusega. Mõõda pildilt pindala ja kasuta kihi kõrgust ruumala hindamiseks. Võrdle lineaarsust, korduste hajuvust (CV) ja esimest impulssi pärast pausi. Päris AtomS3 peale vaiku ei katsetata; mõõda [prinditud maketil](tilgaplaat/measurements.md) laigu pindala ja nihe.
 - **Tõend ja failid.** Seo iga `drop_id` foto, mõõtkava, kontrollkontuuri ja algse rõhukõveraga failis [drops.csv](data/drops.csv). Lisa mudeli katse pildid ja tulemused faili [placement.csv](data/placement.csv). Viita olemasolevale Fusioni lähtefailile ja STL-idele ning lisa prinditud detailide mõõtmised. [Andmevorming](data/README.md).
 
 ### D. Filter, rõhutuletis ja poolik haare
@@ -302,7 +302,7 @@ Lisa ainult tegeliku töösessiooni järel uus sissekanne; olemasolevaid sisseka
 - Oranž V1 mõõtis 80 × 80 × 2,4 mm. Oranžil PLA-prototüübil pole klaasitugesid ega Gridfinity liidest. [V1 kaustas](tilgaplaat/v1/README.md) on kasutaja arhiivist pärit Fusioni, OpenSCADi, STEPi, STL-i ja 3MF-i failid.
 - Laud 1: valge V2 ja kuus maketti valmis. Esimese V2 mõõdud on 167,5 × 167,5 mm ja jalgadega umbes 9 mm. Kolm mõõdetud klaasituge olid 0,6 mm kõrgused, plaat istus ruudustikus stabiilselt. Üks valge AtomS3R makett mõõtis 24 × 24 × 12,9 mm, ekraanisüvend oli umbes 1,2 mm ja makett istus stabiilselt. Kasutaja parandas algse kõrgusnäidu 12,8 mm väärtuseks 12,9 mm. Vahe CAD-i kõrgusega (12,8 mm) on +0,1 mm.
 - Lisatud: [mõõteleht](tilgaplaat/measurements.md), [V1 prototüübi kirjeldus ja fotod](tilgaplaat/v1/README.md), [V2 ja makettide originaalfotod](tilgaplaat/photos/README.md). [Printimisjuhendis](tilgaplaat/PRINT.md) on mõlema laua seis.
-- Laud 2 on viimase teate järgi veel printimisel. Teise V2 mõõdud ja fotod ning tilga-, kaamera-, UV- ja robotikatsed on TODO.
+- Laud 2: teine valge V2 on valmis, klaasitoe kõrgus 0,6 mm. Teise V2 X/Y-mõõdud ja foto ning tilga-, kaamera-, UV- ja robotikatsed on TODO.
 
 ## Väljundid ja tulemused
 

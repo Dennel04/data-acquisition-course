@@ -3,7 +3,7 @@
 ## Seis 14.11.2026
 
 - **Laud 1: valmis.** Prinditi esimene valge V2 ja kuus valget AtomS3R maketti. Kasutaja mõõtis üht plaati ja üht maketti. V2: 167,5 × 167,5 mm, jalgadega umbes 9 mm; kolm klaasituge 0,6 mm igaüks. Plaat istus Gridfinity ruudustikus stabiilselt. Makett: 24 × 24 × 12,9 mm, ekraanisüvend umbes 1,2 mm; istus stabiilselt. Maketi parandatud kõrgus on 12,9 mm, CAD-is 12,8 mm (vahe +0,1 mm). [Mõõtmised](measurements.md) · [Fotod](photos/README.md).
-- **Laud 2: viimase teate järgi veel printimisel.** Teise valge V2 valmimine, mõõdud, sobivus ja foto on TODO.
+- **Laud 2: valmis.** Teine valge V2 on prinditud. Kasutaja mõõtis klaasitoe kõrguseks 0,6 mm. X/Y-mõõdud, Gridfinity sobivus ja foto on TODO.
 - **Varasem oranž V1:** 80 × 80 × 2,4 mm, oranž PLA, klaasitugedeta ja Gridfinity liideseta. [V1 algfailid, kirjeldus ja fotod](v1/README.md).
 - Tilga-, kaamera-, UV- ja robotikatsed on TODO. Tabeli ajad ja massid on slaiseri prognoosid.
 

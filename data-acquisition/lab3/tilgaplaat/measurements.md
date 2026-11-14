@@ -54,10 +54,14 @@ Z erinevus CAD-ist on **+0,1 mm**. Kasutaja parandas esialgse 12,8 mm väärtuse
 ## Teine valge tilgaplaat V2
 
 - G-code: [`bgcode/tilgaplaat-2_0.4n_0.2mm_PLA_COREONE_2h38m.bgcode`](bgcode/tilgaplaat-2_0.4n_0.2mm_PLA_COREONE_2h38m.bgcode).
-- **Seis 14.11.2026:** veel printimisel; valmisolekut ei ole kinnitatud.
+- **Seis 14.11.2026:** prinditud ja valmis (kasutaja teade).
 - Slaiseri prognoos: 2 h 38 min ja 97 g; need ei ole mõõdetud tegelikud tulemused.
-- Pärast printimist: X/Y, ühe klaasitoe tegelik kõrgus, Gridfinity sobivus ja foto — TODO.
+
+| Väli | CAD/slaiser | Füüsiline mõõtmine/vaatlus |
+|---|---:|---:|
+| Klaasitoe kõrgus tööpinna kohal | 0,6 mm | 0,6 mm |
+| X/Y, Gridfinity sobivus, foto | — | TODO |
 
 ## Katsed, mida ei ole kinnitatud
 
-Vaigu doseerimine, 405 nm UV kõvendamine, kaamera skaala mm/px, rõhukõverate mõõtmine, tilga suurus, klaasi asetamine, robotikatsed ja teise V2 füüsilised mõõdud: **TODO**. Lähtemudel: [`src/da-lab3-tilgaplaat-atoms3-mudel.f3d`](src/da-lab3-tilgaplaat-atoms3-mudel.f3d) (V2).
+Vaigu doseerimine, 405 nm UV kõvendamine, kaamera skaala mm/px, rõhukõverate mõõtmine, tilga suurus, klaasi asetamine, robotikatsed ning teise V2 X/Y-mõõdud ja foto: **TODO**. Lähtemudel: [`src/da-lab3-tilgaplaat-atoms3-mudel.f3d`](src/da-lab3-tilgaplaat-atoms3-mudel.f3d) (V2).
