@@ -59,8 +59,12 @@ Z erinevus CAD-ist on **+0,1 mm**. Kasutaja parandas esialgse 12,8 mm väärtuse
 
 | Väli | CAD/slaiser | Füüsiline mõõtmine/vaatlus |
 |---|---:|---:|
+| Laius X | 167,5 mm | 167,5 mm |
+| Pikkus Y | 167,5 mm | 167,5 mm |
 | Klaasitoe kõrgus tööpinna kohal | 0,6 mm | 0,6 mm |
-| X/Y, Gridfinity sobivus, foto | — | TODO |
+| Gridfinity sobivus | 4 × 4 moodulit | Paigutus stabiilne |
+| Klaasi asend nurgatihvtide vahel | 30,6 mm (30 mm klaas + 0,3 mm lõtk külje kohta) | Klaas liigub tihvtide vahel vabalt (kasutaja vaatlus); tihvtide vahe ja klaasi mõõt TODO |
+| Foto | — | TODO |
 
 ## Katsed, mida ei ole kinnitatud
 
