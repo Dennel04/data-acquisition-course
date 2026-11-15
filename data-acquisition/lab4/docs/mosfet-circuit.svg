@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 525" width="790" height="525">
+<title>IRLZ34N klapilüliti skeemi kavand</title>
+<rect width="790" height="525" fill="#ffffff"/>
+<g fill="none" stroke="#23354b" stroke-width="2" stroke-linejoin="round">
+<polyline points="440,77 440,112"/>
+<polyline points="440,90 595,90 595,152"/>
+<polyline points="440,142 440,191"/>
+<polyline points="440,229 440,303"/>
+<polyline points="440,265 595,265 595,188"/>
+<polyline points="595,160 595,152"/>
+<polyline points="595,188 595,180"/>
+<polyline points="576,160 614,160"/>
+<polyline points="580,180 595,160 610,180 580,180"/>
+<polyline points="145,345 165,345"/>
+<polyline points="235,345 395,345"/>
+<polyline points="300,345 300,361"/>
+<polyline points="300,392 300,408 440,408"/>
+<polyline points="440,384 440,421"/>
+<polyline points="440,454 440,477"/>
+<polyline points="440,486 440,477"/>
+<polyline points="422,486 458,486"/>
+<polyline points="428,493 452,493"/>
+<polyline points="434,500 446,500"/>
+</g>
+<g stroke="#23354b" stroke-width="2" fill="#eff5fa">
+<rect x="47" y="328" width="98" height="34"/>
+<rect x="165" y="334" width="70" height="22"/>
+<rect x="283" y="361" width="34" height="31"/>
+<rect x="386" y="112" width="108" height="30"/>
+<rect x="386" y="191" width="108" height="38"/>
+<rect x="395" y="303" width="90" height="81"/>
+<rect x="423" y="421" width="34" height="33"/>
+</g>
+<g fill="#23354b">
+<circle cx="440" cy="90" r="4"/>
+<circle cx="440" cy="265" r="4"/>
+<circle cx="300" cy="345" r="4"/>
+<circle cx="440" cy="408" r="4"/>
+</g>
+<g font-family="Arial, sans-serif" fill="#23354b">
+<text x="96" y="350" font-size="14" text-anchor="middle">Atom GPIO</text>
+<text x="200" y="350" font-size="14" text-anchor="middle">R_G</text>
+<text x="440" y="132" font-size="14" text-anchor="middle">I_mähis</text>
+<text x="440" y="215" font-size="14" text-anchor="middle">3/2 klapi mähis</text>
+<text x="40" y="41.5" font-size="20" text-anchor="start">IRLZ34N klapilüliti · skeemi kavand</text>
+<text x="440" y="70" font-size="15" text-anchor="middle">+V_klapp</text>
+<text x="510" y="130" font-size="13" text-anchor="start">Mõõtepunkt dioodi silmuses</text>
+<text x="620" y="159" font-size="13" text-anchor="start">K · katood</text>
+<text x="620" y="188" font-size="13" text-anchor="start">A · anood</text>
+<text x="440" y="321" font-size="12" text-anchor="middle">D</text>
+<text x="407" y="344.5" font-size="12" text-anchor="middle">G</text>
+<text x="441" y="359" font-size="14" text-anchor="middle">IRLZ34N</text>
+<text x="440" y="378.75" font-size="12" text-anchor="middle">S</text>
+<text x="268" y="384.5" font-size="13" text-anchor="end">R_PD</text>
+<text x="476" y="435.5" font-size="14" text-anchor="start">0,22 Ω / 1 W mõõtmisel</text>
+<text x="476" y="457.5" font-size="13" text-anchor="start">Muul ajal ühenda S otse maasse</text>
+<text x="476" y="491.5" font-size="14" text-anchor="start">Ühine maa</text>
+</g>
+</svg>

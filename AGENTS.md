@@ -45,6 +45,12 @@ data-acquisition/
     data/        <- drop table and pressure curves
     notebooks/   <- drop, derivative, spectrum, filter, and latency analysis
     docs/        <- recipe, BOM, pump-control update, Falstad, bench, and oscilloscope evidence
+  lab4/
+    README.md    <- Estonian checklist, status, evidence links, and devlog
+    src/         <- plans and future firmware, cycle, vision, model, and feedback files
+    data/        <- cycles.csv, curves/, images/
+    notebooks/   <- offline validation, model comparison, and dataset analysis
+    docs/        <- record.md, circuit and scope evidence, pump_control.md, integration, tests, and bom.md
 study-ru/
   lab1-translation.md   <- personal Russian translation, NOT part of the graded submission
 ```
@@ -90,6 +96,31 @@ Labori 2 dokumenteeritud katseskeemis kasutati LM358N teist poolt
 viitepinge puhvrina. Selle kasutamine Labori 3 komparaatorina nõuab eraldi
 otsust viitepuhvri ülesande ja lõpliku skeemi kohta; kanalit ei eeldata vabaks.
 
+## Lab 4 eesmärk ja tõendid
+
+Lab 4 asendab süstlaharu relee MOSFET-iga ning seob automaatse
+tilgamõõtmise, mudeli ja tagasiside üheks salvestatavaks tsükliks.
+Kehtivad ülesandeallikad, kontrollnimekiri ja lahtised tööd on
+[Lab 4 README-s](data-acquisition/lab4/README.md).
+
+- Märgi füüsilise katse juurde kuupäev, seadistus, mõõtarvud ja ühikud ning
+  algfaili viide. Tähista eraldi simulatsioon, tarkvaratest, CAD, slaiss,
+  füüsilise detaili mõõt ja ootel katse. Tühi CSV jääb päisereaga malliks.
+- Säilita algsed logid ja kaadrid ning kalibratsiooni, töövoo ja detaili
+  versioonid. Puuduv mõõt jääb tühjaks koos põhjusega. Märgendid
+  `normal`, `blocked` ja `empty` vajavad päritolu ja tõendit.
+- Andmehõive vastutab rõhukõvera, kaameramõõdu, märgendi ja tõendi eest.
+  Nutikad Lahendused vastutavad töövoo, luku, MQTT, puhvri ja ühise
+  andmebaasi eest. Kinnitage koos [kirje kuju](data-acquisition/lab4/docs/record.md)
+  enne esimest päristsüklit ja lukustage see pärast kaitsmist.
+- CAD annab detaili versiooni, vahetusaja, seeriate piiri ning paigutuse
+  ja tööriista kontrolltõendid. Andmehõive kontrollib kaamera kalibratsiooni
+  ja hoiab enne ning pärast vahetust kogutud seeriad eristatavana.
+  [Üleandmine](data-acquisition/lab4/docs/integration.md)
+- Tähista dokumentatsiooni kavandid README-s ja arenduspäevikus
+  dokumentatsioonitööna. Tulemuse märkimiseks on vaja päris tõendit.
+  Esitamise tag on `data-acquisition-lab4`.
+
 ## Conventions
 
 - **Language:** assignments are issued in Estonian. `README.md` in each lab
@@ -129,6 +160,17 @@ otsust viitepuhvri ülesande ja lõpliku skeemi kohta; kanalit ei eeldata vabaks
 - Hands off the table while the MG400 is powered; first run of anything
   new goes slow with e-stop in reach.
 - No soldering in this lab.
+- Lab 4 klapp vajab toimivat kaitsedioodi ja vooluta kontrollitud õhutust
+  atmosfääri. Klapi toide ei tohi jõuda Atomi viigule. MOSFET-i temperatuuri
+  mõõda kontaktita. Ummistuskatse süstal peab olema tööriistas.
+- Lab 4 uut jada proovitakse 20 % kiirusel. Ruumis on kogu jooksu ajal
+  hädastopini ulatuv inimene ja robotit juhib üks kohalikult kinnitatud
+  operaator. UV töötab katte all, kohalikul juhtimisel ja 405 nm
+  kaitseprillidega. Lahtise süstlaga kasutatakse nitriilkindaid ning
+  vaiguga plaadid kõvendatakse enne äraviskamist.
+- Dokumentatsioonitöö ja failipõhised tarkvarakontrollid toimuvad ilma
+  riistvarata. Püsivara laadimine, riistvarakäsud ja füüsilised katsed
+  kuuluvad meeskonna kohalikku laborisessiooni.
 
 ## For an AI agent picking up work here
 

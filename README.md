@@ -4,6 +4,8 @@ Tartu Ülikooli kursusel „Andmehõive“ mõõdame Dobot MG400 tööriista pne
 
 Laboris 1 otsustab AtomS3R rõhupiiride järgi, millal pump käivitada või peatada. Arvuti vahendab otsuse MG400-le, mille digitaalväljundid (DO) lülitavad pumbakasti. Sama AtomS3R saatis tähe ka Nutikate Lahenduste jaamale, kus MG400 joonistas selle 3D-prinditud pastakahoidikuga. [Jaama sündmuslogi](https://github.com/Dennel04/smart-solutions-course/blob/f15d7a9c06a186ed4386532c25adbccf967f748e/smart-solutions/lab1/data/letter_events.csv).
 
+Labor 2 uurib rõhusignaali kvaliteeti. Labor 3 kasutab sama mõõteahelat doseerimise ja katkestuse uurimiseks ning valmistab ette retsepti ja relee võrdlusmõõtmised. [Labor 4](data-acquisition/lab4/README.md) kavandab MOSFET-iga klapijuhtimist, automaatset tilgamõõtmist, mudelit ja tagasisidet ning ühiseid tsükliandmeid Labori 5 jaoks.
+
 ## Mõõdetud tulemused
 
 ### Labor 1 · rõhu mõõtmine ja pumbajuhtimine
@@ -27,15 +29,18 @@ Laboris 1 otsustab AtomS3R rõhupiiride järgi, millal pump käivitada või peat
 
 Esimese astme väljund küllastus vaakumkatses alumises otsas. ADC näit jäi platool vahemikku **14–21 koodi**, kuigi `adc_clipped` jäi nulliks. Lipp märgib ADC äärmisi koode ja võib jätta analoogastme küllastuse tuvastamata. Pumba seisuaja valimi standardhälve oli **2,90 koodi**. [Analüüs ja teise versiooni üleandmine](data-acquisition/lab2/docs/opamp_v2_handoff_2026-10-25.md).
 
-Kolm CSV-d pärinevad ümberehitusele eelnenud `opamp` skeemist. Muudetud astmel tuleb veel kontrollida kolm rõhupunkti ja G5 pingeulatust koos siiretega. Lahtised tööd on ka rõhukalibratsioon, sama pumbaimpulsi `raw/opamp` mõõtepaarid, kahe kanaliga ostsillogrammid, spektrite ja signaali-müra suhte (SNR) võrdlus ning pumbajuhtimise võrdlus koos pooliku haarde katsega. [Labori kontrollnimekiri](data-acquisition/lab2/README.md#kontrollnimekiri) · [Arvutused](data-acquisition/lab2/docs/opamp_design.md) · [Pumbavõrdluse tööleht](data-acquisition/lab2/docs/pump_control.md).
+Kolm CSV-d pärinevad ümberehitusele eelnenud `opamp` skeemist. 15.11 mõõtis meeskond ümberehitatud astmega 30 impulssi kummaski seadistuses (`raw` ja `opamp`) ning võrdles spektreid ja signaali-müra suhet andmelehe mudelil põhineva kalibratsiooniga. Lab 4 töövahemik, G5 siirded ja doseerimisahela käitumine vajavad kohapeal kontrolli. [Labori kontrollnimekiri](data-acquisition/lab2/README.md#kontrollnimekiri) · [Arvutused](data-acquisition/lab2/docs/opamp_design.md) · [Pumbavõrdluse tööleht](data-acquisition/lab2/docs/pump_control.md).
 
-## Laborid 1–3
+14.11 lisatud CSV-des on [707 ADC lugemit failis `off_ver2`](data-acquisition/lab2/data/opamp_test_off_ver2.csv), [1001 failis `pressure_ver3`](data-acquisition/lab2/data/opamp_test_pressure_ver3.csv) ja [1001 failis `vacum_ver3`](data-acquisition/lab2/data/opamp_test_vacum_ver3.csv). Failide DMM-metaandmed on 25.10.2026 kuupäevaga. Neis on 10 ms ajatemplisamm ning tühjad `p_kpa`, `voltage_v` ja `pump` väljad. Nende seeriate tegelik skeem ja katsetingimused vajavad kinnitust. [ADC ajagraafik](data-acquisition/lab2/notebooks/lab2_adc_traces_v3.png)
+
+## Laborid 1–4
 
 | Labor ja seis | Füüsiline töö | Simulatsioon ja tarkvara |
 | --- | --- | --- |
 | [1 · Andur ja iseseisev pumbakast](data-acquisition/lab1/README.md) · lõpetatud | MPX5700AP otse G5-l, ACU2-B logi, oma pumbakasti katsed ja tähe edastus USB kaudu jaamale. Esitamise tähis on `data-acquisition-lab1`. | Falstadi müramudel ja tegelike logide [spektrianalüüs](data-acquisition/lab1/notebooks/lab1_spectra.ipynb). |
-| [2 · Operatsioonvõimendi](data-acquisition/lab2/README.md) · töös | Kolm mõõteseeriat esimese astmega. Muudetud aste ja võrdluskatsed vajavad füüsilist kontrolli. | Falstadi näidisskeemid ja CSV analüsaator. AUTO-püsivara ADC eelvaade läbis tarkvaratestid. Selle versiooni riistvarakinnitus on lahtine. [Püsivara ja logija](data-acquisition/lab2/src/README.md#tarkvarakontroll). |
-| [3 · Tilk ja IRQ](data-acquisition/lab3/README.md) · ette valmistatud | Plaanis on releega juhitav süstlaklapp, vaigu doseerimine, tilga pildilt mõõtmine, rõhukõverad ja UV-kõvendus. Füüsilised mõõtmised on ootel. | Plaanis on võrrelda filtreid enne rõhutuletise arvutamist ning katsetada komparaatorit ja katkestust (IRQ) vea korral. Jagatud Atomi projektis on klapi ja UV tarkvaramudel ning testid. [Teostusplaan](data-acquisition/lab3/src/README.md). |
+| [2 · Operatsioonvõimendi](data-acquisition/lab2/README.md) · töös | Kolm mõõteseeriat esimese astmega ja 30 + 30 võrdlusimpulssi ümberehitatud astmega. | Falstadi näidisskeemid ja CSV analüsaator. AUTO-püsivara ADC eelvaade läbis tarkvaratestid. Selle versiooni riistvarakinnitus on lahtine. [Püsivara ja logija](data-acquisition/lab2/src/README.md#tarkvarakontroll). |
+| [3 · Tilk ja IRQ](data-acquisition/lab3/README.md) · töös | 14.11 mõõdeti prinditud V1 ja esimene V2 tilgaplaat ning üks AtomS3R makett. Teine V2 on samuti prinditud ja mõõdetud. Relee, tilga, kaamera, UV, katkestuse ja roboti katsed on ootel. [Mõõdud ja fotod](data-acquisition/lab3/tilgaplaat/measurements.md). | Jagatud Atomi projektis on klapi ja UV tarkvaramudel ning testid. Filtrite võrdlus ja riistvaraliides on plaanis. [Teostusplaan](data-acquisition/lab3/src/README.md). |
+| [4 · Masin, mis mõõdab ise](data-acquisition/lab4/README.md) · dokumentatsioon ette valmistatud | MOSFET-i võrdlus, automaatse tsükli ja kaamera valideerimine ning vähemalt 300 märgendatud päristsüklit on ootel. | [Kirje ettepanek](data-acquisition/lab4/docs/record.md) ootab meeskondade kinnitust. [Tsüklitabelis](data-acquisition/lab4/data/cycles.csv) on päis. [Teostusplaan](data-acquisition/lab4/src/README.md) · [Analüüsiplaan](data-acquisition/lab4/notebooks/README.md) |
 
 ## Süsteemi arhitektuur
 
@@ -58,10 +63,10 @@ Lab 2 haru kujutab 25.10 mõõteskeemi. Lab 2 logija kogub mõõteandmeid, pumba
 
 | Asukoht | Sisu |
 | --- | --- |
-| [`data-acquisition/`](data-acquisition/) | Laborid `lab1/`, `lab2/` ja `lab3/`. Iga labori README-s on kontrollnimekiri, tulemused ja arenduspäevik. |
-| `src/` | Atomi püsivara ja Pythoni logijad. Lab 3 kaustas on teostusplaan. |
-| `data/` | Algsed mõõte- ja sündmuslogid. Lab 3 CSV-d on päiseridadega mallid. |
-| `notebooks/` | Lab 1 Jupyteri märkmik, Lab 2 analüüsijuhend ja Lab 3 analüüsiplaan. |
+| [`data-acquisition/`](data-acquisition/) | Laborid `lab1/` kuni `lab4/`. Iga labori README-s on kontrollnimekiri, tulemused või nende seis ja arenduspäevik. |
+| `src/` | Atomi püsivara ja Pythoni logijad. Lab 3 ja Lab 4 kaustades on teostusplaanid. |
+| `data/` | Algsed mõõte- ja sündmuslogid. Lab 3 ning Lab 4 CSV-d on päiseridadega mallid. Lab 4-s on eraldi kohad rõhukõveratele ja kaamerapiltidele. |
+| `notebooks/` | Lab 1 Jupyteri märkmik, Lab 2 analüüsijuhend ning Lab 3 ja Lab 4 analüüsiplaanid. |
 | `docs/` | Skeemid, mõõteprotokollid, arvutused, komponendiloendid ja katseplaanid. |
 | [`study-ru/`](study-ru/README.md) | Ülesannete mitteametlikud venekeelsed tõlked ja õppemärkmed. |
 
@@ -95,19 +100,23 @@ Lab 2 tarkvaratestide käivitamiseks jätka samas terminalis. Täiskomplekt vaja
 MPLCONFIGDIR="$work_dir/mpl" "$work_dir/venv/bin/python" -B -m unittest discover -s data-acquisition/lab2/tests -v
 ```
 
+Laboris 4 alusta [nõuete tabelist](data-acquisition/lab4/README.md#kontrollnimekiri) ja [analüüsiplaanist](data-acquisition/lab4/notebooks/README.md). Lepi teiste meeskondadega kokku ühine kirje enne esimest päristsüklit. Säilita algandmed ning seo mõõtmised kasutatud kalibratsiooni ja detailiversiooniga.
+
 ## Kaitsmisel
 
 1. **Labor 1.** Alusta süsteemiskeemist ja näita pumba lülituspiire koos katse CSV-ga. Anduri arvutused ja müra käsitlus on [anduri mõõteprotokollis](data-acquisition/lab1/docs/sensor_choice.md). Graafikud leiad [spektrimärkmikust](data-acquisition/lab1/notebooks/lab1_spectra.ipynb) ja ostsilloskoobi vaate [FFT fotolt](data-acquisition/lab1/docs/lab1_scope_fft_13.09.26.jpg).
 2. **Labor 2.** Näita [LM358N ühendusi](data-acquisition/lab2/docs/lm358n_wiring_2026-10-22.md), [astme arvutusi ja Falstadi näiteid](data-acquisition/lab2/docs/opamp_design.md) ning ülal toodud CSV-dest loodud ADC graafikut. Osuta vaakumi platoole ja [lahtistele kontrollpunktidele](data-acquisition/lab2/README.md#kontrollnimekiri).
 3. **Labor 3.** Kõrvuta [ametlikku ülesannet](data-acquisition/lab3/assignment-EST.md) [kontrollnimekirja](data-acquisition/lab3/README.md#kontrollnimekiri) ja [mõõteplaaniga](data-acquisition/lab3/docs/bench_session.md). Näita, kuhu lähevad [tilgaandmed](data-acquisition/lab3/data/README.md), [retsept](data-acquisition/lab3/docs/recipe.md), [komparaatori simulatsioon](data-acquisition/lab3/docs/falstad/README.md) ja [ostsilloskoobi tõendid](data-acquisition/lab3/docs/scope/README.md).
+4. **Labor 4.** Valmista ette kümne tsükli demonstratsioon koos andmebaasi kirjete, lülituse ostsillogrammide, mudeli kontrollvea, kolme juhtimisviisi graafikute ja ühe kaameraveaga. [Hindamine ja kaitsmine](data-acquisition/lab4/README.md#hindamine-ja-kaitsmine).
 
 ## Seotud kursuseprojektid
 
-- MG400 tööriistad, detailihoidikud ning süstla ja UV-lambi paigutus. [3D printimine ja CAD](https://github.com/Dennel04/3d-printing-course).
-- Atomi kasutajaliides, robotijaam ja tööriistakaamera. [Nutikad Lahendused (Smart Solutions)](https://github.com/Dennel04/smart-solutions-course).
+- MG400 tööriistad, detailihoidikud ja Lab 4 detailivahetus koos nihke ning paigutuse kontrolliga. [3D printimine ja CAD](https://github.com/Dennel04/3d-printing-course) · [CAD Lab 4](https://github.com/Dennel04/3d-printing-course/blob/main/3d-print/lab4/README.md).
+- Atomi kasutajaliides, robotijaam ja tööriistakaamera. Lab 4-s lisanduvad töövoo salvestaja, MQTT ja ühine andmebaas. [Nutikad Lahendused (Smart Solutions)](https://github.com/Dennel04/smart-solutions-course) · [Lab 4 integratsioon](data-acquisition/lab4/docs/integration.md).
 
 ## Ohutus ja piirangud
 
-- Labori 1 **141 Pa/kood** on anduri ülekandefunktsioonist ja ühe tööpunkti pingevõrdlusest arvutatud lahutus. Labori 2 ADC koodide teisendamiseks tuleb rõhukalibratsioon füüsiliselt kinnitada. Labori 2 CSV-de `p_kpa`, `voltage_v` ja `pump` väljad on tühjad. Katsetingimuse leiad protokollist.
+- Labori 1 **141 Pa/kood** on anduri ülekandefunktsioonist ja ühe tööpunkti pingevõrdlusest arvutatud lahutus. Labori 2 ADC koodide teisendamiseks tuleb rõhukalibratsioon füüsiliselt kinnitada. Eespool loetletud varasemate Labori 2 CSV-de `p_kpa`, `voltage_v` ja `pump` väljad on tühjad. Katsetingimuse leiad protokollist.
 - Lülita toide välja enne juhtmete muutmist. G5 ei talu 5 V. Enne G5 ühendamist kontrolli konkreetse ahela pingeulatust ka siiretel. LM358N toitepinge ja tarkvaratestid üksi ei kinnita sisendi ohutust. [Lab 2 ohutus](data-acquisition/lab2/README.md#ohutus).
 - Ühenda 24 V pumbakasti DO-liinid vooluta kastiga ja keelatud robotiga. Hoia sisselülitatud MG400 tööala vaba ja hädastopp käeulatuses. Järgi vaigu ja UV-ga töötamisel labori kaitsejuhiseid. [Lab 1 ohutus](data-acquisition/lab1/README.md#ohutus) · [Lab 3 ohutus](data-acquisition/lab3/README.md#ohutus).
+- Laboris 4 kasuta klapi mähisel kaitsedioodi ja kontrolli, et vooluta ühendub süstal atmosfääriga. Esimene uus tööjada käib 20 % kiirusel. Kogu automaatjooksu ajal peab ruumis olema inimene, kes ulatub hädastopini. [Lab 4 ohutus](data-acquisition/lab4/README.md#ohutus).
