@@ -207,3 +207,4 @@ Arvud on arvutatud 14.11 mõõdetud anduri vahemikust, uut skeemi ei ole ehitatu
   Andur oli plaadil puhkeolekus ~0,4–0,5 V, mitte 0,83 V. Ülaltoodud otsus põhineb 14.11 tuletatud võimendusel 1,168,
   mis eeldas anduri vahemikku 0,32–2,40 V. Kuni multimeetriga kontrollini (pin 2–pin 7 takistus, anduri toide)
   on see otsus ebakindel. [Fotod ja analüüs](../data/scope_2026-11-15/README.md).
+- 15.11.26 märkus (multimeetri kontroll): pin 2–pin 7 ~54 kΩ ja anduri toide 5 V vastavad disainile. Võimenduse 2,4 oletus ei kehti, fotode CH2 näit oli tõenäoliselt vale. Otsus võimendust mitte suurendada jääb kehtima.

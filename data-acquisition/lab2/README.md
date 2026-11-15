@@ -118,6 +118,7 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
 - [ ] Esimene aste on maketeerimisplaadil mõõdetud kolmes rõhupunktis. TODO: real measurement required.
 - [ ] Sisend ja väljund on salvestatud korraga ostsilloskoobiga. TODO: real measurement required.
   - 15.11.26 märkus: GDS-1072A-U ekraanist kolm telefonifotot (CH1 = G5, CH2 = anduri pin 1, 1 V/div, 1 s/div ROLL). Skoobi faile ega Mean/Max näite ei salvestatud. Fotode järgi `G5 = 2,43 × andur − 0,37 V`, s.t võimendus võib olla ~2,4, mitte ~1,19. Kinnitamata. [Fotod ja analüüs](data/scope_2026-11-15/README.md).
+  - 15.11.26 märkus (hiljem): multimeetriga pin 2–pin 7 ~54 kΩ ja anduri toide 5 V, s.t aste vastab disainile. Fotode võimenduse 2,4 tõlgendus ei kehti, CH2 näit oli tõenäoliselt vale.
 - [ ] Esimese versiooni mõlema otspunkti hälve on mõõdetud ja seletatud. TODO: real measurement required.
 - [ ] Parandatud aste on uuesti arvutatud ja samades punktides mõõdetud. TODO: real measurement required.
 - [ ] Sama pumbaimpulss on logitud konfiguratsioonides `raw` ja `opamp`. TODO: real measurement required.
@@ -258,6 +259,7 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 * Otsustasime, ja miks: fotod lisati andmetena koos lugemisskriptiga. Võimenduse 2,43 ja madala anduri taseme põhjust ei ole kinnitatud, seetõttu märgitakse samal päeval tehtud võimenduse otsus ebakindlaks. Kuni kontrollini ei puhuta täisjõuga, kui G5 on ühendatud.
 * Lahti järgmiseks korraks: multimeetriga LM358N pin 2–pin 7 takistus (toide väljas, oodatud ~53,8 kΩ) ja MPX5700AP pin 3–pin 2 pinge (oodatud ~5,0 V). DA2 püsivara lühike logija test (`--electrical-check-confirmed` annab tudeng).
 * Failid: `data/scope_2026-11-15/`, `docs/opamp_rebuild_2026-11-14.md` (punkt 7 märkus), `README.md`.
+* 15.11.26 hiljem: multimeetriga mõõdetud pin 2–pin 7 ~54 kΩ ja anduri toide 5 V. Mõlemad vastavad disainile, võimenduse otsus jääb kehtima ja täispuhumise piirang langeb ära. Lahti jääb multimeetri näit anduri pin 1 ja G5 sõlme juures atmosfääril.
 
 ## Väljundid ja tulemused
 

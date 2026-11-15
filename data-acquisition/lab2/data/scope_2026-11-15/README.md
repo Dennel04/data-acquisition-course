@@ -50,6 +50,12 @@ Andur oli plaadil puhkeolekus ~0,40–0,51 V. 14.11 eraldi mõõdetuna oli atmos
 - Toide väljas: takistus LM358N pin 2 ja pin 7 vahel. Disain ~53,8 kΩ, ~6,8 kΩ tähendab, et 47 kΩ on möödas.
 - Toide sees: pinge MPX5700AP pin 3 (Vs) ja pin 2 (GND) vahel. Peab olema ~5,0 V.
 
+- 15.11.26 tulemus (multimeeter, tudeng): pin 2–pin 7 takistus **~54 kΩ**, anduri toide **5 V**. Mõlemad vastavad
+  disainile. Seega tõlgendus 1 (47 kΩ möödas) ja 2 (anduri toide alla 5 V) **ei kehti** ning ka ohutushoiatus
+  nende põhjal langeb ära. Fotode kalle 2,43 tuleb siis tõenäoliselt CH2 näidust: andur loeti ~1,6–2× liiga madalaks
+  ja/või CH2 0 V asukoht ei olnud keskteljel. Põhjust ei leitud. CH1 (G5) puhkenäit ~0,86 V langeb kokku Atomi 0,858 V-ga,
+  seega G5 näit on usaldusväärsem. Võimendust nendelt fotodelt ei järeldata.
+
 ## Enne seda proovitud
 
 Sama päeva hommikul proovitud FNIRSI 1013D näitas kalibreerimata nihkega väärtusi (nt −16,4 V atmosfääril).
