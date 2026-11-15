@@ -130,6 +130,7 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
 - [ ] Pumbajuhtimine on uue signaaliga mõõdetud ja võrreldud Labori 1 ajaloolise lähtejoonega. TODO: real measurement required.
 - [ ] Pooliku haarde eristamise aeg on mõõdetud mõlema signaaliga. TODO: real measurement required.
 - [ ] Füüsiline komponentide saadavus ja tellimisvajadus on kontrollitud failis `docs/bom.md`. TODO: real measurement required.
+  - 15.11.26 märkus: ehitatud astme komponendid ja kogused on lisatud ([bom.md](docs/bom.md#15112026--ehitatud-astme-komponendid-uus-plaat-1411)) pesade tabeli, foto ja mõõtmiste põhjal; tellida ei ole vaja. Riiuli varude füüsiline loendus on tegemata.
 - [ ] Repo ja arenduspäevik on lõpetatud; esitamisel on lisatud tag `data-acquisition-lab2`.
 
 ## Ohutus
