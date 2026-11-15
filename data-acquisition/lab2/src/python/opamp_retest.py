@@ -34,6 +34,11 @@ RREF_K = 53.8
 SENSOR_V = {"full_suction": 0.32, "atmosphere": 0.831, "full_blowing": 2.40}
 TARGET_LOW_V = 0.30
 
+# A pressure hold whose middle part moves more than this was not held steady (14.11 17:45: 306 codes).
+STEADY_MAX_CODE = 20
+# A suction or blowing hold this close to atmosphere means no pressure reached the sensor (14.11 17:37).
+AT_ATMOSPHERE_V = 0.05
+
 CONDITIONS = [
     ("atmosphere", "ATMOSPHERE: pump off, tube and suction cup open to air."),
     ("full_suction", "FULL SUCTION: suck as hard as the setup can (pump sucking, cup blocked) and hold it."),
@@ -84,6 +89,19 @@ def evaluate(results, timing_ok=None):
         return out
     suc, atm, blo = s["full_suction"]["mean_v"], s["atmosphere"]["mean_v"], s["full_blowing"]["mean_v"]
 
+    flat = [k for k in ("full_suction", "full_blowing") if abs(s[k]["mean_v"] - atm) < AT_ATMOSPHERE_V]
+    if len(flat) == 2:
+        out.append(("FAIL", "Pressure reached the sensor",
+                    f"all three holds read about {atm:.3f} V: no pressure reached the sensor. "
+                    "Check that the tube is on the MPX5700 port and the pump runs, then run again"))
+    elif flat:
+        out.append(("FAIL", "Pressure reached the sensor",
+                    f"{flat[0]} reads {s[flat[0]]['mean_v']:.3f} V, the same as atmosphere {atm:.3f} V: "
+                    "that hold did not reach the sensor (tube off, leak or pump not running)"))
+    else:
+        out.append(("PASS", "Pressure reached the sensor",
+                    f"suction and blowing both differ from atmosphere by >= {AT_ATMOSPHERE_V} V"))
+
     ok = suc + 0.2 <= atm and atm + 0.2 <= blo
     out.append(("PASS" if ok else "FAIL", "Output follows pressure",
                 f"suction {suc:.3f} V < atmosphere {atm:.3f} V < blowing {blo:.3f} V"
@@ -102,6 +120,9 @@ def evaluate(results, timing_ok=None):
     ok = high["max_v"] <= 3.0 and high["max_code"] < 4095
     out.append(("PASS" if ok else "FAIL", "Safe for G5 at the high end",
                 f"full blowing max {high['max_v']:.3f} V (need <= 3.0 V)"))
+
+    for k in ("full_suction", "full_blowing"):
+        out.append(steady_check(k, s[k]))
 
     noise = s["atmosphere"]["std_code"]
     out.append(("PASS" if noise <= 10 else "WARN", "Noise at atmosphere",
@@ -122,6 +143,17 @@ def evaluate(results, timing_ok=None):
         out.append(("PASS" if timing_ok else "WARN", "100 Hz timing (DA2 firmware)",
                     "all runs on time" if timing_ok else "at least one run had sample gaps; see .runs.jsonl"))
     return out
+
+
+def steady_check(condition, r):
+    """(status, check, detail) for one pressure hold: WARN when its middle part was not steady."""
+    std = r["std_code"]
+    ok = std <= STEADY_MAX_CODE
+    detail = (f"{std:.1f} ADC codes = {std * VOLTS_PER_CODE * 1000:.1f} mV standard deviation in the middle of the hold, "
+              f"whole hold {r['min_v']:.3f}-{r['max_v']:.3f} V (aim <= {STEADY_MAX_CODE} codes)")
+    if not ok:
+        detail += "; the pressure moved during recording, so the mean is not reliable. Run the test again"
+    return ("PASS" if ok else "WARN", f"Steady hold: {condition}", detail)
 
 
 def find_ports():
@@ -293,8 +325,17 @@ def main(argv=None, ask=input):
                     codes = capture_meter(port, writer, handle, cond, trial, a.duration)
                 results[cond] = stats(codes)
                 r = results[cond]
-                print(f"  {r['mean_v']:.3f} V mean, {r['n']} readings (expected {exp[cond]:.2f} V)\n" if r.get("n")
-                      else "  No readings received.\n")
+                if not r.get("n"):
+                    print("  No readings received.\n")
+                    continue
+                print(f"  {r['mean_v']:.3f} V mean, {r['n']} readings (expected {exp[cond]:.2f} V)")
+                if cond != "atmosphere":
+                    if steady_check(cond, r)[0] != "PASS":
+                        print(f"  WARNING: not steady ({r['min_v']:.3f}-{r['max_v']:.3f} V). Run the test again after this one.")
+                    atm = results.get("atmosphere", {})
+                    if atm.get("n") and abs(r["mean_v"] - atm["mean_v"]) < AT_ATMOSPHERE_V:
+                        print("  WARNING: same as atmosphere. Is the tube on the sensor and the pump running?")
+                print()
         finally:
             handle.close()
     finally:

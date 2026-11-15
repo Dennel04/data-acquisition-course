@@ -25,14 +25,18 @@ B5K-d enam ei ole, `Vref` tuleb B100K-st läbi 47 kΩ / 10 kΩ nõrgendi.
 
 | Kontroll | Tulemus |
 |---|---|
+| Rõhk jõudis andurini (imemine ja puhumine erinevad atmosfäärist ≥ 0,05 V; kui kõik kolm on atmosfääril, vihje: voolik lahti või pump ei tööta) | FAIL, kui ei |
 | Väljund järgib rõhku (imemine < atmosfäär < puhumine, vahe ≥ 0,2 V) | FAIL, kui ei |
 | Ulatus täis imemisest täis puhumiseni ≥ 1,5 V (disain 2,47 V) | FAIL, kui ei |
 | Täis imemisel ei ole väljund alumises piiris kinni (min ≥ 0,054 V, keskmine ≥ 0,10 V) | FAIL, kui on |
 | Täis puhumisel ≤ 3,0 V ja ei ole koodi 4095 | FAIL, kui üle |
 | Müra atmosfääril ≤ 10 ADC koodi | WARN |
+| Hoidmine stabiilne: imemise ja puhumise keskosa standardhälve ≤ 20 ADC koodi (hoiatus näidatakse ka kohe pärast hoidmist) | WARN |
 | Iga punkt disainist ±0,25 V piires (0,30 / 0,91 / 2,77 V) | WARN |
 | Tuletatud võimendus ±15 % disainist (1,19) | WARN |
 | 100 Hz ajastus (ainult DA2) | WARN |
+
+15.11.2026 lisatud kaks kontrolli 14.11 jooksude põhjal: 17:37 olid kõik kolm hoidmist ~0,85 V (voolik ilmselt lahti) ja 17:45 läbis testi, kuigi imemine libises hoidmise ajal 0,23 V → 0,85 V (keskosa standardhälve 306 koodi). Lävendid on `STEADY_MAX_CODE` ja `AT_ATMOSPHERE_V`.
 
 Disaini arvud on faili [`opamp_retest.py`](../src/python/opamp_retest.py) alguses (`RF_K`, `RREF_K`,
 `SENSOR_V`, `TARGET_LOW_V`). Plaadi muutumisel muuda neid seal.

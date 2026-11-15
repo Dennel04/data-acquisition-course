@@ -157,6 +157,36 @@ Skeem kasutab Falstadi op-ampi väljundipiiridega `0…5 V` ja sisemise avatud a
 - Ühismüra [eksport](falstad_noise_common.txt) ja [veebiskeem](https://www.falstad.com/s.php?s=2Gxo5B).
 - Ühe sisendi müra [eksport](falstad_noise_single.txt) ja [veebiskeem](https://www.falstad.com/s.php?s=rpTgtj).
 - Falstadi eraldi PNG skeemipilt: TODO: image export required. Veebisimulaatori pildieksport ei andnud siin kättesaadavat kohalikku faili; ülaltoodud tekstiekspordid ja lingid avavad päris skeemid.
+- 15.11.26 märkus: **meeskonna ehitatud aste** (uus plaat 14.11, [pesad](opamp_rebuild_2026-11-14.md#6-1411-hilisem-täpsustus-mõõdetud-vahemik-ja-muudetud-plaan)) on Falstadis eraldi:
+  [eksport](falstad_team_stage_2026-11-15.txt), [muudetav veebiskeem](https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKAEMQAWYwkFTqoX58BIPCGzQkVMPDgsASlx58EvTthSreVKqJh5s5XVCksA7st4ph3XmEK6WAJyvhHIIZ3cnZ8C57CDoLC-E6u2HjewW4xtJHyHGHgGLzYhOJgqWISUlDIcgHpmdmR0dmQRVEpadVxAckxjWBalZbNWsXgLVBFGd2d-Vk6LhJ1pdUoeOJUaPIA5mPeU+JlEmi9SsxaYMRanJl7+XpUksTYx6YIo9vgR2iHrVwY-u34d1qNR5WuDx987xW+T8CwB4iBf004UCy1EGA2yVOuEqAGMQPDZnCNrhvDJGJBjCxFhiJJBvCTsOlegB5dEIuGTUSsWlrGJrFSsAAe6x5KE0POi3gAsnQ6ABnADWAHsAHYytgAHTFABkhdgEHgAHJKthigAudAANEq6AALACWerYeoArgATJVgTjQZjQNBEJUACgAgjK7QBbM0AV-NADc6ErlWwAEZS5xKlAAShY3P5aj4afU4G8ADUpTa9UqFQBHL1gIsAB0dkAA9AhsIa8ImAO0580ypWAJCIy7X642WznnHQAGZF0tisCGsB4Qit9tdpWQKcz1tD4cpgWhfmcWzZkBCgAKAA0EC9IN6D0qK-OJwAuReNoxKnM6vX+qVi4cAE6-znNABsvX9G1-z1c1AzoA14wnBAXTAZNuSYax+WnZZtz3AAhPwAGklX-c0bXmG1nA3JCJA8VDyL0PdOAwCUa1kCUlRlINnHmOg-XNJVACTCZ81yVQAJIgfEhny9NhnFDAtrXtR1YOYBDPHTOYxCUuAuD3ABxBB7zFBtsCYsUFSrMUl3LMUAFaADEN23NS+X2NTBRAVV1S1JUEFE-UpUtOh-2NMVQy-f8ACsbU4q9zXNaDgLtXzzUMkzADICBsPLFHNoCVIUQLAiCoNkuCdK0h8Z1SnMWCAA) ja pilt allpool.
+  Skeemis on `Rf` 10 kΩ, `Rref` 53,8 kΩ, LM358N teine pool viitepuhvrina (follower) 2 kΩ allatõmbega, B100K liugur → 47 kΩ / 10 kΩ nõrgendi,
+  väljundis 3,3 kΩ + 0,1 µF G5-le. Sisend on 15.11 multimeetri näit 0,837 V. Liuguri pinge 3,93 V on valitud nii, et `Vref` ≈ 0,69 V (15.11 arvutus),
+  liugurit ei mõõdetud. Simulatsioon: `Vref` 0,689 V, G5 **0,864 V**; multimeeter samal päeval G5 **0,865 V**. Op-ampi mudeli väljundi piir on 0…3,5 V
+  (LM358 5 V toitel, eeldus, mitte mõõtmine). Müraallika katsed selle skeemiga: TODO.
+
+  ![Meeskonna aste Falstadis](falstad_team_stage_2026-11-15.png)
+
+- 15.11.26 märkus: **müraallika katsed meeskonna astmega.** Sama häiring nagu õppejõu näites: siinus `10 mV` tipp (`20 mV` tippude vahe), `100 Hz`,
+  alalissisend `Vin = 0,837 V`, `Vref ≈ 0,689 V`. Häiring on jadamisi sisestatud harusse (Vin allika ja op-ampi `+` sisendi vahele ning/või
+  viitepuhvri väljundi ja `Rref` vahele), globaalset maad ei liigutatud. Väljundit loeti Falstadi lehelt `CircuitJS1.getNodeVoltage` abil
+  ~7,7 perioodi jooksul (simulatsiooni aeg 0,05–0,127 s). `OUT` = op-ampi väljund, `G5` = pärast 3,3 kΩ + 0,1 µF.
+
+  | Katse | Falstad | Häiring | Arvutus `OUT`, tippude vahe | Falstad `OUT` | Falstad `G5` | Võimendus häiringule |
+  |---|---|---|---:|---:|---:|---:|
+  | Ühismüra: sama allikas Vin ja Vref harus | [eksport](falstad_team_noise_common_2026-11-15.txt), [veebiskeem](https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKAEMQAWYwkFTqoX58BIPCGzQkVMPDgsASl07iUCXpzC81vKlVEw82cnqhSWAN2Wr1XHn1szke2BFMwELAO53tw7rxaeiwATr7ghILCQVDO8j5CnBFRSfzBYZqBkeExtNh48lb5STGZybEQsi6QbrEe7CIyGLzYhOJgzWISUhVykN4SbeCdxcO6A6MdLXgl2f0+aeWLzChQA8tgq63tm2s+2+C7B1NrYZMjM3x44lRo8gDmEpco109J2GhrSivgxKsqv1WplEkmI2DqZk8YR+YD+fHwgNinAw8HWCNhq2WcP6YTQ7TheKuNzi-UehJeqgRH3SIESjRAGE+iyo2Fw-QAxgymaJGSzIEkZIxICYWI9eRJ+VyWa01gB5KX0jDPUSsNDkcWLDUIqgAcU8atpwkWdMwQJAsoAqgAVFjyybZUb2VgADwkW0xHzdXHASQAsnQ6ABnADWAHsAHbhtgAHUDABlfdgEHgAHKxtiBgAudAANLG6AALACWmbYmYArgATWNgTjQZjQNBEWMACgAguHKwBbQsAV6LFjosbjbAARqGQrGUABKWMMWNdgA-ITYwbLgboAC5Y4G2F2Y4HZAuAGqxgD0NbgsYAEgAvWPHovh2MAKwPx5CdAAZrGC2wQuWgYsK6nq2CgoEaD6IDHqG5aZrG0YAI6tmACEAA6XmeCDYDmeDTgA7Y+z6BoASEQoZAWE4XhhGfj+gZITWOZgHghCEU+sZkYGkBMSxNHfsBXqcEanpCUkJR+gACgAGggKKQG2Emxmh7GHtuXG4cYD7ppmXahoGX4ACcGSERYADatl25amZmRY9nQ2aToeCD1mA04CUw2iesxqQiVBABCVQANKxqZRblvc5YhO5WiDDIlytPoUHIsGZ6yMGsbhr2IT3HQnZFrGgBJhA+tGxoAEkSxtxJBaYGLb-hYcFllWNbOcwbmuoQYFwGInWJbWIB6mpOHYOl9EYepqGBgArQAYgJIldeB-xdeJIAJkmqaxgg1WZqGJZ0KZeaBhYBmmS+5Z5UpRZFo5lmVvtRb0VxgBkBDhW2Bse0Cxr6Vk2XZDnNS5al6hVuEdQ+LBAA), [pilt](falstad_team_noise_common_2026-11-15.png) | 20 mV p-p | `(A − (A−1))·20 = 20,0 mV` | **20,00 mV** | 19,58 mV | 1,00 |
+  | Ainult Vin harus | [eksport](falstad_team_noise_single_2026-11-15.txt), [veebiskeem](https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKAEMQAWYwkFTqoX58BIPCGzQkVMPDgsASl07iUCXpzC81vKlVEw82cnqhSWAN2Wr1XHn1szke2BFMwELAO53tw7rxaeiwATr7ghILCQVDO8j5CnBFRSfzBYZqBkeExtNh48RJ4STGZyVDsIjIYvNiE4mA1YhJSsbJy3hL14E35JU2QnX09tcXlgz5p5VPMKBWTorNdDWBzE8vgqxuNuqFF-aOpeOJUaPIA5vt8x1fYaBVKS2DEcyrgL7H6VJLE2J9mnjCTw+aAaH30GHgnVB7zmM3Bexhzzh+GuJzig0uMJQNxhd3SIESVRAGHuU2+uEGAGMSWTRKTvpAkjJGJATCxLgyJEzaRTdgB5XnEjBjGYsNDkLlTKWoqgAcU8EsJwimRMwaxA-IAqgAVFiC4YxYb2VgADwkczufCtVpKSQAsnQ6ABnADWAHsAHaetgAHWdABl7dgEHgAHL+tjOgAudAANP66AALACW0bY0YArgATf1gTjQZjQNBEf0ACgAgp7swBbZMAV5TFjo-oDbAARu6Qv6UABKf0Mf01gA-ITYrozzroAC485AhwA1f0Aejn8+dAAkAF6RlOezMAG2j-oXe-9SbYIUzzpY5qtthQ9404CSC-dmePzt9AEdy2B-b6AAOc7Lgg2BxngvYAO2np6-qAEhEf6QKB4GQTBIR0AAZgBv7OmAcZgHghAwWezqIc6kAEUR6FYbeFpcCqtr+C+ID2gACgAGggkKQBWbH+oBpFgLOFEQcYJ6RtGNbus6mEACdySEKYHuWNaHtGKZ1nQsbdnhCCFmAvZ0Uw2hWoRqS2ixABC7QANL+geKaZucmYhMZWhdDIYx1PoLGcBgrrLrIrr+p69YhOcdDVim-qAEmEJ4YdhzqABJE-qUSQEnOmWl4WB+GY5nm+nMEZ5qEA+cBiOVvn5iACoieB2AhV+wGif+zoAK0AGJ0baFWPq8FV2iAQYhuG-oIJl0bummdAHgmzoWHJB4AFaZtFAkpimulqdms0pl+FGAGQE4ETc6C7QP69rqZpTo6YVBkiQqaUQWVJ4sEAA), [pilt](falstad_team_noise_single_2026-11-15.png) | 20 mV p-p | `1,186·20 = 23,72 mV` | **23,72 mV** | 23,22 mV | 1,186 |
+  | Ainult Vref harus | [eksport](falstad_team_noise_vref_2026-11-15.txt), [veebiskeem](https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKAEMQAWYwkFTqoX58BIPCGzQkVMPDgsASl07iUCXpzC81vKlVEw82cnqhSWAd2Wr1XHn1uRLd7cO68telgCcX4QoLCnlDI8M5CnP6BkfxevpoeAX7BtNh48gBuEniRwQlRIRCyerAQpjAI7CIyGLzYhOJgtWISUoVyTlb1jc1puc2d2f11OQWDsQUTzChQzlNgM93gC7NdDcuL6026PkPgvaMoeOJUaPIA5ntH4n0SaLNK0+DEMyrPM6aiksTYISWVvieYBefHw7xCnAwYSsaEaIKmIKcvlh4JR13aYUuaOOoJu9yRIAi1RAGHuEyo2FwTgAxiSyaJSRTIJEZIxICYWJdGRJmXSKfVZgB5PnEjCHUSsNDkbkTGVgqgAcUqUsJwgmRMwHxAgoAqgAVFjC27BW72VgADzuVpQ2EWr3AkQAsnQ6ABnADWAHsAHbetgAHVdABlHdgEHgAHKBtiugAudAANIG6AALACWsbYsYArgATQNgTjQZjQNBEQMACgAgt7cwBbVMAV7TGTogaDbAARp7vIGUABKQMMQN1gA-3jY7qzrroAC4C5ARwA1QMAegXi9dAAkAF7RtPe7MAG1jgaX3joADNAym2N5s66WJbbRRtC-bLlIkvPdnT67-QAjpWYCBv6AAOC6rgg2AJng-YAO1LgegaAEhEwGQFBMFwYhF7Xv+QGumACZgHghCIchrpoa6kDEaROFXk+VqcGqL7MZEn4gI6AAKAAaCBQpAVZcYGYEUWA87UbBxhntGsZ1p6rqXgAJ0p3hpkelZ1sesZpg2dDxr2hEIMWYD9oxTBvjMJExKxDogAAQsUADSgZHmm2bnNm3jmVoEhJNZfn6HZkLuqusjuoG3qNt45x0LWaaBoASYRnrhgaABJEgY0SQMmuhWd4ZL+WZ5gWxnMGZlqELYZxiFVcBcHZSoSTB2ARf+EGSSBroAK0AGKMaxdU2q8dUcSGYaRoGCA5bGnoZnQR5Jq6GRKUeABW2bxSJaZpoZWm5vNab-tRgBkBDBU2uku0CBo62m6S6BklSZElKplsGVWeLBAA), [pilt](falstad_team_noise_vref_2026-11-15.png) | 20 mV p-p | `0,186·20 = 3,72 mV` | **3,72 mV** | 3,64 mV | 0,186 |
+
+  `G5` on 100 Hz juures ~2 % väiksem: RC-filtri piirsagedus on `1/(2π·3,3 kΩ·0,1 µF) ≈ 482 Hz` ja `1/√(1+(100/482)²) ≈ 0,979`.
+
+  Järeldused selle mudeli kohta:
+  - See aste ei ole diferentsiaalaste. Ühismüra võimendus on `A − (A − 1) = 1`, seega häiring, mis jõuab võrdselt nii anduri kui ka viite harusse,
+    läheb väljundisse muutmata (õppejõu sobitatud diferentsiaalastmes oli see ~0).
+  - Anduri haru häiring võimendub sama palju kui signaal (1,186), seega signaali-müra suhe anduri harus aste ei paranda ega halvenda.
+  - Viite haru häiring nõrgeneb 0,186-ni. B100K/nõrgendi müra on seetõttu väikese mõjuga.
+  - Mudel on ideaalne (lineaarne op-amp, ideaalsed allikad). Päris LM358 müra, toite pulsatsioon ja USB 5 V müra jäävad mõõtmiseks.
+
+  ![Ühismüra katse](falstad_team_noise_common_2026-11-15.png)
 
 **Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Mürakatse ainus näitehäiring on siinus `10 mV` tippamplituudiga ja sagedusega `100 Hz`. Mõlema katse alalissisend on `V_in = 0,98 V` ja ideaalne viide `V_ref = 252/775 V`. Ühismüra skeemis on sama faasi ja amplituudiga allikas nii anduri kui ka viite harus; sobitatud suhtarvudega ei muuda see tahtlikult võimendi sisendite diferentsiaalpinget. Teises skeemis on sama allikas ainult anduri harus. Globaalse maa liigutamine muudaks ka viite- või toitesõlme tähendust ning oleks teine katse.
 
@@ -187,6 +217,21 @@ Tabelis väljenda `e` millivoltides: `e_mV = 1000 · e_V`. Hoia märki alles. V�
 |---|---:|---:|---:|---|
 | Alumine | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
 | Ülemine | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
+
+- 15.11.26 märkus: **esimese versiooni (22.–25.10, vana plaat) otspunktid** olemasolevate andmete järgi. Tabeli TODO-read jäävad alles.
+  - Aste: `Rf` 10,04 kΩ, `Rref` 3 × 2 kΩ = 6,51 kΩ (22.10 mõõdetud) → `A₁ = 1 + 10,04/6,51 = 2,542`; G5 sai `10 kΩ / 10 kΩ` jaguri kaudu poole väljundist.
+  - `Vref` 25.10 otse ei mõõdetud. Atmosfääri punktist (G5 multimeeter 0,592 V → `Vout` 1,184 V; andur atmosfääril 0,837 V, 15.11 näit)
+    tuleb `Vref ≈ (2,542·0,837 − 1,184)/1,542 ≈ 0,61 V` (arvutatud).
+  - Anduri otspunktid on 14.11 eraldi mõõdetud: täis imemine 0,32 V, täis puhumine 2,40 V.
+
+  | Otspunkt | Arvutatud `Vout` (V) | Mõõdetud `Vout` (V) | Viga (mV) | Põhjus |
+  |---|---:|---:|---:|---|
+  | Alumine (täis imemine, `Vin` 0,32 V) | `2,542·0,32 − 1,542·0,61 ≈ −0,13` | 0,025–0,038 (25.10 vaakumi platoo 14–21 koodi × 0,90 mV/kood × 2) | ≈ **+160** | Ühe toitega LM358 väljund ei lähe alla ~0 V. Aste on piiris iga kord, kui `Vin < (A−1)/A·Vref ≈ 0,37 V`; platoo väiksem müra (1,23 vs 2,90 koodi) kinnitab, et väljund ei järginud sisendit. |
+  | Ülemine (täis puhumine, `Vin` 2,40 V) | `2,542·2,40 − 0,94 ≈ 5,16` (üle 5 V toite) | ei saavutatud: 25.10 suurim 1175 koodi → G5 ≈ 1,06 V → `Vout` ≈ 2,12 V, s.t `Vin` ≈ 1,20 V | ei ole mõõdetav | Arvutus nõuab üle toitepinge; LM358 väljund 5 V toitel jõuab andmelehe järgi ~3,5 V-ni (`Vcc − 1,5 V`), seega aste lõikaks seal (`Vin` > ~1,75 V). 25.10 ülerõhk ei jõudnud selleni. |
+
+  - Järeldus: liiga suur võimendus koos liiga kõrge `Vref`-iga. Alumine ots lõikas mõõdetult; ülemine ots oleks lõiganud ~3,5 V juures.
+    Jagur kaitses G5-t, aga kasutati ainult 14–1175 koodi 4095-st. Uus aste (14.11) valis `A` 1,19 ja `Vref` nii, et kogu vahemik 0,32–2,40 V
+    mahub 0,24–2,66 V sisse ([ümberehitus](opamp_rebuild_2026-11-14.md)). Ülemise otspunkti viga ei ole mõõdetud, sest täis puhumist esimese versiooniga ei tehtud.
 
 ## Parandatud versiooni arvutus
 

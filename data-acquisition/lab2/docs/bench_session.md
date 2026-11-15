@@ -286,3 +286,99 @@ Kolm mõõteseeriat ei võimalda veel teha nõutavat sama protokolli `raw` ja `o
 - Korrata katseid võrreldavas `raw` konfiguratsioonis.
 - Kalibreerida ADC näit rõhuks.
 - Teha võrreldavate mõõteseeriate müra-, spektri- ja SNR-analüüs.
+
+## 15.11.2026 — 30 + 30 pumbaimpulssi `raw` ja `opamp` (Denys, Raimo)
+
+### Katse
+
+- Mõõtefail: [pulses_2026-11-15.csv](../data/pulses_2026-11-15.csv), kõrvalfailid `.runs.jsonl` (logija) ja `.pump.jsonl` (pumba sisse/välja aeg jooksu algusest).
+- Skript [`pulse_series.py`](../src/python/pulse_series.py): üks jooks = 10 s, 100 Hz (DA2_MEASURE_V1, AtomS3R B4:3A:45:BC:A0:18). Pump väljas 0–3 s, puhumine (DO1) 3–7 s, väljas 7–10 s, jooksude vahel 5 s.
+- Pumbakast AUTO režiimis, robot 192.168.1.6, ainult DO-käsud, liikumist ei olnud. `raw` katse 17 kordus käis läbi mg400-base (`--mg400-url`).
+- Voolikus on väike leke, et rõhk langeks enne järgmist jooksu atmosfäärini.
+- `opamp`: G5 astme väljundil (A12→J60). `raw`: G5 otse anduri real 22 (A22→J60), USB lahti ühendatud juhtme vahetamise ajal.
+- Rea 22 pinge täis puhumisel multimeetriga enne `raw` ühendamist: TODO (tudeng).
+  - 15.11.26 täiendus (Raimo): rea 22 pinge täis puhumisel oli **2,43 V** (≤ 3,0 V, G5 ühendamine lubatud).
+
+### Tulemused (ADC koodid, kalibreerimata)
+
+Baasjoon = 0–3 s, platoo = 4,5–6,5 s, keskmine 30 jooksu üle. Pinge `3,70 V / 4095` on kalibreerimata hinnang.
+
+| Konfiguratsioon | Jookse | Baasjoon | Baasjoone sd | Platoo | Platoo sd | Tipp |
+|---|---:|---:|---:|---:|---:|---:|
+| `raw` | 30 | 944,3 (941,8–953,9) | 3,80 | 2654,9 (2615,3–2664,9) | 9,77 | 2690 (~2,43 V) |
+| `opamp` | 30 | 978,4 (974,0–984,7) | 1,46 | 3004,3 (2988,0–3021,3) | 5,69 | 3043 (~2,75 V) |
+
+Kõik 63 jooksu: 1001 rida, `missed=0`, ajastus 10 ms. G5 jäi alla 3,0 V piiri.
+
+Analüüsist välja jäetud jooksud (jäävad CSV-sse):
+
+| run_id | Konfiguratsioon | Katse | Põhjus | Kordus |
+|---|---|---:|---|---|
+| `eccfa9c4827c4fbe` | `opamp` | 13 | Robot sulges 29999 ühenduse, pumpa ei lülitatud | `4cd0dcefe3a5450f` |
+| `1317e1fd07504975` | `opamp` | 26 | Algas rõhu all (baasjoon 1240) | `2fb04692dca948fa` |
+| `4e34cf8a590f40ca` | `raw` | 17 | Algas rõhu all (baasjoon 2071) | `b826969e20164149` |
+
+Analüüs ilma kalibratsioonita: [`notebooks/pulses_2026-11-15`](../notebooks/pulses_2026-11-15/) (`adc_time.png`, `summary.json`).
+
+### Piirangud
+
+- Rõhk ei ole kalibreeritud kPa-desse. Pa/ADC samm, SNR dB-des ja spektrid vajavad kalibratsiooni mõlemas ühenduses.
+- Proovivõtu katkemise tõttu muudeti samal päeval DA2 püsivara (commit `d46ba73`); kõik siinsed jooksud on tehtud uue püsivaraga.
+
+### Kalibratsioon, Pa/ADC samm, SNR ja spektrid (15.11, andmelehe mudel)
+
+15.11.26 lisatud samal päeval. Rõhureferentsi ei kasutatud: teisendus on **andmelehe mudel** koos samal päeval mõõdetud pingetega.
+Plaani koostab [`notebooks/make_plan_2026-11-15.py`](../notebooks/make_plan_2026-11-15.py) → [`plan_2026-11-15.json`](../notebooks/plan_2026-11-15.json),
+analüüs `analyze.py --plan` → [`notebooks/pulses_2026-11-15_calibrated/`](../notebooks/pulses_2026-11-15_calibrated/). Kolm välja jäetud jooksu ei ole plaanis.
+
+**ADC → pinge** (multimeetri punkt ja sama oleku ADC tase):
+
+| Ühendus | Olek | Multimeeter | ADC (koodid) |
+|---|---|---:|---:|
+| `raw` | atmosfäär | anduri pin 1 0,837 V | baasjoone keskmine 944,3 |
+| `raw` | täis puhumine | rida 22 2,43 V | tipp 2690 (eeldus: sama rõhk, ±35 koodi) |
+| `opamp` | atmosfäär | G5 0,865 V | baasjoone keskmine 978,4 |
+
+`raw` kahest punktist: `V = 0,9125 mV/kood · kood − 24,7 mV`. `opamp` kasutab sama kallet (sama viik ja püsivara) ja oma punkti järgi nihet
+−27,8 mV; kaks sõltumatut nihet erinevad 3 mV. Kalde ebakindlus täispuhumise punkti tõttu on ~2 %. `opamp` koodid üle 2690 (kuni 3043) on ekstrapoleeritud.
+
+**Pinge → rõhk:** MPX5700AP andmeleht `Vout = Vs·(0,0012858·P + 0,04)`, `Vs` = 5,0 V (mõõdetud). `opamp` korral enne
+`Vandur = (V_G5 + (A − 1)·Vref)/A`, `A = 1 + 10/54 = 1,185`, `Vref` = 0,686 V. Atmosfäär tuleb mõlemas 99,1 kPa absoluutrõhku
+(andmelehe täpsus ±2,5 % täisskaalast ehk ~±17,5 kPa, seega absoluutväärtus on ligikaudne; impulsi suurus on täpsem).
+
+**Tulemused** (30 jooksu kummaski, baasjoon 0–3 s, platoo 4,5–6,5 s, keskmine ja vahemik):
+
+| | `raw` | `opamp` |
+|---|---:|---:|
+| Pa ühe ADC sammu kohta | **141,9 Pa/kood** | **119,8 Pa/kood** |
+| Impulsi suurus (platoo − baasjoon) | 242,8 kPa (237,0–244,4) | 242,6 kPa (240,3–245,2) |
+| Platoo müra standardhälve | 1387 Pa | 681 Pa |
+| SNR | **46,0 dB** (34,0–48,7) | **51,5 dB** (47,1–55,6) |
+
+- Mõlemad ühendused annavad sama impulsi suuruse (vahe 0,1 %), mis toetab kalibratsiooni järjekindlust.
+- Võimendus samadelt impulssidelt koodides: `(3004,3 − 978,4)/(2654,9 − 944,3) = 1,184` (disain 1,185).
+- `opamp` samm on 1,184 korda peenem ja platoo müra pool `raw` omast, SNR on ~5,5 dB parem.
+- Spektrid (trial 1, sama aken mõlemas, kPa²/Hz): [baasjoon, pump väljas](../notebooks/pulses_2026-11-15_calibrated/spectra_1.png),
+  [platoo, pump puhub](../notebooks/pulses_2026-11-15_calibrated/spectra_2.png). `opamp` müra on kogu 0–50 Hz alas madalam.
+  Võimalik põhjus on `opamp` haru 3,3 kΩ + 0,1 µF filter (482 Hz), mis vähendab kõrgsageduslikku müra enne 100 Hz diskreetimist (aliasing);
+  `raw` harus filtrit ei ole. Seda ei ole eraldi katsega kontrollitud.
+- Lahti: võrdlus Labori 1 spektritega samadel telgedel; rõhureferentsiga kalibratsioon, kui seda nõutakse.
+
+### Spektrid võrreldes Laboriga 1 (15.11)
+
+15.11.26 lisatud. Sama meetod nagu [Labori 1 märkmikus](../../lab1/notebooks/lab1_spectra.ipynb): Welch, 100 Hz, `nperseg = 128`, Hann, kPa²/Hz,
+iga signaal oma Pa/kood sammuga (Lab 1 141, Lab 2 `raw` 141,9, `opamp` 119,8). Skript
+[`compare_lab1_spectra_2026-11-15.py`](../notebooks/compare_lab1_spectra_2026-11-15.py), väljund
+[`notebooks/spectra_lab1_vs_lab2_2026-11-15/`](../notebooks/spectra_lab1_vs_lab2_2026-11-15/).
+
+| Olukord | Labor 1 toores (13.09) | Labor 2 `raw` (15.11) | Labor 2 `opamp` (15.11) |
+|---|---:|---:|---:|
+| Pump väljas, müra std | 682 Pa (1 aken, 272 proovi) | 539 Pa (30 akent à 3 s) | **176 Pa** (30 akent) |
+| Pump töötab, müra std (aeglane osa eemaldatud) | 587 Pa (imemine, 9 lõiku) | 881 Pa (puhumine, 30 akent) | **372 Pa** (puhumine) |
+
+- Lab 1 682 Pa = 4,84 LSB, mis kordab Labori 1 enda tulemust (4,85 LSB). Meetod on sama.
+- Pump väljas on Labor 2 `raw` samal tasemel kui Labor 1 toores signaal; `opamp` spekter on kogu 0–50 Hz alas ~10× (≈ 10 dB) madalam
+  ([graafik](../notebooks/spectra_lab1_vs_lab2_2026-11-15/spectra_pump_off.png)).
+- Pump töötades ([graafik](../notebooks/spectra_lab1_vs_lab2_2026-11-15/spectra_pump_on.png)) on Labor 1 imemine ja Labor 2 puhumine eri tööpunktid,
+  seega see võrdlus on ainult suunav.
+- Selgeid nimelisi tippe ei ole (nagu Laboris 1; õppejõud 02.10: nimelist kinnitamist pole vaja). Väike tõus ~44 Hz juures `opamp` baasjoonel on kinnitamata.

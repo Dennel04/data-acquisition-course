@@ -1,0 +1,4690 @@
+{
+  "runs": {
+    "53dfe6752e004c9d": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 1,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "53dfe6752e004c9d",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 1,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2114.6593406593406,
+        "std_sample": 819.2691858206098,
+        "minimum": 977,
+        "maximum": 3019,
+        "peak_to_peak": 2042,
+        "rms_about_mean": 818.8598581978464
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 240310.84133472847,
+        "plateau_noise_std_pa": 590.3133581662399,
+        "snr_db": 52.19381505925371,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "c52cc292cdc54891": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 2,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "c52cc292cdc54891",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 2,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2157.5304695304694,
+        "std_sample": 827.7179068503226,
+        "minimum": 974,
+        "maximum": 3017,
+        "peak_to_peak": 2043,
+        "rms_about_mean": 827.3043580326768
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 240851.36402990448,
+        "plateau_noise_std_pa": 461.66508431884097,
+        "snr_db": 54.34844160158323,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "6fd6c2bd5fca4ad2": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 3,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "6fd6c2bd5fca4ad2",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 3,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2158.1198801198802,
+        "std_sample": 829.1858341857907,
+        "minimum": 974,
+        "maximum": 3017,
+        "peak_to_peak": 2043,
+        "rms_about_mean": 828.7715519544915
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 241754.3642784186,
+        "plateau_noise_std_pa": 405.2753950535157,
+        "snr_db": 55.51248170285145,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "2be3a105e0214e2a": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 4,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "2be3a105e0214e2a",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 4,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2150.2767232767233,
+        "std_sample": 826.6580951927177,
+        "minimum": 978,
+        "maximum": 3020,
+        "peak_to_peak": 2042,
+        "rms_about_mean": 826.2450758838023
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 241926.02215059416,
+        "plateau_noise_std_pa": 410.60051147306194,
+        "snr_db": 55.405261972418465,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "d638bec7bcf742a1": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 5,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "d638bec7bcf742a1",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 5,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2162.787212787213,
+        "std_sample": 829.6816110269792,
+        "minimum": 975,
+        "maximum": 3019,
+        "peak_to_peak": 2044,
+        "rms_about_mean": 829.267081093021
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 242262.35181875207,
+        "plateau_noise_std_pa": 403.0645921769137,
+        "snr_db": 55.57822560707008,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "ae05db6dda2e4747": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 6,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "ae05db6dda2e4747",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 6,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2155.1108891108893,
+        "std_sample": 826.4647558676103,
+        "minimum": 975,
+        "maximum": 3018,
+        "peak_to_peak": 2043,
+        "rms_about_mean": 826.0518331559155
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 241605.26145223825,
+        "plateau_noise_std_pa": 483.7151200242554,
+        "snr_db": 53.970334497605,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "b6b2228d40f94e05": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 7,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "b6b2228d40f94e05",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 7,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2060.003996003996,
+        "std_sample": 844.5859742998435,
+        "minimum": 976,
+        "maximum": 3017,
+        "peak_to_peak": 2041,
+        "rms_about_mean": 844.1639977687316
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 240914.63791999713,
+        "plateau_noise_std_pa": 630.1485284029869,
+        "snr_db": 51.64840524114429,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "1d8fa76211a44528": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 8,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "1d8fa76211a44528",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 8,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2015.3626373626373,
+        "std_sample": 891.3012719404351,
+        "minimum": 970,
+        "maximum": 3029,
+        "peak_to_peak": 2059,
+        "rms_about_mean": 890.8559552641536
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 242981.91766665064,
+        "plateau_noise_std_pa": 478.92447019990516,
+        "snr_db": 54.106138556093825,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "377028af4e2344eb": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 9,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "377028af4e2344eb",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 9,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1813.7632367632368,
+        "std_sample": 942.8655826188126,
+        "minimum": 971,
+        "maximum": 3023,
+        "peak_to_peak": 2052,
+        "rms_about_mean": 942.3945031077087
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 242654.37049427847,
+        "plateau_noise_std_pa": 421.011515409118,
+        "snr_db": 55.21388286325748,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "e3c0bf78037941a3": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 10,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "e3c0bf78037941a3",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 10,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2151.173826173826,
+        "std_sample": 826.8101533932961,
+        "minimum": 977,
+        "maximum": 3026,
+        "peak_to_peak": 2049,
+        "rms_about_mean": 826.3970581122546
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 241626.61888517172,
+        "plateau_noise_std_pa": 666.1319714389186,
+        "snr_db": 51.19168996782767,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "a643a8a38f3d4b37": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 11,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "a643a8a38f3d4b37",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 11,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2123.8481518481517,
+        "std_sample": 840.5517847932279,
+        "minimum": 975,
+        "maximum": 3028,
+        "peak_to_peak": 2053,
+        "rms_about_mean": 840.1318238453078
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243066.34938749974,
+        "plateau_noise_std_pa": 496.8457070430456,
+        "snr_db": 53.79006593372645,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "5e984c6210604ba5": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 12,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "5e984c6210604ba5",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 12,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2158.6343656343656,
+        "std_sample": 830.927660014891,
+        "minimum": 976,
+        "maximum": 3025,
+        "peak_to_peak": 2049,
+        "rms_about_mean": 830.5125075233182
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 242963.55426637141,
+        "plateau_noise_std_pa": 554.9633574074267,
+        "snr_db": 52.82553646558752,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "eccfa9c4827c4fbe": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 13,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "eccfa9c4827c4fbe",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 13,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 980.3736263736264,
+        "std_sample": 1.3661126367411056,
+        "minimum": 976,
+        "maximum": 985,
+        "peak_to_peak": 9,
+        "rms_about_mean": 1.365430092288437
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "calibration_todo": "Verified per-run Pa/code calibration and range required. DMM alone is insufficient.",
+      "snr_todo": "Select steady non-overlapping baseline/plateau windows after inspecting real data."
+    },
+    "4cd0dcefe3a5450f": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 13,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "4cd0dcefe3a5450f",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 13,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1975.7262737262738,
+        "std_sample": 899.9464178488633,
+        "minimum": 970,
+        "maximum": 3026,
+        "peak_to_peak": 2056,
+        "rms_about_mean": 899.4967818388582
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 240890.8852609403,
+        "plateau_noise_std_pa": 548.7072238123096,
+        "snr_db": 52.84959379704192,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "d3b3534561544592": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 14,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "d3b3534561544592",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 14,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2094.761238761239,
+        "std_sample": 836.5939588211619,
+        "minimum": 975,
+        "maximum": 3024,
+        "peak_to_peak": 2049,
+        "rms_about_mean": 836.1759753032788
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 242565.94672989036,
+        "plateau_noise_std_pa": 475.1745823452675,
+        "snr_db": 54.15953259101609,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "3527fe3791c54de7": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 15,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "3527fe3791c54de7",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 15,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2123.7512487512486,
+        "std_sample": 841.2654545747965,
+        "minimum": 971,
+        "maximum": 3026,
+        "peak_to_peak": 2055,
+        "rms_about_mean": 840.845137059389
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 241919.83448310877,
+        "plateau_noise_std_pa": 676.700508593278,
+        "snr_db": 51.06549947590969,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "4496a7484f0d45d5": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 16,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "4496a7484f0d45d5",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 16,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2154.303696303696,
+        "std_sample": 831.5985207275946,
+        "minimum": 973,
+        "maximum": 3027,
+        "peak_to_peak": 2054,
+        "rms_about_mean": 831.1830330570288
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243158.166388896,
+        "plateau_noise_std_pa": 512.8074228771295,
+        "snr_db": 53.518691136592494,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "87bb8e5011f54465": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 17,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "87bb8e5011f54465",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 17,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2148.3396603396604,
+        "std_sample": 826.7236107161114,
+        "minimum": 975,
+        "maximum": 3024,
+        "peak_to_peak": 2049,
+        "rms_about_mean": 826.3105586739821
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 241597.6765695142,
+        "plateau_noise_std_pa": 929.6353220099417,
+        "snr_db": 48.29560273530764,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "6cc0768af32947dd": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 18,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "6cc0768af32947dd",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 18,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1843.97002997003,
+        "std_sample": 941.3086980905356,
+        "minimum": 970,
+        "maximum": 3029,
+        "peak_to_peak": 2059,
+        "rms_about_mean": 940.8383964383503
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243301.081547591,
+        "plateau_noise_std_pa": 521.6476113451008,
+        "snr_db": 53.37533632887705,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "468d61709b554433": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 19,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "468d61709b554433",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 19,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2092.879120879121,
+        "std_sample": 842.887603642162,
+        "minimum": 973,
+        "maximum": 3027,
+        "peak_to_peak": 2054,
+        "rms_about_mean": 842.4664756600201
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 242437.0037235818,
+        "plateau_noise_std_pa": 938.2029802338525,
+        "snr_db": 48.24604199531063,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "ad63ba5190ad4aa2": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 20,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "ad63ba5190ad4aa2",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 20,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1973.2427572427573,
+        "std_sample": 910.6596466353333,
+        "minimum": 971,
+        "maximum": 3035,
+        "peak_to_peak": 2064,
+        "rms_about_mean": 910.2046580250507
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 242999.6822603991,
+        "plateau_noise_std_pa": 1019.3094394080731,
+        "snr_db": 47.545993193460816,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "d8e2be8666fd4754": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 21,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "d8e2be8666fd4754",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 21,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1849.811188811189,
+        "std_sample": 935.8087418456216,
+        "minimum": 970,
+        "maximum": 3034,
+        "peak_to_peak": 2064,
+        "rms_about_mean": 935.3411881107925
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 242612.25443494238,
+        "plateau_noise_std_pa": 885.3351630363404,
+        "snr_db": 48.756100398713414,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "5b1e2ecf88f243ae": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 22,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "5b1e2ecf88f243ae",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 22,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2028.4765234765234,
+        "std_sample": 888.726142126078,
+        "minimum": 970,
+        "maximum": 3034,
+        "peak_to_peak": 2064,
+        "rms_about_mean": 888.282112049834
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 244231.0280899931,
+        "plateau_noise_std_pa": 525.2616174622693,
+        "snr_db": 53.34850341890093,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "05ddb089234c4b7a": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 23,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "05ddb089234c4b7a",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 23,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2062.5994005994007,
+        "std_sample": 842.7537317387805,
+        "minimum": 974,
+        "maximum": 3037,
+        "peak_to_peak": 2063,
+        "rms_about_mean": 842.3326706424301
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243075.73068981635,
+        "plateau_noise_std_pa": 1073.5594520132631,
+        "snr_db": 47.0983099989465,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "07af2c9a34db47a1": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 24,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "07af2c9a34db47a1",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 24,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2104.4075924075923,
+        "std_sample": 844.1492851991866,
+        "minimum": 970,
+        "maximum": 3027,
+        "peak_to_peak": 2057,
+        "rms_about_mean": 843.727526849003
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243457.7692564954,
+        "plateau_noise_std_pa": 876.0728449742353,
+        "snr_db": 48.87766838699268,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "f286e13d94f849f9": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 25,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "f286e13d94f849f9",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 25,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2166.7492507492507,
+        "std_sample": 832.4551171456261,
+        "minimum": 973,
+        "maximum": 3037,
+        "peak_to_peak": 2064,
+        "rms_about_mean": 832.0392014978074
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243285.91178214288,
+        "plateau_noise_std_pa": 1008.2335278800623,
+        "snr_db": 47.651116501936606,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "1317e1fd07504975": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 26,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "1317e1fd07504975",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 26,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2130.5214785214785,
+        "std_sample": 769.8561734429437,
+        "minimum": 1195,
+        "maximum": 3039,
+        "peak_to_peak": 1844,
+        "rms_about_mean": 769.4715338119175
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "calibration_todo": "Verified per-run Pa/code calibration and range required. DMM alone is insufficient.",
+      "snr_todo": "Select steady non-overlapping baseline/plateau windows after inspecting real data."
+    },
+    "7ce464053c1543a3": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 27,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "7ce464053c1543a3",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 27,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2105.981018981019,
+        "std_sample": 851.2300527115808,
+        "minimum": 973,
+        "maximum": 3037,
+        "peak_to_peak": 2064,
+        "rms_about_mean": 850.804756630718
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243639.6068396953,
+        "plateau_noise_std_pa": 1023.0473278437562,
+        "snr_db": 47.537043293203574,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "11543f8bd19f4076": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 28,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "11543f8bd19f4076",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 28,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2117.844155844156,
+        "std_sample": 835.8970843879716,
+        "minimum": 975,
+        "maximum": 3040,
+        "peak_to_peak": 2065,
+        "rms_about_mean": 835.4794490461948
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243576.53255177964,
+        "plateau_noise_std_pa": 996.7273094069883,
+        "snr_db": 47.76118172126718,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "57813217c5b9480e": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 29,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "57813217c5b9480e",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 29,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2171.4905094905093,
+        "std_sample": 835.4580229789167,
+        "minimum": 975,
+        "maximum": 3036,
+        "peak_to_peak": 2061,
+        "rms_about_mean": 835.0406070033335
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 243837.612199228,
+        "plateau_noise_std_pa": 943.8387760658047,
+        "snr_db": 48.24405762330816,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "2eb2d5f122b74343": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 30,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "2eb2d5f122b74343",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 30,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2162.812187812188,
+        "std_sample": 836.0391059581535,
+        "minimum": 973,
+        "maximum": 3043,
+        "peak_to_peak": 2070,
+        "rms_about_mean": 835.6213996588054
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 244228.83246604673,
+        "plateau_noise_std_pa": 917.0398238653473,
+        "snr_db": 48.50817474680874,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "2fb04692dca948fa": {
+      "config": "opamp",
+      "condition": "pulse",
+      "trial": 26,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "2fb04692dca948fa",
+        "config": "opamp",
+        "condition": "pulse",
+        "trial": 26,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2049.3956043956046,
+        "std_sample": 880.3343735994065,
+        "minimum": 970,
+        "maximum": 3040,
+        "peak_to_peak": 2070,
+        "rms_about_mean": 879.8945362631329
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 119.76130616897983,
+      "calibration": {
+        "config": "opamp",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+        "pa_per_code": 119.76130616897983,
+        "offset_pa": -18087.317765342552,
+        "adc_range": [
+          900,
+          3100
+        ]
+      },
+      "snr": {
+        "signal_pa": 245190.9149589375,
+        "plateau_noise_std_pa": 553.0343271173784,
+        "snr_db": 52.935045704913115,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "52ab0bec0dec46ec": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 1,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "52ab0bec0dec46ec",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 1,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1907.5254745254745,
+        "std_sample": 708.6357368919519,
+        "minimum": 933,
+        "maximum": 2676,
+        "peak_to_peak": 1743,
+        "rms_about_mean": 708.2816845406521
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 242019.08851376458,
+        "plateau_noise_std_pa": 1211.5556095853701,
+        "snr_db": 46.010125364450964,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "8790fd833a6c4d38": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 2,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "8790fd833a6c4d38",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 2,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1673.2157842157842,
+        "std_sample": 777.1647749291069,
+        "minimum": 935,
+        "maximum": 2674,
+        "peak_to_peak": 1739,
+        "rms_about_mean": 776.7764837357813
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 241584.75417672505,
+        "plateau_noise_std_pa": 1101.0654746057526,
+        "snr_db": 46.8251275717886,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "29f8178e5c584cb5": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 3,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "29f8178e5c584cb5",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 3,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1884.3356643356644,
+        "std_sample": 715.0328770181013,
+        "minimum": 936,
+        "maximum": 2676,
+        "peak_to_peak": 1740,
+        "rms_about_mean": 714.6756284936687
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 241846.3956673382,
+        "plateau_noise_std_pa": 983.2709860882154,
+        "snr_db": 47.81732789844511,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "7b8cd047ec6c483d": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 4,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "7b8cd047ec6c483d",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 4,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1855.2127872127871,
+        "std_sample": 716.0863688664404,
+        "minimum": 935,
+        "maximum": 2670,
+        "peak_to_peak": 1735,
+        "rms_about_mean": 715.728593990814
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 241329.02682468816,
+        "plateau_noise_std_pa": 1804.3446652563905,
+        "snr_db": 42.52580123345403,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "7228cf090280435f": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 5,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "7228cf090280435f",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 5,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1898.2747252747254,
+        "std_sample": 710.9131588672061,
+        "minimum": 935,
+        "maximum": 2676,
+        "peak_to_peak": 1741,
+        "rms_about_mean": 710.557968658241
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 242196.74923659497,
+        "plateau_noise_std_pa": 1024.4644304394901,
+        "snr_db": 47.473428510388196,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "b44cb1d404a444ab": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 6,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "b44cb1d404a444ab",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 6,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1872.5404595404596,
+        "std_sample": 701.4544422921482,
+        "minimum": 934,
+        "maximum": 2668,
+        "peak_to_peak": 1734,
+        "rms_about_mean": 701.1039778974051
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 242134.0593676868,
+        "plateau_noise_std_pa": 1113.856453116281,
+        "snr_db": 46.74453315487273,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "3c22444cde034b3b": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 7,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "3c22444cde034b3b",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 7,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1837.926073926074,
+        "std_sample": 700.6777094566877,
+        "minimum": 934,
+        "maximum": 2667,
+        "peak_to_peak": 1733,
+        "rms_about_mean": 700.32763313733
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 237044.82484005566,
+        "plateau_noise_std_pa": 4631.38027071144,
+        "snr_db": 34.182400739728756,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "eabfcf9fd2e4401e": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 8,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "eabfcf9fd2e4401e",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 8,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1823.2657342657342,
+        "std_sample": 733.2941942458601,
+        "minimum": 933,
+        "maximum": 2677,
+        "peak_to_peak": 1744,
+        "rms_about_mean": 732.927821905106
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 242810.87338635238,
+        "plateau_noise_std_pa": 1032.574310426091,
+        "snr_db": 47.426936302858074,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "893ba159be3a4124": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 9,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "893ba159be3a4124",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 9,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1839.5484515484516,
+        "std_sample": 731.763434383066,
+        "minimum": 934,
+        "maximum": 2675,
+        "peak_to_peak": 1741,
+        "rms_about_mean": 731.3978268486863
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 242939.56504177145,
+        "plateau_noise_std_pa": 1164.7172200258462,
+        "snr_db": 46.3855550629866,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "2db1b41481624625": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 10,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "2db1b41481624625",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 10,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1727.963036963037,
+        "std_sample": 764.7374762834418,
+        "minimum": 933,
+        "maximum": 2676,
+        "peak_to_peak": 1743,
+        "rms_about_mean": 764.355394083082
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 241973.43136395596,
+        "plateau_noise_std_pa": 1020.407643349086,
+        "snr_db": 47.49987960242535,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "45802397fa604572": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 11,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "45802397fa604572",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 11,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1816.8171828171828,
+        "std_sample": 754.9314045292165,
+        "minimum": 933,
+        "maximum": 2681,
+        "peak_to_peak": 1748,
+        "rms_about_mean": 754.5542216905188
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243532.63485819742,
+        "plateau_noise_std_pa": 1092.7699968121967,
+        "snr_db": 46.96056810170563,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "a0191ad0508a4e96": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 12,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "a0191ad0508a4e96",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 12,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1845.1998001998002,
+        "std_sample": 688.4359055423823,
+        "minimum": 935,
+        "maximum": 2656,
+        "peak_to_peak": 1721,
+        "rms_about_mean": 688.0919455381277
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 237213.25950670714,
+        "plateau_noise_std_pa": 4754.506752874019,
+        "snr_db": 33.960669851131,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "9bdc68cc5d9749fb": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 13,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "9bdc68cc5d9749fb",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 13,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1788.2027972027972,
+        "std_sample": 763.0312168136818,
+        "minimum": 929,
+        "maximum": 2690,
+        "peak_to_peak": 1761,
+        "rms_about_mean": 762.6499871037424
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 242094.3163564544,
+        "plateau_noise_std_pa": 3063.9589750859363,
+        "snr_db": 37.95403295259626,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "9be3a7f313be4f93": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 14,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "9be3a7f313be4f93",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 14,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1777.3356643356644,
+        "std_sample": 767.9594827963148,
+        "minimum": 933,
+        "maximum": 2687,
+        "peak_to_peak": 1754,
+        "rms_about_mean": 767.575790799945
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243805.86806041998,
+        "plateau_noise_std_pa": 1114.365556286034,
+        "snr_db": 46.800329483221674,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "e0d2bd69ff42478e": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 15,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "e0d2bd69ff42478e",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 15,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1788.7172827172826,
+        "std_sample": 751.2851582395389,
+        "minimum": 930,
+        "maximum": 2675,
+        "peak_to_peak": 1745,
+        "rms_about_mean": 750.9097971577821
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 242835.71276837256,
+        "plateau_noise_std_pa": 1225.6788388444702,
+        "snr_db": 45.9387173744587,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "f5c8cc39167e4f46": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 16,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "f5c8cc39167e4f46",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 16,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1949.8421578421578,
+        "std_sample": 705.2971934304992,
+        "minimum": 926,
+        "maximum": 2686,
+        "peak_to_peak": 1760,
+        "rms_about_mean": 704.9448091000188
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 244116.7151839875,
+        "plateau_noise_std_pa": 955.5977870142648,
+        "snr_db": 48.14644764312063,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "4e34cf8a590f40ca": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 17,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "4e34cf8a590f40ca",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 17,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 2150.1668331668334,
+        "std_sample": 545.9095796364643,
+        "minimum": 934,
+        "maximum": 2681,
+        "peak_to_peak": 1747,
+        "rms_about_mean": 545.6368293922908
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "calibration_todo": "Verified per-run Pa/code calibration and range required. DMM alone is insufficient.",
+      "snr_todo": "Select steady non-overlapping baseline/plateau windows after inspecting real data."
+    },
+    "d8099e32107f4bd6": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 18,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "d8099e32107f4bd6",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 18,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1944.1658341658342,
+        "std_sample": 702.6841626730522,
+        "minimum": 925,
+        "maximum": 2678,
+        "peak_to_peak": 1753,
+        "rms_about_mean": 702.3330838788798
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243788.36221023428,
+        "plateau_noise_std_pa": 1075.3803738536205,
+        "snr_db": 47.10901727181317,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "88465a94f4fb4ab2": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 19,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "88465a94f4fb4ab2",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 19,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1639.2957042957044,
+        "std_sample": 803.2163385237682,
+        "minimum": 933,
+        "maximum": 2685,
+        "peak_to_peak": 1752,
+        "rms_about_mean": 802.8150313098475
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 244389.71182066694,
+        "plateau_noise_std_pa": 969.7822691242208,
+        "snr_db": 48.0281735956385,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "485fab7e257f4908": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 20,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "485fab7e257f4908",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 20,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1955.7002997002996,
+        "std_sample": 707.1579399892997,
+        "minimum": 932,
+        "maximum": 2685,
+        "peak_to_peak": 1753,
+        "rms_about_mean": 706.8046259827389
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 244267.88056599634,
+        "plateau_noise_std_pa": 998.5493025605039,
+        "snr_db": 47.76993703033174,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "2c75e999aeb745df": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 21,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "2c75e999aeb745df",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 21,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1720.180819180819,
+        "std_sample": 778.9352978725051,
+        "minimum": 930,
+        "maximum": 2689,
+        "peak_to_peak": 1759,
+        "rms_about_mean": 778.5461220811011
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243744.59758477006,
+        "plateau_noise_std_pa": 1068.1244983793702,
+        "snr_db": 47.16626245118537,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "4b4e80ca532c4058": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 22,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "4b4e80ca532c4058",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 22,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1724.3446553446554,
+        "std_sample": 783.0435518500271,
+        "minimum": 924,
+        "maximum": 2685,
+        "peak_to_peak": 1761,
+        "rms_about_mean": 782.6523234709468
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243866.19227389764,
+        "plateau_noise_std_pa": 990.8302665603729,
+        "snr_db": 47.82304665776369,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "89bc35b1d2ce4dbe": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 23,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "89bc35b1d2ce4dbe",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 23,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1887.8491508491509,
+        "std_sample": 734.2134786434925,
+        "minimum": 934,
+        "maximum": 2685,
+        "peak_to_peak": 1751,
+        "rms_about_mean": 733.8466470049841
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 244106.77943117937,
+        "plateau_noise_std_pa": 1229.040352142638,
+        "snr_db": 45.96027398010969,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "47dc8b34194e44fa": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 24,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "47dc8b34194e44fa",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 24,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1796.4355644355644,
+        "std_sample": 763.577106842463,
+        "minimum": 930,
+        "maximum": 2680,
+        "peak_to_peak": 1750,
+        "rms_about_mean": 763.1956043920476
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 244156.6947607629,
+        "plateau_noise_std_pa": 919.3212312906459,
+        "snr_db": 48.484026941020815,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "cdb324abb5f4405e": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 25,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "cdb324abb5f4405e",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 25,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1720.7242757242757,
+        "std_sample": 782.11944989247,
+        "minimum": 928,
+        "maximum": 2683,
+        "peak_to_peak": 1755,
+        "rms_about_mean": 781.7286832181188
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 244107.4891278085,
+        "plateau_noise_std_pa": 896.0525225043842,
+        "snr_db": 48.70495273699969,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "ff8a3b78ecea4082": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 26,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "ff8a3b78ecea4082",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 26,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1738.5314685314686,
+        "std_sample": 784.7085645376513,
+        "minimum": 931,
+        "maximum": 2688,
+        "peak_to_peak": 1757,
+        "rms_about_mean": 784.3165042760871
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 244097.31680945738,
+        "plateau_noise_std_pa": 1027.1488833540386,
+        "snr_db": 47.51859214394442,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "30f4ec260a7d4729": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 27,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "30f4ec260a7d4729",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 27,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1655.3796203796203,
+        "std_sample": 795.6633143134449,
+        "minimum": 928,
+        "maximum": 2681,
+        "peak_to_peak": 1753,
+        "rms_about_mean": 795.2657807816036
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243997.95928137645,
+        "plateau_noise_std_pa": 959.2026261078925,
+        "snr_db": 48.10951669905257,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "10ad58da22704cd4": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 28,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "10ad58da22704cd4",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 28,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1729.3936063936064,
+        "std_sample": 786.639944904326,
+        "minimum": 932,
+        "maximum": 2684,
+        "peak_to_peak": 1752,
+        "rms_about_mean": 786.246919676243
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243875.6548956197,
+        "plateau_noise_std_pa": 1079.1027198245465,
+        "snr_db": 47.08211322974126,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "f298209b8e9a4470": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 29,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "f298209b8e9a4470",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 29,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1867.1538461538462,
+        "std_sample": 743.9089018876521,
+        "minimum": 932,
+        "maximum": 2686,
+        "peak_to_peak": 1754,
+        "rms_about_mean": 743.5372261702781
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243414.58865221555,
+        "plateau_noise_std_pa": 1021.1019143379986,
+        "snr_db": 47.54555025999978,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "4749d244791d4bf0": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 30,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "4749d244791d4bf0",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 30,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1717.984015984016,
+        "std_sample": 790.5958384308988,
+        "minimum": 932,
+        "maximum": 2689,
+        "peak_to_peak": 1757,
+        "rms_about_mean": 790.2008367382775
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 243693.26286192826,
+        "plateau_noise_std_pa": 1102.3770121520274,
+        "snr_db": 46.89026749065877,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    },
+    "b826969e20164149": {
+      "config": "raw",
+      "condition": "pulse",
+      "trial": 17,
+      "sources": [
+        "data\\pulses_2026-11-15.csv"
+      ],
+      "timing": {
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true,
+        "target_hz": 100,
+        "error_percent": 0.0
+      },
+      "capture_complete": true,
+      "capture": {
+        "run_id": "b826969e20164149",
+        "config": "raw",
+        "condition": "pulse",
+        "trial": 17,
+        "calibrated": false,
+        "status": "complete",
+        "dmm_reference_v": null,
+        "dmm_recorded_utc": "",
+        "rows": 1001,
+        "elapsed_ms": 10000,
+        "missed": 0,
+        "rate_hz": 100.0,
+        "dt_min_ms": 10,
+        "dt_max_ms": 10,
+        "timing_ok": true
+      },
+      "adc": {
+        "n": 1001,
+        "mean": 1706.6553446553446,
+        "std_sample": 789.7213217926347,
+        "minimum": 928,
+        "maximum": 2683,
+        "peak_to_peak": 1755,
+        "rms_about_mean": 789.326757030662
+      },
+      "clipped_samples": 0,
+      "dmm_reference_v": null,
+      "dmm_recorded_utc": null,
+      "note": "Whole-run variation is not plateau noise unless the run is stationary.",
+      "pa_per_adc_step": 141.939325829902,
+      "calibration": {
+        "config": "raw",
+        "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+        "pa_per_code": 141.939325829902,
+        "offset_pa": -34951.021977847784,
+        "adc_range": [
+          900,
+          2700
+        ]
+      },
+      "snr": {
+        "signal_pa": 242973.1573488845,
+        "plateau_noise_std_pa": 964.7635604748999,
+        "snr_db": 48.02274811204658,
+        "note": "",
+        "baseline_s": [
+          0.0,
+          3.0
+        ],
+        "plateau_s": [
+          4.5,
+          6.5
+        ]
+      }
+    }
+  },
+  "spectrum_pairs": [
+    {
+      "raw_run": "52ab0bec0dec46ec",
+      "opamp_run": "53dfe6752e004c9d",
+      "raw_s": [
+        0.0,
+        3.0
+      ],
+      "opamp_s": [
+        0.0,
+        3.0
+      ],
+      "protocol": "15.11.2026 pulse_series.py: pump off 0-3 s, blow (DO1) 3-7 s, off 7-10 s, 100 Hz, same day, same tube with small leak; trial 1; window baseline, pump off"
+    },
+    {
+      "raw_run": "52ab0bec0dec46ec",
+      "opamp_run": "53dfe6752e004c9d",
+      "raw_s": [
+        4.5,
+        6.5
+      ],
+      "opamp_s": [
+        4.5,
+        6.5
+      ],
+      "protocol": "15.11.2026 pulse_series.py: pump off 0-3 s, blow (DO1) 3-7 s, off 7-10 s, 100 Hz, same day, same tube with small leak; trial 1; window plateau, pump blowing"
+    }
+  ],
+  "spectrum_method": "Mean-subtracted Hann one-sided periodogram, no resampling",
+  "spectrum_todo": null
+}

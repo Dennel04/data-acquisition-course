@@ -164,3 +164,62 @@ et A-poolel on + välimine ja J-poolel sisemine joon:
 Seis: anduri vahemik mõõdetud (samm 2). Sammud 3–8 on veel tegemata.
 
 - 14.11.26 märkus: kordustest [`opamp_retest.py`](../src/python/opamp_retest.py) G5-mõõtja püsivaraga (Atom COM4), 17:45 ja 17:47 jooksul andur otse kompressori küljes. Tulemus **PASS** (17:47): atmosfäär `0,858 V`, täis imemine `0,236 V`, täis puhumine `2,664 V`, ulatus `2,43 V`, tuletatud võimendus `1,168` (disain `1,186`). Pinged kalibreerimata (`3,70 V / 4095`). Kaust [`data/opamp_retest_2026-11-14_1747`](../data/opamp_retest_2026-11-14_1747/REPORT.md). Samal päeval varem: 17:37 FAIL (väljund `0,847 V` kõigil kolmel rõhul, põhjus kinnitamata), 17:40 FAIL (puhumisel ainult `1,13 V`, täis puhumist ei saavutatud), 17:45 PASS (imemine algas ~3 s pärast Enterit, keskmine `0,407 V` on seetõttu moonutatud). Sammude 3–7 multimeetri näidud jäid kirja panemata: TODO.
+
+- 15.11.26 märkus: lõpliku plaadi foto (Raimo, 15.11 13:46): [`breadboard_final_2026-11-15.jpg`](breadboard_final_2026-11-15.jpg).
+  Pildil on andur plaadi ülaosas (read 1–6), LM358N ridadel ~20–23, B100K ridadel ~33–38 ja AtomS3R all (read ~60–63).
+  Atomi ekraan näitab `DA2 MEASUREMENT`, `opamp`, `ADC 973` (≈ 0,88 V kalibreerimata, atmosfäär). Pesade vastavust tabelile fotolt ei kontrollitud.
+  Falstadi mudel samast astmest: [opamp_design.md](opamp_design.md#õppejõu-mpx5700ap-näite-falstadi-esimene-versioon).
+
+  ![Lõplik plaat 15.11.2026](breadboard_final_2026-11-15.jpg)
+
+## 7. 15.11 otsus: võimendust ei suurendata
+
+Küsimus: kas võimendust saab veel tõsta, et rõhumuutus kasutaks rohkem ADC koode?
+Otsus: **jääb praegune aste** (`Rf` 10 kΩ, `Rref` 53,8 kΩ, disain `A ≈ 1,19`, mõõdetud 14.11 17:47 `1,168`).
+
+Labor 2 peab mõõtma nii imemist kui ka puhumist, seega peab kogu anduri vahemik mahtuma
+G5 kasutatavasse aknasse. Suurim võimalik võimendus on akna laius jagatud anduri ulatusega:
+
+`A_max = (Vout_max − Vout_min) / (2,40 − 0,32 V) = akna laius / 2,08 V`
+
+| G5 aken | `A_max` | `Rref` (`Rf` = 10 kΩ) | `Vref` | Märkus |
+|---|---|---|---|---|
+| 0,30–2,80 V (punkti 6 siht) | 1,20 | ~50 kΩ | ~0,43 V | praegune aste on selle lähedal (1,19) |
+| 0,20–2,81 V | 1,26 | 39 kΩ | ~0,79 V | nõrgendi 47k/10k asemel 47k/20k |
+| 0,15–2,86 V | 1,30 | 33 kΩ | ~0,88 V | ADC mittelineaarse otsa lähedal |
+| 0,15–3,00 V | 1,37 | 27 kΩ | ~0,78 V | varu puudub, ei sobi |
+
+Põhjused:
+
+1. **Võit on väike.** Praegune disain kasutab ~97 % 0,30–2,80 V akna lubatud võimendusest.
+   Akna kitsendamine annaks kõige rohkem +8…+11 % koode kPa kohta.
+   Labori 1 arvutuse (`141 Pa/kood`, [opamp_design.md](opamp_design.md)) järgi on lahutus praegu
+   ~`141 / 1,168 ≈ 121 Pa/kood`, 39 kΩ-ga ~`112` ja 33 kΩ-ga ~`108 Pa/kood`.
+2. **Lahutus ei ole praegu piirang.** 17:47 jooksul (G5-mõõtja püsivara) oli müra atmosfääril
+   `0,5` ADC koodi standardhälvet, s.t alla ühe koodi.
+3. **Varu kaoks.** Täis imemine oli juba `0,236 V`, sihist `0,30 V` madalam. Suurem võimendus viiks mõlemad
+   otsad ESP32-S3 ADC mittelineaarsete otste lähedale ja tugevam puhumine kui 14.11 võiks viia G5 üle `3,0 V`
+   ([ohutuspiir](bench_session.md), `ADC_11db` ulatub ~3,1 V-ni).
+4. **Suur võimendus (~4–5) oleks võimalik ainult ühe poole mõõtmisel** (nt ainult imemine 0,32–0,83 V).
+   Labor 2 nõuab kolme punkti (atmosfäär, täis imemine, täis puhumine), seega see ei sobi.
+5. Ümberehitus (uus `Rref`, uus nõrgendi, `Vref` ~0,79 V) tähendaks kogu kontrolli kordamist
+   multimeetriga ja uut kordustesti vahetult enne kaitsmist.
+
+Kui hiljem siiski tõsta: mõistlik samm on 39 kΩ rida. Enne seda muuda `RREF_K` ja `TARGET_LOW_V` failis
+[`opamp_retest.py`](../src/python/opamp_retest.py), kontrolli täis puhumist multimeetriga (G5 lahti) ja korda testi.
+Arvud on arvutatud 14.11 mõõdetud anduri vahemikust, uut skeemi ei ole ehitatud ega mõõdetud.
+
+- 15.11.26 märkus (samal päeval hiljem): ostsilloskoobi fotod, kus andur ja G5 on samal ajal ekraanil, annavad
+  `G5 = 2,43 × andur − 0,37 V` (r = 0,998). See on lähedal väärtusele `1 + 10/6,8 = 2,47`, mitte disaini 1,186-le.
+  Andur oli plaadil puhkeolekus ~0,4–0,5 V, mitte 0,83 V. Ülaltoodud otsus põhineb 14.11 tuletatud võimendusel 1,168,
+  mis eeldas anduri vahemikku 0,32–2,40 V. Kuni multimeetriga kontrollini (pin 2–pin 7 takistus, anduri toide)
+  on see otsus ebakindel. [Fotod ja analüüs](../data/scope_2026-11-15/README.md).
+- 15.11.26 märkus (multimeetri kontroll): pin 2–pin 7 ~54 kΩ ja anduri toide 5 V vastavad disainile. Võimenduse 2,4 oletus ei kehti, fotode CH2 näit oli tõenäoliselt vale. Otsus võimendust mitte suurendada jääb kehtima.
+- 15.11.26 multimeetri näidud atmosfääril (pump väljas, G5 ühendatud, Raimo): anduri pin 1 **0,837 V**, G5 sõlm **0,865 V**,
+  `Rref` (pin 2–pin 7, toide väljas) ~54 kΩ, anduri toide 5 V.
+  - Andur plaadil vastab 14.11 eraldi mõõdetule (0,831 V).
+  - ADC: G5-mõõtja näitas samal hommikul 0,859 V, multimeeter 0,865 V. Labor 1 tegur `3,70 V / 4095` loeb ~0,7 % (6 mV) madalamalt, see on piisav.
+  - ~0,05 V nihke põhjus on `Vref`, mitte ADC. Võimendusega `1 + 10/54 = 1,185` annavad näidud `Vref = (1,185 × 0,837 − 0,865)/0,185 ≈ 0,69 V`
+    (plaan 0,43 V). Sama `Vref`-iga sobivad ka 14.11 kordustesti punktid: täis imemine 0,236 V → andur ~0,31 V, täis puhumine 2,664 V → andur ~2,36 V
+    (eraldi mõõdetud 0,32 ja 2,40 V). Arvutatud, `Vref`-i (pin 5) otse ei mõõdetud.
+  - Kui B100K keerata nii, et `Vref` ≈ 0,43 V, tõusevad kõik väljundid ~0,05 V võrra (täis imemine ~0,28 V, täis puhumine ~2,71 V). Valikuline.

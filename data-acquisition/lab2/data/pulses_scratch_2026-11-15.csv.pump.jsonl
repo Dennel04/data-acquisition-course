@@ -1,0 +1,6 @@
+{"run_id": "0ad043b290cb4990", "config": "opamp", "trial": 1, "mode": "blow", "events": [["on", 3.031], ["off", 7.059]]}
+{"run_id": "9a12c99f67ca4f05", "config": "opamp", "trial": 2, "mode": "blow", "events": [["on", 3.022], ["off", 7.042]]}
+{"run_id": "8675943bd1844a1f", "config": "opamp", "trial": 3, "mode": "blow", "events": [["on", 3.024], ["off", 7.044]]}
+{"run_id": "297248c5f75e4219", "config": "opamp", "trial": 4, "mode": "blow", "events": [["on", 3.016], ["off", 7.032]]}
+{"run_id": "052c2659a57a452d", "config": "opamp", "trial": 5, "mode": "blow", "events": [["on", 3.019], ["off", 7.039]]}
+{"run_id": "e9840b996b53407a", "config": "opamp", "trial": 6, "mode": "blow", "events": [["on", 3.026], ["off", 7.054]]}

@@ -55,6 +55,8 @@ Labori 1 eraldi anduritestis oli raw-müra atmosfääril `4,84 LSB` ja passiivse
 | Platoo müra standardhälve (kPa) | TODO: real measurement required | TODO: real measurement required | sama ajavahemik ja ühikud; Labor 1 LSB-vaatlus ei asenda seda |
 | SNR (dB) | TODO: real measurement required | TODO: real measurement required | `20 · log10(|signal| / noise_std)` |
 
+- 15.11.26 märkus (andmelehe mudel, 30 + 30 impulssi, puhumine 4 s): Pa/kood `raw` 141,9 / `opamp` 119,8; impulsi suurus 242,8 / 242,6 kPa; platoo müra 1387 / 681 Pa; SNR 46,0 / 51,5 dB. [Arvutus](bench_session.md#kalibratsioon-pa-adc-samm-snr-ja-spektrid-1511-andmelehe-mudel). Pumbajuhtimise olukorrad (klaas, õhk, kork, poolik haare) on mõõtmata.
+
 ## Pooliku haarde eristamine
 
 Laboris 1 poolikut haaret ei mõõdetud. Eristamise kriteerium ja läviväärtus: TODO: real measurement required.
