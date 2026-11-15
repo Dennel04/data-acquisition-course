@@ -218,6 +218,21 @@ Tabelis väljenda `e` millivoltides: `e_mV = 1000 · e_V`. Hoia märki alles. V�
 | Alumine | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
 | Ülemine | TODO: circuit design required | TODO: real measurement required | TODO: real measurement required | TODO: real measurement required |
 
+- 15.11.26 märkus: **esimese versiooni (22.–25.10, vana plaat) otspunktid** olemasolevate andmete järgi. Tabeli TODO-read jäävad alles.
+  - Aste: `Rf` 10,04 kΩ, `Rref` 3 × 2 kΩ = 6,51 kΩ (22.10 mõõdetud) → `A₁ = 1 + 10,04/6,51 = 2,542`; G5 sai `10 kΩ / 10 kΩ` jaguri kaudu poole väljundist.
+  - `Vref` 25.10 otse ei mõõdetud. Atmosfääri punktist (G5 multimeeter 0,592 V → `Vout` 1,184 V; andur atmosfääril 0,837 V, 15.11 näit)
+    tuleb `Vref ≈ (2,542·0,837 − 1,184)/1,542 ≈ 0,61 V` (arvutatud).
+  - Anduri otspunktid on 14.11 eraldi mõõdetud: täis imemine 0,32 V, täis puhumine 2,40 V.
+
+  | Otspunkt | Arvutatud `Vout` (V) | Mõõdetud `Vout` (V) | Viga (mV) | Põhjus |
+  |---|---:|---:|---:|---|
+  | Alumine (täis imemine, `Vin` 0,32 V) | `2,542·0,32 − 1,542·0,61 ≈ −0,13` | 0,025–0,038 (25.10 vaakumi platoo 14–21 koodi × 0,90 mV/kood × 2) | ≈ **+160** | Ühe toitega LM358 väljund ei lähe alla ~0 V. Aste on piiris iga kord, kui `Vin < (A−1)/A·Vref ≈ 0,37 V`; platoo väiksem müra (1,23 vs 2,90 koodi) kinnitab, et väljund ei järginud sisendit. |
+  | Ülemine (täis puhumine, `Vin` 2,40 V) | `2,542·2,40 − 0,94 ≈ 5,16` (üle 5 V toite) | ei saavutatud: 25.10 suurim 1175 koodi → G5 ≈ 1,06 V → `Vout` ≈ 2,12 V, s.t `Vin` ≈ 1,20 V | ei ole mõõdetav | Arvutus nõuab üle toitepinge; LM358 väljund 5 V toitel jõuab andmelehe järgi ~3,5 V-ni (`Vcc − 1,5 V`), seega aste lõikaks seal (`Vin` > ~1,75 V). 25.10 ülerõhk ei jõudnud selleni. |
+
+  - Järeldus: liiga suur võimendus koos liiga kõrge `Vref`-iga. Alumine ots lõikas mõõdetult; ülemine ots oleks lõiganud ~3,5 V juures.
+    Jagur kaitses G5-t, aga kasutati ainult 14–1175 koodi 4095-st. Uus aste (14.11) valis `A` 1,19 ja `Vref` nii, et kogu vahemik 0,32–2,40 V
+    mahub 0,24–2,66 V sisse ([ümberehitus](opamp_rebuild_2026-11-14.md)). Ülemise otspunkti viga ei ole mõõdetud, sest täis puhumist esimese versiooniga ei tehtud.
+
 ## Parandatud versiooni arvutus
 
 Paranduse sihid määratakse esimese versiooni **mõõdetud** toitepinge, väljundi piiride, otspunktivigade ja ADC kontrollitud kasuliku vahemiku põhjal. Allolev arvutuskäik on sümboolne. 25.10 tehtud [plaadimuudatused ja üleandmine](opamp_v2_handoff_2026-10-25.md) on dokumenteeritud eraldi; parandatud astme kolme punkti mõõtmised on veel TODO.

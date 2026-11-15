@@ -77,3 +77,7 @@ Kogused on loetud pesade tabelist, mitte füüsilisest inventuurist. Kõik osad 
 
 Lahti (füüsiline kontroll, ainult meeskond saab teha): varuosade kogused riiulis, iga takisti eraldi mõõdetud väärtus
 ning ülaltoodud inventuuri kontrollnimekirja punktid.
+
+- 15.11.26 kontroll: [plaadi fotol](breadboard_final_2026-11-15.jpg) on näha 6 takistit ja kollane keraamiline kondensaator (0,1 µF);
+  seitsmes takisti (47 kΩ liugurist sõlme X) on tõenäoliselt B100K korpuse all. Ümberehituse juhendi (14.11 artifact) osade loend
+  „10 kΩ ×2, 6,8 kΩ, 2 kΩ, 47 kΩ ×2, 3,3 kΩ, 0,1 µF, hüppajad“ langeb ülaltoodud tabeliga kokku. Takistite värvikoode fotolt ei loetud.

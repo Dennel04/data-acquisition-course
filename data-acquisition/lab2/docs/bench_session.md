@@ -363,3 +363,22 @@ analüüs `analyze.py --plan` → [`notebooks/pulses_2026-11-15_calibrated/`](..
   Võimalik põhjus on `opamp` haru 3,3 kΩ + 0,1 µF filter (482 Hz), mis vähendab kõrgsageduslikku müra enne 100 Hz diskreetimist (aliasing);
   `raw` harus filtrit ei ole. Seda ei ole eraldi katsega kontrollitud.
 - Lahti: võrdlus Labori 1 spektritega samadel telgedel; rõhureferentsiga kalibratsioon, kui seda nõutakse.
+
+### Spektrid võrreldes Laboriga 1 (15.11)
+
+15.11.26 lisatud. Sama meetod nagu [Labori 1 märkmikus](../../lab1/notebooks/lab1_spectra.ipynb): Welch, 100 Hz, `nperseg = 128`, Hann, kPa²/Hz,
+iga signaal oma Pa/kood sammuga (Lab 1 141, Lab 2 `raw` 141,9, `opamp` 119,8). Skript
+[`compare_lab1_spectra_2026-11-15.py`](../notebooks/compare_lab1_spectra_2026-11-15.py), väljund
+[`notebooks/spectra_lab1_vs_lab2_2026-11-15/`](../notebooks/spectra_lab1_vs_lab2_2026-11-15/).
+
+| Olukord | Labor 1 toores (13.09) | Labor 2 `raw` (15.11) | Labor 2 `opamp` (15.11) |
+|---|---:|---:|---:|
+| Pump väljas, müra std | 682 Pa (1 aken, 272 proovi) | 539 Pa (30 akent à 3 s) | **176 Pa** (30 akent) |
+| Pump töötab, müra std (aeglane osa eemaldatud) | 587 Pa (imemine, 9 lõiku) | 881 Pa (puhumine, 30 akent) | **372 Pa** (puhumine) |
+
+- Lab 1 682 Pa = 4,84 LSB, mis kordab Labori 1 enda tulemust (4,85 LSB). Meetod on sama.
+- Pump väljas on Labor 2 `raw` samal tasemel kui Labor 1 toores signaal; `opamp` spekter on kogu 0–50 Hz alas ~10× (≈ 10 dB) madalam
+  ([graafik](../notebooks/spectra_lab1_vs_lab2_2026-11-15/spectra_pump_off.png)).
+- Pump töötades ([graafik](../notebooks/spectra_lab1_vs_lab2_2026-11-15/spectra_pump_on.png)) on Labor 1 imemine ja Labor 2 puhumine eri tööpunktid,
+  seega see võrdlus on ainult suunav.
+- Selgeid nimelisi tippe ei ole (nagu Laboris 1; õppejõud 02.10: nimelist kinnitamist pole vaja). Väike tõus ~44 Hz juures `opamp` baasjoonel on kinnitamata.

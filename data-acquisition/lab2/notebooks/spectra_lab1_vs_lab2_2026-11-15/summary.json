@@ -1,0 +1,40 @@
+{
+  "method": "Lab 1 vs Lab 2 noise spectra on the same axes and units (kPa²/Hz), same method as lab1/notebooks/lab1_spectra.ipynb.\n\nMethod (as in Lab 1): scipy.signal.welch, fs = 100 Hz, nperseg = 128, Hann window, density, mean removed.\nEach signal is converted from ADC codes to kPa with its own Pa/code step:\n  Lab 1 raw (13.09.2026): 141 Pa/code (Lab 1 factor 3.70 V / 4095 and the datasheet), Lab 1 notebook\n  Lab 2 raw / opamp (15.11.2026): 141.9 / 119.8 Pa/code (docs/bench_session.md, 15.11 calibration)\nPump off:\n  Lab 1: lab1_lsb_noise_vacuum_button_13.09.26.csv, first 272 samples (atmosphere), the Lab 1 window\n  Lab 2: baseline 0-3 s of each of the 30 runs per config (pump off), Welch per run, averaged over runs\nPump on:\n  Lab 1: lab1_autonomous_run_13.09.26.csv, pump-on segments (suction), slow part removed with a 25-sample\n         rolling median as in Lab 1, Welch per segment (>= 128 samples), averaged\n  Lab 2: plateau 4.5-6.5 s (blowing) of each run, same 25-sample rolling-median residual, averaged over runs\nNote: Lab 1 pump-on is suction with the vacuum pump running; Lab 2 is blowing. Different operating point.",
+  "pa_per_code": {
+    "lab1_raw": 140.54143778828802,
+    "raw": 141.9,
+    "opamp": 119.8
+  },
+  "results": {
+    "off: Labor 1 toores, 13.09 (atmosfäär)": {
+      "noise_std_pa": 681.7,
+      "segments": 1,
+      "median_psd_kpa2_per_hz": 0.006864953401069136
+    },
+    "off: Labor 2 raw, 15.11 (pump väljas)": {
+      "noise_std_pa": 539.3,
+      "segments": 30,
+      "median_psd_kpa2_per_hz": 0.005594234017512177
+    },
+    "off: Labor 2 opamp, 15.11 (pump väljas)": {
+      "noise_std_pa": 176.0,
+      "segments": 30,
+      "median_psd_kpa2_per_hz": 0.0005775093690924603
+    },
+    "on: Labor 1 toores, 13.09 (pump imeb)": {
+      "noise_std_pa": 586.5,
+      "segments": 9,
+      "median_psd_kpa2_per_hz": 0.0075987339982743615
+    },
+    "on: Labor 2 raw, 15.11 (pump puhub)": {
+      "noise_std_pa": 881.0,
+      "segments": 30,
+      "median_psd_kpa2_per_hz": 0.010690037945938327
+    },
+    "on: Labor 2 opamp, 15.11 (pump puhub)": {
+      "noise_std_pa": 372.3,
+      "segments": 30,
+      "median_psd_kpa2_per_hz": 0.002169204804056052
+    }
+  }
+}
