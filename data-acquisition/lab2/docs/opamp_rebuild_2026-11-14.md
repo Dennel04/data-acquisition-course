@@ -208,3 +208,11 @@ Arvud on arvutatud 14.11 mõõdetud anduri vahemikust, uut skeemi ei ole ehitatu
   mis eeldas anduri vahemikku 0,32–2,40 V. Kuni multimeetriga kontrollini (pin 2–pin 7 takistus, anduri toide)
   on see otsus ebakindel. [Fotod ja analüüs](../data/scope_2026-11-15/README.md).
 - 15.11.26 märkus (multimeetri kontroll): pin 2–pin 7 ~54 kΩ ja anduri toide 5 V vastavad disainile. Võimenduse 2,4 oletus ei kehti, fotode CH2 näit oli tõenäoliselt vale. Otsus võimendust mitte suurendada jääb kehtima.
+- 15.11.26 multimeetri näidud atmosfääril (pump väljas, G5 ühendatud, tudeng): anduri pin 1 **0,837 V**, G5 sõlm **0,865 V**,
+  `Rref` (pin 2–pin 7, toide väljas) ~54 kΩ, anduri toide 5 V.
+  - Andur plaadil vastab 14.11 eraldi mõõdetule (0,831 V).
+  - ADC: G5-mõõtja näitas samal hommikul 0,859 V, multimeeter 0,865 V. Labor 1 tegur `3,70 V / 4095` loeb ~0,7 % (6 mV) madalamalt, see on piisav.
+  - ~0,05 V nihke põhjus on `Vref`, mitte ADC. Võimendusega `1 + 10/54 = 1,185` annavad näidud `Vref = (1,185 × 0,837 − 0,865)/0,185 ≈ 0,69 V`
+    (plaan 0,43 V). Sama `Vref`-iga sobivad ka 14.11 kordustesti punktid: täis imemine 0,236 V → andur ~0,31 V, täis puhumine 2,664 V → andur ~2,36 V
+    (eraldi mõõdetud 0,32 ja 2,40 V). Arvutatud, `Vref`-i (pin 5) otse ei mõõdetud.
+  - Kui B100K keerata nii, et `Vref` ≈ 0,43 V, tõusevad kõik väljundid ~0,05 V võrra (täis imemine ~0,28 V, täis puhumine ~2,71 V). Valikuline.

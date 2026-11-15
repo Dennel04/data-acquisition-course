@@ -55,6 +55,7 @@ Andur oli plaadil puhkeolekus ~0,40–0,51 V. 14.11 eraldi mõõdetuna oli atmos
   nende põhjal langeb ära. Fotode kalle 2,43 tuleb siis tõenäoliselt CH2 näidust: andur loeti ~1,6–2× liiga madalaks
   ja/või CH2 0 V asukoht ei olnud keskteljel. Põhjust ei leitud. CH1 (G5) puhkenäit ~0,86 V langeb kokku Atomi 0,858 V-ga,
   seega G5 näit on usaldusväärsem. Võimendust nendelt fotodelt ei järeldata.
+- 15.11.26 multimeeter atmosfääril: anduri pin 1 0,837 V (fotolt CH2 ~0,45 V), G5 0,865 V (fotolt CH1 ~0,86 V). Kinnitab, et fotodel oli vale CH2 näit.
 
 ## Enne seda proovitud
 

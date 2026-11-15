@@ -260,6 +260,7 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 * Lahti järgmiseks korraks: multimeetriga LM358N pin 2–pin 7 takistus (toide väljas, oodatud ~53,8 kΩ) ja MPX5700AP pin 3–pin 2 pinge (oodatud ~5,0 V). DA2 püsivara lühike logija test (`--electrical-check-confirmed` annab tudeng).
 * Failid: `data/scope_2026-11-15/`, `docs/opamp_rebuild_2026-11-14.md` (punkt 7 märkus), `README.md`.
 * 15.11.26 hiljem: multimeetriga mõõdetud pin 2–pin 7 ~54 kΩ ja anduri toide 5 V. Mõlemad vastavad disainile, võimenduse otsus jääb kehtima ja täispuhumise piirang langeb ära. Lahti jääb multimeetri näit anduri pin 1 ja G5 sõlme juures atmosfääril.
+* 15.11.26 veel hiljem: multimeeter atmosfääril, anduri pin 1 0,837 V ja G5 0,865 V. ADC tegur loeb ~0,7 % madalamalt. ~0,05 V nihe tuleb `Vref`-ist (arvutatud ≈ 0,69 V, plaan 0,43 V). Järgmiseks: 30 + 30 `raw`/`opamp` mõõtmist. [Arvutus](docs/opamp_rebuild_2026-11-14.md#7-1511-otsus-võimendust-ei-suurendata).
 
 ## Väljundid ja tulemused
 
