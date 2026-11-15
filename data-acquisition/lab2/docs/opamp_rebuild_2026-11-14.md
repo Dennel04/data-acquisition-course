@@ -201,3 +201,9 @@ Põhjused:
 Kui hiljem siiski tõsta: mõistlik samm on 39 kΩ rida. Enne seda muuda `RREF_K` ja `TARGET_LOW_V` failis
 [`opamp_retest.py`](../src/python/opamp_retest.py), kontrolli täis puhumist multimeetriga (G5 lahti) ja korda testi.
 Arvud on arvutatud 14.11 mõõdetud anduri vahemikust, uut skeemi ei ole ehitatud ega mõõdetud.
+
+- 15.11.26 märkus (samal päeval hiljem): ostsilloskoobi fotod, kus andur ja G5 on samal ajal ekraanil, annavad
+  `G5 = 2,43 × andur − 0,37 V` (r = 0,998). See on lähedal väärtusele `1 + 10/6,8 = 2,47`, mitte disaini 1,186-le.
+  Andur oli plaadil puhkeolekus ~0,4–0,5 V, mitte 0,83 V. Ülaltoodud otsus põhineb 14.11 tuletatud võimendusel 1,168,
+  mis eeldas anduri vahemikku 0,32–2,40 V. Kuni multimeetriga kontrollini (pin 2–pin 7 takistus, anduri toide)
+  on see otsus ebakindel. [Fotod ja analüüs](../data/scope_2026-11-15/README.md).
