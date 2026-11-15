@@ -1,0 +1,1 @@
+{"run_id": "0ad043b290cb4990", "config": "opamp", "condition": "pulse", "trial": 1, "calibrated": false, "status": "complete", "dmm_reference_v": null, "dmm_recorded_utc": "", "rows": 1001, "elapsed_ms": 10000, "missed": 0, "rate_hz": 100.0, "dt_min_ms": 10, "dt_max_ms": 10, "timing_ok": true}
