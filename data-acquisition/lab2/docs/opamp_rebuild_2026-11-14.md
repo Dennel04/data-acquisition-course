@@ -165,7 +165,7 @@ Seis: anduri vahemik mõõdetud (samm 2). Sammud 3–8 on veel tegemata.
 
 - 14.11.26 märkus: kordustest [`opamp_retest.py`](../src/python/opamp_retest.py) G5-mõõtja püsivaraga (Atom COM4), 17:45 ja 17:47 jooksul andur otse kompressori küljes. Tulemus **PASS** (17:47): atmosfäär `0,858 V`, täis imemine `0,236 V`, täis puhumine `2,664 V`, ulatus `2,43 V`, tuletatud võimendus `1,168` (disain `1,186`). Pinged kalibreerimata (`3,70 V / 4095`). Kaust [`data/opamp_retest_2026-11-14_1747`](../data/opamp_retest_2026-11-14_1747/REPORT.md). Samal päeval varem: 17:37 FAIL (väljund `0,847 V` kõigil kolmel rõhul, põhjus kinnitamata), 17:40 FAIL (puhumisel ainult `1,13 V`, täis puhumist ei saavutatud), 17:45 PASS (imemine algas ~3 s pärast Enterit, keskmine `0,407 V` on seetõttu moonutatud). Sammude 3–7 multimeetri näidud jäid kirja panemata: TODO.
 
-- 15.11.26 märkus: lõpliku plaadi foto (tudeng, 15.11 13:46): [`breadboard_final_2026-11-15.jpg`](breadboard_final_2026-11-15.jpg).
+- 15.11.26 märkus: lõpliku plaadi foto (Raimo, 15.11 13:46): [`breadboard_final_2026-11-15.jpg`](breadboard_final_2026-11-15.jpg).
   Pildil on andur plaadi ülaosas (read 1–6), LM358N ridadel ~20–23, B100K ridadel ~33–38 ja AtomS3R all (read ~60–63).
   Atomi ekraan näitab `DA2 MEASUREMENT`, `opamp`, `ADC 973` (≈ 0,88 V kalibreerimata, atmosfäär). Pesade vastavust tabelile fotolt ei kontrollitud.
   Falstadi mudel samast astmest: [opamp_design.md](opamp_design.md#õppejõu-mpx5700ap-näite-falstadi-esimene-versioon).
@@ -215,7 +215,7 @@ Arvud on arvutatud 14.11 mõõdetud anduri vahemikust, uut skeemi ei ole ehitatu
   mis eeldas anduri vahemikku 0,32–2,40 V. Kuni multimeetriga kontrollini (pin 2–pin 7 takistus, anduri toide)
   on see otsus ebakindel. [Fotod ja analüüs](../data/scope_2026-11-15/README.md).
 - 15.11.26 märkus (multimeetri kontroll): pin 2–pin 7 ~54 kΩ ja anduri toide 5 V vastavad disainile. Võimenduse 2,4 oletus ei kehti, fotode CH2 näit oli tõenäoliselt vale. Otsus võimendust mitte suurendada jääb kehtima.
-- 15.11.26 multimeetri näidud atmosfääril (pump väljas, G5 ühendatud, tudeng): anduri pin 1 **0,837 V**, G5 sõlm **0,865 V**,
+- 15.11.26 multimeetri näidud atmosfääril (pump väljas, G5 ühendatud, Raimo): anduri pin 1 **0,837 V**, G5 sõlm **0,865 V**,
   `Rref` (pin 2–pin 7, toide väljas) ~54 kΩ, anduri toide 5 V.
   - Andur plaadil vastab 14.11 eraldi mõõdetule (0,831 V).
   - ADC: G5-mõõtja näitas samal hommikul 0,859 V, multimeeter 0,865 V. Labor 1 tegur `3,70 V / 4095` loeb ~0,7 % (6 mV) madalamalt, see on piisav.

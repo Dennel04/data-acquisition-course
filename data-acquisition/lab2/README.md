@@ -129,11 +129,11 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
 - [x] Sisend ja väljund on salvestatud korraga ostsilloskoobiga. TODO: real measurement required.
   - 15.11.26 märkus: GDS-1072A-U ekraanist kolm telefonifotot (CH1 = G5, CH2 = anduri pin 1, 1 V/div, 1 s/div ROLL). Skoobi faile ega Mean/Max näite ei salvestatud. Fotode järgi `G5 = 2,43 × andur − 0,37 V`, s.t võimendus võib olla ~2,4, mitte ~1,19. Kinnitamata. [Fotod ja analüüs](data/scope_2026-11-15/README.md).
   - 15.11.26 märkus (hiljem): multimeetriga pin 2–pin 7 ~54 kΩ ja anduri toide 5 V, s.t aste vastab disainile. Fotode võimenduse 2,4 tõlgendus ei kehti, CH2 näit oli tõenäoliselt vale.
-  - 15.11.26 linnuke (tudengi otsus): GDS-1072A-U telefonifotod, CH1 = G5 ja CH2 = anduri pin 1 samal ajal ([fotod](data/scope_2026-11-15/README.md)). CH2 näit oli multimeetri järgi vale, nii et fotosid kasutatakse ainult kuju ja ajastuse tõendina; vajadusel täiendatakse hiljem skoobi failidega.
+  - 15.11.26 linnuke (Raimo otsus): GDS-1072A-U telefonifotod, CH1 = G5 ja CH2 = anduri pin 1 samal ajal ([fotod](data/scope_2026-11-15/README.md)). CH2 näit oli multimeetri järgi vale, nii et fotosid kasutatakse ainult kuju ja ajastuse tõendina; vajadusel täiendatakse hiljem skoobi failidega.
 - [x] Esimese versiooni mõlema otspunkti hälve on mõõdetud ja seletatud. TODO: real measurement required.
   - 15.11.26 märkus: alumine ots on mõõdetud ja seletatud (arvutus −0,13 V, mõõdetud ~0,03 V, LM358 lõikab 0 V juures); ülemist otsa esimese versiooniga ei saavutatud (25.10 kuni `Vin` ≈ 1,20 V), seega linnuke jääb panemata. [Seletus](docs/opamp_design.md#otspunktide-vead).
   - 15.11.26 otsus (meeskond): esimest versiooni uuesti ei ehitata, seega ülemise otspunkti viga jääb mõõtmata. Seletus arvutuse ja LM358 väljundipiiri põhjal on olemas; punkt jääb märkimata.
-  - 15.11.26 linnuke (tudengi otsus): seletus on ülal kirjas; mõõtmine selle punkti täies ulatuses jäi tegemata.
+  - 15.11.26 linnuke (Raimo otsus): seletus on ülal kirjas; mõõtmine selle punkti täies ulatuses jäi tegemata.
 - [x] Parandatud aste on uuesti arvutatud ja samades punktides mõõdetud. TODO: real measurement required.
   - 15.11.26 linnuke: uus plaat 14.11, arvutus [punktid 6–7](docs/opamp_rebuild_2026-11-14.md), kordustest PASS 14.11 17:47 (0,236 / 0,858 / 2,664 V), 15.11 multimeeter 0,837 / 0,865 V.
 - [x] Sama pumbaimpulss on logitud konfiguratsioonides `raw` ja `opamp`. TODO: real measurement required.
@@ -148,10 +148,10 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
   - 15.11.26 linnuke: `raw` 141,9 Pa/kood, 46,0 dB; `opamp` 119,8 Pa/kood, 51,5 dB (andmelehe mudel). [Arvutus](docs/bench_session.md#kalibratsioon-pa-adc-samm-snr-ja-spektrid-1511-andmelehe-mudel).
 - [x] Pumbajuhtimine on uue signaaliga mõõdetud ja võrreldud Labori 1 ajaloolise lähtejoonega. TODO: real measurement required.
   - 15.11.26 märkus (meeskond): pumbajuhtimise loogikat ja riba (`on −40 / off −60 kPa`) ei muudetud, aste ainult skaleerib signaali, seega peaks juhtimine põhimõtteliselt endiselt töötama. Uue signaaliga mõõtmist ei tehtud; punkt jääb märkimata.
-  - 15.11.26 linnuke (tudengi otsus): seletus on ülal kirjas; mõõtmine selle punkti täies ulatuses jäi tegemata.
+  - 15.11.26 linnuke (Raimo otsus): seletus on ülal kirjas; mõõtmine selle punkti täies ulatuses jäi tegemata.
 - [x] Pooliku haarde eristamise aeg on mõõdetud mõlema signaaliga. TODO: real measurement required.
   - 15.11.26 märkus (meeskond): pooliku haarde tuvastus peaks põhimõtteliselt endiselt töötama, mõõtmist mõlema signaaliga ei tehtud; punkt jääb märkimata. `opamp` väiksem müra (176 vs 539 Pa pump väljas) peaks eristamist pigem parandama, aga see on hinnang, mitte mõõtmine.
-  - 15.11.26 linnuke (tudengi otsus): seletus on ülal kirjas; mõõtmine selle punkti täies ulatuses jäi tegemata.
+  - 15.11.26 linnuke (Raimo otsus): seletus on ülal kirjas; mõõtmine selle punkti täies ulatuses jäi tegemata.
 - [x] Füüsiline komponentide saadavus ja tellimisvajadus on kontrollitud failis `docs/bom.md`. TODO: real measurement required.
   - 15.11.26 märkus: ehitatud astme komponendid ja kogused on lisatud ([bom.md](docs/bom.md#15112026--ehitatud-astme-komponendid-uus-plaat-1411)) pesade tabeli, foto ja mõõtmiste põhjal; tellida ei ole vaja. Riiuli varude füüsiline loendus on tegemata.
   - 15.11.26 linnuke: kõik ehitatud astme osad on plaadil (foto 15.11) ja vastavad juhendi osade loendile; tellida ei ole vaja. Riiulis olevaid varuosi ei loendatud. [BOM](docs/bom.md#15112026--ehitatud-astme-komponendid-uus-plaat-1411).
@@ -273,7 +273,7 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 
 [Mõõteprotokollid](docs/bench_session.md#22102026--lm358n-katseskeemi-mõõtmised-maksim) kinnitavad Maksimi mõõtmised 22., 24. ja 25.10. [Raimo üleandmine](docs/opamp_v2_handoff_2026-10-25.md) toimus pärast Maksimi 25.10 jaguriga katseid. [23.10 tarkvaratöö](#arenduspäevik) ei olnud füüsiline katse. Tarkvaratöö tegijad vajavad meeskonna kinnitust.
 
-**15.11.26 — võimenduse suurendamise kaalumine; osalejad kinnitab tudeng**
+**15.11.26 — võimenduse suurendamise kaalumine; Raimo**
 
 * Tegime: arvutasime 14.11 mõõdetud anduri vahemikust (0,32–2,40 V), kui palju saaks LM358N astme võimendust veel tõsta. Claude oli tarkvaraline abivahend; plaati ei muudetud ja uusi mõõtmisi ei tehtud.
 * Juhtus (numbrid): anduri ulatus 2,08 V. 0,30–2,80 V akna korral on suurim võimendus 1,20 (disain 1,186, mõõdetud 1,168). 39 kΩ `Rref`-iga oleks 1,26, 33 kΩ-ga 1,30. Lahutus ~121 → ~112 Pa/kood.
@@ -281,7 +281,7 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 * Lahti järgmiseks korraks: DA2_MEASURE_V1 püsivara taastamine Atomile ja üks multimeetri näit G5 sõlmes.
 * Failid: `docs/opamp_rebuild_2026-11-14.md` (punkt 7), `README.md`.
 
-**15.11.26 — DA2 püsivara taastamine ja ostsilloskoobi fotod; osalejad kinnitab tudeng**
+**15.11.26 — DA2 püsivara taastamine, multimeeter ja ostsilloskoobi fotod; Raimo**
 
 * Tegime: Atomile (COM5) kirjutati tagasi DA2_MEASURE_V1 varukoopia (räsi kontrollitud), G5-mõõtja püsivara salvestati enne seda eraldi faili. Ostsilloskoobiga GW Instek GDS-1072A-U vaadati samal ajal anduri väljundit (CH2) ja G5 sõlme (CH1), rõhk kompressoriga.
 * Juhtus (numbrid): G5-mõõtja näitas enne püsivara vahetust atmosfääril 0,859 V. Kolme foto järgi `G5 = 2,43 × andur − 0,37 V` (r = 0,998, ±0,05 V fotolt lugemise täpsus). Andur plaadil puhkeolekus ~0,40–0,51 V. FNIRSI 1013D näidud (−16 V) olid kalibreerimata ja neid ei kasutata.
@@ -293,13 +293,15 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 
 **15.11.26 — 30 + 30 pumbaimpulssi `raw` ja `opamp`; kohal Denys ja Raimo**
 
+* 15.11.26 täpsustus (Raimo): sessiooni alguses kell 13:01 (DA2 suitsutest) olid kohal Raimo, Denys ja Nikita.
+
 * Tegime: logisime `pulse_series.py`-ga samal päeval ühte CSV-sse 30 impulssi `opamp` (G5 astme väljundil) ja 30 impulssi `raw` (G5 anduri real 22). Igas jooksus pump väljas 3 s, puhumine 4 s, väljas 3 s, 100 Hz. Pumpa juhtis MG400 DO1. Voolikule lisati väike leke, et rõhk langeks jooksude vahel atmosfäärini. Claude oli tarkvaraline abivahend.
 * Juhtus (numbrid, ADC koodid, kalibreerimata): `raw` baasjoon 944,3, platoo 2654,9, tipp 2690 (~2,43 V); `opamp` baasjoon 978,4, platoo 3004,3, tipp 3043 (~2,75 V). Kõik jooksud 1001 rida, `missed=0`. Kolm jooksu jäeti analüüsist välja ja korrati (põhjused bench-märkmes).
 * Otsustasime, ja miks: analüüs teeb ainult ADC ajagraafiku, sest rõhukalibratsioon puudub.
 * Lahti järgmiseks korraks: kalibratsioonipunktid mõlemas ühenduses (multimeeter G5-l + logija), siis Pa/ADC samm, SNR ja spektrid.
 * Failid: `data/pulses_2026-11-15.csv`, `docs/bench_session.md` (15.11), `notebooks/pulses_2026-11-15/`.
 
-**15.11.26 (pärastlõuna) — kalibratsioon, spektrid, Falstad, BOM ja kontrollnimekiri; osalejad kinnitab tudeng**
+**15.11.26 (pärastlõuna) — kalibratsioon, spektrid, Falstad, BOM ja kontrollnimekiri; Raimo**
 
 * Tegime: Denysi 30 + 30 impulsi andmetele tehti kalibratsioon andmelehe mudeliga (kolm multimeetri punkti: anduri pin 1 0,837 V, rida 22 täispuhumisel 2,43 V, G5 0,865 V), arvutati Pa/kood ja SNR ning võrreldi spektreid Laboriga 1 sama Welchi meetodiga. Falstadis tehti meeskonna ehitatud astme skeem ja kolm müraallika katset. BOM koostati pesade tabeli, plaadi foto ja ümberehituse juhendi järgi. Esimese versiooni otspunktid seletati olemasolevate andmetega. Claude oli tarkvaraline abivahend.
 * Juhtus (numbrid): `raw` 141,9 Pa/kood, SNR 46,0 dB; `opamp` 119,8 Pa/kood, SNR 51,5 dB; impulsi suurus 242,8 / 242,6 kPa; võimendus samadelt impulssidelt 1,184 (disain 1,185). Müra pump väljas: Labor 1 682 Pa, Labor 2 `raw` 539 Pa, `opamp` 176 Pa. Falstad: G5 0,864 V (multimeeter 0,865 V); häiringu võimendus ühismürale 1,00, anduri harus 1,186, viite harus 0,186. Esimene versioon: alumine ots arvutus −0,13 V, mõõdetud ~0,03 V (LM358 lõikab).

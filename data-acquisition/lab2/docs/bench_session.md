@@ -297,7 +297,7 @@ Kolm mõõteseeriat ei võimalda veel teha nõutavat sama protokolli `raw` ja `o
 - Voolikus on väike leke, et rõhk langeks enne järgmist jooksu atmosfäärini.
 - `opamp`: G5 astme väljundil (A12→J60). `raw`: G5 otse anduri real 22 (A22→J60), USB lahti ühendatud juhtme vahetamise ajal.
 - Rea 22 pinge täis puhumisel multimeetriga enne `raw` ühendamist: TODO (tudeng).
-  - 15.11.26 täiendus (tudeng): rea 22 pinge täis puhumisel oli **2,43 V** (≤ 3,0 V, G5 ühendamine lubatud).
+  - 15.11.26 täiendus (Raimo): rea 22 pinge täis puhumisel oli **2,43 V** (≤ 3,0 V, G5 ühendamine lubatud).
 
 ### Tulemused (ADC koodid, kalibreerimata)
 
