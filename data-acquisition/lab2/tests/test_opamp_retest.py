@@ -91,6 +91,31 @@ class RetestTests(unittest.TestCase):
         self.assertIn("Noise at atmosphere", warned)
         self.assertIn("Close to design: atmosphere", warned)
 
+    def test_unsteady_hold_only_warns(self):
+        # 14.11 17:45: suction slipped back to atmosphere in the middle of the hold.
+        r = self.good()
+        r["full_suction"] = rt.stats(hold(0.24, n=20) + hold(0.85, n=21))
+        checks = rt.evaluate(r)
+        warned = [c[1] for c in checks if c[0] == "WARN"]
+        self.assertIn("Steady hold: full_suction", warned)
+        self.assertNotIn("Steady hold: full_blowing", warned)
+        self.assertFalse([c for c in checks if c[0] == "FAIL"], checks)
+
+    def test_all_holds_at_atmosphere_hint(self):
+        # 14.11 17:37: tube off, all three holds about 0.85 V.
+        flat = {k: rt.stats(hold(0.848)) for k, _ in rt.CONDITIONS}
+        checks = rt.evaluate(flat)
+        self.assertEqual(checks[0][:2], ("FAIL", "Pressure reached the sensor"))
+        self.assertIn("all three holds", checks[0][2])
+        self.assertIn("tube", checks[0][2])
+
+    def test_one_hold_at_atmosphere(self):
+        r = self.good()
+        r["full_blowing"] = rt.stats(hold(r["atmosphere"]["mean_v"] + 0.01))
+        hit = [c for c in rt.evaluate(r) if c[1] == "Pressure reached the sensor"][0]
+        self.assertEqual(hit[0], "FAIL")
+        self.assertIn("full_blowing", hit[2])
+
     def test_too_few_samples(self):
         r = self.good()
         r["full_blowing"] = rt.stats(hold(2.7, n=3))
