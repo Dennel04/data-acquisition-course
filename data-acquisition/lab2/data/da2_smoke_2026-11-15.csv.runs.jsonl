@@ -1,0 +1,1 @@
+{"run_id": "a7aff0d13d3e4acd", "config": "opamp", "condition": "atmosphere", "trial": 1, "calibrated": false, "status": "complete", "dmm_reference_v": null, "dmm_recorded_utc": "", "rows": 301, "elapsed_ms": 3000, "missed": 0, "rate_hz": 100.0, "dt_min_ms": 10, "dt_max_ms": 10, "timing_ok": true}
