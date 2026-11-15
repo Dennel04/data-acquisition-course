@@ -29,3 +29,4 @@
 {"run_id": "11543f8bd19f4076", "config": "opamp", "trial": 28, "mode": "blow", "events": [["on", 3.029], ["off", 7.049]]}
 {"run_id": "57813217c5b9480e", "config": "opamp", "trial": 29, "mode": "blow", "events": [["on", 3.017], ["off", 7.041]]}
 {"run_id": "2eb2d5f122b74343", "config": "opamp", "trial": 30, "mode": "blow", "events": [["on", 3.023], ["off", 7.05]]}
+{"run_id": "2fb04692dca948fa", "config": "opamp", "trial": 26, "mode": "blow", "events": [["on", 3.014], ["off", 7.037]]}
