@@ -253,8 +253,7 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 
 **15.11.26 — DA2 püsivara taastamine ja ostsilloskoobi fotod; osalejad kinnitab tudeng**
 
-* Tegime: Atomile (COM5) kirjutati tagasi DA2_MEASURE_V1 varukoopia (räsi kontrollitud), G5-mõõtja püsivara salvestati enne seda eraldi faili. Ostsilloskoobiga GW Instek GDS-1072A-U vaadati samal ajal anduri väljundit (CH2) ja G5 sõlme (CH1), rõhk süstlaga.
-  - 15.11.26 parandus: rõhk tekitati kompressoriga, mitte süstlaga.
+* Tegime: Atomile (COM5) kirjutati tagasi DA2_MEASURE_V1 varukoopia (räsi kontrollitud), G5-mõõtja püsivara salvestati enne seda eraldi faili. Ostsilloskoobiga GW Instek GDS-1072A-U vaadati samal ajal anduri väljundit (CH2) ja G5 sõlme (CH1), rõhk kompressoriga.
 * Juhtus (numbrid): G5-mõõtja näitas enne püsivara vahetust atmosfääril 0,859 V. Kolme foto järgi `G5 = 2,43 × andur − 0,37 V` (r = 0,998, ±0,05 V fotolt lugemise täpsus). Andur plaadil puhkeolekus ~0,40–0,51 V. FNIRSI 1013D näidud (−16 V) olid kalibreerimata ja neid ei kasutata.
 * Otsustasime, ja miks: fotod lisati andmetena koos lugemisskriptiga. Võimenduse 2,43 ja madala anduri taseme põhjust ei ole kinnitatud, seetõttu märgitakse samal päeval tehtud võimenduse otsus ebakindlaks. Kuni kontrollini ei puhuta täisjõuga, kui G5 on ühendatud.
 * Lahti järgmiseks korraks: multimeetriga LM358N pin 2–pin 7 takistus (toide väljas, oodatud ~53,8 kΩ) ja MPX5700AP pin 3–pin 2 pinge (oodatud ~5,0 V). DA2 püsivara lühike logija test (`--electrical-check-confirmed` annab tudeng).

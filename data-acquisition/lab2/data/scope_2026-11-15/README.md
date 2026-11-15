@@ -2,10 +2,8 @@
 
 CH1 (kollane) = G5 sõlm (astme väljund pärast 3,3 kΩ / 0,1 µF), CH2 (tsüaan) = MPX5700AP pin 1 (anduri väljund),
 maa = ühine GND. Mõlemad kanalid **1 V/div DC**, ajaskaala **1 s/div ROLL**, mõlema kanali 0 V keskteljel (`1▸` marker).
-Rõhk tekitati süstlaga. Pildid on telefonifotod ekraanist, mitte skoobi salvestatud failid.
+Rõhk tekitati kompressoriga. Pildid on telefonifotod ekraanist, mitte skoobi salvestatud failid.
 Mõõtmise ajal oli Atomil DA2_MEASURE_V1 püsivara (taastatud samal hommikul).
-
-- 15.11.26 parandus: rõhk tekitati **kompressoriga**, mitte süstlaga (tudengi täpsustus). Ülal olev lause „Rõhk tekitati süstlaga“ jääb alles, kehtib see parandus.
 
 | Fail | Mida näha on (kirjeldus pildi järgi, tingimus kirja panemata) |
 |---|---|
