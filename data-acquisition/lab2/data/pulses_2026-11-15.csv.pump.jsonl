@@ -60,3 +60,4 @@
 {"run_id": "10ad58da22704cd4", "config": "raw", "trial": 28, "mode": "blow", "events": [["on", 3.017], ["off", 7.045]]}
 {"run_id": "f298209b8e9a4470", "config": "raw", "trial": 29, "mode": "blow", "events": [["on", 3.021], ["off", 7.048]]}
 {"run_id": "4749d244791d4bf0", "config": "raw", "trial": 30, "mode": "blow", "events": [["on", 3.025], ["off", 7.048]]}
+{"run_id": "b826969e20164149", "config": "raw", "trial": 17, "mode": "blow", "events": [["on", 3.028], ["off", 7.072]]}
