@@ -286,3 +286,40 @@ Kolm mõõteseeriat ei võimalda veel teha nõutavat sama protokolli `raw` ja `o
 - Korrata katseid võrreldavas `raw` konfiguratsioonis.
 - Kalibreerida ADC näit rõhuks.
 - Teha võrreldavate mõõteseeriate müra-, spektri- ja SNR-analüüs.
+
+## 15.11.2026 — 30 + 30 pumbaimpulssi `raw` ja `opamp` (Denys, Raimo)
+
+### Katse
+
+- Mõõtefail: [pulses_2026-11-15.csv](../data/pulses_2026-11-15.csv), kõrvalfailid `.runs.jsonl` (logija) ja `.pump.jsonl` (pumba sisse/välja aeg jooksu algusest).
+- Skript [`pulse_series.py`](../src/python/pulse_series.py): üks jooks = 10 s, 100 Hz (DA2_MEASURE_V1, AtomS3R B4:3A:45:BC:A0:18). Pump väljas 0–3 s, puhumine (DO1) 3–7 s, väljas 7–10 s, jooksude vahel 5 s.
+- Pumbakast AUTO režiimis, robot 192.168.1.6, ainult DO-käsud, liikumist ei olnud. `raw` katse 17 kordus käis läbi mg400-base (`--mg400-url`).
+- Voolikus on väike leke, et rõhk langeks enne järgmist jooksu atmosfäärini.
+- `opamp`: G5 astme väljundil (A12→J60). `raw`: G5 otse anduri real 22 (A22→J60), USB lahti ühendatud juhtme vahetamise ajal.
+- Rea 22 pinge täis puhumisel multimeetriga enne `raw` ühendamist: TODO (tudeng).
+
+### Tulemused (ADC koodid, kalibreerimata)
+
+Baasjoon = 0–3 s, platoo = 4,5–6,5 s, keskmine 30 jooksu üle. Pinge `3,70 V / 4095` on kalibreerimata hinnang.
+
+| Konfiguratsioon | Jookse | Baasjoon | Baasjoone sd | Platoo | Platoo sd | Tipp |
+|---|---:|---:|---:|---:|---:|---:|
+| `raw` | 30 | 944,3 (941,8–953,9) | 3,80 | 2654,9 (2615,3–2664,9) | 9,77 | 2690 (~2,43 V) |
+| `opamp` | 30 | 978,4 (974,0–984,7) | 1,46 | 3004,3 (2988,0–3021,3) | 5,69 | 3043 (~2,75 V) |
+
+Kõik 63 jooksu: 1001 rida, `missed=0`, ajastus 10 ms. G5 jäi alla 3,0 V piiri.
+
+Analüüsist välja jäetud jooksud (jäävad CSV-sse):
+
+| run_id | Konfiguratsioon | Katse | Põhjus | Kordus |
+|---|---|---:|---|---|
+| `eccfa9c4827c4fbe` | `opamp` | 13 | Robot sulges 29999 ühenduse, pumpa ei lülitatud | `4cd0dcefe3a5450f` |
+| `1317e1fd07504975` | `opamp` | 26 | Algas rõhu all (baasjoon 1240) | `2fb04692dca948fa` |
+| `4e34cf8a590f40ca` | `raw` | 17 | Algas rõhu all (baasjoon 2071) | `b826969e20164149` |
+
+Analüüs ilma kalibratsioonita: [`notebooks/pulses_2026-11-15`](../notebooks/pulses_2026-11-15/) (`adc_time.png`, `summary.json`).
+
+### Piirangud
+
+- Rõhk ei ole kalibreeritud kPa-desse. Pa/ADC samm, SNR dB-des ja spektrid vajavad kalibratsiooni mõlemas ühenduses.
+- Proovivõtu katkemise tõttu muudeti samal päeval DA2 püsivara (commit `d46ba73`); kõik siinsed jooksud on tehtud uue püsivaraga.
