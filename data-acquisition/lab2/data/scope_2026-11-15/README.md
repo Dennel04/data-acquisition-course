@@ -5,6 +5,8 @@ maa = ühine GND. Mõlemad kanalid **1 V/div DC**, ajaskaala **1 s/div ROLL**, m
 Rõhk tekitati süstlaga. Pildid on telefonifotod ekraanist, mitte skoobi salvestatud failid.
 Mõõtmise ajal oli Atomil DA2_MEASURE_V1 püsivara (taastatud samal hommikul).
 
+- 15.11.26 parandus: rõhk tekitati **kompressoriga**, mitte süstlaga (tudengi täpsustus). Ülal olev lause „Rõhk tekitati süstlaga“ jääb alles, kehtib see parandus.
+
 | Fail | Mida näha on (kirjeldus pildi järgi, tingimus kirja panemata) |
 |---|---|
 | [`photo1_media.jpg`](photo1_media.jpg) | Hoitud ülerõhk: G5 tõuseb 2 s jooksul ~2,15 → ~2,40 V, andur ~1,06 → ~1,13 V |
