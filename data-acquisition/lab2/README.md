@@ -53,6 +53,7 @@ MPX5700AP → LM358N võimendusaste → 10 kΩ / 10 kΩ jagur → AtomS3R G5 (AD
 - **25.10 (`opamp`).** LM358N üks kanal võimendas ja nihutas signaali, teine puhverdas viitepinget. G5 luges kahe 10 kΩ takisti keskpunkti. [Ühendused ja mõõtepunktid](docs/bench_session.md#katseskeemi-ühendused).
 - **Muudetud teine versioon.** Varasema testsisendi B5K eemaldati, `Rref` ahelat pikendati ja puhvri väljundile lisati 4,7 kΩ allatõmbetakisti. Jaguri alumise haru seis ja G5 jadatakisti väärtus vajavad kontrolli. [Üleandmise märkmed](docs/opamp_v2_handoff_2026-10-25.md#2-plaadil-tehtud-muudatused-2-versioon).
   - 14.11.26 märkus: andur töötab, kuid vana plaadi ühendused olid vigased (anduri väljund plaadil ~0,5 V, rõhuga ei muutunud). Aste ehitatakse uuele plaadile ümber. [Tõrkeotsing ja uus paigutus](docs/opamp_rebuild_2026-11-14.md).
+  - 15.11.26 märkus: võimendust (`~1,19`) ei suurendata. Kogu anduri vahemik 0,32–2,40 V peab mahtuma G5 aknasse, suurim mõistlik võimendus oleks ~1,26 (+8 % koode) ja lahutus ei ole praegu piirang. [Otsus ja arvutus](docs/opamp_rebuild_2026-11-14.md#7-1511-otsus-võimendust-ei-suurendata).
 
 Püsivara seadistab G5 sisendiks, kasutab 12-bitist ADC-d, `ADC_11db` sumbuvust ja kaheksa lugemi keskmist. Siht on 100 Hz. AUTO kuvab kalibreerimata ADC koodi LCD-l ja USB eelvaates kuni neli korda sekundis. Logija valib hallatud jooksule `raw` või `opamp` sildi füüsilise ühenduse järgi. Mõõtmisprogramm ei juhi pumpa ega MG400 robotit. Logija toetab Windowsi kohalikke `COM` porte ja macOS-i `/dev/cu.*` porte. Windowsi pordikäsitlus on tarkvaras testitud, füüsiline Windowsi USB-katse vajab kinnitust. [Püsivara ja logija](src/README.md) · [Windowsi ja macOS-i käsud](src/README.md#logija-windowsis-ja-macos-is).
 
@@ -240,6 +241,14 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 **07.11.2026. Täpsustus tööjaotuse kohta**
 
 [Mõõteprotokollid](docs/bench_session.md#22102026--lm358n-katseskeemi-mõõtmised-maksim) kinnitavad Maksimi mõõtmised 22., 24. ja 25.10. [Raimo üleandmine](docs/opamp_v2_handoff_2026-10-25.md) toimus pärast Maksimi 25.10 jaguriga katseid. [23.10 tarkvaratöö](#arenduspäevik) ei olnud füüsiline katse. Tarkvaratöö tegijad vajavad meeskonna kinnitust.
+
+**15.11.26 — võimenduse suurendamise kaalumine; osalejad kinnitab tudeng**
+
+* Tegime: arvutasime 14.11 mõõdetud anduri vahemikust (0,32–2,40 V), kui palju saaks LM358N astme võimendust veel tõsta. Claude oli tarkvaraline abivahend; plaati ei muudetud ja uusi mõõtmisi ei tehtud.
+* Juhtus (numbrid): anduri ulatus 2,08 V. 0,30–2,80 V akna korral on suurim võimendus 1,20 (disain 1,186, mõõdetud 1,168). 39 kΩ `Rref`-iga oleks 1,26, 33 kΩ-ga 1,30. Lahutus ~121 → ~112 Pa/kood.
+* Otsustasime, ja miks: jätame praeguse astme. Võit oleks kõige rohkem +8…+11 % koode, müra atmosfääril on alla ühe koodi, täis imemine (0,236 V) on juba sihist madalam ja suurem võimendus vähendaks G5 ohutusvaru. Suur võimendus sobiks ainult ühe poole (nt imemise) mõõtmiseks, Labor 2 vajab aga kolme punkti.
+* Lahti järgmiseks korraks: DA2_MEASURE_V1 püsivara taastamine Atomile ja üks multimeetri näit G5 sõlmes.
+* Failid: `docs/opamp_rebuild_2026-11-14.md` (punkt 7), `README.md`.
 
 ## Väljundid ja tulemused
 

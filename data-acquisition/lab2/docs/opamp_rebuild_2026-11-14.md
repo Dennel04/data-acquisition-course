@@ -164,3 +164,40 @@ et A-poolel on + välimine ja J-poolel sisemine joon:
 Seis: anduri vahemik mõõdetud (samm 2). Sammud 3–8 on veel tegemata.
 
 - 14.11.26 märkus: kordustest [`opamp_retest.py`](../src/python/opamp_retest.py) G5-mõõtja püsivaraga (Atom COM4), 17:45 ja 17:47 jooksul andur otse kompressori küljes. Tulemus **PASS** (17:47): atmosfäär `0,858 V`, täis imemine `0,236 V`, täis puhumine `2,664 V`, ulatus `2,43 V`, tuletatud võimendus `1,168` (disain `1,186`). Pinged kalibreerimata (`3,70 V / 4095`). Kaust [`data/opamp_retest_2026-11-14_1747`](../data/opamp_retest_2026-11-14_1747/REPORT.md). Samal päeval varem: 17:37 FAIL (väljund `0,847 V` kõigil kolmel rõhul, põhjus kinnitamata), 17:40 FAIL (puhumisel ainult `1,13 V`, täis puhumist ei saavutatud), 17:45 PASS (imemine algas ~3 s pärast Enterit, keskmine `0,407 V` on seetõttu moonutatud). Sammude 3–7 multimeetri näidud jäid kirja panemata: TODO.
+
+## 7. 15.11 otsus: võimendust ei suurendata
+
+Küsimus: kas võimendust saab veel tõsta, et rõhumuutus kasutaks rohkem ADC koode?
+Otsus: **jääb praegune aste** (`Rf` 10 kΩ, `Rref` 53,8 kΩ, disain `A ≈ 1,19`, mõõdetud 14.11 17:47 `1,168`).
+
+Labor 2 peab mõõtma nii imemist kui ka puhumist, seega peab kogu anduri vahemik mahtuma
+G5 kasutatavasse aknasse. Suurim võimalik võimendus on akna laius jagatud anduri ulatusega:
+
+`A_max = (Vout_max − Vout_min) / (2,40 − 0,32 V) = akna laius / 2,08 V`
+
+| G5 aken | `A_max` | `Rref` (`Rf` = 10 kΩ) | `Vref` | Märkus |
+|---|---|---|---|---|
+| 0,30–2,80 V (punkti 6 siht) | 1,20 | ~50 kΩ | ~0,43 V | praegune aste on selle lähedal (1,19) |
+| 0,20–2,81 V | 1,26 | 39 kΩ | ~0,79 V | nõrgendi 47k/10k asemel 47k/20k |
+| 0,15–2,86 V | 1,30 | 33 kΩ | ~0,88 V | ADC mittelineaarse otsa lähedal |
+| 0,15–3,00 V | 1,37 | 27 kΩ | ~0,78 V | varu puudub, ei sobi |
+
+Põhjused:
+
+1. **Võit on väike.** Praegune disain kasutab ~97 % 0,30–2,80 V akna lubatud võimendusest.
+   Akna kitsendamine annaks kõige rohkem +8…+11 % koode kPa kohta.
+   Labori 1 arvutuse (`141 Pa/kood`, [opamp_design.md](opamp_design.md)) järgi on lahutus praegu
+   ~`141 / 1,168 ≈ 121 Pa/kood`, 39 kΩ-ga ~`112` ja 33 kΩ-ga ~`108 Pa/kood`.
+2. **Lahutus ei ole praegu piirang.** 17:47 jooksul (G5-mõõtja püsivara) oli müra atmosfääril
+   `0,5` ADC koodi standardhälvet, s.t alla ühe koodi.
+3. **Varu kaoks.** Täis imemine oli juba `0,236 V`, sihist `0,30 V` madalam. Suurem võimendus viiks mõlemad
+   otsad ESP32-S3 ADC mittelineaarsete otste lähedale ja tugevam puhumine kui 14.11 võiks viia G5 üle `3,0 V`
+   ([ohutuspiir](bench_session.md), `ADC_11db` ulatub ~3,1 V-ni).
+4. **Suur võimendus (~4–5) oleks võimalik ainult ühe poole mõõtmisel** (nt ainult imemine 0,32–0,83 V).
+   Labor 2 nõuab kolme punkti (atmosfäär, täis imemine, täis puhumine), seega see ei sobi.
+5. Ümberehitus (uus `Rref`, uus nõrgendi, `Vref` ~0,79 V) tähendaks kogu kontrolli kordamist
+   multimeetriga ja uut kordustesti vahetult enne kaitsmist.
+
+Kui hiljem siiski tõsta: mõistlik samm on 39 kΩ rida. Enne seda muuda `RREF_K` ja `TARGET_LOW_V` failis
+[`opamp_retest.py`](../src/python/opamp_retest.py), kontrolli täis puhumist multimeetriga (G5 lahti) ja korda testi.
+Arvud on arvutatud 14.11 mõõdetud anduri vahemikust, uut skeemi ei ole ehitatud ega mõõdetud.
