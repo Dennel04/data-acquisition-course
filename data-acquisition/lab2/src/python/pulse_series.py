@@ -139,6 +139,7 @@ def main(argv=None):
             print(f"[{a.config}] trial {trial}/{last}: {'OK' if ok else 'NOT OK'}  rows={summary.get('rows')} "
                   f"missed={summary.get('missed')} pump_on_at={on_t}s"
                   + (f"  error={summary.get('error')}" if summary.get("error") else "")
+                  + (f"  atom_stop={summary['atom_stop']}" if summary.get("atom_stop") else "")
                   + ("" if ok else f"  events={events}"), flush=True)
             if not ok:
                 bad.append(trial)

@@ -116,6 +116,16 @@ def wait_started(port, config, run, clock=time.monotonic):
     raise TimeoutError("no DA2 start acknowledgement")
 
 
+def stop_reply(port, clock=time.monotonic, wait=0.5):
+    """After a failed run: the Atom's answer to measure_stop, e.g. {"event":"stopped","reason":"usb_lost"}."""
+    end=clock()+wait
+    while clock()<end:
+        line=port.readline(513)
+        if line.startswith(b'{"event":"stopped"'):
+            return line.decode("ascii","replace").strip()
+    return ""
+
+
 def capture(port, writer, handle, args, run, clock=time.monotonic):
     rows=Rows(args.config,run)
     summary=dict(run_id=run,config=args.config,condition=args.condition,trial=args.trial,
@@ -150,6 +160,8 @@ def capture(port, writer, handle, args, run, clock=time.monotonic):
     finally:
         try:
             port.write(b'{"cmd":"measure_stop"}\n')  # never Lab 1's actuator "stop"
+            if summary["status"]!="complete":
+                summary["atom_stop"]=stop_reply(port,clock)
         except Exception:
             pass
         summary.update(rows.summary())
