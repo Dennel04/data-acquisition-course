@@ -155,8 +155,9 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
 - [x] Füüsiline komponentide saadavus ja tellimisvajadus on kontrollitud failis `docs/bom.md`. TODO: real measurement required.
   - 15.11.26 märkus: ehitatud astme komponendid ja kogused on lisatud ([bom.md](docs/bom.md#15112026--ehitatud-astme-komponendid-uus-plaat-1411)) pesade tabeli, foto ja mõõtmiste põhjal; tellida ei ole vaja. Riiuli varude füüsiline loendus on tegemata.
   - 15.11.26 linnuke: kõik ehitatud astme osad on plaadil (foto 15.11) ja vastavad juhendi osade loendile; tellida ei ole vaja. Riiulis olevaid varuosi ei loendatud. [BOM](docs/bom.md#15112026--ehitatud-astme-komponendid-uus-plaat-1411).
-- [ ] Repo ja arenduspäevik on lõpetatud; esitamisel on lisatud tag `data-acquisition-lab2`.
+- [x] Repo ja arenduspäevik on lõpetatud; esitamisel on lisatud tag `data-acquisition-lab2`.
   - 15.11.26 märkus: kogu 14.–15.11 töö (sh Denysi 30 + 30 impulssi) on ühel harul ja PR meeskonna `main`-i on avatud. Tag `data-acquisition-lab2` lisatakse pärast ühendamist esitamisel.
+  - 15.11.26 linnuke (Raimo otsus): repo ja arenduspäevik on täidetud (PR #2); tag `data-acquisition-lab2` pannakse esitamisel.
 
 ## Ohutus
 
