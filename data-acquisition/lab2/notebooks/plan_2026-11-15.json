@@ -1,0 +1,1234 @@
+{
+  "calibration": {
+    "53dfe6752e004c9d": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "c52cc292cdc54891": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "6fd6c2bd5fca4ad2": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "2be3a105e0214e2a": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "d638bec7bcf742a1": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "ae05db6dda2e4747": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "b6b2228d40f94e05": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "1d8fa76211a44528": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "377028af4e2344eb": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "e3c0bf78037941a3": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "a643a8a38f3d4b37": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "5e984c6210604ba5": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "4cd0dcefe3a5450f": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "d3b3534561544592": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "3527fe3791c54de7": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "4496a7484f0d45d5": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "87bb8e5011f54465": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "6cc0768af32947dd": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "468d61709b554433": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "ad63ba5190ad4aa2": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "d8e2be8666fd4754": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "5b1e2ecf88f243ae": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "05ddb089234c4b7a": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "07af2c9a34db47a1": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "f286e13d94f849f9": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "7ce464053c1543a3": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "11543f8bd19f4076": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "57813217c5b9480e": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "2eb2d5f122b74343": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "2fb04692dca948fa": {
+      "config": "opamp",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V; stage A 1.1852, Vref 0.686 V; ADC slope from raw points, codes above 2690 extrapolated",
+      "pa_per_code": 119.76130616897983,
+      "offset_pa": -18087.317765342552,
+      "adc_range": [
+        900,
+        3100
+      ]
+    },
+    "52ab0bec0dec46ec": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "8790fd833a6c4d38": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "29f8178e5c584cb5": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "7b8cd047ec6c483d": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "7228cf090280435f": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "b44cb1d404a444ab": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "3c22444cde034b3b": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "eabfcf9fd2e4401e": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "893ba159be3a4124": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "2db1b41481624625": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "45802397fa604572": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "a0191ad0508a4e96": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "9bdc68cc5d9749fb": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "9be3a7f313be4f93": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "e0d2bd69ff42478e": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "f5c8cc39167e4f46": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "d8099e32107f4bd6": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "88465a94f4fb4ab2": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "485fab7e257f4908": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "2c75e999aeb745df": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "4b4e80ca532c4058": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "89bc35b1d2ce4dbe": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "47dc8b34194e44fa": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "cdb324abb5f4405e": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "ff8a3b78ecea4082": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "30f4ec260a7d4729": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "10ad58da22704cd4": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "f298209b8e9a4470": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "4749d244791d4bf0": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    },
+    "b826969e20164149": {
+      "config": "raw",
+      "source": "docs/bench_session.md 15.11.2026 + multimeter 15.11 (sensor pin 1 0.837 V, row 22 2.43 V at full blowing, G5 0.865 V); ADC line from the two raw points; MPX5700AP datasheet Vout = Vs(0.0012858 P + 0.04), Vs 5.0 V",
+      "pa_per_code": 141.939325829902,
+      "offset_pa": -34951.021977847784,
+      "adc_range": [
+        900,
+        2700
+      ]
+    }
+  },
+  "windows": {
+    "53dfe6752e004c9d": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "c52cc292cdc54891": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "6fd6c2bd5fca4ad2": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "2be3a105e0214e2a": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "d638bec7bcf742a1": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "ae05db6dda2e4747": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "b6b2228d40f94e05": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "1d8fa76211a44528": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "377028af4e2344eb": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "e3c0bf78037941a3": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "a643a8a38f3d4b37": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "5e984c6210604ba5": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "4cd0dcefe3a5450f": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "d3b3534561544592": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "3527fe3791c54de7": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "4496a7484f0d45d5": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "87bb8e5011f54465": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "6cc0768af32947dd": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "468d61709b554433": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "ad63ba5190ad4aa2": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "d8e2be8666fd4754": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "5b1e2ecf88f243ae": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "05ddb089234c4b7a": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "07af2c9a34db47a1": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "f286e13d94f849f9": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "7ce464053c1543a3": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "11543f8bd19f4076": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "57813217c5b9480e": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "2eb2d5f122b74343": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "2fb04692dca948fa": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "52ab0bec0dec46ec": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "8790fd833a6c4d38": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "29f8178e5c584cb5": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "7b8cd047ec6c483d": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "7228cf090280435f": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "b44cb1d404a444ab": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "3c22444cde034b3b": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "eabfcf9fd2e4401e": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "893ba159be3a4124": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "2db1b41481624625": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "45802397fa604572": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "a0191ad0508a4e96": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "9bdc68cc5d9749fb": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "9be3a7f313be4f93": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "e0d2bd69ff42478e": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "f5c8cc39167e4f46": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "d8099e32107f4bd6": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "88465a94f4fb4ab2": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "485fab7e257f4908": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "2c75e999aeb745df": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "4b4e80ca532c4058": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "89bc35b1d2ce4dbe": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "47dc8b34194e44fa": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "cdb324abb5f4405e": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "ff8a3b78ecea4082": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "30f4ec260a7d4729": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "10ad58da22704cd4": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "f298209b8e9a4470": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "4749d244791d4bf0": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    },
+    "b826969e20164149": {
+      "baseline_s": [
+        0.0,
+        3.0
+      ],
+      "plateau_s": [
+        4.5,
+        6.5
+      ]
+    }
+  },
+  "spectrum_pairs": [
+    {
+      "raw_run": "52ab0bec0dec46ec",
+      "opamp_run": "53dfe6752e004c9d",
+      "raw_s": [
+        0.0,
+        3.0
+      ],
+      "opamp_s": [
+        0.0,
+        3.0
+      ],
+      "protocol": "15.11.2026 pulse_series.py: pump off 0-3 s, blow (DO1) 3-7 s, off 7-10 s, 100 Hz, same day, same tube with small leak; trial 1; window baseline, pump off"
+    },
+    {
+      "raw_run": "52ab0bec0dec46ec",
+      "opamp_run": "53dfe6752e004c9d",
+      "raw_s": [
+        4.5,
+        6.5
+      ],
+      "opamp_s": [
+        4.5,
+        6.5
+      ],
+      "protocol": "15.11.2026 pulse_series.py: pump off 0-3 s, blow (DO1) 3-7 s, off 7-10 s, 100 Hz, same day, same tube with small leak; trial 1; window plateau, pump blowing"
+    }
+  ]
+}

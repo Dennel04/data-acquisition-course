@@ -125,9 +125,12 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
 - [ ] Esimese versiooni mõlema otspunkti hälve on mõõdetud ja seletatud. TODO: real measurement required.
 - [ ] Parandatud aste on uuesti arvutatud ja samades punktides mõõdetud. TODO: real measurement required.
 - [ ] Sama pumbaimpulss on logitud konfiguratsioonides `raw` ja `opamp`. TODO: real measurement required.
+  - 15.11.26 märkus: 30 + 30 impulssi sama protokolliga samas CSV-s (`data/pulses_2026-11-15.csv`), [bench-märge](docs/bench_session.md#kalibratsioon-pa-adc-samm-snr-ja-spektrid-1511-andmelehe-mudel).
   - 15.11.26 märkus: 30 + 30 impulssi samas CSV-s, [bench-märge](docs/bench_session.md#15112026--30--30-pumbaimpulssi-raw-ja-opamp-denys-raimo). Kalibratsioon puudub.
 - [ ] Spektrid on võrreldud samade telgede ja ühikutega. Labori 1 toores lähtefail on olemas; Labor 2 võrdlus: TODO: real measurement required.
+  - 15.11.26 märkus: Labor 2 `raw` ja `opamp` spektrid samadel telgedel kPa²/Hz (baasjoon ja platoo), [bench-märge](docs/bench_session.md#kalibratsioon-pa-adc-samm-snr-ja-spektrid-1511-andmelehe-mudel). Võrdlus Labori 1 spektritega: TODO.
 - [ ] Pa ühe ADC sammu kohta ja SNR on arvutatud enne ning pärast astet. Raw-lähtejoon `141 Pa/kood`; op-amp ja SNR: TODO: real measurement required.
+  - 15.11.26 märkus: andmelehe mudel + 15.11 multimeetri punktid: `raw` 141,9 Pa/kood, SNR 46,0 dB; `opamp` 119,8 Pa/kood, SNR 51,5 dB, [bench-märge](docs/bench_session.md#kalibratsioon-pa-adc-samm-snr-ja-spektrid-1511-andmelehe-mudel).
 - [ ] Pumbajuhtimine on uue signaaliga mõõdetud ja võrreldud Labori 1 ajaloolise lähtejoonega. TODO: real measurement required.
 - [ ] Pooliku haarde eristamise aeg on mõõdetud mõlema signaaliga. TODO: real measurement required.
 - [ ] Füüsiline komponentide saadavus ja tellimisvajadus on kontrollitud failis `docs/bom.md`. TODO: real measurement required.
