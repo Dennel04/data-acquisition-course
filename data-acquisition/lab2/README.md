@@ -115,6 +115,7 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
 
 - [ ] Labori 1 signaalist on arvutatud Pa ühe ADC sammu kohta (`141 Pa/kood`); tegelik sisendvahemik, kasutatud ADC vahemiku osa ja lõplikud astme nõuded: TODO: real measurement required.
 - [ ] Falstadis on astme skeem, põhjendatud takistid ja müraallika katsed. Õppejõu näidisskeem on olemas; meeskonna skeem: TODO: real measurement required.
+  - 15.11.26 märkus: meeskonna ehitatud astme Falstadi skeem koos ekspordi, pildi ja muudetava lingiga on lisatud ([opamp_design.md](docs/opamp_design.md#õppejõu-mpx5700ap-näite-falstadi-esimene-versioon)); simulatsioon 0,864 V vs multimeeter 0,865 V atmosfääril. Müraallika katsed: TODO.
 - [ ] Esimene aste on maketeerimisplaadil mõõdetud kolmes rõhupunktis. TODO: real measurement required.
 - [ ] Sisend ja väljund on salvestatud korraga ostsilloskoobiga. TODO: real measurement required.
   - 15.11.26 märkus: GDS-1072A-U ekraanist kolm telefonifotot (CH1 = G5, CH2 = anduri pin 1, 1 V/div, 1 s/div ROLL). Skoobi faile ega Mean/Max näite ei salvestatud. Fotode järgi `G5 = 2,43 × andur − 0,37 V`, s.t võimendus võib olla ~2,4, mitte ~1,19. Kinnitamata. [Fotod ja analüüs](data/scope_2026-11-15/README.md).

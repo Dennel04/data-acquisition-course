@@ -157,6 +157,14 @@ Skeem kasutab Falstadi op-ampi väljundipiiridega `0…5 V` ja sisemise avatud a
 - Ühismüra [eksport](falstad_noise_common.txt) ja [veebiskeem](https://www.falstad.com/s.php?s=2Gxo5B).
 - Ühe sisendi müra [eksport](falstad_noise_single.txt) ja [veebiskeem](https://www.falstad.com/s.php?s=rpTgtj).
 - Falstadi eraldi PNG skeemipilt: TODO: image export required. Veebisimulaatori pildieksport ei andnud siin kättesaadavat kohalikku faili; ülaltoodud tekstiekspordid ja lingid avavad päris skeemid.
+- 15.11.26 märkus: **meeskonna ehitatud aste** (uus plaat 14.11, [pesad](opamp_rebuild_2026-11-14.md#6-1411-hilisem-täpsustus-mõõdetud-vahemik-ja-muudetud-plaan)) on Falstadis eraldi:
+  [eksport](falstad_team_stage_2026-11-15.txt), [muudetav veebiskeem](https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKAEMQAWYwkFTqoX58BIPCGzQkVMPDgsASlx58EvTthSreVKqJh5s5XVCksA7st4ph3XmEK6WAJyvhHIIZ3cnZ8C57CDoLC-E6u2HjewW4xtJHyHGHgGLzYhOJgqWISUlDIcgHpmdmR0dmQRVEpadVxAckxjWBalZbNWsXgLVBFGd2d-Vk6LhJ1pdUoeOJUaPIA5mPeU+JlEmi9SsxaYMRanJl7+XpUksTYx6YIo9vgR2iHrVwY-u34d1qNR5WuDx987xW+T8CwB4iBf004UCy1EGA2yVOuEqAGMQPDZnCNrhvDJGJBjCxFhiJJBvCTsOlegB5dEIuGTUSsWlrGJrFSsAAe6x5KE0POi3gAsnQ6ABnADWAHsAHYytgAHTFABkhdgEHgAHJKthigAudAANEq6AALACWerYeoArgATJVgTjQZjQNBEJUACgAgjK7QBbM0AV-NADc6ErlWwAEZS5xKlAAShY3P5aj4afU4G8ADUpTa9UqFQBHL1gIsAB0dkAA9AhsIa8ImAO0580ypWAJCIy7X642WznnHQAGZF0tisCGsB4Qit9tdpWQKcz1tD4cpgWhfmcWzZkBCgAKAA0EC9IN6D0qK-OJwAuReNoxKnM6vX+qVi4cAE6-znNABsvX9G1-z1c1AzoA14wnBAXTAZNuSYax+WnZZtz3AAhPwAGklX-c0bXmG1nA3JCJA8VDyL0PdOAwCUa1kCUlRlINnHmOg-XNJVACTCZ81yVQAJIgfEhny9NhnFDAtrXtR1YOYBDPHTOYxCUuAuD3ABxBB7zFBtsCYsUFSrMUl3LMUAFaADEN23NS+X2NTBRAVV1S1JUEFE-UpUtOh-2NMVQy-f8ACsbU4q9zXNaDgLtXzzUMkzADICBsPLFHNoCVIUQLAiCoNkuCdK0h8Z1SnMWCAA) ja pilt allpool.
+  Skeemis on `Rf` 10 kΩ, `Rref` 53,8 kΩ, LM358N teine pool viitepuhvrina (follower) 2 kΩ allatõmbega, B100K liugur → 47 kΩ / 10 kΩ nõrgendi,
+  väljundis 3,3 kΩ + 0,1 µF G5-le. Sisend on 15.11 multimeetri näit 0,837 V. Liuguri pinge 3,93 V on valitud nii, et `Vref` ≈ 0,69 V (15.11 arvutus),
+  liugurit ei mõõdetud. Simulatsioon: `Vref` 0,689 V, G5 **0,864 V**; multimeeter samal päeval G5 **0,865 V**. Op-ampi mudeli väljundi piir on 0…3,5 V
+  (LM358 5 V toitel, eeldus, mitte mõõtmine). Müraallika katsed selle skeemiga: TODO.
+
+  ![Meeskonna aste Falstadis](falstad_team_stage_2026-11-15.png)
 
 **Õppejõu MPX5700AP näide, mitte meie mõõtetulemus.** Mürakatse ainus näitehäiring on siinus `10 mV` tippamplituudiga ja sagedusega `100 Hz`. Mõlema katse alalissisend on `V_in = 0,98 V` ja ideaalne viide `V_ref = 252/775 V`. Ühismüra skeemis on sama faasi ja amplituudiga allikas nii anduri kui ka viite harus; sobitatud suhtarvudega ei muuda see tahtlikult võimendi sisendite diferentsiaalpinget. Teises skeemis on sama allikas ainult anduri harus. Globaalse maa liigutamine muudaks ka viite- või toitesõlme tähendust ning oleks teine katse.
 
