@@ -132,6 +132,7 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
   - 15.11.26 linnuke (tudengi otsus): GDS-1072A-U telefonifotod, CH1 = G5 ja CH2 = anduri pin 1 samal ajal ([fotod](data/scope_2026-11-15/README.md)). CH2 näit oli multimeetri järgi vale, nii et fotosid kasutatakse ainult kuju ja ajastuse tõendina; vajadusel täiendatakse hiljem skoobi failidega.
 - [ ] Esimese versiooni mõlema otspunkti hälve on mõõdetud ja seletatud. TODO: real measurement required.
   - 15.11.26 märkus: alumine ots on mõõdetud ja seletatud (arvutus −0,13 V, mõõdetud ~0,03 V, LM358 lõikab 0 V juures); ülemist otsa esimese versiooniga ei saavutatud (25.10 kuni `Vin` ≈ 1,20 V), seega linnuke jääb panemata. [Seletus](docs/opamp_design.md#otspunktide-vead).
+  - 15.11.26 otsus (meeskond): esimest versiooni uuesti ei ehitata, seega ülemise otspunkti viga jääb mõõtmata. Seletus arvutuse ja LM358 väljundipiiri põhjal on olemas; punkt jääb märkimata.
 - [x] Parandatud aste on uuesti arvutatud ja samades punktides mõõdetud. TODO: real measurement required.
   - 15.11.26 linnuke: uus plaat 14.11, arvutus [punktid 6–7](docs/opamp_rebuild_2026-11-14.md), kordustest PASS 14.11 17:47 (0,236 / 0,858 / 2,664 V), 15.11 multimeeter 0,837 / 0,865 V.
 - [x] Sama pumbaimpulss on logitud konfiguratsioonides `raw` ja `opamp`. TODO: real measurement required.
@@ -145,11 +146,14 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
   - 15.11.26 märkus: andmelehe mudel + 15.11 multimeetri punktid: `raw` 141,9 Pa/kood, SNR 46,0 dB; `opamp` 119,8 Pa/kood, SNR 51,5 dB, [bench-märge](docs/bench_session.md#kalibratsioon-pa-adc-samm-snr-ja-spektrid-1511-andmelehe-mudel).
   - 15.11.26 linnuke: `raw` 141,9 Pa/kood, 46,0 dB; `opamp` 119,8 Pa/kood, 51,5 dB (andmelehe mudel). [Arvutus](docs/bench_session.md#kalibratsioon-pa-adc-samm-snr-ja-spektrid-1511-andmelehe-mudel).
 - [ ] Pumbajuhtimine on uue signaaliga mõõdetud ja võrreldud Labori 1 ajaloolise lähtejoonega. TODO: real measurement required.
+  - 15.11.26 märkus (meeskond): pumbajuhtimise loogikat ja riba (`on −40 / off −60 kPa`) ei muudetud, aste ainult skaleerib signaali, seega peaks juhtimine põhimõtteliselt endiselt töötama. Uue signaaliga mõõtmist ei tehtud; punkt jääb märkimata.
 - [ ] Pooliku haarde eristamise aeg on mõõdetud mõlema signaaliga. TODO: real measurement required.
+  - 15.11.26 märkus (meeskond): pooliku haarde tuvastus peaks põhimõtteliselt endiselt töötama, mõõtmist mõlema signaaliga ei tehtud; punkt jääb märkimata. `opamp` väiksem müra (176 vs 539 Pa pump väljas) peaks eristamist pigem parandama, aga see on hinnang, mitte mõõtmine.
 - [x] Füüsiline komponentide saadavus ja tellimisvajadus on kontrollitud failis `docs/bom.md`. TODO: real measurement required.
   - 15.11.26 märkus: ehitatud astme komponendid ja kogused on lisatud ([bom.md](docs/bom.md#15112026--ehitatud-astme-komponendid-uus-plaat-1411)) pesade tabeli, foto ja mõõtmiste põhjal; tellida ei ole vaja. Riiuli varude füüsiline loendus on tegemata.
   - 15.11.26 linnuke: kõik ehitatud astme osad on plaadil (foto 15.11) ja vastavad juhendi osade loendile; tellida ei ole vaja. Riiulis olevaid varuosi ei loendatud. [BOM](docs/bom.md#15112026--ehitatud-astme-komponendid-uus-plaat-1411).
 - [ ] Repo ja arenduspäevik on lõpetatud; esitamisel on lisatud tag `data-acquisition-lab2`.
+  - 15.11.26 märkus: kogu 14.–15.11 töö (sh Denysi 30 + 30 impulssi) on ühel harul ja PR meeskonna `main`-i on avatud. Tag `data-acquisition-lab2` lisatakse pärast ühendamist esitamisel.
 
 ## Ohutus
 
