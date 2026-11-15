@@ -12,6 +12,13 @@ char line[160]{}, config[6]{}, runId[17]{};
 size_t used = 0;
 acquisition::Mode mode = acquisition::Mode::Auto;
 uint32_t lineStarted = 0, sequence = 0, displayAt = 0;
+// Why a managed run ended without measure_stop; kept on the LCD until the next start.
+const char* stopReason = nullptr;
+// The ESP32-S3 core's USB 'connected' flag can drop for a moment while the host stays attached
+// (15.11.26: reason usb_lost in 2 of 13 runs, no reconnect in Windows). Stop only if it stays down.
+constexpr uint32_t kUsbLostMs = 100;
+uint32_t usbDownSince = 0, usbFlickers = 0;
+bool usbDown = false;
 acquisition::Clock sampling;
 
 void status(const char* state) {
@@ -26,13 +33,20 @@ void status(const char* state) {
 }
 void stop() {
   mode = acquisition::Mode::Stopped;
+  if (stopReason) {  // run had already ended on its own: report why, keep it on screen
+    char reply[64];
+    snprintf(reply,sizeof(reply),"{\"event\":\"stopped\",\"reason\":\"%s\"}",stopReason);
+    Serial.println(reply);
+    return;
+  }
   Serial.println("{\"event\":\"stopped\"}");
   status("STOPPED");
 }
 void fail(const char* message) {
   mode = acquisition::Mode::Stopped;
+  stopReason = message[0]=='\n' ? message+3 : message+2;  // text after "# "
   Serial.println(message);
-  status("STOPPED / ERROR");
+  status(stopReason);
 }
 void command() {
   JsonDocument doc;
@@ -52,6 +66,7 @@ void command() {
   }
   std::strcpy(config,candidate); std::strcpy(runId,run);
   mode = acquisition::Mode::Managed;  // no AUTO output after this command
+  stopReason = nullptr;
   sequence=0;
   JsonDocument ack;
   ack["event"]="started"; ack["firmware"]="DA2_MEASURE_V1";
@@ -68,7 +83,7 @@ void setup() {
   esp_log_level_set("*",ESP_LOG_NONE);
   auto cfg=M5.config(); M5.begin(cfg);
   M5.Display.setRotation(0); M5.Display.setBrightness(128);
-  Serial.begin(115200); Serial.setTxTimeoutMs(5);
+  Serial.begin(115200); Serial.setTxTimeoutMs(50);  // 5 ms: core marked USB lost mid-run in ~1/4 of 10 s runs (15.11.26)
   pinMode(kAdcPin,INPUT);
   analogReadResolution(12);
   analogSetPinAttenuation(kAdcPin,ADC_11db);
@@ -90,9 +105,14 @@ void loop() {
     } else { if(!used) lineStarted=millis(); line[used++]=static_cast<char>(c); }
   }
   if (!Serial) {
-    const auto previous=mode;
-    mode=acquisition::afterDisconnect(mode);
-    if (previous != mode) status("STOPPED / USB LOST");
+    if (!usbDown) { usbDown=true; usbDownSince=millis(); ++usbFlickers; }
+    if (millis()-usbDownSince >= kUsbLostMs) {
+      const auto previous=mode;
+      mode=acquisition::afterDisconnect(mode);
+      if (previous != mode) { stopReason = "usb_lost"; status("STOPPED / USB LOST"); }
+    }
+  } else {
+    usbDown=false;
   }  // AUTO continues on LCD; reconnect never resumes a managed run
   if (mode == acquisition::Mode::Stopped) { delay(1); return; }
   const uint32_t now=millis();
@@ -127,7 +147,8 @@ void loop() {
     displayAt=now+250;
     M5.Display.fillRect(0,65,128,22,TFT_BLACK);
     M5.Display.setCursor(2,65);
-    M5.Display.printf("%s ADC %d\n",
-        mode == acquisition::Mode::Auto ? "AUTO" : config,adc);
+    M5.Display.printf("%s ADC %d\nUSB flicker %lu\n",
+        mode == acquisition::Mode::Auto ? "AUTO" : config,adc,
+        static_cast<unsigned long>(usbFlickers));
   }
 }

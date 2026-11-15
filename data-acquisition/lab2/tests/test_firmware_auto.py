@@ -64,8 +64,8 @@ struct Screen {
   void setBrightness(int){}
   void fillRect(int,int,int,int,int){}
   void println(const char* s){text+=s;text+='\n';}
-  void printf(const char* format,const char* label,int adc){
-    char buf[128];snprintf(buf,sizeof(buf),format,label,adc);text+=buf;
+  void printf(const char* format,const char* label,int adc,unsigned long flickers){
+    char buf[128];snprintf(buf,sizeof(buf),format,label,adc,flickers);text+=buf;
   }
 };
 struct Device {
@@ -107,7 +107,11 @@ int main(){
   assert(Serial.output=="{\"event\":\"stopped\"}\n");
   int before=reads;tick+=1000;loop();assert(reads==before);
   send(startRaw);Serial.connected=false;tick+=10;loop();
-  assert(mode==acquisition::Mode::Stopped);
+  assert(mode==acquisition::Mode::Managed); // short USB flag drop does not end the run
+  Serial.connected=true;Serial.output.clear();tick+=10;loop();
+  assert(mode==acquisition::Mode::Managed && Serial.output.find("\"seq\":2")!=std::string::npos);
+  Serial.connected=false;tick+=10;loop();tick+=100;loop();
+  assert(mode==acquisition::Mode::Stopped); // USB down for 100 ms ends it
   Serial.connected=true;Serial.output.clear();tick+=1000;loop();
   assert(Serial.output.empty()); // no resume of a managed run on reconnect
   send(startRaw);Serial.shortWrite=true;tick+=10;loop();

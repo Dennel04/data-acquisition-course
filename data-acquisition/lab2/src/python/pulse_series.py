@@ -72,6 +72,42 @@ class Dashboard:
             self.sock.close()
 
 
+class HttpPump:
+    """Pump through a running mg400-base server (POST /api/pump) instead of our own 29999 socket.
+
+    The MG400 dashboard keeps one client, so a second 29999 connection kicks mg400-base out
+    (15.11.26: Smart Solutions series failed twice, our opamp trial 13 lost the link).
+    """
+
+    def __init__(self, url, timeout=2.0, dry_run=False):
+        self.url, self.timeout, self.dry_run = url.rstrip("/"), timeout, dry_run
+        if not dry_run:
+            cfg = self._request("/api/config")
+            if (cfg.get("blow_do"), cfg.get("suck_do")) != (BLOW_DO, SUCK_DO):
+                raise RuntimeError(f"mg400-base uses blow_do={cfg.get('blow_do')} suck_do={cfg.get('suck_do')}, "
+                                   f"expected {BLOW_DO}/{SUCK_DO}")
+
+    def _request(self, path, body=None):
+        import urllib.request
+        data = None if body is None else json.dumps(body).encode()
+        req = urllib.request.Request(self.url + path, data=data, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=self.timeout) as r:
+            return json.loads(r.read().decode())
+
+    def pump(self, mode):
+        if mode not in ("blow", "suck", "off"):
+            raise ValueError(mode)
+        if self.dry_run:
+            return f"dry-run POST /api/pump {mode}"
+        reply = self._request("/api/pump", {"mode": mode})
+        if not reply.get("ok"):
+            raise RuntimeError(f"mg400-base refused pump {mode}: {reply}")
+        return reply
+
+    def close(self):
+        pass
+
+
 def pulse_thread(dash, mode, off_before, on, events, stop, clock=time.monotonic):
     """Runs beside logger.capture: off -> mode -> off. Records times relative to its own start."""
     t0 = clock()
@@ -104,6 +140,8 @@ def main(argv=None):
     p.add_argument("--on", type=float, default=4.0)
     p.add_argument("--rest", type=float, default=5.0, help="seconds between runs")
     p.add_argument("--robot", default=ROBOT_IP)
+    p.add_argument("--mg400-url", help="drive the pump through a running mg400-base, e.g. http://127.0.0.1:8000 "
+                                       "(no own 29999 connection)")
     p.add_argument("--dry-run-pump", action="store_true", help="log only, do not touch the robot")
     p.add_argument("--electrical-check-confirmed", action="store_true", required=True,
                    help="the G5 voltage for this config was checked with a multimeter over the full range")
@@ -111,7 +149,10 @@ def main(argv=None):
     if not 1 <= a.trials <= 100 or a.off_before + a.on >= a.duration or a.on > 6:
         p.error("need 1..100 trials, off_before + on < duration, on <= 6 s")
 
-    dash = Dashboard(a.robot, dry_run=a.dry_run_pump)
+    if a.mg400_url:
+        dash = HttpPump(a.mg400_url, dry_run=a.dry_run_pump)
+    else:
+        dash = Dashboard(a.robot, dry_run=a.dry_run_pump)
     port = logger.open_atom(a.port)
     pump_log = Path(str(a.csv) + ".pump.jsonl")
     run_log = Path(str(a.csv) + ".runs.jsonl")
@@ -139,6 +180,7 @@ def main(argv=None):
             print(f"[{a.config}] trial {trial}/{last}: {'OK' if ok else 'NOT OK'}  rows={summary.get('rows')} "
                   f"missed={summary.get('missed')} pump_on_at={on_t}s"
                   + (f"  error={summary.get('error')}" if summary.get("error") else "")
+                  + (f"  atom_stop={summary['atom_stop']}" if summary.get("atom_stop") else "")
                   + ("" if ok else f"  events={events}"), flush=True)
             if not ok:
                 bad.append(trial)

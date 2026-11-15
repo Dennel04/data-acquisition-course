@@ -125,6 +125,7 @@ Valmista [kiirstardi](#kiirstart-ilma-riistvarata) abil ette graafik ja kokkuvõ
 - [ ] Esimese versiooni mõlema otspunkti hälve on mõõdetud ja seletatud. TODO: real measurement required.
 - [ ] Parandatud aste on uuesti arvutatud ja samades punktides mõõdetud. TODO: real measurement required.
 - [ ] Sama pumbaimpulss on logitud konfiguratsioonides `raw` ja `opamp`. TODO: real measurement required.
+  - 15.11.26 märkus: 30 + 30 impulssi samas CSV-s, [bench-märge](docs/bench_session.md#15112026--30--30-pumbaimpulssi-raw-ja-opamp-denys-raimo). Kalibratsioon puudub.
 - [ ] Spektrid on võrreldud samade telgede ja ühikutega. Labori 1 toores lähtefail on olemas; Labor 2 võrdlus: TODO: real measurement required.
 - [ ] Pa ühe ADC sammu kohta ja SNR on arvutatud enne ning pärast astet. Raw-lähtejoon `141 Pa/kood`; op-amp ja SNR: TODO: real measurement required.
 - [ ] Pumbajuhtimine on uue signaaliga mõõdetud ja võrreldud Labori 1 ajaloolise lähtejoonega. TODO: real measurement required.
@@ -265,6 +266,14 @@ Nende muutuste täpsed füüsikalised põhjused vajavad täiendavat kontrollimis
 * Failid: `data/scope_2026-11-15/`, `docs/opamp_rebuild_2026-11-14.md` (punkt 7 märkus), `README.md`.
 * 15.11.26 hiljem: multimeetriga mõõdetud pin 2–pin 7 ~54 kΩ ja anduri toide 5 V. Mõlemad vastavad disainile, võimenduse otsus jääb kehtima ja täispuhumise piirang langeb ära. Lahti jääb multimeetri näit anduri pin 1 ja G5 sõlme juures atmosfääril.
 * 15.11.26 veel hiljem: multimeeter atmosfääril, anduri pin 1 0,837 V ja G5 0,865 V. ADC tegur loeb ~0,7 % madalamalt. ~0,05 V nihe tuleb `Vref`-ist (arvutatud ≈ 0,69 V, plaan 0,43 V). Järgmiseks: 30 + 30 `raw`/`opamp` mõõtmist. [Arvutus](docs/opamp_rebuild_2026-11-14.md#7-1511-otsus-võimendust-ei-suurendata).
+
+**15.11.26 — 30 + 30 pumbaimpulssi `raw` ja `opamp`; kohal Denys ja Raimo**
+
+* Tegime: logisime `pulse_series.py`-ga samal päeval ühte CSV-sse 30 impulssi `opamp` (G5 astme väljundil) ja 30 impulssi `raw` (G5 anduri real 22). Igas jooksus pump väljas 3 s, puhumine 4 s, väljas 3 s, 100 Hz. Pumpa juhtis MG400 DO1. Voolikule lisati väike leke, et rõhk langeks jooksude vahel atmosfäärini. Claude oli tarkvaraline abivahend.
+* Juhtus (numbrid, ADC koodid, kalibreerimata): `raw` baasjoon 944,3, platoo 2654,9, tipp 2690 (~2,43 V); `opamp` baasjoon 978,4, platoo 3004,3, tipp 3043 (~2,75 V). Kõik jooksud 1001 rida, `missed=0`. Kolm jooksu jäeti analüüsist välja ja korrati (põhjused bench-märkmes).
+* Otsustasime, ja miks: analüüs teeb ainult ADC ajagraafiku, sest rõhukalibratsioon puudub.
+* Lahti järgmiseks korraks: kalibratsioonipunktid mõlemas ühenduses (multimeeter G5-l + logija), siis Pa/ADC samm, SNR ja spektrid.
+* Failid: `data/pulses_2026-11-15.csv`, `docs/bench_session.md` (15.11), `notebooks/pulses_2026-11-15/`.
 
 ## Väljundid ja tulemused
 
